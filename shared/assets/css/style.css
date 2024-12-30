@@ -1,0 +1,13 @@
+:root{
+    /* GLOBAL VARIABLES */
+    --h1: 18px;
+    --accentColor: ;
+}
+
+.title{
+    font-size: var(--h1);
+    color: var(--accentColor);
+}
+
+
+
