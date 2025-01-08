@@ -24,26 +24,26 @@
             <!-- Form Column -->
             <div class="col-md-6 p-5 text-center">
                 <h1 class="mb-4">Welcome back</h1>
-                <form>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Email or username" id="email">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Password" id="password">
-                    </div>
-                    <div class="mb-4 d-flex justify-content-start">
-                         <a href="">Forget password?</a>
-                    </div>
-                    <div>
-                        <button class="btnContinue  w-100" type="submit">Continue</button>
-                    </div>
-                    <div class="my-4 text-center">
-                         <a href="">Don't have an account?</a>
-                    </div>
-                    <div>
-                        <button class="btnRegister w-100" type="submit">Register</button>
-                    </div>
-                </form>
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Email or username" id="email">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Password" id="password">
+                </div>
+                <div class="mb-4 d-flex justify-content-start">
+                    <a href="">Forget password?</a>
+                </div>
+                <div>
+                    <a href="index.php"><button class="btnContinue  w-100" type="submit">Continue</button></a>
+                </div>
+                <div class="my-4 text-center">
+                    Don't have an account?
+                </div>
+                <div>
+                    <a href="register.php"><button class="btnRegister w-100" type="submit">Register</button></a>
+                </div>
+
             </div>
         </div>
     </section>

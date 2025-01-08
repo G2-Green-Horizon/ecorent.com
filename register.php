@@ -26,7 +26,7 @@
             <!-- Form Column -->
             <div class="col-md-6 p-5">
                 <h2 class="mb-4 text-center">Create an account</h2>
-                <form>
+                
                     <div class="mb-3">
                         <input type="text" class="form-control" id="first_name" name="first_name"
                             placeholder="First Name" required>
@@ -48,15 +48,15 @@
                             placeholder="Confirm Password" required>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-dark w-100">Register</button>
+                        <a href="index.php"><button type="submit" class="btn btn-dark w-100">Register</button></a>
                     </div>
                     <div class="text-center mb-3">
                         <a href="Login.php" class="text-decoration-none">Already have an account?</a>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-outline-dark w-100">Log In</button>
+                        <a href="login.php"><button type="button" class="btn btn-outline-dark w-100">Log In</button></a>
                     </div>
-                </form>
+                
             </div>
         </div>
     </section>
