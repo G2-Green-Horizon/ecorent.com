@@ -1,13 +1,31 @@
 :root{
     /* GLOBAL VARIABLES */
-    --h1: 18px;
-    --accentColor: ;
+    --borderRadius: 18.3px;
+    --btnBg: #929292;
 }
 
-.title{
-    font-size: var(--h1);
-    color: var(--accentColor);
+.btnContinue {
+    background-color: var(--btnBg);
+    border-radius: var(--borderRadius);
+    width: 427px;
+    height: 51px;
+    border: none;
+    color: white;
 }
 
+.btnRegister {
+    border-radius: var(--borderRadius);
+    height: 51px;
+    width: 427px;
+    background-color: transparent;
+}
+
+a {
+    color: black;
+}
+
+.img-fluid {
+    height: 100vh;
+}
 
 
