@@ -18,7 +18,7 @@
         <div class="row align-items-center">
             <!-- Image Column -->
             <div class="col-md-6 text-center">
-                <img src="shared/assets/img/picture.png" class="img-fluid" alt="Sample Picture">
+                <img src="shared/assets/img/picture.png" class="img-fluid d-none d-md-block" alt="Sample Picture">
             </div>
 
             <!-- Form Column -->
