@@ -9,5 +9,68 @@
     color: var(--accentColor);
 }
 
+/* register page */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+}
+
+
+h2 {
+    font-size: 47px;
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Form Fields */
+.form-control {
+    font-size: 16px;
+    border-radius: 18.3px;
+    border: 1px solid #3E3D3D;
+    padding: 12px;
+    color: #000000;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Buttons */
+.btn {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 18.3px;
+    transition: all 0.3s ease;
+}
+
+.btn-dark {
+    background-color: #282828;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #555555;
+}
+
+.btn-outline-dark {
+    border: 1px solid #333333;
+    color: #333333;
+    background-color: transparent;
+}
+
+/* Links */
+a.text-decoration-none {
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a.text-decoration-none:hover {
+    color: #0056b3;
+}
+
 
 
