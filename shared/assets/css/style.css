@@ -33,66 +33,57 @@ a {
     height: 100vh;
 }
 
-/* register page */
+/* register.php css */
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #282828;
-    margin: 0;
-    padding: 0;
-    color: #FFFFFF;
+#register-page {
+    background-color: rgb(255, 255, 255);
 }
 
-
-h2 {
+#register-page h2 {
     font-size: 47px;
     font-weight: bold;
     color: #000000;
 }
 
-/* Form Fields */
-.form-control {
+#register-page .form-control {
     font-size: 16px;
     border-radius: 18.3px;
     border: 1px solid #3E3D3D;
     padding: 12px;
     color: #000000;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Buttons */
-.btn {
+#register-page .btn {
     font-size: 16px;
     padding: 10px;
     border-radius: 18.3px;
     transition: all 0.3s ease;
 }
 
-.btn-dark {
-    background-color: #D2CBA6;
-    color: #282828;
+#register-page .btn-dark {
+    background-color: #282828;
+    color: rgb(255, 255, 255);
     border: none;
 }
 
-.btn-dark:hover {
-    background-color: #a7a28d;
+#register-page .btn-dark:hover {
+    background-color: rgb(26, 16, 16);
 }
 
-.btn-outline-dark {
-    border: 1px solid #D2CBA6;
-    color: #D2CBA6;
+#register-page .btn-outline-dark {
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     background-color: transparent;
 }
 
-/* Links */
-a.text-decoration-none {
-    font-size: 20px;
+#register-page a.text-decoration-none {
+    font-size: 15px;
     color: #000000;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-a.text-decoration-none:hover {
+#register-page a.text-decoration-none:hover {
     color: #0056b3;
 }
 
@@ -132,4 +123,73 @@ i {
     font-size: 24px;
     color: #D2CBA6;
 }
+
+
+/* index.php css */
+
+#homepage {
+    background-color: #282828;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#carousel-container {
+    background-color: #343333;
+}
+
+#homepage h5, 
+#homepage h2 {
+    color: #FFFFFF;
+}
+
+#homepage .custom-card {
+    background-color: #343333;
+    border-radius: 16px;
+}
+
+#homepage .btn {
+    width: 421px;
+    color: #D2CBA6;
+    background-color: #333333;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#homepage .btn:hover {
+    background-color: #555555;
+    color: #F6F4F2;
+}
+
+#homepage .carousel-indicators button {
+    background-color: #333333;
+}
+
+#homepage .carousel-indicators .active {
+    background-color: #555555;
+}
+
+#homepage .card-title {
+    color: #FFFFFF;
+}
+
+#homepage .h2 {
+    color: #D2CBA6;
+}
+
+#homepage .card-text {
+    color: #FFFFFF;
+}
+
+#homepage .price {
+    color: #D2CBA6;
+    font-weight: 600;
+}
+
+
+
+
+
 
