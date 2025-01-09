@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="shared/assets/css/style.css">
 </head>
 
-<body id="index-php">
+<body id="homepage">
 
     <div class="container my-3 p-4 rounded-5" style="background-color: #343333;">
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">

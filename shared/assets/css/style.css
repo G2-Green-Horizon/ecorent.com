@@ -2,6 +2,8 @@
     /* GLOBAL VARIABLES */
     --borderRadius: 18.3px;
     --btnBg: #929292;
+    --rowBg: #343333;
+    --font: Arial, Helvetica, sans-serif;
 }
 
 .btnContinue {
@@ -11,6 +13,7 @@
     height: 51px;
     border: none;
     color: white;
+    font-family:var(--font);
 }
 
 .btnRegister {
@@ -18,101 +21,98 @@
     height: 51px;
     width: 427px;
     background-color: transparent;
+    font-family: var(--font);
 }
 
 a {
     color: black;
+    font-family: var(--font);
 }
 
 .img-fluid {
     height: 100vh;
 }
 
-/* register page */
 
-#register-php {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #FFFFFF;
-    margin: 0;
-    padding: 0;
+/* register.php css */
+
+#register-page {
+    background-color: rgb(255, 255, 255);
 }
 
-
-h2 {
+#register-page h2 {
     font-size: 47px;
     font-weight: bold;
     color: #000000;
 }
 
 /* Form Fields */
-.form-control {
+#register-page .form-control {
     font-size: 16px;
     border-radius: 18.3px;
     border: 1px solid #3E3D3D;
     padding: 12px;
     color: #000000;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 /* Buttons */
-.btn {
+#register-page .btn {
     font-size: 16px;
     padding: 10px;
     border-radius: 18.3px;
     transition: all 0.3s ease;
 }
 
-.btn-dark {
+#register-page .btn-dark {
     background-color: #282828;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
     border: none;
 }
 
-.btn-dark:hover {
-    background-color: #555555;
+#register-page .btn-dark:hover {
+    background-color: rgb(26, 16, 16);
 }
 
-.btn-outline-dark {
-    border: 1px solid #333333;
-    color: #333333;
+#register-page .btn-outline-dark {
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     background-color: transparent;
 }
 
 /* Links */
-a.text-decoration-none {
-    font-size: 20px;
+#register-page a.text-decoration-none {
+    font-size: 15px;
     color: #000000;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-a.text-decoration-none:hover {
+#register-page a.text-decoration-none:hover {
     color: #0056b3;
 }
 
 
-
 /* index.php css */
 
-#index-php {
+#homepage {
     background-color: #282828;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-h5, h2 {
+#homepage h5, 
+#homepage h2 {
     color: #FFFFFF;
 }
 
-.custom-card {
+#homepage .custom-card {
     background-color: #343333;
     border-radius: 16px;
 }
 
 /* Button Styling */
-.btn {
+#homepage .btn {
     width: 421px;
     color: #D2CBA6;
     background-color: #333333;
@@ -122,36 +122,36 @@ h5, h2 {
     font-size: 16px;
 }
 
-.btn:hover {
+#homepage .btn:hover {
     background-color: #555555;
     color: #F6F4F2;
 }
 
-
-.carousel-indicators button {
+#homepage .carousel-indicators button {
     background-color: #333333;
 }
 
-.carousel-indicators .active {
+#homepage .carousel-indicators .active {
     background-color: #555555;
 }
 
-.card-title {
+#homepage .card-title {
     color: #FFFFFF;
 }
 
-.h2 {
+#homepage .h2 {
     color: #D2CBA6;
 }
 
-.card-text {
+#homepage .card-text {
     color: #FFFFFF;
 }
 
-.price {
+#homepage .price {
     color: #D2CBA6;
     font-weight: 600;
 }
+
 
 
 
