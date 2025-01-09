@@ -2,6 +2,8 @@
     /* GLOBAL VARIABLES */
     --borderRadius: 18.3px;
     --btnBg: #929292;
+    --rowBg: #343333;
+    --font: Arial, Helvetica, sans-serif;
 }
 
 .btnContinue {
@@ -11,6 +13,7 @@
     height: 51px;
     border: none;
     color: white;
+    font-family:var(--font);
 }
 
 .btnRegister {
@@ -18,10 +21,12 @@
     height: 51px;
     width: 427px;
     background-color: transparent;
+    font-family: var(--font);
 }
 
 a {
     color: black;
+    font-family: var(--font);
 }
 
 .img-fluid {
@@ -32,9 +37,10 @@ a {
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #FFFFFF;
+    background-color: #282828;
     margin: 0;
     padding: 0;
+    color: #FFFFFF;
 }
 
 
@@ -54,7 +60,6 @@ h2 {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 /* Buttons */
 .btn {
     font-size: 16px;
@@ -64,18 +69,18 @@ h2 {
 }
 
 .btn-dark {
-    background-color: #282828;
-    color: #ffffff;
+    background-color: #D2CBA6;
+    color: #282828;
     border: none;
 }
 
 .btn-dark:hover {
-    background-color: #555555;
+    background-color: #a7a28d;
 }
 
 .btn-outline-dark {
-    border: 1px solid #333333;
-    color: #333333;
+    border: 1px solid #D2CBA6;
+    color: #D2CBA6;
     background-color: transparent;
 }
 
@@ -91,4 +96,40 @@ a.text-decoration-none:hover {
     color: #0056b3;
 }
 
+/* Product Detail Page */
+
+.row-product-details{
+    background-color: var(--rowBg);
+    border-radius: var(--borderRadius);
+    border: none;
+}
+
+i {
+    font-size: 28px;
+    color: #5A5858;
+}
+
+.badge {
+    width: 84.75px;
+    height: 22.68px;
+    color: #C7C7C7;
+    font-weight:200;
+    font-family: var(--font);
+}
+
+.img-fluid-product{
+    height: 50vh;
+}
+
+.button-size {
+    width: 149.11px;
+    height: 51.23px;
+    font-family: var(--font);
+}
+
+.price-custom-color {
+    font-family: var(--font);
+    font-size: 24px;
+    color: #D2CBA6;
+}
 
