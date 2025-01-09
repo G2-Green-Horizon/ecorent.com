@@ -17,7 +17,7 @@
 <body>
     <section class="container">
 
-        <div class="row row-product-details my-4">
+        <div class="row row-product-details my-4 mx-3 mx-sm-4">
 
             <!-- Product Images Column -->
             <div class="col-md-6 my-4">
@@ -27,7 +27,7 @@
             <div class="col-md-6 p-4">
                 <h3>TrailMaster X200 Mountain Bike</h3>
                 <hr>
-                <h4 class="price-custom-color">₱500/day</h4>
+                <h4 class="price-custom-color ">₱500/day</h4>
 
                 <div class="d-flex align-items-center">
                     <i class="bi bi-geo-alt-fill me-2"></i>
@@ -45,7 +45,7 @@
         </div>
 
         <!-- Product Desc -->
-        <div class="row row-product-details my-4 p-3">
+        <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">
 
             <div class="col my-3">
                 <h3>Product Description</h3>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Product Specifications -->
-        <div class="row row-product-details my-4 p-3">
+        <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">
 
             <div class="col my-4">
                 <h3>Product Specifications</h3>
@@ -73,9 +73,6 @@
                     Blue, and Forest Green, with a 5-year frame warranty.</p>
             </div>
         </div>
-
-        <!-- Product Photos -->
-
 
     </section>
 
