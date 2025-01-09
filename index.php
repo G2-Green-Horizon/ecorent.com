@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -15,67 +14,45 @@
 
 <body id="homepage">
 
-    <div class="container my-3 p-4 rounded-5" style="background-color: #343333;">
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-
-            <!-- Carousel Content -->
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row g-2">
-                        <div class="col-md-8">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 1">
-                        </div>
-                        <div class="col-md-4 d-flex flex-column gap-2">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 2">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 3">
-                        </div>
+    <div class="container my-3 p-4 rounded-5" id="carousel-container">
+        <div class="row g-2">
+            <div class="col-md-8">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row g-2">
-                        <div class="col-md-8">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 4">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="shared/assets/img/system/caro1.png" class="d-block w-100" alt="Carousel Image 1">
                         </div>
-                        <div class="col-md-4 d-flex flex-column gap-2">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 5">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 6">
+                        <div class="carousel-item">
+                            <img src="shared/assets/img/system/caro1.png" class="d-block w-100" alt="Carousel Image 2">
                         </div>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <div class="row g-2">
-                        <div class="col-md-8">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 7">
-                        </div>
-                        <div class="col-md-4 d-flex flex-column gap-2">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 8">
-                            <img src="shared/assets/img/system/caro1.png" class="w-100 rounded-5" alt="Slide 9">
+                        <div class="carousel-item">
+                            <img src="shared/assets/img/system/caro1.png" class="d-block w-100" alt="Carousel Image 3">
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-md-4 d-flex flex-column gap-2">
+                <img src="shared/assets/img/system/static-image.png" class="w-100 rounded-5" alt="Static Image 1">
+                <img src="shared/assets/img/system/static-image.png" class="w-100 rounded-5" alt="Static Image 2">
+            </div>
         </div>
     </div>
+
 
     <section class="container my-3">
         <div class="row justify-content-between g-3">
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-auto">
-                <div class="d-flex align-items-center p-3 rounded-pill"
-                    style="background-color: #343333;">
+                <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
                     <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
                     <h5 class="mb-0">Electronics</h5>
@@ -84,8 +61,7 @@
 
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-auto">
-                <div class="d-flex align-items-center p-3 rounded-pill"
-                    style="background-color: #343333;">
+                <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
                     <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
                     <h5 class="mb-0">Transportation</h5>
@@ -94,8 +70,7 @@
 
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="d-flex align-items-center p-3 rounded-pill"
-                    style="background-color: #343333;">
+                <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
                     <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
                     <h5 class="mb-0">Fashion</h5>
@@ -104,8 +79,7 @@
 
 
             <div class="col-12 col-sm-6 col-md-6 col-lg-2">
-                <div class="d-flex align-items-center p-3 rounded-pill"
-                    style="background-color: #343333;">
+                <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
                     <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
                     <h5 class="mb-0">Sports</h5>
@@ -114,8 +88,7 @@
 
 
             <div class="col-12 col-sm-6 col-md-6 col-lg-2">
-                <div class="d-flex align-items-center p-3 rounded-pill"
-                    style="background-color: #343333;">
+                <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
                     <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
                     <h5 class="mb-0">Events</h5>
