@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="shared/assets/css/style.css">
 </head>
 
-<body>
+<body id="register-php">
 
     <section class="container">
         <div class="row align-items-center">

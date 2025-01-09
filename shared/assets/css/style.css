@@ -1,17 +1,36 @@
 :root{
     /* GLOBAL VARIABLES */
-    --h1: 18px;
-    --accentColor: ;
+    --borderRadius: 18.3px;
+    --btnBg: #929292;
 }
 
-.title{
-    font-size: var(--h1);
-    color: var(--accentColor);
+.btnContinue {
+    background-color: var(--btnBg);
+    border-radius: var(--borderRadius);
+    width: 427px;
+    height: 51px;
+    border: none;
+    color: white;
+}
+
+.btnRegister {
+    border-radius: var(--borderRadius);
+    height: 51px;
+    width: 427px;
+    background-color: transparent;
+}
+
+a {
+    color: black;
+}
+
+.img-fluid {
+    height: 100vh;
 }
 
 /* register page */
 
-body {
+#register-php {
     font-family: 'Segoe UI', sans-serif;
     background-color: #FFFFFF;
     margin: 0;
@@ -71,6 +90,70 @@ a.text-decoration-none {
 a.text-decoration-none:hover {
     color: #0056b3;
 }
+
+
+
+/* index.php css */
+
+#index-php {
+    background-color: #282828;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h5, h2 {
+    color: #FFFFFF;
+}
+
+.custom-card {
+    background-color: #343333;
+    border-radius: 16px;
+}
+
+/* Button Styling */
+.btn {
+    width: 421px;
+    color: #D2CBA6;
+    background-color: #333333;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #555555;
+    color: #F6F4F2;
+}
+
+
+.carousel-indicators button {
+    background-color: #333333;
+}
+
+.carousel-indicators .active {
+    background-color: #555555;
+}
+
+.card-title {
+    color: #FFFFFF;
+}
+
+.h2 {
+    color: #D2CBA6;
+}
+
+.card-text {
+    color: #FFFFFF;
+}
+
+.price {
+    color: #D2CBA6;
+    font-weight: 600;
+}
+
+
 
 
 
