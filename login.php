@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="shared/assets/css/style.css">
 </head>
 
-<body>
+<body id="login">
 
     <section class="container">
         <div class="row align-items-center">
@@ -31,17 +31,17 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" placeholder="Password" id="password">
                     </div>
-                    <div class="mb-4 d-flex justify-content-start">
-                         <a href="">Forget password?</a>
+                    <div class="text-decoration-none mb-4 d-flex justify-content-start">
+                         <a href="" class="text-decoration-none">Forget password?</a>
                     </div>
                     <div>
-                        <button class="btnContinue  w-100" type="submit">Continue</button>
+                        <button class="btn btn-dark w-100  w-100" type="submit">Continue</button>
                     </div>
-                    <div class="my-4 text-center">
-                         <a href="">Don't have an account?</a>
+                    <div class="text-decoration-none my-4 text-center">
+                         <a href="" class="text-decoration-none"> Don't have an account?</a>
                     </div>
                     <div>
-                        <button class="btnRegister w-100" type="submit">Register</button>
+                        <button class="btn btn-outline-dark w-100" type="submit">Register</button>
                     </div>
                 </form>
             </div>

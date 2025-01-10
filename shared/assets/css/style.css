@@ -6,36 +6,14 @@
     --font: Arial, Helvetica, sans-serif;
 }
 
-.btnContinue {
-    background-color: var(--btnBg);
-    border-radius: var(--borderRadius);
-    width: 427px;
-    height: 51px;
-    border: none;
-    color: white;
-    font-family:var(--font);
-}
-
-.btnRegister {
-    border-radius: var(--borderRadius);
-    height: 51px;
-    width: 427px;
-    background-color: transparent;
-    font-family: var(--font);
-}
-
-a {
-    color: black;
-    font-family: var(--font);
-}
-
 .img-fluid {
     height: 100vh;
 }
 
 /* register.php css */
 
-#register-page {
+#register-page,
+#login {
     background-color: rgb(255, 255, 255);
 }
 
@@ -45,7 +23,8 @@ a {
     color: #000000;
 }
 
-#register-page .form-control {
+#register-page .form-control,
+#login .form-control {
     font-size: 16px;
     border-radius: 18.3px;
     border: 1px solid #3E3D3D;
@@ -53,37 +32,43 @@ a {
     color: #000000;
 }
 
-#register-page .btn {
+#register-page .btn,
+#login .btn {
     font-size: 16px;
     padding: 10px;
     border-radius: 18.3px;
     transition: all 0.3s ease;
 }
 
-#register-page .btn-dark {
+#register-page .btn-dark,
+#login .btn-dark {
     background-color: #282828;
     color: rgb(255, 255, 255);
     border: none;
 }
 
-#register-page .btn-dark:hover {
+#register-page .btn-dark:hover,
+#login .btn-dark:hover {
     background-color: rgb(26, 16, 16);
 }
 
-#register-page .btn-outline-dark {
+#register-page .btn-outline-dark,
+#login .btn-outline-dark{
     border: 1px solid rgb(0, 0, 0);
     color: rgb(0, 0, 0);
     background-color: transparent;
 }
 
-#register-page a.text-decoration-none {
+#register-page a.text-decoration-none,
+#login  a.text-decoration-none{
     font-size: 15px;
     color: #000000;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-#register-page a.text-decoration-none:hover {
+#register-page a.text-decoration-none:hover,
+#login  a.text-decoration-none:hover {
     color: #0056b3;
 }
 
