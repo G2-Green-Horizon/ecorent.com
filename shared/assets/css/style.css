@@ -127,7 +127,8 @@ i {
 
 /* index.php css */
 
-#homepage {
+#homepage,
+#listings {
     background-color: #282828;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -139,16 +140,20 @@ i {
 }
 
 #homepage h5, 
-#homepage h2 {
+#homepage h2,
+#listings .h2 {
     color: #FFFFFF;
 }
 
-#homepage .custom-card {
+#homepage .custom-card,
+#listings .custom-card,
+#listings .card {
     background-color: #343333;
     border-radius: 16px;
 }
 
-#homepage .btn {
+#homepage .btn,
+#listings .btn {
     width: 421px;
     color: #D2CBA6;
     background-color: #333333;
@@ -158,7 +163,8 @@ i {
     font-size: 16px;
 }
 
-#homepage .btn:hover {
+#homepage .btn:hover,
+#listings .btn:hover {
     background-color: #555555;
     color: #F6F4F2;
 }
@@ -171,7 +177,8 @@ i {
     background-color: #555555;
 }
 
-#homepage .card-title {
+#homepage .card-title,
+#listings .card-title{
     color: #FFFFFF;
 }
 
@@ -179,13 +186,45 @@ i {
     color: #D2CBA6;
 }
 
-#homepage .card-text {
+#homepage .card-text,
+#listings .card-text {
     color: #FFFFFF;
 }
 
-#homepage .price {
+#homepage .price,
+#listings .price {
     color: #D2CBA6;
     font-weight: 600;
+}
+
+/* listings */
+
+#listings i {
+    font-size: 28;
+    color:white
+}
+
+#listings p {
+    font-size: 28px;
+}
+
+#listings .custom-price  {
+    font-family: var(--font);
+    border: 2px solid rgb(255, 255, 255);
+    background-color: transparent;
+}
+
+#listings ::placeholder {
+    color: white;
+    text-align: center;
+}
+
+#listings .btn-apply {
+    font-family: var(--font);
+    border-radius: 3px;
+    border: none;
+    background-color: #D2CBA6;
+    height: 34px;
 }
 
 
