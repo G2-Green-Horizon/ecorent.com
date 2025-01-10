@@ -6,7 +6,7 @@ html, body {
     flex-direction: column;
     min-height: 100vh;
 }
-
+/* NavBar  */
 .navbar {
     background-color: #D2CBA6;
     display: flex;
@@ -66,6 +66,7 @@ html, body {
     text-decoration: underline;
 }
 
+/* Footer */
 .footer {
     background-color: #55523D;
     padding: 40px 0;
