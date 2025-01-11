@@ -37,6 +37,7 @@ a {
 
 #register-page {
     background-color: rgb(255, 255, 255);
+    font-family: var(--font);
 }
 
 #register-page h2 {
@@ -129,7 +130,7 @@ i {
 
 #homepage {
     background-color: #282828;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--font);
     margin: 0;
     padding: 0;
 }
