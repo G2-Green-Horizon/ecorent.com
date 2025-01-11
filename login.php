@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="shared/assets/css/style.css">
 </head>
 
-<body>
+<body id="login">
 
     <section class="container">
         <div class="row align-items-center">
