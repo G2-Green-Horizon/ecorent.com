@@ -1,13 +1,16 @@
+<?php include("../connect.php") ?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ecorent | Admin Login</title>
+    <title>EcoRent | Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="admin-login.css">
+    <link rel="icon" type="image/png" href="../shared/assets/img/system/ecorent-logo-2.png">
 </head>
 
 <body>
@@ -17,7 +20,7 @@
                 <div class="card p-5 rounded-5">
                     <form>
                         <div class="logo text-center mb-2">
-                            <img src="Logo Container.png" alt="">
+                            <img src="../shared/assets/img/system/ecorent-logo-2.png" alt="" class="logo">
                         </div>
                         <div class="mb-5 text-center">
                             <h1>Admin Portal</h1>
@@ -29,7 +32,7 @@
                             <input type="password" class="form-control rounded-4 p-3" placeholder="Password" required>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-secondary rounded-4 p-3" type="button">Continue</button>
+                            <button class="login-button rounded-4 p-3" type="button">Login</button>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,125 @@
+:root {
+    --primary-color: #282828;
+    --button-color: #D2CBA6;
+    --white-color: #FFFFFF;
+    --black-color: #000000;
+    --text-color: #D2CBA6;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    background-color: var(--primary-color);
+}
+
+/* title */
+.container h1 {
+    font-size: 45px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* card */
+.card {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 18px;
+}
+
+.card-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+}
+
+.card-title-overlay h5 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+    padding: 0 0 10px 20px;
+}
+
+.card img {
+    filter: brightness(80%);
+}
+
+/* button */
+.btn {
+    width: 254px;
+    height: 51px;
+    border-radius: 18px;
+    font-size: 18.3px;
+    font-weight: bold;
+}
+
+.btn-skip, .btn-skip:hover {
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--white-color);
+    box-shadow: 0 2px 2px var(--shadow-color);
+    transition: .5s ease;
+}
+
+.btn-skip:active, .btn-skip:focus {
+    background-color: transparent;
+    color: var(--text-color) !important;
+    border: 1px solid var(--white-color);
+}
+
+.btn-continue, .btn-continue:hover {
+    color: var(--primary-color) !important;
+    background-color: var(--button-color);
+    box-shadow: 0 2px 2px var(--shadow-color);
+    transition: .5s ease;
+}
+
+.btn-continue:active, .btn-continue:focus {
+    background-color: var(--button-color);
+    color: var(--primary-color);
+}
+
+/* checkbox */
+.card-label .checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    opacity: 0;
+}
+
+.card-label .checkbox:checked + .checkbox-container img {
+    border: 2px solid var(--shadow-color);
+    border-radius: 18px;
+}
+
+.card-label .checkbox:checked + .checkbox-container::after { 
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+    background-image: url('../img/preferences/square-check-solid.png');
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+    
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--mainFont);
+    background-color: var(--bgColor);
+}
+
+/* Login Page */
+.login-form {
+    border: 1px solid var(--stroke);
+    border-radius: var(--roundiness);
+    background-color: #343333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+}
+
+.reg-form {
+    border: 1px solid var(--stroke);
+    border-radius: var(--roundiness);
+    background-color: #343333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    overflow: hidden;
+}
+
+.logo {
+    height: 120px;
+}
+
+.poster{
+    background-image: url('shared/assets/img/system/boxes.jpg');
+    background-size: cover; 
+    background-position: center;
+    height:400px;
+    width: 320px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.reg-box{
+    background-color: var(--bgColor3);
+}
+
+.login-form h1, .reg-form h1  {
+    font-family: var(--mainFont);
+    color: var(--mainColor);
+}
+
+/* Form Input */
+.input-box {
+    font-size: 16px;
+    border-radius: var(--roundiness);
+    border: 1px solid var(--stroke);
+    padding: 12px;
+    color: var(--mainColor);
+    background-color: var(--bgColor2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-box:focus {
+    background-color: var(--bgColor2);
+    color: var(--mainColor);
+    border-color: var(--stroke);
+    outline: none;
+}
+
+.input-box::placeholder {
+    color: var(--mainColor);
+}
+
+.input-box:focus::placeholder {
+    color: gray;
+}
+
+/* Buttons */
+.btn-continue {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: var(--roundiness);
+    background-color: var(--beige);
+    color: var(--bgColor);
+    font-weight: 700;
+    border: 1px solid var(--beige);
+    transition: all 0.3s ease;
+}
+
+.btn-continue:hover {
+    background-color: var(--green);
+    color: var(--mainColor);
+    border-color: var(--green);
+}
+
+.question, .forgot-pass{
+    color: var(--mainColor);
+}
+
+.forgot-pass:hover{
+    color: var(--green);
+}
+
+.btn-register {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: var(--roundiness);
+    background-color: transparent;
+    color: var(--beige);
+    border: 1px solid var(--beige);
+    transition: all 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: var(--green);
+    color: var(--mainColor);
+    border-color: var(--green);
+}

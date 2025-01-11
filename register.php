@@ -1,3 +1,7 @@
+<?php include("connect.php");
+include("shared/classes/User.php");
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -5,68 +9,66 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ecorent | Register</title>
+    <title>EcoRent | Join Us at EcoRent</title>
+    <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
 
     <!-- STYLINGS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="shared/assets/css/style.css">
+    <link rel="stylesheet" href="shared/assets/css/authentications.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="shared/assets/font/font.css">
+    <style>
+        /* [Do not remove] */
+        .reg-form {
+            background-image: url('shared/assets/img/system/boxes.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
-<body id="register-page">
+<body id="reg">
+    <section class="d-flex justify-content-center align-items-center vh-100">
+        <div class="reg-form text-center m-3">
+            <div class="row">
+                <div class="poster col d-sm-none d-none d-md-block">
 
-    <section class="container">
-        <div class="row align-items-center">
-            
-            <!-- Logo Column -->
-            <div class="col text-center">
-                <img src="shared/assets/img/system/test1.png" class="img-fluid d-none d-md-block" alt="Logo">
-            </div>
-
-            <!-- Form Column -->
-            <div class="col-md-6 p-5">
-                <h2 class="mb-4 text-center">Create an account</h2>
-                <form>
+                </div>
+                <div class="reg-box p-5 col">
+                    <img src="shared/assets/img/system/ecorent-logo-2.png" alt="Logo" class="d-md-none logo">
+                    <h1 class="mb-4 mt-2">Create an account</h1>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="first_name" name="first_name"
-                            placeholder="First Name" required>
+                        <input type="text" class="input-box form-control" placeholder="First name" id="firstName">
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"
-                            required>
+                        <input type="text" class="input-box form-control" placeholder="Last name" id="lastName">
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"
-                            required>
+                        <input type="email" class="input-box form-control" placeholder="Email or username" id="email">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
-                            required>
+                        <input type="password" class="input-box form-control" placeholder="Password" id="password">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="confirm-password" name="confirm-password"
-                            placeholder="Confirm Password" required>
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-dark w-100">Register</button>
-                    </div>
-                    <div class="text-center mb-3">
-                        <a href="Login.php" class="text-decoration-none">Already have an account?</a>
+                        <input type="password" class="input-box form-control" placeholder="Confirm password"
+                            id="confirmPassword">
                     </div>
                     <div>
-                        <button type="button" class="btn btn-outline-dark w-100">Log In</button>
+                        <a href="index.php"><button class="btn-continue w-100" type="submit">Register</button></a>
                     </div>
-                </form>
+                    <div class="text-decoration-none my-4 text-center">
+                        <p class="question text-decoration-none"> Already have an account?</p>
+                    </div>
+                    <div>
+                        <a href="login.php"><button class="btn-register w-100">Log In</button></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="shared/assets/js/script.js"></script>
-
 </body>
 
 </html>
