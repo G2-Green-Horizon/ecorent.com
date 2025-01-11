@@ -1,3 +1,37 @@
+<?php
+include("connect.php");
+
+session_start();
+session_destroy();
+session_start();
+
+$error = "";
+
+if (isset($_GET['btnLogin'])) {
+    $username = $_GET['email'];
+    $password = $_GET['password'];
+
+    $loginQuery = "SELECT * FROM users WHERE email = '$username' AND password = '$password'";
+    $loginResult = executeQuery($loginQuery);
+
+    $_SESSION['userID'] = "";
+    $_SESSION['email'] = "";
+    $_SESSION['contactNumber'] = "";
+    $error = "";
+
+    if (mysqli_num_rows($loginResult) > 0) {
+        while ($user = mysqli_fetch_assoc($loginResult)) {
+            $_SESSION['userID'] = $user['userID'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['contactNumber'] = $user['contactNumber'];
+            header("Location: index.php");
+        }
+    } else {
+        $error = "No User";
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -16,6 +50,15 @@
 
     <section class="container">
         <div class="row align-items-center">
+
+            <?php
+            if ($error == "No User") { ?>
+                <div class="alert alert-danger my-3 text-center">
+                    No user found
+                </div>
+            <?php
+            }
+            ?>
             <!-- Image Column -->
             <div class="col-md-6 text-center">
                 <img src="shared/assets/img/picture.png" class="img-fluid d-none d-md-block" alt="Sample Picture">
@@ -26,19 +69,19 @@
                 <h1 class="mb-4">Welcome back</h1>
                 <form>
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Email or username" id="email">
+                        <input type="email" class="form-control" placeholder="Email or username" id="email" name="email">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Password" id="password">
+                        <input type="password" class="form-control" placeholder="Password" id="password" name="password">
                     </div>
                     <div class="text-decoration-none mb-4 d-flex justify-content-start">
-                         <a href="" class="text-decoration-none">Forget password?</a>
+                        <a href="" class="text-decoration-none">Forget password?</a>
                     </div>
                     <div>
-                        <button class="btn btn-dark w-100  w-100" type="submit">Continue</button>
+                        <button class="btn btn-dark w-100  w-100" type="submit" name="btnLogin">Continue</button>
                     </div>
                     <div class="text-decoration-none my-4 text-center">
-                         <a href="" class="text-decoration-none"> Don't have an account?</a>
+                        <a href="" class="text-decoration-none"> Don't have an account?</a>
                     </div>
                     <div>
                         <button class="btn btn-outline-dark w-100" type="submit">Register</button>
