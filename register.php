@@ -72,5 +72,3 @@ include("shared/classes/User.php");
 </body>
 
 </html>
-
-</html>

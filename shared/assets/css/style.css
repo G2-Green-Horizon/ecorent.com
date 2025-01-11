@@ -15,6 +15,7 @@
 #register-page,
 #login {
     background-color: rgb(255, 255, 255);
+    font-family: var(--font);
 }
 
 #register-page h2 {
@@ -188,7 +189,7 @@ input::-webkit-inner-spin-button {
 #listings,
 #product-page {
     background-color: #282828;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--font);
     margin: 0;
     padding: 0;
 }
