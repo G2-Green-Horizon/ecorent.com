@@ -1,0 +1,129 @@
+:root {
+    --primary-color: #282828;
+    --button-color: #D2CBA6;
+    --white-color: #FFFFFF;
+    --black-color: #000000;
+    --red-color: #D10D0D;
+    --text-color: #D2CBA6;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --card-bg-color: #343333;
+}
+
+body, html {
+    background-color: var(--primary-color);
+}
+
+/* back */
+i {
+    color: var(--text-color);
+    font-size: 55px;
+}
+
+.container h2 {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--white-color);
+}
+
+/* card */
+.card {
+    position: relative;
+    padding: 20px;
+    flex: 1;
+    background-color: var(--card-bg-color);
+}
+
+.card h4, h1 {
+    color: var(--white-color);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card h3 {
+    color: var(--white-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card p {
+    color: var(--white-color);
+    font-size: 16px;
+    text-align: justify;
+    font-weight: 400;
+}
+
+/* table */
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table tbody tr td {
+    background-color: transparent !important;
+}
+
+.table td:first-child {
+    color: var(--white-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.table td:last-child {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* button */
+.btn {
+    border-radius: 18px;
+    font-size: 18.3px;
+    font-weight: 500;
+    
+}
+
+.btn-reject {
+    width: 150px;
+    height: 51px;
+    color: var(--white-color);
+    background-color: var(--red-color);
+    transition: transform 0.2s ease;
+}
+
+.btn-reject:hover {
+    color: var(--white-color);
+    background-color: var(--red-color) !important;
+    box-shadow: var(--shadow-color);
+    border: var(--red-color) solid ;
+    transition: .5s ease;
+    transform: scale(0.9);
+}
+
+.btn-reject:active, .btn-reject:focus {
+    background-color: var(--red-color) !important;
+    color: var(--white-color) !important;
+    border: transparent;
+    transform: scale(0.9);
+}
+
+.btn-approve {
+    width: 210px;
+    height: 51px;
+    background-color: var(--button-color);
+    transition: transform 0.2s ease;
+}
+
+.btn-approve:hover {
+    color: var(--primary-color) !important;
+    background-color: var(--button-color);
+    box-shadow: var(--shadow-color);
+    transition: .5s ease;
+    transform: scale(0.9);
+}
+
+.btn-approve:active, .btn-approve:focus {
+    background-color: var(--button-color) !important;
+    color: var(--primary-color) !important;
+    border: transparent;
+    transform: scale(0.9);
+}
