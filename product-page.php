@@ -127,6 +127,13 @@
         function decreaseQuantity() {
             quantity.stepDown();
         }
+
+        // Disabled the characters
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        });
     </script>
 
 </body>
