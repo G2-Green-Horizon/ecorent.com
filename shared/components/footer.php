@@ -1,17 +1,8 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="shared/assets/css/footerNav.css">
-
-</head>
-
 <footer class="footer py-4 text-white">
     <div class="container">
         <div class="row align-items-center mb-3">
             <div class="col-12 col-md-3 text-center text-md-start">
-                <img src="shared/assets/img/logo.png" alt="Logo" class="logo mb-2" height="40">
+                <img src="shared/assets/img/system/ecorent-logo.png" alt="Logo" class="logo mb-2" height="40">
             </div>
         </div>
 
@@ -69,7 +60,7 @@
                 <p class="mb-0">&copy; 2025 EcoRent. All rights reserved.</p>
             </div>
             <div class="col-12 col-md-6 text-center text-md-end">
-                <a href="#" class="text-white text-decoration-none me-3">Home</a>
+                <a href="./" class="text-white text-decoration-none me-3">Home</a>
                 <a href="#" class="text-white text-decoration-none me-3">Account</a>
                 <a href="#" class="text-white text-decoration-none">Booking Progress</a>
             </div>
