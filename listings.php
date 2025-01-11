@@ -1,3 +1,5 @@
+<?php include 'shared/components/navbar.php'; ?>
+
 <!doctype html>
 <html lang="en">
 
