@@ -20,8 +20,8 @@
         <div class="row row-product-details my-4 mx-3 mx-sm-4">
 
             <!-- Product Images Column -->
-            <div class="col-md-6 my-4">
-                <img src="shared/assets/img/p1.png" class="img-fluid img-fluid-product" alt="Product Image">
+            <div class="img-container col-md-6 my-4">
+                <img src="shared/assets/img/system/gown.jpg" class="img-fluid img-fluid-product" alt="Product Image">
             </div>
 
             <div class="col-md-6 p-4">
