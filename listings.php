@@ -45,11 +45,11 @@
                             <p class="mt-5">Price Range</p>
                             <form>
                                 <div class="d-flex align-items-center">
-                                    <input type="number" class="form-control custom-price" id="min" name="min"
-                                        placeholder="₱ Min">
+                                    <input id="min" type="number" class="form-control custom-price text-center"
+                                        name="min" placeholder="₱ Min">
                                     <h1> - </h1>
-                                    <input type="number" class="form-control custom-price" id="max" name="max"
-                                        placeholder="₱ Max">
+                                    <input id="max" type="number" class="form-control custom-price text-center"
+                                        name="max" placeholder="₱ Max">
                                 </div>
                             </form>
                         </div>
