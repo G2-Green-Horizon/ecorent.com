@@ -1,6 +1,5 @@
 <?php include 'shared/components/navbar.php'; ?>
 
-
 <!doctype html>
 <html lang="en">
 
@@ -15,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="shared/assets/css/style.css">
+    <link rel="stylesheet" href="shared/assets/css/footerNav.css">
 </head>
 
 <body id="product-page">
@@ -133,7 +133,7 @@
             quantity.stepDown();
         }
 
-        // Disabled the characters
+        // DISABLE THE CARACTERS (ONLY NUMBERS)
         document.querySelectorAll('input[type="number"]').forEach(input => {
             input.addEventListener('input', function () {
                 this.value = this.value.replace(/\D/g, '');
