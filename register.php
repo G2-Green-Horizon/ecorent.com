@@ -51,7 +51,7 @@
                         <a href="index.php"><button type="submit" class="btn btn-dark w-100">Register</button></a>
                     </div>
                     <div class="text-center mb-3">
-                        <a href="Login.php" class="text-decoration-none">Already have an account?</a>
+                        <p class="text-decoration-none">Already have an account?</p>
                     </div>
                     <div>
                         <a href="login.php"><button type="button" class="btn btn-outline-dark w-100">Log In</button></a>

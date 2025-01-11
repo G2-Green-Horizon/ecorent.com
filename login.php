@@ -24,26 +24,25 @@
             <!-- Form Column -->
             <div class="col-md-6 p-5 text-center">
                 <h1 class="mb-4">Welcome back</h1>
-
                 <div class="mb-3">
                     <input type="email" class="form-control" placeholder="Email or username" id="email">
                 </div>
                 <div class="mb-3">
                     <input type="password" class="form-control" placeholder="Password" id="password">
                 </div>
-                <div class="mb-4 d-flex justify-content-start">
-                    <a href="">Forget password?</a>
+                <div class="text-decoration-none mb-4 d-flex justify-content-start">
+                    <a href="" class="text-decoration-none">Forget password?</a>
                 </div>
                 <div>
-                    <a href="index.php"><button class="btnContinue  w-100" type="submit">Continue</button></a>
+                    <a href="index.php"><button class="btn btn-dark w-100  w-100" type="submit">Continue</button></a>
                 </div>
-                <div class="my-4 text-center">
-                    Don't have an account?
+                <div class="text-decoration-none my-4 text-center">
+                    <p class="text-decoration-none"> Don't have an account?</p>
                 </div>
                 <div>
-                    <a href="register.php"><button class="btnRegister w-100" type="submit">Register</button></a>
+                    <a href="register.php"><button class="btn btn-outline-dark w-100"
+                            type="submit">Register</button></a>
                 </div>
-
             </div>
         </div>
     </section>
