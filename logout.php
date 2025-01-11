@@ -16,15 +16,13 @@
 
 <body>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Log out account
-    </button>
-
     <section class="container">
-        <!-- Modal -->
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">
+            Log out account
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true"
             data-bs-theme="dark">
             <div class="modal-dialog  modal-dialog-centered">
                 <div class="modal-content">
@@ -39,6 +37,35 @@
                         <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
                             name="btnDenied">No</button>
                         <button type="submit" class="btn-logout-confirmed text-center" name="btnConfirmed">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <!-- Modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            Delete Account
+        </button>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true"
+            data-bs-theme="dark">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title  w-100 text-center fs-4" id="confirmationDelete">Delete Account</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        Are you sure you want to permanently delete your account? This action is irreversible, and you
+                        will lose access to your account and its data forever.
+                    </div>
+                    <div class="container d-flex justify-content-end my-3">
+                        <button type="submit" class="btn-delete-denied text-center mx-2 p-2" data-bs-dismiss="modal"
+                            name="btnDenied">No, I want to keep it</button>
+                        <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes, I want
+                            to delete</button>
                     </div>
                 </div>
             </div>
