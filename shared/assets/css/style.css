@@ -129,7 +129,7 @@ i {
     font-weight: bold;
 }
 
-#product-page .btn-custom-outline {
+#product-page .btn-custom-outline{
     border-radius: 18.3px;
     color: #D2CBA6;
     font-family: var(--font);
@@ -137,11 +137,12 @@ i {
     background-color: transparent;
 }
 
-#product-page .btn-custom-dark {
+#product-page .btn-custom-dark{
     border-radius: 18.3px;
     color: #282828;
     font-family: var(--font);
     background-color: #D2CBA6;
+    border: none;
 }
 
 .price-custom-color {
@@ -285,4 +286,32 @@ input::-webkit-inner-spin-button {
     border: none;
     background-color: #D2CBA6;
     height: 34px;
+}
+
+/* Extend Rental Modal css */
+.modal-title,
+.modal-body,
+.modal-footer{
+    color: white;
+}
+
+.btn-denied {
+    border-radius: 18.3px;
+    color: #D2CBA6;
+    font-family: var(--font);
+    border: 2px solid #D2CBA6;
+    background-color: transparent;
+    width: 100px;
+    height: 35px;
+    font-size: 16px;
+}
+
+.btn-confirmed {
+    border-radius: 18.3px;
+    width: 120px;
+    height: 35px;
+    background-color: #D2CBA6;
+    border: none;
+    font-size: 16px;
+    color: #3E3D3D;
 }

@@ -1,3 +1,5 @@
+<?php include 'shared/components/navbar.php'; ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="shared/assets/css/style.css">
+    <link rel="stylesheet" href="shared/assets/css/footerNav.css">
 </head>
 
 <body id="product-page">
@@ -107,6 +110,8 @@
 
     </section>
 
+    <?php include 'shared/components/footer.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -128,7 +133,7 @@
             quantity.stepDown();
         }
 
-        // Disabled the characters
+        // DISABLE THE CARACTERS (ONLY NUMBERS)
         document.querySelectorAll('input[type="number"]').forEach(input => {
             input.addEventListener('input', function () {
                 this.value = this.value.replace(/\D/g, '');
