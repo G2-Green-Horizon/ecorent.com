@@ -1,3 +1,8 @@
+<?php include("connect.php");
+include("shared/classes/User.php");
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -10,49 +15,38 @@
     <!-- STYLINGS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="shared/assets/css/style.css">
+    <link rel="stylesheet" href="shared/assets/css/authentications.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
 <body id="login">
-
-    <section class="container">
-        <div class="row align-items-center">
-            <!-- Image Column -->
-            <div class="col-md-6 text-center">
-                <img src="shared/assets/img/picture.png" class="img-fluid d-none d-md-block" alt="Sample Picture">
+    <section class="d-flex justify-content-center align-items-center vh-100">
+        <div class="login-form col-md-6 p-5 text-center m-3">
+            <img src="shared/assets/img/system/ecorent-logo-2.png" alt="Logo" class="logo me-2">
+            <h1 class="mb-4">Welcome back</h1>
+            <div class="mb-3">
+                <input type="email" class="input-box form-control" placeholder="Email or username" id="email">
             </div>
-
-            <!-- Form Column -->
-            <div class="col-md-6 p-5 text-center">
-                <h1 class="mb-4">Welcome back</h1>
-                <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Email or username" id="email">
-                </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Password" id="password">
-                </div>
-                <div class="text-decoration-none mb-4 d-flex justify-content-start">
-                    <a href="" class="text-decoration-none">Forget password?</a>
-                </div>
-                <div>
-                    <a href="index.php"><button class="btn btn-dark w-100  w-100" type="submit">Continue</button></a>
-                </div>
-                <div class="text-decoration-none my-4 text-center">
-                    <p class="text-decoration-none"> Don't have an account?</p>
-                </div>
-                <div>
-                    <a href="register.php"><button class="btn btn-outline-dark w-100"
-                            type="submit">Register</button></a>
-                </div>
+            <div class="mb-3">
+                <input type="password" class="input-box form-control" placeholder="Password" id="password">
+            </div>
+            <div class="text-decoration-none mb-4 d-flex justify-content-start">
+                <a href="#" class="forgot-pass text-decoration-none">Forget password?</a>
+            </div>
+            <div>
+                <a href="index.php"><button class="btn-continue w-100" type="submit">Continue</button></a>
+            </div>
+            <div class="text-decoration-none my-4 text-center">
+                <p class="question text-decoration-none"> Don't have an account?</p>
+            </div>
+            <div>
+                <a href="register.php"><button class="btn-register w-100">Register</button></a>
             </div>
         </div>
     </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="shared/assets/js/script.js"></script>
-
 </body>
+
 
 </html>
