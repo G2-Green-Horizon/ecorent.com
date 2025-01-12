@@ -3,7 +3,11 @@
     --borderRadius: 18.3px;
     --btnBg: #929292;
     --rowBg: #343333;
-    --font: Arial, Helvetica, sans-serif;
+    --font: 'Studio Feixen Variable', sans-serif;
+}
+
+body{
+    font-family: var(--font);
 }
 
 .img-fluid {
@@ -256,6 +260,10 @@ input::-webkit-inner-spin-button {
 #listings .price {
     color: #D2CBA6;
     font-weight: 600;
+}
+
+.container a{
+    text-decoration: none;
 }
 
 /* listings */
