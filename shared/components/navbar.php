@@ -5,15 +5,15 @@
         </a>
         <div class="input-group w-50">
             <input type="text" class="form-control dark-input" placeholder="Search for items">
-            <button class="btn btn-outline-secondary" type="button">
+            <button class="navbar-btn" type="button">
                 <i class="bi bi-search"></i>
             </button>
         </div>
         <div class="d-flex align-items-center">
-            <button class="btn btn-outline-secondary me-2">
+            <button class="navbar-btn me-2">
                 <i class="bi bi-cart"></i>
             </button>
-            <button class="btn btn-outline-secondary me-3">
+            <button class="navbar-btn me-3">
                 <i class="bi bi-person-circle"></i>
             </button>
         </div>

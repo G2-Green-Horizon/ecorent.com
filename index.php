@@ -1,3 +1,10 @@
+<?php include("connect.php");
+include("shared/classes/User.php");
+include("shared/classes/Item.php");
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
