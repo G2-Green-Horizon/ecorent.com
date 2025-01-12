@@ -27,6 +27,9 @@
             <a href="index.php" class="notfound-home-button">Go Back Home</a>
         </main>
     </div> 
+
+    <?php include 'shared/components/footer.php'; ?>
+
 </body>
 
 </html>
