@@ -13,9 +13,9 @@
             <button class="navbar-btn me-2">
                 <i class="bi bi-cart"></i>
             </button>
-            <button class="navbar-btn me-3">
-                <i class="bi bi-person-circle"></i>
-            </button>
+            <a href="my-account.php"><button class="navbar-btn me-3">
+                    <i class="bi bi-person-circle"></i>
+                </button></a>
         </div>
     </div>
     <div class="nav2">

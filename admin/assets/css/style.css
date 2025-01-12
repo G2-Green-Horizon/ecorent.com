@@ -1,0 +1,186 @@
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --danger: #D10D0D;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+
+    --margin: 300px;
+}
+
+body {
+    background-color: var(--bgColor);
+    font-family: var(--mainFont);
+    overflow: hidden;
+    position: relative;
+}
+
+.sidebar {
+    height: 100vh;
+    width: var(--margin);
+    background-color: var(--bgColor3);
+    position: absolute;
+}
+
+.logo {
+    height: 80px;
+}
+
+.nav-button i {
+    color: var(--beige);
+}
+
+.navigations .nav-button {
+    color: var(--mainColor);
+    font-size: 20px;
+}
+
+.nav-button:hover,
+.logout:hover {
+    background-color: var(--bgColor2);
+    cursor: pointer;
+}
+
+.settings .logout {
+    color: var(--danger);
+    font-size: 20px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    margin-left: var(--margin);
+    background-color: var(--bgColor);
+    height: 100vh;
+    overflow: auto;
+}
+
+.main-content .content-card {
+    color: var(--mainColor);
+    padding-left: 25px;
+}
+
+.main-content .dashboard {
+    display: block;
+}
+
+.main-content .pendings {
+    display: none;
+}
+
+.main-content .pickups {
+
+    display: none;
+}
+
+.main-content .rentals {
+    display: none;
+}
+
+.main-content .listings {
+    display: none;
+}
+
+.menu {
+    display: none;
+    color: var(--beige);
+    font-size: 40px;
+    padding-left: 12px;
+    padding-top: 2px;
+}
+
+.menu:hover {
+    cursor: pointer;
+    color: var(--mainColor);
+    background-color: var(--green);
+    border-radius: 5px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.exit{
+    color: #6B6B6B;
+    font-size: 35px;
+    display: none;
+}
+
+.exit:hover{
+    color: var(--mainColor);
+    font-size: 35px;
+    cursor: pointer;
+    background-color: var(--bgColor2);
+}
+
+.offcanvas{
+    background-color: var(--bgColor2) !important;
+}
+
+.btn-close {
+    background: transparent !important;
+    border: none !important;
+}
+
+.btn-close i{
+    font-size: 30px;
+    color: var(--mainColor);
+    padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .sidebar{
+        display: none;
+    }
+
+    .exit{
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu {
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+        border-radius: 5px;
+    }
+
+    .main-content .content-card {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .menu {
+        display: block;
+    }
+    
+    .title{
+        padding-top: 0;
+    }
+
+    .title h1{
+        margin:0;
+    }
+
+    .content{
+        margin-inline:20px;
+    }
+
+}

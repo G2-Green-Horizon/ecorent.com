@@ -21,11 +21,14 @@ include("shared/classes/Item.php");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="shared/assets/css/style.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
 <body id="homepage">
     <?php include 'shared/components/navbar.php'; ?>
-    <div class="container my-3 p-4 rounded-5" id="carousel-container">
+    <!-- <div class="container my-3 p-4 rounded-5" id="carousel-container">
         <div class="row g-2">
             <div class="col-md-8">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -56,55 +59,50 @@ include("shared/classes/Item.php");
                 <img src="shared/assets/img/system/static-image.png" class="w-100 rounded-5" alt="Static Image 2">
             </div>
         </div>
-    </div>
-
+    </div> -->
 
     <section class="container my-3">
         <div class="row justify-content-between g-3">
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-auto">
+            <a href="listings.php" class="col-12 col-sm-6 col-md-4 col-lg-auto">
                 <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
-                    <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
+                    <img src="shared/assets/img/system/photography.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
-                    <h5 class="mb-0">Electronics</h5>
+                    <h5 class="mb-0">Photography</h5>
                 </div>
-            </div>
+            </a>
 
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-auto">
+            <a href="listings.php" class="col-12 col-sm-6 col-md-4 col-lg-auto">
                 <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
-                    <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
+                    <img src="shared/assets/img/system/transportation.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
                     <h5 class="mb-0">Transportation</h5>
                 </div>
-            </div>
+            </a>
 
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <a href="listings.php" class="col-12 col-sm-6 col-md-4 col-lg-2">
                 <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
-                    <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
+                    <img src="shared/assets/img/system/clothing.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
-                    <h5 class="mb-0">Fashion</h5>
+                    <h5 class="mb-0">Clothing</h5>
                 </div>
-            </div>
+            </a>
 
-
-            <div class="col-12 col-sm-6 col-md-6 col-lg-2">
+            <a href="listings.php" class="col-12 col-sm-6 col-md-6 col-lg-2">
                 <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
-                    <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
+                    <img src="shared/assets/img/system/gadgets.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
-                    <h5 class="mb-0">Sports</h5>
+                    <h5 class="mb-0">Gadgets</h5>
                 </div>
-            </div>
+            </a>
 
-
-            <div class="col-12 col-sm-6 col-md-6 col-lg-2">
+            <a href="listings.php" class="col-12 col-sm-6 col-md-6 col-lg-2">
                 <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
-                    <img src="shared/assets/img/system/circle1.png" class="img-fluid me-2"
+                    <img src="shared/assets/img/system/outdoor.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">
-                    <h5 class="mb-0">Events</h5>
+                    <h5 class="mb-0">Outdoor</h5>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -130,21 +128,24 @@ include("shared/classes/Item.php");
     <?php include 'shared/components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.0/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="shared/assets/js/script.js"></script>
     <script src="shared/assets/js/script.js"></script>
     <script>
-        var itemNames = ["TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain"];
+        var itemNames = ["TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain",
+            "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain",
+            "TrailMaster X200 Mountain", "TrailMaster X200 Mountain"
+        ];
         var pics = ["bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png"];
         var prices = ["₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100"];
 
         for (var i = 0; i < itemNames.length; i++) {
             var container = document.getElementById("container");
             container.innerHTML += `
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <a href="product-page.php" class="item-card col-12 col-md-6 col-lg-4 col-xl-3"><div>
             <div class="card my-3 custom-card" id="card${i}">
                 <img src="shared/assets/img/system/${pics[i]}" class="card-img-top" alt="">
                 <div class="card-body">
@@ -153,7 +154,7 @@ include("shared/classes/Item.php");
                     <h5 class="card-text price">${prices[i]}</h5>
                 </div>
             </div>
-        </div>
+        </div></a>
     `;
         }
     </script>
