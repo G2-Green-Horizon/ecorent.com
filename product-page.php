@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="shared/assets/css/style.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
 <body id="product-page">
