@@ -75,7 +75,7 @@
 
                 <div class="d-flex align-items-center justify-content-end mt-5">
                     <button class="button-size btn btn-custom-outline mx-3">Add to cart</button>
-                    <button class="button-size btn btn-custom-dark">Rent now</button>
+                    <a href="booking.php"> <button class="button-size btn btn-custom-dark">Rent now</button> </a>
                 </div>
 
             </div>
