@@ -1,3 +1,9 @@
+<?php 
+include("connect.php");
+include("shared/processes/preferences-process.php");
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -24,19 +30,22 @@
             </div>
         </div>
 
+        <form method="POST">
+
         <div class="row" id="cardContainer">
         </div>
 
         <div class="row">
             <div class="d-flex gap-2 justify-content-center justify-content-md-end mb-5 mt-2">
-                <a href="./" class="text-decoration-none">
-                    <button class="btn btn-skip" type="button">Skip for now</button>
+                <a href="index.php" class="text-decoration-none">
+                    <button class="btn btn-skip"name="btnSkip" type="button">Skip for now</button>
                 </a>
-                <a href="./" class="text-decoration-none">
-                    <button class="btn btn-continue" type="button">Continue</button>
+                <a href="index.php" class="text-decoration-none">
+                    <button class="btn btn-continue" name="btnContinue" type="submit">Continue</button>
                 </a>
             </div>
         </div>
+        </form>
     </div>
 
     <?php include 'shared/components/footer.php'; ?>
