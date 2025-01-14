@@ -2,6 +2,7 @@
 include("connect.php");
 include("shared/classes/User.php");
 include("shared/processes/register-process.php");
+include("shared/components/processLogin.php");
 ?>
 
 <!doctype html>
