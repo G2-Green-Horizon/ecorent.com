@@ -1,7 +1,3 @@
-<?php
-include("shared/components/processIndex.php");
-?>
-
 <!doctype html>
 <html lang="en">
 
