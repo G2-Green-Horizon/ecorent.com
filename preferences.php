@@ -1,9 +1,6 @@
-<?php 
-include("connect.php");
-include("shared/processes/preferences-process.php");
-
+<?php
+include("shared/components/processIndex.php");
 ?>
-
 <!doctype html>
 <html lang="en">
 
