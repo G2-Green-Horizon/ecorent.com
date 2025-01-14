@@ -1,14 +1,15 @@
 <?php
-if (isset($_COOKIE['userCredentials'])) {
-    $userJson = $_COOKIE['userCredentials'];
-    $userData = json_decode($userJson, true);
+if (isset($_COOKIE['email']) || isset($_COOKIE['userCredentials'])) {
+    if (isset($_COOKIE['userCredentials'])) {
+        $userID = $_COOKIE['userCredentials'];
 
-    $userID = $userData['userID'];
-    $userQuery = "SELECT * FROM users WHERE userID = '$userID'";
-    $userResult = executeQuery($userQuery);
+        $userQuery = "SELECT * FROM users WHERE userID = '$userID' OR email = '$email'";
+        $userResult = executeQuery($userQuery);
 
-    if (mysqli_num_rows($userResult) > 0) {
+        if (mysqli_num_rows($userResult) > 0) {
+            header("Location: index.php");
+        }
+    } else {
         header("Location: index.php");
     }
 }
-?>

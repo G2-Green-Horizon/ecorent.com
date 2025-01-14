@@ -6,30 +6,11 @@ include("shared/components/processLogin.php");
 $error = "";
 
 if (isset($_POST['btnLogin'])) {
-    $username = $_POST['email'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $loginQuery = "SELECT * FROM users WHERE email = ? AND password = ?";
-    if ($stmt = mysqli_prepare($conn, $loginQuery)) {
-        mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-        mysqli_stmt_execute($stmt);
-        $loginResult = mysqli_stmt_get_result($stmt);
-    }
-
-    $error = "";
-
-    if (mysqli_num_rows($loginResult) > 0) {
-        $userData = mysqli_fetch_assoc($loginResult);
-
-        $user = new User($userData['userID'], $userData['email'], $userData['password']);
-        $userJson = json_encode($user);
-        setcookie("userCredentials", $userJson, time() + (60 * 60 * 24 * 3), "/");
-
-        header("Location: index.php");
-    } else {
-        $error = "No User";
-        echo "<script>alert('Invalid Username/Email or Password');</script>";
-    }
+    $user = new User("", "", $email, $password);
+    $error = $user->loginUser($email, $password);
 }
 ?>
 
