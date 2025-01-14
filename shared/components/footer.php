@@ -8,8 +8,8 @@
 
         <hr class="text-white my-4">
 
-        <div class="row mb-3">
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
+        <div class="row mb-3 text-center text-md-start">
+            <div class="col-12 col-md-3 mb-3">
                 <h5>Customer Service</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-white text-decoration-none">Help Center</a></li>
@@ -18,7 +18,7 @@
                 </ul>
             </div>
 
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
+            <div class="col-12 col-md-3 mb-3">
                 <h5>About EcoRent</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-white text-decoration-none">About us</a></li>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
 
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
+            <div class="col-12 col-md-3 mb-3">
                 <h5>Payment</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-white text-decoration-none">GCash</a></li>
@@ -35,28 +35,22 @@
                 </ul>
             </div>
 
-            <div class="col-12 col-md-2 text-center text-md-end">
+            <div class="col-12 col-md-3 text-center text-md-end">
                 <h5>Join Us</h5>
                 <ul class="list-unstyled d-flex justify-content-center justify-content-md-end">
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-youtube"
-                                aria-label="Facebook"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-facebook"
-                                aria-label="Facebook"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-twitter"
-                                aria-label="Twitter"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-instagram"
-                                aria-label="Instagram"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-linkedin"
-                                aria-label="LinkedIn"></i></a></li>
+                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-youtube"></i></a></li>
+                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-facebook"></i></a></li>
+                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-twitter"></i></a></li>
+                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-instagram"></i></a></li>
+                    <li><a href="#" class="text-white"><i class="bi bi-linkedin"></i></a></li>
                 </ul>
             </div>
-
         </div>
 
         <hr class="text-white my-4">
 
         <div class="row align-items-center">
-            <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
                 <p class="mb-0">&copy; 2025 EcoRent. All rights reserved.</p>
             </div>
             <div class="col-12 col-md-6 text-center text-md-end">
