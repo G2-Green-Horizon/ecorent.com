@@ -162,9 +162,48 @@
                 </div>
                 <h1>Manage Listings</h1>
                 <!-- FILTER & BUTTON -->
+                <div class="add-filter-buttons gap-2">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="button-text">Filter</span>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
+                            <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
+                            <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
+                        </ul>
+                    </div>
+                    <div class="add-item-button">
+                        <button class="btn btn-add"><i class="fa fa-plus"></i><span class="button-text">Add
+                                Item</span></button>
+                    </div>
+                </div>
             </div>
             <div class="content mt-5">
                 <!-- CONTENTS -->
+                <div class="container">
+                    <div class="row">
+                        <div class="manage-listings">
+                            <div class="card-body-listings p-3">
+                                <div class="listings-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <div class="listings-info">
+                                            <h4>TrailMaster X200 Mountain Bike</h4>
+                                            <h5>Available stocks: 21</h5>
+                                        </div>
+                                    </div>
+                                    <div class="listings-buttons">
+                                        <button class="btn btn-delete"><i class="fa fa-trash-can"></i></button>
+                                        <button class="btn btn-edit"><i class="fa fa-pen-to-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
