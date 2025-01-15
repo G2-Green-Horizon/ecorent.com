@@ -38,7 +38,7 @@ include("shared/processes/preferences-process.php");
                 <a href="index.php" class="text-decoration-none">
                     <button class="btn btn-skip"name="btnSkip" type="button">Skip for now</button>
                 </a>
-                <a href="index.php" class="text-decoration-none">
+                <a href="" class="text-decoration-none">
                     <button class="btn btn-continue" name="btnContinue" type="submit">Continue</button>
                 </a>
             </div>

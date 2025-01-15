@@ -2,6 +2,7 @@
 include("shared/classes/User.php");
 include("shared/classes/Item.php");
 include("shared/components/processIndex.php");
+
 ?>
 
 <!doctype html>
