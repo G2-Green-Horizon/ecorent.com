@@ -1,5 +1,6 @@
 <?php
 include("shared/components/processIndex.php");
+include("shared/processes/preferences-process.php");
 ?>
 <!doctype html>
 <html lang="en">

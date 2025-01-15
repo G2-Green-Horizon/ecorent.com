@@ -1,4 +1,5 @@
 <?php 
+include("connect.php");
 
 $userID = $_COOKIE['userID'];
 
