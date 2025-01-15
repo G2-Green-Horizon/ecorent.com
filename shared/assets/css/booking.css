@@ -1,0 +1,145 @@
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+}
+
+#booking-page {
+    background-color: #282828;
+    color: #FFFFFF;
+    font-family: var(--font);
+}
+
+h2 {
+    color: #D2CBA6;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+h4 {
+    color: #FFFFFF;
+    font-size: 28px;
+}
+
+h6 {
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+label {
+    color: #f6f6f6;
+    font-size: 20px;
+}
+
+
+p {
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+#pickupDate {
+    background-color: #454545;
+    border: none;
+    font-size: 20px;
+    border-radius: 16px;
+    height: 62px;
+}
+
+#noteForOwner {
+    background-color: #454545;
+    border: none;
+    font-size: 20px;
+    border-radius: 16px;
+    height: 62px;
+}
+
+#warehouse-txt {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+h3 {
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+li {
+    color: #FFFFFF;
+    font-size: 18px;
+
+}
+
+#top-price {
+    color: #D2CBA6;
+    font-size: 35px;
+    font-weight: bold
+}
+
+#bot-price {
+    color: #D2CBA6;
+    font-size: 40px;
+    font-weight: bold
+}
+
+/* btn */
+#cancel-btn {
+    background-color: transparent;
+    border: 2px solid #9B9B9B;
+    border-radius: 18px;
+    color: #D2CBA6;
+    width: 175px;
+    height: 51px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#confirm-btn {
+    background-color: #D2CBA6;
+    border: none;
+    border-radius: 18px;
+    color: #3E3D3D;
+    width: 247px;
+    height: 51px;
+    ;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.input-box {
+    font-size: 16px;
+    border-radius: var(--roundiness);
+    border: 1px solid var(--stroke);
+    padding: 12px;
+    color: var(--mainColor);
+    background-color: var(--bgColor2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-box:focus {
+    background-color: var(--bgColor2);
+    color: var(--mainColor);
+    border-color: var(--stroke);
+    outline: none;
+}
+
+.input-box::placeholder {
+    color: var(--mainColor);
+}
+
+.input-box:focus::placeholder {
+    color: gray;
+}
