@@ -1,5 +1,5 @@
 <?php
-include("shared/components/processIndex.php");
+// include("shared/components/processIndex.php");
 include("shared/processes/preferences-process.php");
 ?>
 <!doctype html>
@@ -18,17 +18,28 @@ include("shared/processes/preferences-process.php");
     <link rel="stylesheet" href="shared/assets/css/preferences.css ">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
 </head>
+<style>
+    /* Do not remove, for error handling */
+    .card.highlight {
+    border: 2px #D2CBA6; 
+    box-shadow: 0 0 10px #D2CBA6;
+}
+
+</style>
 
 <body>
     <?php include 'shared/components/navbar.php'; ?>
     <div class="container">
-        <div class="row mt-4 mb-4">
-            <div class="col">
-                <h1>What are you interested in?</h1>
-            </div>
+    <form method="POST" onsubmit="return validateForm()">
+    <input type="hidden" id="errorFlag" name="errorFlag" value="0">
+    <div class="row mt-4 mb-4">
+        <div class="col">
+            <h1>What are you interested in?</h1>
         </div>
-
-        <form method="POST">
+        <div id="errorMessage" class="text-error mt-2" style="display: none; color: #D2CBA6">
+            Choose at least one category.
+        </div>
+    </div>
 
         <div class="row" id="cardContainer">
         </div>

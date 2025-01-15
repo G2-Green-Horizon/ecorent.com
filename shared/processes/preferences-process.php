@@ -8,20 +8,24 @@ $checkPreferencesQuery = "SELECT * FROM preferences WHERE userID = $userID";
 $checkPreferencesResult = executeQuery($checkPreferencesQuery);
 
 if (mysqli_num_rows($checkPreferencesResult) > 0) {
-    // Redirect to another page if preferences are already set.
+    // Redirect to home page if preferences are already set.
     header("Location: index.php"); 
     exit;
 }
 
 if (isset($_POST['btnContinue'])) {
-    $preferences = $_POST['preferences'];
+    if (isset($_POST['preferences'])) {
+        $preferences = $_POST['preferences'];
 
-    foreach ($preferences as $categoryID) {
-        $addUserPreferencesQuery = "INSERT INTO preferences (userID, categoryID) VALUES ($userID, $categoryID)";
-        executeQuery($addUserPreferencesQuery);
+        // Query to insert user preferences to the database.
+        foreach ($preferences as $categoryID) {
+            $addUserPreferencesQuery = "INSERT INTO preferences (userID, categoryID) VALUES ($userID, $categoryID)";
+            executeQuery($addUserPreferencesQuery);
+        }
+        header("Location: index.php");
+        exit;
     }
-
-    header("Location: index.php");
-    exit;
 }
+
+
 ?>

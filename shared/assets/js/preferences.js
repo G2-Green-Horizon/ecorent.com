@@ -39,4 +39,32 @@ function removeShadow(id) {
     document.getElementById(id).classList.remove("shadow");
 }
 
+// Validate form function to check if the user selected a category on preferences page.
+function validateForm() {
+    const selectedCategories = document.querySelectorAll('input[name="preferences[]"]:checked');
+    const categoryCards = document.querySelectorAll('.card');
+    const errorMessage = document.getElementById('errorMessage'); 
+
+    categoryCards.forEach(card => {
+        card.classList.remove('highlight');
+    });
+
+    // If no categories are selected.
+    if (selectedCategories.length === 0) {
+        categoryCards.forEach(card => {
+            card.classList.add('highlight');
+        });
+
+        //Display error message.
+        errorMessage.style.display = 'block';
+
+        document.getElementById('errorFlag').value = '1'; 
+        return false;  
+    }
+
+    // Hide error message if categories are selected.
+    errorMessage.style.display = 'none';
+    return true; 
+}
+
 displayPreferences();
