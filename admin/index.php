@@ -134,8 +134,23 @@
                 </div>
                 <h1>Active Rentals</h1>
             </div>
-            <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+            <!-- CONTENTS -->
+            <div class="content mt-4">
+                <div class="container">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -146,10 +161,10 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <h1>Manage Listings</h1>
-                <!-- ADD FILTER & BUTTON HERE -->
+                <!-- FILTER & BUTTON -->
             </div>
-            <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+            <div class="content mt-5">
+                <!-- CONTENTS -->
             </div>
         </div>
     </div>
