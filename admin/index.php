@@ -175,9 +175,60 @@
                             <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
                         </ul>
                     </div>
+                    <!-- Button trigger modal -->
                     <div class="add-item-button">
-                        <button class="btn btn-add"><i class="fa fa-plus"></i><span class="button-text">Add
+                        <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
+                                class="fa fa-plus"></i><span class="button-text">Add
                                 Item</span></button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog mt-3 ">
+                                <div class="modal-content">
+                                    <div class="modal-header add-item-modal">
+                                        <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">Add
+                                            Item</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body add-item-modal-body" id="add-item-modal-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-3 add-item-frame">
+                                                    <img src="../shared/assets/img/system/bike.jpg" alt=""
+                                                        class="img-fluid">
+                                                    <label for="customFile"
+                                                        class="btn btn-primary btn-select-main-image">Select main
+                                                        image</label>
+                                                    <input type="file" class="d-none" id="customFile" />
+                                                </div>
+                                                <div class="col-9">
+                                                    <input type="text" class="form-control add-item-input mb-2"
+                                                        placeholder="Item Name" />
+                                                    <textarea class="form-control add-item-input mb-2"
+                                                        style="resize: none; height: 100px; overflow-y: auto;"
+                                                        placeholder="Description"></textarea>
+                                                    <textarea class="form-control add-item-input"
+                                                        style="resize: none; height: 94px; overflow-y: auto;"
+                                                        placeholder="Specifications"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row my-5">
+                                                <div class="col">hello</div>
+                                                <div class="col">hello</div>
+                                                <div class="col">hello</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer add-item-modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

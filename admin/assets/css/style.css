@@ -377,3 +377,83 @@ body {
 .dropdown-toggle:after {
     display: none;
 }
+
+.add-item-modal {
+    color: var(--mainColor);
+    background-color: var(--bgColor);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.add-item-modal-text {
+    text-align: center;
+    width: 100%;
+}
+
+.add-item-modal-body {
+    color: var(--mainColor);
+    background-color: var(--bgColor);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+}
+
+.add-item-modal-footer {
+    color: var(--mainColor);
+    background-color: var(--bgColor);
+    width: 100%;
+}
+
+.modal-dialog {
+    max-width: 900px; 
+    margin: 0 auto;  
+}
+
+.add-item-frame img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.btn-select-main-image{
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #b9b9b9;
+    background-color: var(--bgColor);
+}
+
+.btn-select-main-image:hover{
+    background-color: inherit; 
+    border-color: inherit; 
+}
+
+.add-item-input{
+    border-radius: 10px;
+    border: 1px solid #b9b9b9;
+    background-color: var(--bgColor)3;
+    color: white;
+}
+
+input.add-item-input{
+    background-color: transparent !important;
+    color: white !important;
+}
+
+textarea.add-item-input{
+    background-color: transparent !important;
+    color: white !important;
+}
+
+#add-item-modal-body ::placeholder {
+    color: white;
+}
+
+#add-item-modal-body :focus::placeholder {
+    color: gray;
+}
+
+
