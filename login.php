@@ -1,16 +1,16 @@
 <?php
 include("connect.php");
 include("shared/classes/User.php");
-include("shared/components/processLogin.php");
+include("shared/processes/process-login.php");
 
-$error = "";
+$newLogin = "";
 
 if (isset($_POST['btnLogin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     $user = new User("", "", $email, $password);
-    $error = $user->loginUser($email, $password);
+    $newLogin = $user->loginUser($email, $password);
 }
 ?>
 
@@ -30,6 +30,11 @@ if (isset($_POST['btnLogin'])) {
 
     <!-- FONTS -->
     <link rel="stylesheet" href="shared/assets/font/font.css">
+    <style>
+        .input-box::placeholder {
+            color: <?php echo $newLogin; ?>;
+        }
+    </style>
 </head>
 
 <body id="login">

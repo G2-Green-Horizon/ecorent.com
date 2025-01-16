@@ -1,7 +1,7 @@
 <?php include("connect.php");
 include("shared/classes/User.php");
 include("shared/classes/Item.php");
-include("shared/components/processIndex.php");
+include("shared/processes/process-index.php");
 ?>
 
 <!doctype html>

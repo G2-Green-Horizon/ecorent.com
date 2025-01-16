@@ -1,5 +1,6 @@
 <?php
-include("shared/components/processIndex.php");
+include("connect.php");
+include("shared/processes/process-index.php");
 ?>
 <!doctype html>
 <html lang="en">
