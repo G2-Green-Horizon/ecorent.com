@@ -1,0 +1,385 @@
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --danger: #D10D0D;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+    --margin: 300px;
+}
+
+body {
+    background-color: var(--bgColor);
+    font-family: var(--mainFont);
+}
+
+.base {
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--beige);
+}
+
+.sidebar {
+    height: 100vh;
+    width: var(--margin);
+    position: absolute;
+}
+
+.nav-button i {
+    color: var(--beige);
+}
+
+.nav-button .logout-icon {
+    color: var(--danger);
+}
+
+.navigations .nav-button {
+    color: var(--mainColor);
+    font-size: 20px;
+    border-radius: var(--roundiness);
+}
+
+.nav-button:hover,
+.logout:hover {
+    background-color: #2E2C2C;
+    cursor: pointer;
+}
+
+.settings .logout {
+    color: var(--danger);
+    font-size: 20px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    margin-left: var(--margin);
+    margin-right: 2%;
+    background-color: var(--bgColor3);
+    height: 100%;
+    border-radius: var(--roundiness);
+}
+
+.main-content .content-card {
+    color: var(--mainColor);
+    padding-left: 25px;
+}
+
+.main-content .dashboard {
+    display: block;
+}
+
+.main-content .pendings {
+    display: none;
+}
+
+.main-content .pickups {
+
+    display: none;
+}
+
+.main-content .rentals {
+    display: none;
+}
+
+.main-content .listings {
+    display: none;
+}
+
+.menu {
+    display: none;
+    color: var(--beige);
+    font-size: 40px;
+    padding-left: 12px;
+    padding-top: 2px;
+}
+
+.menu:hover {
+    cursor: pointer;
+    color: var(--mainColor);
+    background-color: var(--green);
+    border-radius: 5px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.btn-select-img {
+    border: 1px solid var(--beige);
+    background-color: transparent;
+    color: var(--beige);
+    border-radius: var(--roundiness);
+    padding-inline: 20px;
+    padding-block: 10px;
+    transition: ease-in 200ms;
+}
+
+.profile-pic {
+    border: 5px solid var(--green) !important;
+}
+
+.size-info {
+    color: #D5D5D5;
+}
+
+.input-box {
+    font-size: 16px;
+    border-radius: var(--roundiness);
+    border: 1px solid var(--stroke);
+    padding: 12px;
+    color: var(--mainColor);
+    background-color: var(--bgColor2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-box:focus {
+    background-color: var(--bgColor2);
+    color: var(--mainColor);
+    border-color: var(--stroke);
+    outline: none;
+}
+
+.input-box::placeholder {
+    color: var(--mainColor);
+}
+
+.input-box:focus::placeholder {
+    color: gray;
+}
+
+.form-check-input {
+    background-color: var(--bgColor);
+}
+
+.form-check-input:checked {
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+h1 {
+    color: white;
+}
+
+.btn-save, .btn-action {
+    background-color: var(--beige);
+    color: var(--bgColor);
+    border-radius: var(--roundiness);
+    padding-inline: 75px;
+    padding-block: 10px;
+    border: 1px solid transparent;
+    font-weight: 700;
+    transition: ease-in 200ms;
+}
+
+.btn-save:hover,
+.btn-select-img:hover,
+.btn-action:hover {
+    background-color: var(--green);
+    color: var(--bgColor);
+    border: 1px solid transparent;
+}
+
+.btn-cancel{
+    background-color: transparent;
+    border-color: var(--beige);
+    color: var(--beige);
+    padding-inline: 30px;
+}
+
+.btn-cancel:hover{
+    background-color: var(--danger);
+    color: var(--mainColor);
+    border-color: transparent;
+}
+
+.badge-overdue{
+    color: var(--danger);
+}
+
+/* MY BOOKINGS */
+.main-content .bookings{
+    background-color: var(--bgColor);
+    margin-bottom: 350px;
+}
+
+.item-card{
+    width: 100%;
+    height: auto;
+    background-color: var(--bgColor3);
+    border-radius: var(--roundiness);
+}
+
+.top{
+    flex-direction: row;
+}
+
+.item-display-img{
+    height: 175px;
+    width: 175px;
+    object-fit: cover;
+    border-radius: var(--roundiness);
+}
+
+.item-name{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.item-info i,
+.time-period i{
+    color: #9C9B9B;
+    font-size: 16px;
+}
+
+.status-badge{
+    background-color: var(--bgColor);
+    border-radius: 50px;
+    padding-inline: 10px;
+    padding-block: 10px;
+}
+
+.payment-number{
+    color: var(--beige);
+    font-size: 30px;
+    font-weight: 700;
+    text-align: end;
+}
+
+.status-tip{
+    color: var(--beige);
+    font-weight: 700;
+}
+
+.transac{
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* SETTINGS */
+.settings-content ul{
+    margin: 0;
+    padding: 0;
+}
+.settings li{
+    list-style: none;
+}
+
+.settings .delete-account{
+    color: var(--danger);
+}
+
+.settings li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.settings-content{
+    padding-bottom: 320px;
+}
+
+@media (max-width: 1199.98px){
+    .top{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        background-color: var(--bgColor);
+        padding: 10px 0;
+        z-index: 10000;
+    }
+
+    .sidebar .navigations{
+        display: flex;
+    }
+
+    .exit {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu {
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+        border-radius: 5px;
+    }
+
+    .main-content .content-card {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .title {
+        padding-top: 0;
+    }
+
+    .title h1 {
+        margin: 0;
+    }
+
+    .content {
+        margin-inline: 20px;
+    }
+
+    .navigations .nav-button{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .transac{
+        flex-direction: column;
+    }
+
+    .btn-action{
+        width: 100%;
+    }
+
+    .total-payment{
+        justify-content: space-between;
+    }
+
+}
+
+@media(max-width:568px){
+    .nav-text-side{
+        display: none;
+    }
+}

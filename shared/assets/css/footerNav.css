@@ -1,15 +1,14 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
+.input-group {
+    max-width: 400px;
+    flex-grow: 1;
+    justify-content: center;
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
-/* NavBar  */
+
 .navbar {
     background-color: #D2CBA6;
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -17,19 +16,23 @@ html, body {
     height: 80px;
 }
 
-.input-group {
-    max-width: 400px;
-}
-
-.navbar .btn-outline-secondary {
+.navbar .navbar-btn {
     background-color: #282828;
-    border-color: #282828;
-    color: #D2CBA6;
+    border: none;
+    color: #f2ecec;
+    margin-right: 8px;
+    padding: 5px 10px;
 }
 
-.navbar .btn-outline-secondary:hover {
+.navbar .navbar-btn:hover {
     background-color: #D2CBA6;
     color: #282828;
+}
+
+.d-flex.justify-content-center .navbar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar .nav-link {
@@ -42,6 +45,22 @@ html, body {
 .navbar .nav-link:hover {
     color: #D2CBA6;
     text-decoration: underline;
+}
+
+.dark-input {
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #555;
+}
+
+.dark-input:focus {
+    border-color: #D2CBA6;
+    box-shadow: 0 0 5px rgba(210, 203, 166, 0.7);
+    background-color: #333;
+}
+
+.dark-input::placeholder {
+    color: #aaa;
 }
 
 .nav2 {
@@ -140,22 +159,6 @@ html, body {
     .footer .text-md-end {
         text-align: center;
     }
-}
-
-.dark-input {
-    background-color: #333;
-    color: #f1f1f1;
-    border: 1px solid #555;
-}
-
-.dark-input:focus {
-    border-color: #D2CBA6;
-    box-shadow: 0 0 5px rgba(210, 203, 166, 0.7);
-    background-color: #333;
-}
-
-.dark-input::placeholder {
-    color: #aaa;
 }
 
 ul li a i {

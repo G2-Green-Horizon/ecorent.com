@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #D9D9D9;
+    --button-color: #929292;
+    --text-color: #FFFFFF;
+}
+
+body {
+    background-color: #282828;
+}
+
+.card {
+    max-width: 507px;
+    width: 636px;
+    background-color: #3B3A3A;
+}
+
+.card h1 {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.form-control {
+    border: 1px solid #3E3D3D;
+    background-color: var(--primary-color);
+}
+
+.login-button {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #D2CBA6;
+    color: #3E3D3D;
+    font-weight: 700;
+    border: 1px solid var(--beige);
+    transition: all 0.3s ease;
+}
+
+.logo {
+    height: 120px;
+}

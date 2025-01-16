@@ -1,0 +1,379 @@
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --danger: #D10D0D;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+
+    --margin: 300px;
+}
+
+body {
+    background-color: var(--bgColor);
+    font-family: var(--mainFont);
+    overflow: hidden;
+    position: relative;
+}
+
+.sidebar {
+    height: 100vh;
+    width: var(--margin);
+    background-color: var(--bgColor3);
+    position: absolute;
+}
+
+.logo {
+    height: 80px;
+}
+
+.nav-button i {
+    color: var(--beige);
+}
+
+.navigations .nav-button {
+    color: var(--mainColor);
+    font-size: 20px;
+}
+
+.nav-button:hover,
+.logout:hover {
+    background-color: var(--bgColor2);
+    cursor: pointer;
+}
+
+.settings .logout {
+    color: var(--danger);
+    font-size: 20px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    margin-left: var(--margin);
+    background-color: var(--bgColor);
+    height: 100vh;
+    overflow: auto;
+}
+
+.main-content .content-card {
+    color: var(--mainColor);
+    padding-left: 25px;
+}
+
+.main-content .dashboard {
+    display: block;
+}
+
+.main-content .pendings {
+    display: none;
+}
+
+.main-content .pickups {
+
+    display: none;
+}
+
+.main-content .rentals {
+    display: none;
+}
+
+.main-content .listings {
+    display: none;
+}
+
+.menu {
+    display: none;
+    color: var(--beige);
+    font-size: 40px;
+    padding-left: 12px;
+    padding-top: 2px;
+}
+
+.menu:hover {
+    cursor: pointer;
+    color: var(--mainColor);
+    background-color: var(--green);
+    border-radius: 5px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.exit{
+    color: #6B6B6B;
+    font-size: 35px;
+    display: none;
+}
+
+.exit:hover{
+    color: var(--mainColor);
+    font-size: 35px;
+    cursor: pointer;
+    background-color: var(--bgColor2);
+}
+
+.offcanvas{
+    background-color: var(--bgColor2) !important;
+}
+
+.btn-close {
+    background: transparent !important;
+    border: none !important;
+}
+
+.btn-close i{
+    font-size: 30px;
+    color: var(--mainColor);
+    padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .sidebar{
+        display: none;
+    }
+
+    .exit{
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu {
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+        border-radius: 5px;
+    }
+
+    .main-content .content-card {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .menu {
+        display: block;
+    }
+    
+    .title{
+        padding-top: 0;
+    }
+
+    .title h1{
+        margin:0;
+    }
+
+    .content{
+        margin-inline:20px;
+    }
+
+    .title .add-filter-buttons {
+        padding-top: 15px;
+    }
+
+
+    .add-item-button .btn-add, .add-filter-buttons .dropdown button {
+        width: 160px !important;
+        height: 51px !important;
+        padding: 0 40px 0 40px !important;
+    }
+
+    .add-filter-buttons .dropdown button span, .add-filter-buttons .dropdown button i, .btn-add span, .btn-add i {
+        color: var(--beige);
+        font-size: 13px !important;
+        font-weight: 500;
+    }
+
+    .dropdown-menu {
+        width: 170px !important;
+        
+    }
+
+}
+
+/* ACTIVE RENTALS */
+.card-body-rentals {
+    background-color: var(--bgColor);
+    border-bottom: 2px solid var(--bgColor2);
+    cursor: pointer;
+}
+
+.card-body-rentals img {
+    width: 50px;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.card-body-rentals .rentals-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.card-body-rentals .order-content {
+    display: flex;
+    align-items: center;
+}
+
+.card-body-rentals h4 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--mainColor);
+    margin-left: 15px;
+}
+
+.card-body-rentals i {
+    font-size: 25px;
+    color: var(--beige);
+}
+
+.active-rentals {
+    text-decoration: none;
+}
+
+/* MANAGE LISTINGS STYLES*/
+.card-body-listings {
+    background-color: var(--bgColor3);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.card-body-listings .listings-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.card-body-listings .order-content {
+    display: flex; 
+    align-items: start;
+}
+
+.order-content img {
+    width: 75px;
+    height: 75px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.order-content .listings-info {
+    text-align: start;
+    margin-left: 15px;
+}
+
+.order-content .listings-info h4 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--mainColor);
+}
+
+.order-content .listings-info h5 {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--beige);
+}
+
+/* BUTTONS */
+.listings-buttons {
+    display: flex;
+    transition: 0.5s ease;
+}
+.listings-buttons button i{
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--mainColor);
+}
+
+.listings-buttons button i:hover {
+    color: var(--beige);
+    cursor: pointer;
+}
+
+.listings-buttons button:active, .listings-buttons button:focus {
+    border: transparent !important;
+    transform: scale(1.1);
+}
+
+/* FILTER AND ADD BUTTONS */
+.add-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    padding-right: 15px;
+    justify-content: center;
+}
+
+.add-filter-buttons .dropdown button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 210px;
+    height: 51px;
+    padding: 0 50px 0 50px;
+    border-radius: 18px;
+    background-color: transparent !important;
+    border: 2px solid var(--beige);
+    
+}
+
+.add-filter-buttons .dropdown button span, .add-filter-buttons .dropdown button i {
+    color: var(--beige);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.dropdown button:active, .dropdown button:focus {
+    background-color: transparent !important;
+    border: 2px solid var(--beige) !important;
+    color: var(--beige) !important;
+}
+
+.dropdown-menu {
+    width: 210px;
+    background-color: var(--beige) !important;
+    
+}
+
+.add-item-button .btn-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 210px;
+    height: 51px;
+    padding: 0 50px 0 50px;
+    border-radius: 18px;
+    background-color: var(--beige);
+}
+
+.btn-add span, .btn-add i {
+    color: var(--bgColor);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.btn-add:active, .btn-add:focus {
+    background-color: var(--beige) !important;
+    color: var(--bgColor) !important;
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
