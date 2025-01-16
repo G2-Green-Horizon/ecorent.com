@@ -1,5 +1,6 @@
 <?php
 include("shared/processes/process-index.php");
+include("connect.php");
 ?>
  
 <!doctype html>
