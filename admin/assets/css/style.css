@@ -107,26 +107,26 @@ body {
     border-radius: 5px;
 }
 
-.title{
+.title {
     display: flex;
     align-items: center;
     padding-top: 15px;
 }
 
-.exit{
+.exit {
     color: #6B6B6B;
     font-size: 35px;
     display: none;
 }
 
-.exit:hover{
+.exit:hover {
     color: var(--mainColor);
     font-size: 35px;
     cursor: pointer;
     background-color: var(--bgColor2);
 }
 
-.offcanvas{
+.offcanvas {
     background-color: var(--bgColor2) !important;
 }
 
@@ -135,7 +135,7 @@ body {
     border: none !important;
 }
 
-.btn-close i{
+.btn-close i {
     font-size: 30px;
     color: var(--mainColor);
     padding-right: 10px;
@@ -143,11 +143,11 @@ body {
 
 @media (max-width: 768px) {
 
-    .sidebar{
+    .sidebar {
         display: none;
     }
 
-    .exit{
+    .exit {
         display: block;
     }
 
@@ -170,17 +170,17 @@ body {
     .menu {
         display: block;
     }
-    
-    .title{
+
+    .title {
         padding-top: 0;
     }
 
-    .title h1{
-        margin:0;
+    .title h1 {
+        margin: 0;
     }
 
-    .content{
-        margin-inline:20px;
+    .content {
+        margin-inline: 20px;
     }
 
     .title .add-filter-buttons {
@@ -188,13 +188,17 @@ body {
     }
 
 
-    .add-item-button .btn-add, .add-filter-buttons .dropdown button {
+    .add-item-button .btn-add,
+    .add-filter-buttons .dropdown button {
         width: 160px !important;
         height: 51px !important;
         padding: 0 40px 0 40px !important;
     }
 
-    .add-filter-buttons .dropdown button span, .add-filter-buttons .dropdown button i, .btn-add span, .btn-add i {
+    .add-filter-buttons .dropdown button span,
+    .add-filter-buttons .dropdown button i,
+    .btn-add span,
+    .btn-add i {
         color: var(--beige);
         font-size: 13px !important;
         font-weight: 500;
@@ -202,7 +206,7 @@ body {
 
     .dropdown-menu {
         width: 170px !important;
-        
+
     }
 
 }
@@ -263,7 +267,7 @@ body {
 }
 
 .card-body-listings .order-content {
-    display: flex; 
+    display: flex;
     align-items: start;
 }
 
@@ -296,7 +300,8 @@ body {
     display: flex;
     transition: 0.5s ease;
 }
-.listings-buttons button i{
+
+.listings-buttons button i {
     font-size: 24px;
     font-weight: 300;
     color: var(--mainColor);
@@ -307,7 +312,8 @@ body {
     cursor: pointer;
 }
 
-.listings-buttons button:active, .listings-buttons button:focus {
+.listings-buttons button:active,
+.listings-buttons button:focus {
     border: transparent !important;
     transform: scale(1.1);
 }
@@ -331,16 +337,18 @@ body {
     border-radius: 18px;
     background-color: transparent !important;
     border: 2px solid var(--beige);
-    
+
 }
 
-.add-filter-buttons .dropdown button span, .add-filter-buttons .dropdown button i {
+.add-filter-buttons .dropdown button span,
+.add-filter-buttons .dropdown button i {
     color: var(--beige);
     font-size: 17px;
     font-weight: 600;
 }
 
-.dropdown button:active, .dropdown button:focus {
+.dropdown button:active,
+.dropdown button:focus {
     background-color: transparent !important;
     border: 2px solid var(--beige) !important;
     color: var(--beige) !important;
@@ -349,7 +357,7 @@ body {
 .dropdown-menu {
     width: 210px;
     background-color: var(--beige) !important;
-    
+
 }
 
 .add-item-button .btn-add {
@@ -363,13 +371,15 @@ body {
     background-color: var(--beige);
 }
 
-.btn-add span, .btn-add i {
+.btn-add span,
+.btn-add i {
     color: var(--bgColor);
     font-size: 17px;
     font-weight: 600;
 }
 
-.btn-add:active, .btn-add:focus {
+.btn-add:active,
+.btn-add:focus {
     background-color: var(--beige) !important;
     color: var(--bgColor) !important;
 }
@@ -397,28 +407,30 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 400px;
+    min-height: 400px;
 }
 
 .add-item-modal-footer {
     color: var(--mainColor);
     background-color: var(--bgColor);
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .modal-dialog {
-    max-width: 900px; 
-    margin: 0 auto;  
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.add-item-frame img{
-    width: 200px;
+.add-item-frame img {
+    width: 100%;
     height: 200px;
     border-radius: 10px;
     object-fit: cover;
 }
 
-.btn-select-main-image{
+.btn-select-main-image {
     width: 100%;
     margin-top: 10px;
     border-radius: 10px;
@@ -426,24 +438,44 @@ body {
     background-color: var(--bgColor);
 }
 
-.btn-select-main-image:hover{
-    background-color: inherit; 
-    border-color: inherit; 
+.btn-select-main-image:hover {
+    background-color: var(--titleColor);
+    border-color: var(--titleColor);
+    color: var(--bgColor3);
 }
 
-.add-item-input{
+.btn-select-main-image:focus {
+    background-color: var(--titleColor) !important;
+    border-color: var(--titleColor) !important;
+    color: var(--bgColor3) !important;
+}
+
+.add-item-input {
     border-radius: 10px;
     border: 1px solid #b9b9b9;
     background-color: var(--bgColor)3;
     color: white;
 }
 
-input.add-item-input{
+.add-item-textarea-desc {
+    resize: none; 
+    height: 100px; 
+    overflow-y: auto;
+}
+
+.add-item-textarea-specs {
+    resize: none; 
+    height: 94px; 
+    overflow-y: auto;
+}
+
+
+input.add-item-input {
     background-color: transparent !important;
     color: white !important;
 }
 
-textarea.add-item-input{
+textarea.add-item-input {
     background-color: transparent !important;
     color: white !important;
 }
@@ -456,4 +488,39 @@ textarea.add-item-input{
     color: gray;
 }
 
+.rate-type-custom {
+    background-color: transparent;
+    color: white;
+}
+
+.shipping-mode-custom {
+    margin-top: 10px;
+    border: 1px solid #b9b9b9;
+    background-color: var(--bgColor);
+    color: white;
+}
+
+.category-custom {
+    border: 1px solid #b9b9b9;
+    background-color: var(--bgColor);
+    color: white;
+}
+
+.add-item-btn-save{
+    background-color: var(--titleColor);
+    border-color: var(--titleColor);
+    color: var(--bgColor3);
+}
+
+.add-item-btn-save:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+    color: var(--mainColor);
+}
+
+.add-item-btn-save:focus{
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: var(--mainColor) !important;
+}
 

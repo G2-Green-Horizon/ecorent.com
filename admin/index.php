@@ -109,7 +109,52 @@
                 <h1>Pending Requests</h1>
             </div>
             <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+                <!-- [CONTENTS] -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -122,7 +167,35 @@
                 <h1>For Pick-Ups</h1>
             </div>
             <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+                <!-- [CONTENTS] -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <button class="btn-hand-in rounded-3">HAND IN</button>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <button class="btn-hand-in rounded-3">HAND IN</button>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -182,7 +255,7 @@
                                 Item</span></button>
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            tabindex="-1">
                             <div class="modal-dialog mt-3 ">
                                 <div class="modal-content">
                                     <div class="modal-header add-item-modal">
@@ -194,36 +267,98 @@
                                     <div class="modal-body add-item-modal-body" id="add-item-modal-body">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-3 add-item-frame">
+                                                <div class="col-12 col-md-3 add-item-frame ">
                                                     <img src="../shared/assets/img/system/bike.jpg" alt=""
                                                         class="img-fluid">
                                                     <label for="customFile"
-                                                        class="btn btn-primary btn-select-main-image">Select main
+                                                        class="btn btn-primary btn-select-main-image mb-2">Select main
                                                         image</label>
                                                     <input type="file" class="d-none" id="customFile" />
                                                 </div>
-                                                <div class="col-9">
-                                                    <input type="text" class="form-control add-item-input mb-2"
+
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" class="form-control add-item-input mb-2 "
                                                         placeholder="Item Name" />
-                                                    <textarea class="form-control add-item-input mb-2"
-                                                        style="resize: none; height: 100px; overflow-y: auto;"
+                                                    <textarea
+                                                        class="form-control add-item-input mb-2 add-item-textarea-desc"
                                                         placeholder="Description"></textarea>
-                                                    <textarea class="form-control add-item-input"
-                                                        style="resize: none; height: 94px; overflow-y: auto;"
+                                                    <textarea
+                                                        class="form-control add-item-input add-item-textarea-specs"
                                                         placeholder="Specifications"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="row my-5">
-                                                <div class="col">hello</div>
-                                                <div class="col">hello</div>
-                                                <div class="col">hello</div>
+
+                                            <div class="row mt-4">
+                                                <div class="col-12 col-md-4">
+                                                    <div class="mb-3">
+                                                        <label for="inputGroupRate" class="form-label">Rate Type</label>
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text rate-type-custom">₱</span>
+                                                            <input type="text" class="form-control add-item-input" id="inputGroupRate">
+                                                            <span class="input-group-text rate-type-custom">PER
+                                                                DAY</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <div class="mb-3">
+                                                        <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                            <label for="inputGroupShipping">Shipping mode</label>
+                                                            <select class="form-select mt-2 shipping-mode-custom"
+                                                                id="inputGroupShipping">
+                                                                <option selected>For Pick-up</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="inputGroupC02">Potential gas
+                                                            emission
+                                                            saved</label>
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="form-control add-item-input"
+                                                                id="inputGroupC02">
+                                                            <span class="input-group-text rate-type-custom">kg
+                                                                CO₂</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div class="modal-footer add-item-modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary">Save Changes</button>
+                                    <div class="modal-footer add-item-modal-footer ">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 col-md-4">
+                                                    <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                        <label for="inputGroupCategory"
+                                                            class="form-label mb-0 me-2 mt-2">Category</label>
+                                                        <select class="form-select category-custom mt-2"
+                                                            id="inputGroupCategory">
+                                                            <option selected>Transportation</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <label for="inputGroupStocks"
+                                                        class="form-label mb-0 me-2 mt-2">Stocks</label>
+                                                    <input type="text" class="form-control add-item-input mt-2 mb-4"
+                                                        id="inputGroupStocks" />
+                                                </div>
+                                                <div
+                                                    class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="button"
+                                                        class="btn btn-primary ms-2 add-item-btn-save">Save
+                                                        Changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -295,20 +430,14 @@
             offcanvas.hide();
             var index = btnID[btnID.length - 1] - 1;
 
+            localStorage.setItem("activeSection", btnID);
+
             buttons.forEach((button, i) => {
-                if (i === index) {
-                    button.style.backgroundColor = '#7F9D5A';
-                } else {
-                    button.style.backgroundColor = '';
-                }
+                button.style.backgroundColor = i === index ? '#7F9D5A' : '';
             });
 
             sidebuttons.forEach((sidebutton, i) => {
-                if (i === index) {
-                    sidebutton.style.backgroundColor = '#7F9D5A';
-                } else {
-                    sidebutton.style.backgroundColor = '';
-                }
+                sidebutton.style.backgroundColor = i === index ? '#7F9D5A' : '';
             });
 
             containers.forEach((container, i) => {
@@ -316,17 +445,11 @@
             });
         }
 
-        buttons[0].style.backgroundColor = '#7F9D5A';
-        containers[0].style.display = 'block';
-        for (let i = 1; i < containers.length; i++) {
-            containers[i].style.display = 'none';
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var savedSection = localStorage.getItem("activeSection") || "btn1";
+            showContent(savedSection);
+        });
 
-        sidebuttons[0].style.backgroundColor = '#7F9D5A';
-        containers[0].style.display = 'block';
-        for (let i = 1; i < containers.length; i++) {
-            containers[i].style.display = 'none';
-        }
     </script>
 
 </body>

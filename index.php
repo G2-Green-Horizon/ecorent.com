@@ -1,21 +1,11 @@
-<?php include("connect.php");
-include("shared/classes/User.php");
-include("shared/classes/Item.php");
-include("shared/components/processIndex.php");
-
-
-?>
-
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>EcoRent | Homepage</title>
     <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
-
     <!-- STYLINGS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -116,14 +106,12 @@ include("shared/components/processIndex.php");
                     </div>
                 </div>
             </div>
-            <div class="row" id="container">
-            </div>
+            <div class="row" id="container"></div>
 
             <div class="text-center my-3">
-                <button class="btn btn-dark">
-                    SEE MORE
-                </button>
+                <button id="seeMoreButton" class="btn btn-dark">SEE MORE</button>
             </div>
+
         </div>
     </section>
     <?php include 'shared/components/footer.php'; ?>
@@ -134,31 +122,43 @@ include("shared/components/processIndex.php");
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.0/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="shared/assets/js/script.js"></script>
-    <script src="shared/assets/js/script.js"></script>
+    
     <script>
-        var itemNames = ["TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain",
-            "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain",
-            "TrailMaster X200 Mountain", "TrailMaster X200 Mountain"
-        ];
-        var pics = ["bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png"];
-        var prices = ["₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100"];
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to the container and the "See More" button elements.
+            const container = document.getElementById("container");
+            const seeMoreButton = document.getElementById("seeMoreButton");
 
-        for (var i = 0; i < itemNames.length; i++) {
-            var container = document.getElementById("container");
-            container.innerHTML += `
-        <a href="product-page.php" class="item-card col-12 col-md-6 col-lg-4 col-xl-3"><div>
-            <div class="card my-3 custom-card" id="card${i}">
-                <img src="shared/assets/img/system/${pics[i]}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">${itemNames[i]}</h5>
-                    <h5 class="card-text">Bike</h5>
-                    <h5 class="card-text price">${prices[i]}</h5>
-                </div>
-            </div>
-        </div></a>
-    `;
-        }
+            // Initialize offset and set limit for pagination.
+            let offset = 0;
+            const limit = 12;
+
+            // Function to load items dynamically from DB.
+            function loadItems() {
+                fetch('shared/processes/homepage-process.php?offset=' + offset + '&limit=' + limit)
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data) {
+                            // Append the newly fetched items to the container.
+                            container.innerHTML += data;
+                            // Update the offset for the next batch of items.
+                            offset += limit;
+                        } else {
+                            seeMoreButton.style.display = "none";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);
+                    });
+            }
+            loadItems();
+
+            // Load more items when the "See More" button is clicked
+            seeMoreButton.onclick = loadItems;
+        });
+
     </script>
+
 </body>
 
 </html>
