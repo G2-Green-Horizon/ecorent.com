@@ -100,7 +100,7 @@ foreach ($totalItemsArray as $item) {
             <div class="card-body">
                 <h5 class="card-title">' . ($item->itemName) . '</h5>
                 <h5 class="card-text">' . ($item->categoryName) . '</h5>
-                <h5 class="card-text price">' . ($item->pricePerDay) . '</h5>
+                <h5 class="card-text price">₱' . ($item->pricePerDay) . '</h5>
             </div>
         </div>
     </a>';
