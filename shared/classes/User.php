@@ -15,8 +15,9 @@ class User
     public $accountUpdateDate;
     public $profilePicture;
 
-    public function __construct($firstName, $lastName, $email, $password)
+    public function __construct($userID, $firstName, $lastName, $email, $password)
     {
+        $this->userID = $userID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -64,3 +65,31 @@ class User
         return $placeholderColor;
     }
 }
+
+class UserPreferences
+{
+    public $userID;
+
+    public function __construct($userID)
+    {
+        $this->userID = $userID;
+    }
+
+    public function getUserPreferences()
+    {
+        global $conn;
+        $getUserPreferencesQuery = "SELECT categoryID FROM preferences WHERE userID = $this->userID";
+        $userPreferencesResult = executeQuery($getUserPreferencesQuery);
+
+        $categoryIDsArray = [];
+        if (mysqli_num_rows($userPreferencesResult) > 0) {
+            while ($userpreferencesRow = mysqli_fetch_assoc($userPreferencesResult)) {
+                $categoryIDsArray[] = $userpreferencesRow["categoryID"];
+            }
+        }
+        return $categoryIDsArray;
+    }
+}
+
+
+?>

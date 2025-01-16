@@ -26,7 +26,7 @@ if (isset($_POST['btnRegister'])) {
         $emailExistsError = "emailExists";
     } else {
         // Create a new user.
-        $user = new User($firstName, $lastName, $email, $password);
+        $user = new User($userID, $firstName, $lastName, $email, $password);
 
         // Save the new user in the database.
         if ($user->registerUser()) {

@@ -248,6 +248,39 @@ body {
     text-decoration: none;
 }
 
+/* FOR PICKUP BTN STYLE*/
+.btn-hand-in {
+    background-color: #D2CBA6;
+    border: none;
+    padding: 15px 80px;
+    border-radius: 5px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%; 
+    max-width: 300px; 
+    box-sizing: border-box;
+    margin: 10px auto;
+    text-align: center;
+}
+
+/* Btn Hand In Responsiveness */
+@media (max-width: 768px) {
+    .btn-hand-in {
+        padding: 6px 30px; 
+        font-size: 14px;
+        max-width: 120px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-hand-in {
+        padding: 4px 20px;
+        font-size: 12px;
+        max-width: 70px;
+    }
+}
+
 /* MANAGE LISTINGS STYLES*/
 .card-body-listings {
     background-color: var(--bgColor3);
