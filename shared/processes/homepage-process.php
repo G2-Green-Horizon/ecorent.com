@@ -2,9 +2,13 @@
 include(__DIR__ . "/../../connect.php");
 include(__DIR__ . "/../classes/User.php");
 include(__DIR__ . "/../classes/Item.php");
-include(__DIR__ . "/../components/processIndex.php");
+include(__DIR__ . "/../processes/process-index.php");
 
-$userID = $_COOKIE["userID"];
+if (isset($_COOKIE["userID"])) {
+    $userID = $_COOKIE["userID"];
+} else if (isset($_COOKIE["userCredentials"])) {
+    $userID = $_COOKIE["userCredentials"];
+}
 
 // Get the offset and limit set.
 $offset = isset($_GET['offset']) ? (int) $_GET['offset'] : 0;
@@ -39,7 +43,6 @@ if (count($categoryIDsArray) > 0) {
             );
         }
     }
-
 }
 
 // Set the remaining items limit.
@@ -105,4 +108,3 @@ foreach ($totalItemsArray as $item) {
         </div>
     </a>';
 }
-?>

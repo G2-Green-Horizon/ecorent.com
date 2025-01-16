@@ -9,7 +9,7 @@ if (isset($_POST['btnLogin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $user = new User("", "", $email, $password);
+    $user = new User("", "", $email, $password, "");
     $newLogin = $user->loginUser($email, $password);
 }
 ?>
