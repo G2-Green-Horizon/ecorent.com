@@ -1,8 +1,8 @@
 <?php 
-
 class Item{
     public $itemID;
     public $categoryID;
+    public $categoryName;
     public $itemName;
     public $itemType;
     public $gasEmissionSaved;
@@ -17,7 +17,12 @@ class Item{
     public $isFeatured;
     public $isDeleted;
 
-    public function __construct(){
+    public function __construct($itemID, $categoryID, $itemName, $pricePerDay, $categoryName){
+        $this->itemID = $itemID;
+        $this->categoryID = $categoryID;
+        $this->itemName = $itemName;
+        $this->pricePerDay = $pricePerDay;
+        $this->categoryName = $categoryName;
         
     }
 }
