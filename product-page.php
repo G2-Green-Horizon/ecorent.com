@@ -81,7 +81,6 @@ include("shared/components/processIndex.php");
                     <button class="button-size btn btn-custom-outline mx-3">Add to cart</button>
                     <a href="booking.php"> <button class="button-size btn btn-custom-dark">Rent now</button> </a>
                 </div>
-
             </div>
         </div>
 
@@ -114,7 +113,6 @@ include("shared/components/processIndex.php");
                     Blue, and Forest Green, with a 5-year frame warranty.</p>
             </div>
         </div>
-
     </section>
 
     <?php include 'shared/components/footer.php'; ?>
@@ -146,6 +144,7 @@ include("shared/components/processIndex.php");
                 this.value = this.value.replace(/\D/g, '');
             });
         });
+
     </script>
 
 </body>
