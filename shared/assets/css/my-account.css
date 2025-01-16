@@ -55,7 +55,7 @@ body {
 
 .nav-button:hover,
 .logout:hover {
-    background-color: var(--bgColor2);
+    background-color: #2E2C2C;
     cursor: pointer;
 }
 
@@ -68,7 +68,7 @@ body {
 
 .main-content {
     margin-left: var(--margin);
-    margin-right: 50px;
+    margin-right: 2%;
     background-color: var(--bgColor3);
     height: 100%;
     border-radius: var(--roundiness);
@@ -177,7 +177,7 @@ h1 {
     color: white;
 }
 
-.btn-save {
+.btn-save, .btn-action {
     background-color: var(--beige);
     color: var(--bgColor);
     border-radius: var(--roundiness);
@@ -189,10 +189,116 @@ h1 {
 }
 
 .btn-save:hover,
-.btn-select-img:hover {
+.btn-select-img:hover,
+.btn-action:hover {
     background-color: var(--green);
     color: var(--bgColor);
     border: 1px solid transparent;
+}
+
+.btn-cancel{
+    background-color: transparent;
+    border-color: var(--beige);
+    color: var(--beige);
+    padding-inline: 30px;
+}
+
+.btn-cancel:hover{
+    background-color: var(--danger);
+    color: var(--mainColor);
+    border-color: transparent;
+}
+
+.badge-overdue{
+    color: var(--danger);
+}
+
+/* MY BOOKINGS */
+.main-content .bookings{
+    background-color: var(--bgColor);
+    margin-bottom: 350px;
+}
+
+.item-card{
+    width: 100%;
+    height: auto;
+    background-color: var(--bgColor3);
+    border-radius: var(--roundiness);
+}
+
+.top{
+    flex-direction: row;
+}
+
+.item-display-img{
+    height: 175px;
+    width: 175px;
+    object-fit: cover;
+    border-radius: var(--roundiness);
+}
+
+.item-name{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.item-info i,
+.time-period i{
+    color: #9C9B9B;
+    font-size: 16px;
+}
+
+.status-badge{
+    background-color: var(--bgColor);
+    border-radius: 50px;
+    padding-inline: 10px;
+    padding-block: 10px;
+}
+
+.payment-number{
+    color: var(--beige);
+    font-size: 30px;
+    font-weight: 700;
+    text-align: end;
+}
+
+.status-tip{
+    color: var(--beige);
+    font-weight: 700;
+}
+
+.transac{
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* SETTINGS */
+.settings-content ul{
+    margin: 0;
+    padding: 0;
+}
+.settings li{
+    list-style: none;
+}
+
+.settings .delete-account{
+    color: var(--danger);
+}
+
+.settings li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.settings-content{
+    padding-bottom: 320px;
+}
+
+@media (max-width: 1199.98px){
+    .top{
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 768px) {
@@ -256,6 +362,18 @@ h1 {
         justify-content: center;
         align-items: center;
         text-align: center;
+    }
+
+    .transac{
+        flex-direction: column;
+    }
+
+    .btn-action{
+        width: 100%;
+    }
+
+    .total-payment{
+        justify-content: space-between;
     }
 
 }
