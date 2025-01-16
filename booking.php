@@ -18,154 +18,7 @@ include("shared/processes/process-index.php");
 
     <link rel="stylesheet" href="shared/assets/css/style.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
-
-    <style>
-        :root {
-            /* Global Variables */
-            --titleColor: #D2CBA6;
-            --mainColor: #FFFFFF;
-            --beige: #D2CBA6;
-            --moss: #393729;
-            --military: #55523D;
-
-            --bgColor: #282828;
-            --bgColor2: #3B3A3A;
-            --bgColor3: #343333;
-
-            --stroke: #454545;
-            --green: #7F9D5A;
-            --mainFont: 'Studio Feixen Variable', sans-serif;
-            --roundiness: 18.3px;
-        }
-
-        #booking-page {
-            background-color: #282828;
-            color: #FFFFFF;
-            font-family: var(--font);
-        }
-
-        h2 {
-            color: #D2CBA6;
-            font-size: 45px;
-            font-weight: bold;
-        }
-
-        h4 {
-            color: #FFFFFF;
-            font-size: 28px;
-        }
-
-        h6 {
-            color: #FFFFFF;
-            font-size: 20px;
-        }
-
-        label {
-            color: #f6f6f6;
-            font-size: 20px;
-        }
-
-
-        p {
-            color: #FFFFFF;
-            font-size: 20px;
-        }
-
-        #pickupDate {
-            background-color: #454545;
-            border: none;
-            font-size: 20px;
-            border-radius: 16px;
-            height: 62px;
-        }
-
-        #noteForOwner {
-            background-color: #454545;
-            border: none;
-            font-size: 20px;
-            border-radius: 16px;
-            height: 62px;
-        }
-
-        #warehouse-txt {
-            color: #FFFFFF;
-            font-size: 20px;
-            font-weight: 100;
-        }
-
-        h3 {
-            color: #FFFFFF;
-            font-size: 28px;
-            font-weight: 600;
-        }
-
-        li {
-            color: #FFFFFF;
-            font-size: 18px;
-
-        }
-
-        #top-price {
-            color: #D2CBA6;
-            font-size: 35px;
-            font-weight: bold
-        }
-
-        #bot-price {
-            color: #D2CBA6;
-            font-size: 40px;
-            font-weight: bold
-        }
-
-        /* btn */
-        #cancel-btn {
-            background-color: transparent;
-            border: 2px solid #9B9B9B;
-            border-radius: 18px;
-            color: #D2CBA6;
-            width: 175px;
-            height: 51px;
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        #confirm-btn {
-            background-color: #D2CBA6;
-            border: none;
-            border-radius: 18px;
-            color: #3E3D3D;
-            width: 247px;
-            height: 51px;
-            ;
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .input-box {
-            font-size: 16px;
-            border-radius: var(--roundiness);
-            border: 1px solid var(--stroke);
-            padding: 12px;
-            color: var(--mainColor);
-            background-color: var(--bgColor2);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .input-box:focus {
-            background-color: var(--bgColor2);
-            color: var(--mainColor);
-            border-color: var(--stroke);
-            outline: none;
-        }
-
-        .input-box::placeholder {
-            color: var(--mainColor);
-        }
-
-        .input-box:focus::placeholder {
-            color: gray;
-        }
-    </style>
+    <link rel="stylesheet" href="shared/assets/css/booking.css">
 </head>
 
 
@@ -174,34 +27,69 @@ include("shared/processes/process-index.php");
     <?php include 'shared/components/navbar.php'; ?>
 
     <section class="my-4">
+
         <div class="container mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
             <div class="row">
-                <div class="d-flex align-items-center mb-4">
-                    <h2 class="me-auto p-2">Items Booked</h2>
-
-                    <h6 class="p-2 me-5 text-center">Unit price <br> per day</h6>
-                    <h6 class="p-2 me-3 text-center">Rental <br> period</h6>
-                    <h6 class="p-2 me-3 text-center">Quantity</h6>
-                    <h6 class="p-2 me-3 text-center">Item subtotal</h6>
+                <div class="col-12 mb-5">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <h2 class="me-auto p-2">Items Booked</h2>
+                        </div>
+                        <div class="col-12 col-lg-6 mt-lg-2">
+                            <div class="labels d-flex justify-content-end">
+                                <h6 class="p-2 me-3 text-center">Unit price<br>per day</h6>
+                                <h6 class="p-2 me-3 text-center">Rental<br>period</h6>
+                                <h6 class="p-2 me-3 text-center">Quantity</h6>
+                                <h6 class="p-2 me-3 text-center">Item<br>subtotal</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="shared/assets/img/system/booking-page/bike 1.svg" style="width: 96px; height: auto;">
-                    <h4 class="me-auto p-2">TrailMaster X200 Mountain Bike</h4>
-
-                    <h6 class="p-2 me-5 ">₱100</h6>
-                    <h6 class="p-2 me-5">3 days</h6>
-                    <h6 class="p-2 me-5 text-center">1</h6>
-                    <h5 class="p-2 me-5">₱300</h5>
+                <div class="item-card col-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
+                            <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
+                                style="width: 96px; height: auto;">
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike</h4>
+                        </div>
+                        <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
+                            <div class="labels d-flex justify-content-end">
+                                <h6 class="p-2 me-5 ">₱100</h6>
+                                <h6 class="p-2 me-5">3 days</h6>
+                                <h6 class="p-2 me-5 text-center">1</h6>
+                                <h5 class="p-2 me-4">₱300</h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="item-card col-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
+                            <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
+                                style="width: 96px; height: auto;">
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike</h4>
+                        </div>
+                        <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
+                            <div class="labels d-flex justify-content-end">
+                                <h6 class="p-2 me-5 ">₱100</h6>
+                                <h6 class="p-2 me-5">3 days</h6>
+                                <h6 class="p-2 me-5 text-center">1</h6>
+                                <h5 class="p-2 me-4">₱300</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
 
             <hr class="border border-1 w-100">
 
             <div class="row mt-4">
-                <div class="col-md-6">
+                <div class="col-md-6 order-md-1 order-2">
                     <div class="mb-3">
-                        <label for="pickupDate" class=" form-label">Pick-Up date:</label>
+                        <label for="pickupDate" class="mt-3 form-label">Pick-Up date:</label>
                         <input type="date" id="pickupDate" class="input-box form-control">
                     </div>
                     <div class="mb-3">
@@ -210,7 +98,7 @@ include("shared/processes/process-index.php");
                             placeholder="Leave a message"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Pick-Up location:</label>
+                        <label class="mt-3 form-label">Pick-Up location:</label>
 
                         <div class="d-flex align-items-center gap-2">
                             <img src="shared/assets/img/system/booking-page/vector.svg"
@@ -220,7 +108,7 @@ include("shared/processes/process-index.php");
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-6 order-md-2 mt-sm-4 order-1 text-end">
                     <div class="d-flex align-items-center mb-1 justify-content-end gap-5">
                         <p class="mb-0 me-5">Security deposit:</p>
                         <h6 class=" mb-0">₱500</h6>

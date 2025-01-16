@@ -134,8 +134,23 @@
                 </div>
                 <h1>Active Rentals</h1>
             </div>
-            <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+            <!-- CONTENTS -->
+            <div class="content mt-4">
+                <div class="container">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -146,10 +161,49 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <h1>Manage Listings</h1>
-                <!-- ADD FILTER & BUTTON HERE -->
+                <!-- FILTER & BUTTON -->
+                <div class="add-filter-buttons gap-2">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="button-text">Filter</span>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
+                            <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
+                            <li><a class="dropdown-item" href="#">Lorem Ipsum</a></li>
+                        </ul>
+                    </div>
+                    <div class="add-item-button">
+                        <button class="btn btn-add"><i class="fa fa-plus"></i><span class="button-text">Add
+                                Item</span></button>
+                    </div>
+                </div>
             </div>
-            <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+            <div class="content mt-5">
+                <!-- CONTENTS -->
+                <div class="container">
+                    <div class="row">
+                        <div class="manage-listings">
+                            <div class="card-body-listings p-3">
+                                <div class="listings-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <div class="listings-info">
+                                            <h4>TrailMaster X200 Mountain Bike</h4>
+                                            <h5>Available stocks: 21</h5>
+                                        </div>
+                                    </div>
+                                    <div class="listings-buttons">
+                                        <button class="btn btn-delete"><i class="fa fa-trash-can"></i></button>
+                                        <button class="btn btn-edit"><i class="fa fa-pen-to-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
