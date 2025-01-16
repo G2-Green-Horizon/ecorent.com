@@ -248,6 +248,22 @@ body {
     text-decoration: none;
 }
 
+/* FOR PICKUP BTN STYLE*/
+.btn-handin {
+    background-color: #D2CBA6;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 10px auto;
+    display: block;
+}
+
 /* MANAGE LISTINGS STYLES*/
 .card-body-listings {
     background-color: var(--bgColor3);

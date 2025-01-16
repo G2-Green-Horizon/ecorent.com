@@ -109,7 +109,7 @@
                 <h1>Pending Requests</h1>
             </div>
             <div class="content">
-                <!-- [PUT CONTENTS HERE] -->
+                <!-- [CONTENTS] -->               
             </div>
         </div>
 
@@ -123,7 +123,7 @@
             </div>
             <div class="content">
                 <!-- [CONTENTS] -->
-                <div class="container">
+                <div class="container mt-4">
                     <div class="row">
                         <a href="#" class="active-rentals">
                             <div class="card-body-rentals">
@@ -131,20 +131,20 @@
                                     <div class="order-content">
                                         <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
                                         <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>                                    
+                                    </div>
+                                    <button class="btn btn-handin rounded-3">HAND IN</button>
                                     <i class="fa fa-chevron-right"></i>
                                 </div>
                             </div>
                         </a>
-                    </div>
-                    <div class="row">
                         <a href="#" class="active-rentals">
                             <div class="card-body-rentals">
                                 <div class="rentals-content">
                                     <div class="order-content">
                                         <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
                                         <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>                                    
+                                    </div>
+                                    <button class="btn btn-handin rounded-3">HAND IN</button>
                                     <i class="fa fa-chevron-right"></i>
                                 </div>
                             </div>
