@@ -177,7 +177,7 @@
                                         <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
                                         <h4>TrailMaster X200 Mountain Bike</h4>
                                     </div>
-                                    <button class="btn btn-handin rounded-3">HAND IN</button>
+                                    <button class="btn-hand-in rounded-3">HAND IN</button>
                                     <i class="fa fa-chevron-right"></i>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                                         <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
                                         <h4>TrailMaster X200 Mountain Bike</h4>
                                     </div>
-                                    <button class="btn btn-handin rounded-3">HAND IN</button>
+                                    <button class="btn-hand-in rounded-3">HAND IN</button>
                                     <i class="fa fa-chevron-right"></i>
                                 </div>
                             </div>
