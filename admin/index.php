@@ -244,20 +244,14 @@
             offcanvas.hide();
             var index = btnID[btnID.length - 1] - 1;
 
+            localStorage.setItem("activeSection", btnID);
+
             buttons.forEach((button, i) => {
-                if (i === index) {
-                    button.style.backgroundColor = '#7F9D5A';
-                } else {
-                    button.style.backgroundColor = '';
-                }
+                button.style.backgroundColor = i === index ? '#7F9D5A' : '';
             });
 
             sidebuttons.forEach((sidebutton, i) => {
-                if (i === index) {
-                    sidebutton.style.backgroundColor = '#7F9D5A';
-                } else {
-                    sidebutton.style.backgroundColor = '';
-                }
+                sidebutton.style.backgroundColor = i === index ? '#7F9D5A' : '';
             });
 
             containers.forEach((container, i) => {
@@ -265,17 +259,11 @@
             });
         }
 
-        buttons[0].style.backgroundColor = '#7F9D5A';
-        containers[0].style.display = 'block';
-        for (let i = 1; i < containers.length; i++) {
-            containers[i].style.display = 'none';
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var savedSection = localStorage.getItem("activeSection") || "btn1";
+            showContent(savedSection);
+        });
 
-        sidebuttons[0].style.backgroundColor = '#7F9D5A';
-        containers[0].style.display = 'block';
-        for (let i = 1; i < containers.length; i++) {
-            containers[i].style.display = 'none';
-        }
     </script>
 
 </body>
