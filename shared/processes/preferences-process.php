@@ -1,10 +1,14 @@
 <?php 
 include("connect.php");
 
-$userID = $_COOKIE["userID"];
-
 // Check if preferences have already been set based on userID.
+if(isset($_COOKIE["userID"])) {
+    $userID = $_COOKIE["userID"];
 $checkPreferencesQuery = "SELECT * FROM preferences WHERE userID = $userID";
+} else if(isset($_COOKIE["userCredentials"])) {
+    $userID = $_COOKIE["userCredentials"];
+    $checkPreferencesQuery = "SELECT * FROM preferences WHERE userID = $userCredentials";
+}
 $checkPreferencesResult = executeQuery($checkPreferencesQuery);
 
 if (mysqli_num_rows($checkPreferencesResult) > 0) {
