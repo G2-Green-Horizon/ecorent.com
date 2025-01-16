@@ -27,13 +27,11 @@ if (isset($_POST['btnContinue'])) {
             $addUserPreferencesQuery = "INSERT INTO preferences (userID, categoryID) VALUES ($userID, $categoryID)";
             } else if(isset($_COOKIE["userCredentials"])) {
             $addUserPreferencesQuery = "INSERT INTO preferences (userID, categoryID) VALUES ($userCredentials, $categoryID)";
-
+            }
             executeQuery($addUserPreferencesQuery);
         }
         header("Location: index.php");
         exit;
     }
 }
-
-
 ?>
