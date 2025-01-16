@@ -15,7 +15,7 @@ if (mysqli_num_rows($checkPreferencesResult) > 0) {
     // Redirect to home page if preferences are already set.
     header("Location: index.php"); 
     exit;
-}
+} 
 
 if (isset($_POST['btnContinue'])) {
     if (isset($_POST['preferences'])) {
@@ -23,7 +23,11 @@ if (isset($_POST['btnContinue'])) {
 
         // Query to insert user preferences to the database.
         foreach ($preferences as $categoryID) {
+            if(isset($_COOKIE["userID"])) {
             $addUserPreferencesQuery = "INSERT INTO preferences (userID, categoryID) VALUES ($userID, $categoryID)";
+            } else if(isset($_COOKIE["userCredentials"])) {
+            $addUserPreferencesQuery = "INSERT INTO preferences (userID, categoryID) VALUES ($userCredentials, $categoryID)";
+
             executeQuery($addUserPreferencesQuery);
         }
         header("Location: index.php");
