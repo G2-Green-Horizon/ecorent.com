@@ -109,7 +109,52 @@
                 <h1>Pending Requests</h1>
             </div>
             <div class="content">
-                <!-- [CONTENTS] -->               
+                <!-- [CONTENTS] -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>       
+                <div class="container">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>  
+                <div class="container">
+                    <div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                        <h4>TrailMaster X200 Mountain Bike</h4>
+                                    </div>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>          
             </div>
         </div>
 
