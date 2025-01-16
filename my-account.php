@@ -511,7 +511,9 @@ include("shared/components/processIndex.php");
                 <div class="content settings-content">
                     <ul class="settings">
                         <li class="p-2 change-pass">Change Password</li>
-                        <a href="security-questions.php"><li class="p-2 security-quest">Setup Security Questions</li></a>
+                        <a href="security-questions.php">
+                            <li class="p-2 security-quest">Setup Security Questions</li>
+                        </a>
                         <li class="p-2 delete-account" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
                             Account</li>
                     </ul>
@@ -571,9 +573,12 @@ include("shared/components/processIndex.php");
             document.getElementById("btn3")
         ];
 
-        function showContent(btnID) {
+        var activeIndex = localStorage.getItem("activeTabIndex") || 0;
 
+        function showContent(btnID) {
             var index = btnID[btnID.length - 1] - 1;
+
+            localStorage.setItem("activeTabIndex", index);
 
             buttons.forEach((button, i) => {
                 if (i === index) {
@@ -588,11 +593,15 @@ include("shared/components/processIndex.php");
             });
         }
 
-        buttons[0].style.backgroundColor = '#343333';
-        containers[0].style.display = 'block';
-        for (let i = 1; i < containers.length; i++) {
-            containers[i].style.display = 'none';
-        }
+        buttons.forEach((button, i) => {
+            button.style.backgroundColor = i == activeIndex ? '#343333' : '';
+        });
+
+        containers.forEach((container, i) => {
+            container.style.display = i == activeIndex ? 'block' : 'none';
+        });
+    </script>
+
 
     </script>
 
