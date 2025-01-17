@@ -1,5 +1,4 @@
 <?php
-include("connect.php");
 include("shared/processes/process-index.php");
 include("shared/classes/Rental.php");
 
