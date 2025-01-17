@@ -1,5 +1,5 @@
 <?php
-include("shared/components/processIndex.php");
+include("shared/processes/process-index.php");
 include("shared/classes/Rental.php");
 
 // MY BOOKINGS TAB

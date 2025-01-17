@@ -1,5 +1,5 @@
 <?php
-include("shared/components/processIndex.php");
+include("shared/processes/process-index.php");
 include("shared/processes/preferences-process.php");
 ?>
 <!doctype html>
@@ -21,39 +21,38 @@ include("shared/processes/preferences-process.php");
 <style>
     /* Do not remove, for error handling */
     .card.highlight {
-    border: 2px #D2CBA6; 
-    box-shadow: 0 0 10px #D2CBA6;
-}
-
+        border: 2px #D2CBA6;
+        box-shadow: 0 0 10px #D2CBA6;
+    }
 </style>
 
 <body>
     <?php include 'shared/components/navbar.php'; ?>
     <div class="container">
-    <form method="POST" onsubmit="return validateForm()">
-    <input type="hidden" id="errorFlag" name="errorFlag" value="0">
-    <div class="row mt-4 mb-4">
-        <div class="col">
-            <h1>What are you interested in?</h1>
-        </div>
-        <div id="errorMessage" class="text-error mt-2" style="display: none; color: #D2CBA6">
-            Choose at least one category.
-        </div>
-    </div>
-
-        <div class="row" id="cardContainer">
-        </div>
-
-        <div class="row">
-            <div class="d-flex gap-2 justify-content-center justify-content-md-end mb-5 mt-2">
-                <a href="index.php" class="text-decoration-none">
-                    <button class="btn btn-skip"name="btnSkip" type="button">Skip for now</button>
-                </a>
-                <a href="" class="text-decoration-none">
-                    <button class="btn btn-continue" name="btnContinue" type="submit">Continue</button>
-                </a>
+        <form method="POST" onsubmit="return validateForm()">
+            <input type="hidden" id="errorFlag" name="errorFlag" value="0">
+            <div class="row mt-4 mb-4">
+                <div class="col">
+                    <h1>What are you interested in?</h1>
+                </div>
+                <div id="errorMessage" class="text-error mt-2" style="display: none; color: #D2CBA6">
+                    Choose at least one category.
+                </div>
             </div>
-        </div>
+
+            <div class="row" id="cardContainer">
+            </div>
+
+            <div class="row">
+                <div class="d-flex gap-2 justify-content-center justify-content-md-end mb-5 mt-2">
+                    <a href="index.php" class="text-decoration-none">
+                        <button class="btn btn-skip" name="btnSkip" type="button">Skip for now</button>
+                    </a>
+                    <a href="" class="text-decoration-none">
+                        <button class="btn btn-continue" name="btnContinue" type="submit">Continue</button>
+                    </a>
+                </div>
+            </div>
         </form>
     </div>
 
