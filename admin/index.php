@@ -2,14 +2,16 @@
 session_start();
 
 if (!isset($_SESSION['email'])) {
-    header("Location: admin-login.php");
+    header('Location: admin-login.php');
+    exit();
 }
 
 if (isset($_POST['btnConfirmed'])) {
+    session_unset();
     session_destroy();
     header("Location: admin-login.php");
+    exit();
 }
-
 ?>
 
 <!doctype html>
