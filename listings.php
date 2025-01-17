@@ -1,5 +1,12 @@
 <?php
-include("shared/components/processIndex.php");
+include("connect.php");
+include("shared/processes/process-index.php");
+
+$filterCategoryQuery = "SELECT * FROM categories";
+$filterCategoryResult = executeQuery($filterCategoryQuery);
+
+$cardID = "0";
+$categoryID = "0";
 ?>
 
 <!doctype html>
@@ -40,34 +47,31 @@ include("shared/components/processIndex.php");
 
                         <div class="card-text mx-3">
                             <p class="my-3">By Category</>
-                            <form>
-                                <input type="checkbox" class="mt-3" id="category1" name="category1" value="category1">
-                                <label for="category1"> Tech & Gadgets</label><br>
-                                <input type="checkbox" class="mt-3" id="category2" name="category2" value="category2">
-                                <label for="category2"> Sport & Outdoor Gear</label><br>
-                                <input type="checkbox" class="mt-3" id="category3" name="category3" value="category3">
-                                <label for="category3"> Fashion & Accessories</label><br>
-                                <input type="checkbox" class="mt-3" id="category4" name="category4" value="category4">
-                                <label for="category4"> Event Suppies</label><br>
-                                <input type="checkbox" class="mt-3" id="category5" name="category5" value="category5">
-                                <label for="category5"> Others</label><br>
-                            </form>
-
-                            <p class="mt-5">Price Range</p>
-                            <form>
+                            <form method="GET" onsubmit="return validatePriceRange()">
+                                <?php
+                                if (mysqli_num_rows($filterCategoryResult) > 0) {
+                                    while ($filterCategory = mysqli_fetch_assoc($filterCategoryResult)) {
+                                        $categoryID++;
+                                        $checked = (isset($_GET['itemFilter']) && in_array($filterCategory['categoryID'], $_GET['itemFilter'])) ? 'checked' : ''; ?>
+                                        <input type="checkbox" class="mt-3" id="<?php echo $categoryID ?>" name="itemFilter[]" value="<?php echo $filterCategory['categoryID']; ?>" <?php echo $checked ?>>
+                                        <label for="category1"> <?php echo $filterCategory['categoryName']; ?></label><br>
+                                <?php
+                                    }
+                                }
+                                ?>
+                                <p class="mt-5">Price Range</p>
                                 <div class="d-flex align-items-center">
                                     <input id="min" type="number" class="form-control custom-price text-center"
-                                        name="min" placeholder="₱ Min">
+                                        name="min" value="" placeholder="₱ Min">
                                     <h1> - </h1>
                                     <input id="max" type="number" class="form-control custom-price text-center"
-                                        name="max" placeholder="₱ Max">
+                                        name="max" value="" placeholder="₱ Max">
                                 </div>
-                            </form>
                         </div>
-
-                        <button class="btn-apply btn-dark mt-3 mx-3">
+                        <button class="btn-apply btn-dark mt-3 mx-3" name="applyFilter" value="true">
                             Apply
                         </button>
+                        </form>
                     </div>
                 </div>
 
@@ -75,15 +79,32 @@ include("shared/components/processIndex.php");
                     <div class="h2 p-3">
                         SEARCH RESULT FOR “BIKE”
                     </div>
-                    <div class="row" id="container">
+                    <div class="row" id="container item-container">
+                        <?php
+                        if (mysqli_num_rows($loadItemsResult) > 0) {
+                            while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
+                                $cardID++; ?>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
+                                    <div class="card my-3 custom-card items" id="<?php echo $cardID; ?>">
+                                        <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
+                                            <h5 class="card-text"><?php echo $chosenCategory['itemType']; ?></h5>
+                                            <h5 class="card-text price"><?php echo "₱" . $chosenCategory['pricePerDay']; ?></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                        <div class="text-center my-3">
+                            <button class="btn btn-dark" id="loadMore" onclick="showMore();">
+                                SEE MORE
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="text-center my-3">
-                <button class="btn btn-dark">
-                    SEE MORE
-                </button>
             </div>
         </div>
     </section>
@@ -93,29 +114,7 @@ include("shared/components/processIndex.php");
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="shared/assets/js/script.js"></script>
-
-    <script>
-        var itemNames = ["TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain"];
-        var pics = ["bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png"];
-        var prices = ["₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100"];
-
-        for (var i = 0; i < itemNames.length; i++) {
-            var container = document.getElementById("container");
-            container.innerHTML += `
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
-            <div class="card my-3 custom-card" id="card${i}">
-                <img src="shared/assets/img/system/${pics[i]}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">${itemNames[i]}</h5>
-                    <h5 class="card-text">Bike</h5>
-                    <h5 class="card-text price">${prices[i]}</h5>
-                </div>
-            </div>
-        </div>
-    `;
-        }
-    </script>
-
-</body>
+    <script src="shared/assets/js/listing.js"></script>
+    <script src="shared/assets/js/filter.js"></script>
 
 </html>

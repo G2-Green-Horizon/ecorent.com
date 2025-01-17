@@ -39,14 +39,14 @@ class User
     {
         global $conn;
 
+        $placeholderColor = "";
+
         $loginQuery = "SELECT * FROM users WHERE email = ?";
         if ($stmt = mysqli_prepare($conn, $loginQuery)) {
             mysqli_stmt_bind_param($stmt, "s", $email);
             mysqli_stmt_execute($stmt);
             $loginResult = mysqli_stmt_get_result($stmt);
         }
-
-        $error = "";
 
         if (mysqli_num_rows($loginResult) > 0) {
             $userData = mysqli_fetch_assoc($loginResult);
@@ -55,13 +55,14 @@ class User
                 setcookie("userCredentials", $userData['userID'], time() + (60 * 60 * 24 * 3), "/");
                 header("Location: index.php");
             } else {
-                $error = "No User";
-                echo "<script>alert('Invalid Username/Email or Password');</script>";
+                $placeholderColor = "#FF6D6D";
+                echo "<script>window.onload = function() {document.getElementById('email').placeholder ='Invalid Email/Username'; document.getElementById('password').placeholder ='Invalid Password';};</script>";
             }
         } else {
-            $error = "No User";
-            echo "<script>alert('Invalid Username/Email or Password');</script>";
+            $placeholderColor = "#FF6D6D";
+            echo "<script>window.onload = function() {document.getElementById('email').placeholder ='Invalid Email/Username'; document.getElementById('password').placeholder ='Invalid Password';};</script>";
         }
+        return $placeholderColor;
     }
 }
 
