@@ -3,6 +3,7 @@
     flex-grow: 1;
     justify-content: center;
     display: flex;
+    background-color: #282828;
 }
 
 .navbar {
@@ -56,7 +57,7 @@
 .dark-input:focus {
     border-color: #D2CBA6;
     box-shadow: 0 0 5px rgba(210, 203, 166, 0.7);
-    background-color: #333;
+    background-color: #fffdfd;
 }
 
 .dark-input::placeholder {
