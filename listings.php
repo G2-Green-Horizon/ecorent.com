@@ -35,9 +35,9 @@ $categoryID = "0";
     <?php include 'shared/components/navbar.php'; ?>
 
     <div class="container-fluid px-3 px-lg-5">
-        <div class="row my-3">
+        <div class="row my-4 p-4">
             <!-- Search Filter (Sidebar) -->
-            <div class="col-12 col-md-4 col-lg-3 mb-3">
+            <div class="col-12 col-md-5 col-lg-4 mb-3 ">
                 <div class="card p-3">
                     <div class="card-title d-flex align-items-center">
                         <i class="bi bi-funnel mx-2"></i>
@@ -79,45 +79,41 @@ $categoryID = "0";
             </div>
 
             <!-- Search Results (Main Content) -->
-            <div class="col-12 col-md-8 col-lg-9">
-                <div class="content-card profile p-3" id="container1">
-                    <div class="content">
-                        <div class="cards-container col-12">
-                            <div class="my-profile d-block pe-2 pt-2 rounded-4">
-                                <div class="h2">
-                                    SEARCH RESULT FOR “BIKE”
-                                </div>
-                                <div class="row" id="container item-container">
-                                    <?php
-                                    if (mysqli_num_rows($loadItemsResult) > 0) {
-                                        while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
-                                            $cardID++; ?>
-                                            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
-                                                <div class="card my-5 custom-card items" id="<?php echo $cardID; ?>">
-                                                    <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
-                                                        <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <h5 class="card-text price ms-3 mt-2"><?php echo "₱" . $chosenCategory['pricePerDay']; ?></h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
-                                    <div class="text-center my-3">
-                                        <button class="btn btn-dark" id="loadMore" onclick="showMore();">
-                                            SEE MORE
-                                        </button>
+            <div class="col-sm-12 col-md-7 col-lg-8">
+
+                    <div class="h2">
+                        SEARCH RESULT FOR “BIKE”
+                    </div>
+                    <div class="row" id="container item-container ">
+                        <?php
+                        if (mysqli_num_rows($loadItemsResult) > 0) {
+                            while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
+                                $cardID++; ?>
+                                <div
+                                    class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3 d-flex align-items-center justify-content-center  d-flex flex-wrap">
+                                    <div class="card my-3 custom-card items" id="<?php echo $cardID; ?>">
+                                        <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
+                                            <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
+                                        </div>
+                                        <div class="card-footer">
+                                            <h5 class="card-text price ms-3">
+                                                <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
+                                            </h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <?php
+                            }
+                        }
+                        ?>
+                        <div class="text-center">
+                            <button class="btn btn-dark" id="loadMore" onclick="showMore();">
+                                SEE MORE
+                            </button>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
