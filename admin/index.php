@@ -12,7 +12,14 @@ if (isset($_POST['btnConfirmed'])) {
     header("Location: admin-login.php");
     exit();
 }
+
+include("Rental.php");
+
+// RENTAL STATUS CARD
+$rental = new Rental(null, null, null);
+$rentalList = $rental->getRentalsData();
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -41,9 +48,6 @@ if (isset($_POST['btnConfirmed'])) {
         <div class="offcanvas-header">
             <div class="logo-brand ps-5 pt-3 pb-3"><img src="../shared/assets/img/system/ecorent-logo-2.png"
                     class="logo"></div>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
         </div>
         <div class="offcanvas-body">
             <div class="navigations">
@@ -94,38 +98,39 @@ if (isset($_POST['btnConfirmed'])) {
                 <i class="fa-solid fa-list pe-3"></i></i> Manage Listings
             </div>
         </div>
-        
+
         <form method="POST">
             <div class="settings ps-2 pt-5">
-            <div class="logout p-3" id="btn4" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                <i class="fa-solid fa-right-from-bracket logout-icon pe-1"></i>
-                <span class="nav-text-side text-start ps-3 ps-sm-3">Log out</span>
-            </div>
+                <div class="logout p-3" id="btn4" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="fa-solid fa-right-from-bracket logout-icon pe-1"></i>
+                    <span class="nav-text-side text-start ps-3 ps-sm-3">Log out</span>
+                </div>
 
-            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true"
-                data-bs-theme="dark">
-                <div class="modal-dialog  modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
-                            </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body p-4">
-                            Are you sure you want to log out?
-                        </div>
-                        <div class="container d-flex justify-content-end my-3">
-                            <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
-                                name="btnDenied">No</button>
-                            <button type="submit" class="btn-logout-confirmed text-center"
-                                name="btnConfirmed">Yes</button>
+                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                    aria-hidden="true" data-bs-theme="dark">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                Are you sure you want to log out?
+                            </div>
+                            <div class="container d-flex justify-content-end my-3">
+                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
+                                    name="btnDenied">No</button>
+                                <button type="submit" class="btn-logout-confirmed text-center"
+                                    name="btnConfirmed">Yes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </form>
-        
+
     </div>
 
     <!-- Main Content -->
@@ -154,52 +159,15 @@ if (isset($_POST['btnConfirmed'])) {
                 </div>
                 <h1>Pending Requests</h1>
             </div>
-            <div class="content">
+            <div class="content mt-4">
                 <!-- [CONTENTS] -->
-                <div class="container mt-4">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid">
+                    <!-- RENTAL STATUS CARDS -->
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'pending') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -214,33 +182,12 @@ if (isset($_POST['btnConfirmed'])) {
             </div>
             <div class="content">
                 <!-- [CONTENTS] -->
-                <div class="container mt-4">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <button class="btn-hand-in rounded-3">HAND IN</button>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <button class="btn-hand-in rounded-3">HAND IN</button>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid mt-4">
+                <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'pickup') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -255,20 +202,12 @@ if (isset($_POST['btnConfirmed'])) {
             </div>
             <!-- CONTENTS -->
             <div class="content mt-4">
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid">
+                <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'on rent') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -340,7 +279,8 @@ if (isset($_POST['btnConfirmed'])) {
                                                         <label for="inputGroupRate" class="form-label">Rate Type</label>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text rate-type-custom">₱</span>
-                                                            <input type="text" class="form-control add-item-input" id="inputGroupRate">
+                                                            <input type="text" class="form-control add-item-input"
+                                                                id="inputGroupRate">
                                                             <span class="input-group-text rate-type-custom">PER
                                                                 DAY</span>
                                                         </div>
@@ -415,7 +355,7 @@ if (isset($_POST['btnConfirmed'])) {
             </div>
             <div class="content mt-5">
                 <!-- CONTENTS -->
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="manage-listings">
                             <div class="card-body-listings p-3">
