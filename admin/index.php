@@ -1,3 +1,55 @@
+<?php
+include("../connect.php");
+
+$generateCategoriesQuery = "SELECT * FROM categories";
+$generateCategoriesResult = executeQuery($generateCategoriesQuery);
+
+$displayItemsQuery = "SELECT * FROM items WHERE isDeleted = 'No'";
+$displayItemsResult = executeQuery($displayItemsQuery);
+
+if (isset($_POST['submitBtn'])) {
+    $setModal = $_POST['inputModal'];
+
+    $itemName = mysqli_real_escape_string($conn, $_POST['itemName']);
+    $itemDesc = mysqli_real_escape_string($conn, $_POST['inputDesc']);
+    $itemSpec = mysqli_real_escape_string($conn, $_POST['inputSpec']);
+    $pricePerDay = mysqli_real_escape_string($conn, $_POST['pricePerDay']);
+    $gasEmissionSaved = mysqli_real_escape_string($conn, $_POST['gasEmissionSaved']);
+    $category = mysqli_real_escape_string($conn, $_POST['selectedCategory']);
+    $itemStock = mysqli_real_escape_string($conn, $_POST['itemStock']);
+
+    if ($setModal == "addItem") {
+        $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `specifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemStock`, `location`, `isFeatured`, `isDeleted`) VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', 'Yes', 'No')";
+        $insertItemResult = executeQuery($insertItemQuery);
+        header("Location: index.php");
+        exit();
+    }
+
+    if ($setModal == "editItem") {
+        $itemID = $_POST['itemID'];
+
+        $updateItemQuery = "UPDATE `items` 
+        SET `itemName` = '$itemName', `description` = '$itemDesc', 
+            `specifications` = '$itemSpec', `pricePerDay` = '$pricePerDay', 
+            `gasEmissionSaved` = '$gasEmissionSaved', `categoryID` = '$category', 
+            `itemStock` = '$itemStock' 
+        WHERE `itemID` = '$itemID'";
+        $updateItemResult = executeQuery($updateItemQuery);
+        header("Location: index.php");
+        exit();
+    }
+}
+
+if (isset($_POST['deleteItem'])) {
+    $itemID = $_POST['itemID'];
+
+    $deleteItemQuery = "UPDATE `items` SET isDeleted = 'Yes' WHERE itemID = '$itemID'";
+    $deleteItemResult = executeQuery($deleteItemQuery);
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -250,117 +302,136 @@
                     </div>
                     <!-- Button trigger modal -->
                     <div class="add-item-button">
-                        <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
+                        <button class="btn btn-add" id="addItem" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="addItemModal(); setModal();"><i
                                 class="fa fa-plus"></i><span class="button-text">Add
                                 Item</span></button>
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1">
-                            <div class="modal-dialog mt-3 ">
-                                <div class="modal-content">
-                                    <div class="modal-header add-item-modal">
-                                        <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">Add
-                                            Item</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body add-item-modal-body" id="add-item-modal-body">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3 add-item-frame ">
-                                                    <img src="../shared/assets/img/system/bike.jpg" alt=""
-                                                        class="img-fluid">
-                                                    <label for="customFile"
-                                                        class="btn btn-primary btn-select-main-image mb-2">Select main
-                                                        image</label>
-                                                    <input type="file" class="d-none" id="customFile" />
-                                                </div>
-
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" class="form-control add-item-input mb-2 "
-                                                        placeholder="Item Name" />
-                                                    <textarea
-                                                        class="form-control add-item-input mb-2 add-item-textarea-desc"
-                                                        placeholder="Description"></textarea>
-                                                    <textarea
-                                                        class="form-control add-item-input add-item-textarea-specs"
-                                                        placeholder="Specifications"></textarea>
-                                                </div>
+                            <div class="modal-dialog mt-3">
+                                <?php
+                                if (mysqli_num_rows($displayItemsResult) > 0) {
+                                    $itemModal = mysqli_fetch_assoc($displayItemsResult) ?>
+                                    <form method="POST">
+                                        <input type="hidden" id="inputModal" name="inputModal">
+                                        <div class="modal-content">
+                                            <div class="modal-header add-item-modal">
+                                                <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel"></h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
+                                            <div class="modal-body add-item-modal-body" id="add-item-modal-body">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-3 add-item-frame ">
+                                                            <img src="../shared/assets/img/system/bike.jpg" alt=""
+                                                                class="img-fluid">
+                                                            <label for="customFile"
+                                                                class="btn btn-primary btn-select-main-image mb-2">Select main
+                                                                image</label>
+                                                            <input type="file" class="d-none" id="customFile" />
+                                                        </div>
 
-                                            <div class="row mt-4">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="mb-3">
-                                                        <label for="inputGroupRate" class="form-label">Rate Type</label>
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text rate-type-custom">₱</span>
-                                                            <input type="text" class="form-control add-item-input" id="inputGroupRate">
-                                                            <span class="input-group-text rate-type-custom">PER
-                                                                DAY</span>
+                                                        <div class="col-12 col-md-9">
+                                                            <input type="text" class="form-control add-item-input mb-2"
+                                                                placeholder="Item Name" name="itemName" required />
+
+                                                            <input type="hidden" id="inputDesc" name="inputDesc" value="">
+                                                            <textarea
+                                                                class="form-control add-item-input mb-2 add-item-textarea-desc"
+                                                                placeholder="Description" id="textAreaDesc" required></textarea>
+
+                                                            <input type="hidden" id="inputSpec" name="inputSpec" value="">
+                                                            <textarea
+                                                                class="form-control add-item-input add-item-textarea-specs"
+                                                                placeholder="Specifications" id="textAreaSpec" required></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mt-4">
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="mb-3">
+                                                                <label for="inputGroupRate" class="form-label">Rate Type</label>
+                                                                <div class="input-group mb-3">
+                                                                    <span class="input-group-text rate-type-custom">₱</span>
+                                                                    <input type="text" class="form-control add-item-input" id="inputGroupRate" name="pricePerDay" required>
+                                                                    <span class="input-group-text rate-type-custom">PER
+                                                                        DAY</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="mb-3">
+                                                                <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                                    <label for="inputGroupShipping">Shipping mode</label>
+                                                                    <select class="form-select mt-2 shipping-mode-custom"
+                                                                        id="inputGroupShipping" name="shippingMode">
+                                                                        <option selected value="forPickUp">For Pick-up</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label" for="inputGroupC02">Potential gas
+                                                                    emission
+                                                                    saved</label>
+                                                                <div class="input-group mb-3">
+                                                                    <input type="text" class="form-control add-item-input"
+                                                                        id="inputGroupC02" name="gasEmissionSaved" required>
+                                                                    <span class="input-group-text rate-type-custom">kg
+                                                                        CO₂</span>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-12 col-md-4">
-                                                    <div class="mb-3">
-                                                        <div class="inputGroupSelect01" data-bs-theme="dark">
-                                                            <label for="inputGroupShipping">Shipping mode</label>
-                                                            <select class="form-select mt-2 shipping-mode-custom"
-                                                                id="inputGroupShipping">
-                                                                <option selected>For Pick-up</option>
-                                                            </select>
+                                            </div>
+                                            <div class="modal-footer add-item-modal-footer ">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                                <label for="inputGroupCategory"
+                                                                    class="form-label mb-0 me-2 mt-2">Category</label>
+                                                                <select class="form-select category-custom mt-2"
+                                                                    id="inputGroupCategory" name="selectedCategory">
+                                                                    <!--Dynamic Categories Selection-->
+                                                                    <?php
+                                                                    if (mysqli_num_rows($generateCategoriesResult) > 0) {
+                                                                        while ($categories = mysqli_fetch_assoc($generateCategoriesResult)) { ?>
+                                                                            <option value="<?php echo $categories['categoryID']; ?>"><?php echo $categories['categoryName']; ?></option>
+                                                                    <?php
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-md-4">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="inputGroupC02">Potential gas
-                                                            emission
-                                                            saved</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control add-item-input"
-                                                                id="inputGroupC02">
-                                                            <span class="input-group-text rate-type-custom">kg
-                                                                CO₂</span>
+                                                        <div class="col-12 col-md-4">
+                                                            <label for="inputGroupStocks"
+                                                                class="form-label mb-0 me-2 mt-2">Stocks</label>
+                                                            <input type="text" class="form-control add-item-input mt-2 mb-4"
+                                                                id="inputGroupStocks" name="itemStock" required />
+                                                        </div>
+                                                        <div
+                                                            class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal" onclick="cancel();">Cancel</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary ms-2 add-item-btn-save" id="submitBtn" onclick="syncTextArea();" name="submitBtn"></button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <div class="modal-footer add-item-modal-footer ">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="inputGroupSelect01" data-bs-theme="dark">
-                                                        <label for="inputGroupCategory"
-                                                            class="form-label mb-0 me-2 mt-2">Category</label>
-                                                        <select class="form-select category-custom mt-2"
-                                                            id="inputGroupCategory">
-                                                            <option selected>Transportation</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <label for="inputGroupStocks"
-                                                        class="form-label mb-0 me-2 mt-2">Stocks</label>
-                                                    <input type="text" class="form-control add-item-input mt-2 mb-4"
-                                                        id="inputGroupStocks" />
-                                                </div>
-                                                <div
-                                                    class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="button"
-                                                        class="btn btn-primary ms-2 add-item-btn-save">Save
-                                                        Changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </form>
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
 
@@ -371,23 +442,33 @@
                 <!-- CONTENTS -->
                 <div class="container">
                     <div class="row">
-                        <div class="manage-listings">
-                            <div class="card-body-listings p-3">
-                                <div class="listings-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <div class="listings-info">
-                                            <h4>TrailMaster X200 Mountain Bike</h4>
-                                            <h5>Available stocks: 21</h5>
+                        <?php
+                        if (mysqli_num_rows($displayItemsResult) > 0) {
+                            while ($items = mysqli_fetch_assoc($displayItemsResult)) { ?>
+                                <div class="manage-listings">
+                                    <div class="card-body-listings p-3">
+                                        <div class="listings-content">
+                                            <div class="order-content">
+                                                <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
+                                                <form method="POST">
+                                                    <div class="listings-info">
+                                                        <input type="hidden" name="itemID" value="<?php echo $items['itemID']; ?>">
+                                                        <h4><?php echo $items['itemName']; ?></h4>
+                                                        <h5>Available stocks: <?php echo $items['itemStock']; ?></h5>
+                                                    </div>
+                                            </div>
+                                            <div class="listings-buttons">
+                                                <button type="submit" class="btn btn-delete" name="deleteItem"><i class="fa fa-trash-can"></i></button>
+                                                </form>
+                                                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-edit" name="editItem" onclick="editItemModal(); setModal();"><i class="fa fa-pen-to-square"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="listings-buttons">
-                                        <button class="btn btn-delete"><i class="fa fa-trash-can"></i></button>
-                                        <button class="btn btn-edit"><i class="fa fa-pen-to-square"></i></button>
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                        <?php
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -426,6 +507,12 @@
         var offcanvasElement = document.getElementById('sideBar');
         var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
 
+        //Variable for Handling Modal
+        var modalTitle = document.getElementById('staticBackdropLabel');
+        var submitBtnTitle = document.getElementById('submitBtn');
+        var inputModal = document.getElementById('inputModal');
+        var setModalValue = "";
+
         function showContent(btnID) {
             offcanvas.hide();
             var index = btnID[btnID.length - 1] - 1;
@@ -445,11 +532,46 @@
             });
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var savedSection = localStorage.getItem("activeSection") || "btn1";
             showContent(savedSection);
         });
 
+        function syncTextArea() {
+            var inputDesc = document.getElementById("inputDesc");
+            var textAreaDesc = document.getElementById("textAreaDesc");
+            var inputSpec = document.getElementById("inputSpec");
+            var textAreaSpec = document.getElementById("textAreaSpec");
+
+            inputDesc.value = textAreaDesc.value;
+            inputSpec.value = textAreaSpec.value;
+        }
+
+        function addItemModal() {
+            setModalValue = "add";
+        }
+
+        function editItemModal() {
+            setModalValue = "edit";
+        }
+
+        function cancel() {
+            inputModal.value = "";
+        }
+
+        function setModal() {
+            if (setModalValue == "add") {
+                modalTitle.innerHTML = "Add Item";
+                submitBtnTitle.innerHTML = "Add Item";
+                inputModal.value = "addItem";
+            }
+
+            if (setModalValue == "edit") {
+                modalTitle.innerHTML = "Edit Item";
+                submitBtnTitle.innerHTML = "Save Changes";
+                inputModal.value = "editItem";
+            }
+        }
     </script>
 
 </body>
