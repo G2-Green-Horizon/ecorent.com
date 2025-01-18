@@ -80,7 +80,7 @@ $categoryID = "0";
 
             <!-- Search Results (Main Content) -->
             <div class="col-sm-12 col-md-7 col-lg-8">
-                <div class="h3">
+                <div class="h3 p-3">
                     SEARCH RESULT FOR "BIKE"
                 </div>
                 <div class="row" id="container item-container ">
