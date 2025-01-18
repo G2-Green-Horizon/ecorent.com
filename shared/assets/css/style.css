@@ -4,6 +4,24 @@
     --btnBg: #929292;
     --rowBg: #343333;
     --font: 'Studio Feixen Variable', sans-serif;
+
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --danger: #D10D0D;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+
+    --margin: 300px;
 }
 
 body {
@@ -91,13 +109,14 @@ i {
 }
 
 #badge-condition {
-    background-color: #55523D;
-    width: 109px;
+    background-color: var(--military);
+    width: auto;
     height: 23px;
     color: #C3C1C1;
     font-size: 14px;
     font-weight: 200;
     font-family: var(--font);
+    padding-inline: 18px;
 }
 
 #badge-tracker {

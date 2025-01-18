@@ -130,7 +130,7 @@ class Rental
                             <div class="card-body-rentals">
                                 <div class="rentals-content">
                                     <div class="order-content">
-                                        <img src="././shared/assets/img/system/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
+                                        <img src="assets/img/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
                                         <h4>'.$this->itemName.'</h4>
                                     </div>
                                     <div class="actions">

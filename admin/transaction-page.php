@@ -14,18 +14,25 @@ if (!isset($_SESSION['email'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EcoRent | Transactions</title>
+    <title>Transactions</title>
+    <link rel="icon" type="image/png" href="../shared/assets/img/system/ecorent-logo-2.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="assets/css/transaction-page.css">
+
+    <!-- STYLINGS -->
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
 <body>
     <div class="container">
         <div class="row d-flex">
             <div class="col-5 d-flex align-items-center mt-4 mb-3">
-                <a href="#" style="text-decoration: none"><i class='bx bx-chevron-left'></i></a>
+                <a href="javascript:history.back()" style="text-decoration: none"><i class='bx bx-chevron-left'></i></a>
                 <h2>Approve Reservation</h2>
             </div>
         </div>

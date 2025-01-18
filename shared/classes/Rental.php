@@ -9,6 +9,7 @@ class Rental
     public $itemID;
     public $renterID;
     public $itemName;
+    public $itemDisplayImg;
     public $status;
     public $reservationDate;
     public $pickupDate;
@@ -36,7 +37,8 @@ class Rental
     function getRentalsData()
     {
         $query = "SELECT * FROM rentals 
-        LEFT JOIN items ON rentals.itemID = items.itemID";
+        LEFT JOIN items ON rentals.itemID = items.itemID
+        LEFT JOIN attachments ON items.itemID = attachments.itemID";
         $result = executeQuery($query);
 
         $rentals = array();
@@ -46,6 +48,7 @@ class Rental
             $r->renterID = $row['renterID'];
             $r->itemName = $row['itemName'];
             $r->status = $row['rentalStatus'];
+            $r->itemDisplayImg = $row['fileName'];
             $r->reservationDate = $row['reservationDate'];
             $r->pickupDate = $row['startRentalDate'];
             $r->dueDate = $row['endRentalDate'];
@@ -60,12 +63,13 @@ class Rental
         return $rentals;
     }
 
+    // BUILD RENTAL STATUS CARD FOR USER VIEW
     function buildRentalCard()
     {
         return '<div class="item-card mt-3 p-3">
                                 <div class="row">
                                     <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/items/samsungtab.webp" alt=""
+                                        <img src="shared/assets/img/system/items/' . $this->itemDisplayImg . '" alt=""
                                             class="item-display-img img-fluid">
                                         <div class="item-info ps-2 ps-xl-3 pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
                                             <h3 class="item-name">' . $this->itemName . '</h3>
@@ -119,6 +123,33 @@ class Rental
                                 </div>
                             </div>';
     }
+
+    // BUILD RENTAL STATUS CARD FOR ADMIN VIEW
+    function buildAdminRentalCard()
+    {
+        return '<div class="row">
+                        <a href="#" class="active-rentals">
+                            <div class="card-body-rentals">
+                                <div class="rentals-content">
+                                    <div class="order-content">
+                                        <img src="assets/img/system/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
+                                        <h4>'.$this->itemName.'</h4>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="btn-hand-in d-none btn-update-status rounded-3 mx-2 mx-md-5">RECEIVED</button>
+                                        <a href="transaction-page.php?rentalID='.$this->rentalID.'">
+                                            <div class="btn-see-details rounded-4">
+                                                <button class=""><i class="fa fa-chevron-right"></i></button>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>';
+    }
+
+    // DYNAMIC SETTINGS FUNCTIONS FOR RENTAL STATUS CARD (USER VIEW)
     function showInfo($status)
     {
         switch ($status) {

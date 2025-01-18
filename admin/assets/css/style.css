@@ -47,7 +47,7 @@ body {
 }
 
 .nav-button:hover,
-.logout:hover {
+.logout:hover{
     background-color: var(--bgColor2);
     cursor: pointer;
 }
@@ -251,6 +251,32 @@ body {
 .active-rentals {
     text-decoration: none;
 }
+
+.btn-update-status{
+    background-color: var(--beige);
+    border-color: transparent;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.btn-see-details button{
+    border-radius: 600px;
+    padding-inline: 20px;
+    padding-block: 14px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-see-details button:hover{
+    background-color: var(--stroke);
+}
+
+.rentals-content .actions{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 
 /* MANAGE LISTINGS STYLES*/
 .card-body-listings {
