@@ -15,6 +15,7 @@
 
     <!-- FONTS -->
     <link rel="stylesheet" href="../shared/assets/font/font.css">
+    <link rel="stylesheet" href="../shared/assets/css/modal.css">
 </head>
 
 <body>
@@ -24,9 +25,6 @@
         <div class="offcanvas-header">
             <div class="logo-brand ps-5 pt-3 pb-3"><img src="../shared/assets/img/system/ecorent-logo-2.png"
                     class="logo"></div>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
         </div>
         <div class="offcanvas-body">
             <div class="navigations">
@@ -77,9 +75,39 @@
                 <i class="fa-solid fa-list pe-3"></i></i> Manage Listings
             </div>
         </div>
-        <div class="settings ps-2 pt-5">
-            <div class="logout p-3"><i class="fa-solid fa-right-from-bracket pe-3 py-3"></i>Log out</div>
-        </div>
+
+        <form method="POST">
+            <div class="settings ps-2 pt-5">
+                <div class="logout p-3" id="btn4" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="fa-solid fa-right-from-bracket logout-icon pe-1"></i>
+                    <span class="nav-text-side text-start ps-3 ps-sm-3">Log out</span>
+                </div>
+
+                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                    aria-hidden="true" data-bs-theme="dark">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                Are you sure you want to log out?
+                            </div>
+                            <div class="container d-flex justify-content-end my-3">
+                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
+                                    name="btnDenied">No</button>
+                                <button type="submit" class="btn-logout-confirmed text-center"
+                                    name="btnConfirmed">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     </div>
 
     <!-- Main Content -->
@@ -108,52 +136,15 @@
                 </div>
                 <h1>Pending Requests</h1>
             </div>
-            <div class="content">
+            <div class="content mt-4">
                 <!-- [CONTENTS] -->
-                <div class="container mt-4">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid">
+                    <!-- RENTAL STATUS CARDS -->
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'pending') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -168,33 +159,12 @@
             </div>
             <div class="content">
                 <!-- [CONTENTS] -->
-                <div class="container mt-4">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <button class="btn-hand-in rounded-3">HAND IN</button>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <button class="btn-hand-in rounded-3">HAND IN</button>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid mt-4">
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'pickup') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -209,20 +179,12 @@
             </div>
             <!-- CONTENTS -->
             <div class="content mt-4">
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid">
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'on rent') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -256,7 +218,7 @@
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1">
-                            <div class="modal-dialog mt-3 ">
+                            <div class="modal-dialog add-item-modal-dialog my-3 ">
                                 <div class="modal-content">
                                     <div class="modal-header add-item-modal">
                                         <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">Add
@@ -271,7 +233,7 @@
                                                     <img src="../shared/assets/img/system/bike.jpg" alt=""
                                                         class="img-fluid">
                                                     <label for="customFile"
-                                                        class="btn btn-primary btn-select-main-image mb-2">Select main
+                                                        class="btn btn-select-main-image mb-2">Select main
                                                         image</label>
                                                     <input type="file" class="d-none" id="customFile" />
                                                 </div>
@@ -294,7 +256,8 @@
                                                         <label for="inputGroupRate" class="form-label">Rate Type</label>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text rate-type-custom">₱</span>
-                                                            <input type="text" class="form-control add-item-input" id="inputGroupRate">
+                                                            <input type="text" class="form-control add-item-input"
+                                                                id="inputGroupRate">
                                                             <span class="input-group-text rate-type-custom">PER
                                                                 DAY</span>
                                                         </div>
@@ -333,8 +296,8 @@
                                     <div class="modal-footer add-item-modal-footer ">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                <div class="col-12 col-md-3">
+                                                    <div class="inputGroupCategory" data-bs-theme="dark">
                                                         <label for="inputGroupCategory"
                                                             class="form-label mb-0 me-2 mt-2">Category</label>
                                                         <select class="form-select category-custom mt-2"
@@ -343,18 +306,33 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-4">
+                                                <div class="col-12 col-md-3">
+                                                    <label for="inputGroupType"
+                                                        class="form-label mb-0 me-2 mt-2">Type</label>
+                                                    <input type="text" class="form-control add-item-input mt-2"
+                                                        id="inputGroupType" />
+                                                </div>
+                                                <div class="col-12 col-md-3">
+                                                    <div class="inputGroupCondition" data-bs-theme="dark">
+                                                        <label for="inputGroupCondition"
+                                                            class="form-label mb-0 me-2 mt-2">Condition</label>
+                                                        <select class="form-select category-custom mt-2"
+                                                            id="inputGroupCondition">
+                                                            <option selected>Very Good</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3">
                                                     <label for="inputGroupStocks"
                                                         class="form-label mb-0 me-2 mt-2">Stocks</label>
                                                     <input type="text" class="form-control add-item-input mt-2 mb-4"
                                                         id="inputGroupStocks" />
                                                 </div>
                                                 <div
-                                                    class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                    class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="button"
-                                                        class="btn btn-primary ms-2 add-item-btn-save">Save
+                                                    <button type="button" class="btn ms-2 add-item-btn-save">Save
                                                         Changes</button>
                                                 </div>
                                             </div>
@@ -369,7 +347,7 @@
             </div>
             <div class="content mt-5">
                 <!-- CONTENTS -->
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="manage-listings">
                             <div class="card-body-listings p-3">

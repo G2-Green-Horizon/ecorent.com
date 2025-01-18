@@ -1,5 +1,6 @@
 <?php
-include("shared/components/processIndex.php");
+include("connect.php");
+include("shared/processes/process-index.php");
 ?>
 
 <!doctype html>
@@ -31,7 +32,7 @@ include("shared/components/processIndex.php");
 
             <!-- Product Images Column -->
             <div class="img-container col-md-6 my-4">
-                <img src="shared/assets/img/system/gown.jpg" class="img-fluid img-fluid-product" alt="Product Image">
+                <img src="shared/assets/img/system/items/gown.jpg" class="img-fluid img-fluid-product" alt="Product Image">
             </div>
 
             <div class="col-md-6 p-4">

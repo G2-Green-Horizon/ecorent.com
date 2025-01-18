@@ -1,5 +1,6 @@
 <?php
-include("shared/components/processIndex.php");
+include("shared/processes/process-index.php");
+include("connect.php");
 ?>
 
 <!doctype html>
@@ -19,6 +20,9 @@ include("shared/components/processIndex.php");
     <link rel="stylesheet" href="shared/assets/css/style.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
     <link rel="stylesheet" href="shared/assets/css/booking.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
 
@@ -175,17 +179,64 @@ include("shared/components/processIndex.php");
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog carbon-fprint-modal-dialog mt-3">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <div class="modal-header carbon-fprint-modal px-4">
+                        <img class="carbon-fprint-img" src="shared/assets/img/system/carbon-fprint-icon.png">
+                        <h1 class="modal-title fs-3 carbon-fprint-text ms-3" id="exampleModalLabel"> <strong> Thank you
+                                for
+                                saving the
+                                Earth!</strong>
+                        </h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="modal-body carbon-fprint-modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    By renting TrailMaster X200 Mountain Bike, you've saved 25 kg CO₂ emissions!
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mt-3 carbon-fprint-msg w-50">
+                                    Embrace the spirit of reducing waste and reusing items by renting from us. Your
+                                    small actions can make a big impact!
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mt-3">
+                                    Gas emissions saved:
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="emissions-saved disabled mt-2 px-4"> <strong>-25 kg
+                                            CO₂</strong></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mt-3">
+                                    Total emissions saved this month:
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="emissions-saved disabled mt-2 px-4"> <strong>-1,500 kg
+                                            CO₂</strong></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mt-2">
+                                    <a class="carbon-fprint-learn-more" href="https://facebook.com">Learn More</a>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col carbon-fprint-modal-footer mt-2 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary btn-carbon-fprint-okay">Okay</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

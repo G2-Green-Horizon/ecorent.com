@@ -47,7 +47,7 @@ body {
 }
 
 .nav-button:hover,
-.logout:hover {
+.logout:hover{
     background-color: var(--bgColor2);
     cursor: pointer;
 }
@@ -252,6 +252,32 @@ body {
     text-decoration: none;
 }
 
+.btn-update-status{
+    background-color: var(--beige);
+    border-color: transparent;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.btn-see-details button{
+    border-radius: 600px;
+    padding-inline: 20px;
+    padding-block: 14px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-see-details button:hover{
+    background-color: var(--stroke);
+}
+
+.rentals-content .actions{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+
 /* MANAGE LISTINGS STYLES*/
 .card-body-listings {
     background-color: var(--bgColor3);
@@ -418,7 +444,7 @@ body {
     justify-content: center;
 }
 
-.modal-dialog {
+.add-item-modal-dialog {
     max-width: 900px;
     margin: 0 auto;
 }
@@ -436,6 +462,7 @@ body {
     border-radius: 10px;
     border: 1px solid #b9b9b9;
     background-color: var(--bgColor);
+    color:white;
 }
 
 .btn-select-main-image:hover {

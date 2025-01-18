@@ -1,3 +1,7 @@
+<?php
+include("connect.php");
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -20,13 +24,13 @@
 
     <?php include 'shared/components/navbar.php'; ?>
 
-    <div class="main-wrapper"> 
+    <div class="main-wrapper">
         <main class="notfound-main">
             <img src="admin/assets/img/logo/404.png" alt="Error 404" class="notfound-image">
             <p class="notfound-message">The page you requested may have been moved, or it just doesn't exist.</p>
             <a href="index.php" class="notfound-home-button">Go Back Home</a>
         </main>
-    </div> 
+    </div>
 
     <?php include 'shared/components/footer.php'; ?>
 
