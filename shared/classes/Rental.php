@@ -2,7 +2,6 @@
 
 include("shared/classes/Item.php");
 include("shared/classes/User.php");
-include("connect.php");
 class Rental
 {
     public $rentalID;
