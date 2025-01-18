@@ -1,7 +1,7 @@
 <?php
 include("shared/components/processIndex.php");
 ?>
- 
+
 <!doctype html>
 <html lang="en">
 
@@ -51,7 +51,8 @@ include("shared/components/processIndex.php");
                         <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
                             <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
                                 style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike</h4>
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike
+                            </h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
                             <div class="labels d-flex justify-content-end">
@@ -69,7 +70,8 @@ include("shared/components/processIndex.php");
                         <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
                             <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
                                 style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike</h4>
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike
+                            </h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
                             <div class="labels d-flex justify-content-end">
@@ -81,7 +83,7 @@ include("shared/components/processIndex.php");
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
             <hr class="border border-1 w-100">
@@ -163,8 +165,27 @@ include("shared/components/processIndex.php");
 
                         <div class="d-flex align-items-center justify-content-end gap-3">
                             <button class="btn btn-outline-danger" id="cancel-btn">Cancel</button>
-                            <button class="btn btn-primary" id="confirm-btn">Confirm Booking</button>
+                            <button class="btn btn-primary" id="confirm-btn" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Confirm Booking</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
