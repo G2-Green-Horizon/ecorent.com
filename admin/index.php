@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 include("../connect.php");
 
 $generateCategoriesQuery = "SELECT * FROM categories";
@@ -47,19 +46,6 @@ if (isset($_POST['deleteItem'])) {
     $deleteItemQuery = "UPDATE `items` SET isDeleted = 'Yes' WHERE itemID = '$itemID'";
     $deleteItemResult = executeQuery($deleteItemQuery);
     header("Location: index.php");
-=======
-session_start();
-
-if (!isset($_SESSION['email'])) {
-    header('Location: admin-login.php');
-    exit();
-}
-
-if (isset($_POST['btnConfirmed'])) {
-    session_unset();
-    session_destroy();
-    header("Location: admin-login.php");
->>>>>>> 6d4d84e1ab086fd3ec3e80ea7d73b826f02174a6
     exit();
 }
 ?>
