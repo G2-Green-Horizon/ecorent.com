@@ -35,7 +35,6 @@ $categoryID = "0";
     <?php include 'shared/components/navbar.php'; ?>
 
     <section>
-
         <div class="container">
             <div class="row my-3 ">
                 <div class="col-sm-12 col-md-9 col-lg-3 col-xl-3">
@@ -53,9 +52,10 @@ $categoryID = "0";
                                     while ($filterCategory = mysqli_fetch_assoc($filterCategoryResult)) {
                                         $categoryID++;
                                         $checked = (isset($_GET['itemFilter']) && in_array($filterCategory['categoryID'], $_GET['itemFilter'])) ? 'checked' : ''; ?>
-                                        <input type="checkbox" class="mt-3" id="<?php echo $categoryID ?>" name="itemFilter[]" value="<?php echo $filterCategory['categoryID']; ?>" <?php echo $checked ?>>
+                                        <input type="checkbox" class="mt-3" id="<?php echo $categoryID ?>" name="itemFilter[]"
+                                            value="<?php echo $filterCategory['categoryID']; ?>" <?php echo $checked ?>>
                                         <label for="category1"> <?php echo $filterCategory['categoryName']; ?></label><br>
-                                <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -76,15 +76,35 @@ $categoryID = "0";
                 </div>
 
                 <div class="col-9">
-                    <div class="h2 p-3">
-                        SEARCH RESULT FOR “BIKE”
+                    <div class="h2 p-3 text-uppercase">
+                        <?php
+                        if (isset($_GET['search']) && !empty($_GET['search'])) {
+                            $searchTerm = htmlspecialchars($_GET['search']);
+                            echo "SEARCH RESULT FOR " . $searchTerm . "";
+                        } elseif (isset($_GET['setCategory']) && !empty($_GET['setCategory'])) {
+                            $categoryID = $_GET['setCategory'];
+                            $categoryQuery = "SELECT categoryName FROM categories WHERE categoryID = '$categoryID'";
+                            $categoryResult = executeQuery($categoryQuery);
+
+                            if ($categoryResult && mysqli_num_rows($categoryResult) > 0) {
+                                $category = mysqli_fetch_assoc($categoryResult);
+                                $categoryName = htmlspecialchars($category['categoryName']);
+                                echo "" . $categoryName . "";
+                            } else {
+                                echo "CATEGORY: Unknown";
+                            }
+                        } else {
+                            echo "Search Filter";
+                        }
+                        ?>
                     </div>
                     <div class="row" id="container item-container">
                         <?php
                         if (mysqli_num_rows($loadItemsResult) > 0) {
                             while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
                                 $cardID++; ?>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
+                                <div
+                                    class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
                                     <div class="card my-3 custom-card items" id="<?php echo $cardID; ?>">
                                         <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -94,8 +114,12 @@ $categoryID = "0";
                                         </div>
                                     </div>
                                 </div>
-                        <?php
+                                <?php
                             }
+                        } else {
+                            echo '<div class="col-12 d-flex align-items-center justify-content-center text-white">';
+                            echo '<p>No items found matching your search or filter criteria.</p>';
+                            echo '</div>';
                         }
                         ?>
                         <div class="text-center my-3">
@@ -108,6 +132,7 @@ $categoryID = "0";
             </div>
         </div>
     </section>
+
     <?php include 'shared/components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -116,5 +141,7 @@ $categoryID = "0";
     <script src="shared/assets/js/script.js"></script>
     <script src="shared/assets/js/listing.js"></script>
     <script src="shared/assets/js/filter.js"></script>
+
+</body>
 
 </html>
