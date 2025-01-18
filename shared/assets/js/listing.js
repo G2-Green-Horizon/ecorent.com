@@ -21,7 +21,7 @@ function showMore() {
 function checkItemPerPage() {
     if (itemPage * itemsPerPage >= items.length) {
         const goBack = document.getElementById('loadMore');
-        goBack.innerHTML = 'Go back to top';
+        goBack.innerHTML = 'GO BACK TO TOP';
 
         goBack.onclick = function () {
             window.scrollTo({
