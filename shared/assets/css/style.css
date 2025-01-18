@@ -204,7 +204,7 @@ input::-webkit-inner-spin-button {
 
 #homepage h5,
 #homepage h2,
-.listings .h2,
+.listings .h3,
 #product-page h3,
 #product-page p {
     color: #FFFFFF;
@@ -373,7 +373,13 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 768px) {
     .listings .custom-card{
-        width: 70%;
+        width: 55%;
+    }
+}
+
+@media (max-width: 735px) {
+    .listings .custom-card{
+        width: 60%;
     }
 }
 
