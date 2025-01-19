@@ -471,7 +471,7 @@ body {
     justify-content: center;
 }
 
-.modal-dialog {
+.add-item-modal-dialog {
     max-width: 900px;
     margin: 0 auto;
 }
@@ -489,6 +489,7 @@ body {
     border-radius: 10px;
     border: 1px solid #b9b9b9;
     background-color: var(--bgColor);
+    color:white;
 }
 
 .btn-select-main-image:hover {
