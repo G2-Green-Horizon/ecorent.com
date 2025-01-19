@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2025 at 07:15 PM
+-- Generation Time: Jan 17, 2025 at 08:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -231,7 +231,7 @@ INSERT INTO `users` (`userID`, `firstName`, `lastName`, `email`, `password`, `st
 (2, 'Ian', 'Anderson', 'ian.anderson@gmail.com', 'ian123', 'Inactive', 'Male', '+63-921-234-567', '5678 Oak Avenue, Los Angeles, CA 90001', '2025-01-09', '2025-01-09', 'ian.jpg', 'user'),
 (3, 'Oscar', 'Johnson', 'oscar.johnson@gmail.com', 'oscar123', 'Inactive', 'Male', '+63-928-123-456', '4321 Pine Road, Miami, FL 33101', '2025-01-09', '2025-01-09', 'oscar.jpg', 'user'),
 (4, 'William', 'Johnson', 'william.johnson@gmail.com', 'william123', 'Active', 'Male', '+63-937-876-543', '8765 Birch Lane, Dallas, TX 75201', '2025-01-09', '2025-01-09', 'william.jpg', 'user'),
-(5, 'Harry', 'Jones', 'harry.jones@gmail.com', 'harry123', 'Active', 'Male', '+63-915-678-123', '2345 Elm Drive, Chicago, IL 60601', '2025-01-09', '2025-01-09', 'harry.jpg', 'user');
+(5, 'Harry', 'Jones', 'ecorent@gmail.com', 'ecorent123', 'Active', 'Male', '+63-915-678-123', '2345 Elm Drive, Chicago, IL 60601', '2025-01-09', '2025-01-09', 'harry.jpg', 'admin');
 
 --
 -- Indexes for dumped tables

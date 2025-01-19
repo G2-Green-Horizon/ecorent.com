@@ -214,7 +214,7 @@ $rentalList = $rental->getRentalsData();
                             </nav>
                         </div>
                         <div class="item-status-list">
-                            
+
                             <!-- RENTAL STATUS CARDS -->
                             <?php foreach ($rentalList as $rentalCard) {
                                 if ($rentalCard->status === 'overdue') {
