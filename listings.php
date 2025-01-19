@@ -61,10 +61,10 @@ $categoryID = "0";
                             ?>
                             <p class="mt-5">Price Range</p>
                             <div class="d-flex align-items-center">
-                                <input id="min" type="number" class="form-control custom-price text-center" name="min"
+                                <input id="min" type="number" step="0.01" class="form-control custom-price text-center" name="min"
                                     value="" placeholder="₱ Min">
                                 <h1> - </h1>
-                                <input id="max" type="number" class="form-control custom-price text-center" name="max"
+                                <input id="max" type="number" step="0.01" class="form-control custom-price text-center" name="max"
                                     value="" placeholder="₱ Max">
                             </div>
                             <div class="d-flex align-items-center">
@@ -94,7 +94,7 @@ $categoryID = "0";
                                             $cardID++; ?>
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
                                                 <div class="card my-5 custom-card items" id="<?php echo $cardID; ?>">
-                                                    <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
+                                                    <img src="shared/assets/img/system/items/<?php echo $chosenCategory['fileName']; ?>" class="card-img-top" alt="">
                                                     <div class="card-body">
                                                         <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
                                                         <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
