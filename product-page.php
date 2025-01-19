@@ -24,7 +24,7 @@ include("shared/processes/process-index.php");
     <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
-<body id="product-page">
+<body class="product-page">
     <?php include 'shared/components/navbar.php'; ?>
     <section class="container">
 

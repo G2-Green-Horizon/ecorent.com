@@ -134,7 +134,7 @@ i {
     font-weight: bold;
 }
 
-#product-page .btn-custom-outline {
+.product-page .btn-custom-outline {
     border-radius: 18.3px;
     color: #D2CBA6;
     font-family: var(--font);
@@ -142,7 +142,7 @@ i {
     background-color: transparent;
 }
 
-#product-page .btn-custom-dark {
+.product-page .btn-custom-dark {
     border-radius: 18.3px;
     color: #282828;
     font-family: var(--font);
@@ -191,7 +191,7 @@ input::-webkit-inner-spin-button {
 
 #homepage,
 .listings,
-#product-page {
+.product-page {
     background-color: #282828;
     font-family: var(--font);
     margin: 0;
@@ -205,8 +205,8 @@ input::-webkit-inner-spin-button {
 #homepage h5,
 #homepage h2,
 .listings .h3,
-#product-page h3,
-#product-page p {
+.product-page h3,
+.product-page p {
     color: #FFFFFF;
 }
 
