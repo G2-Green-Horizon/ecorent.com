@@ -39,6 +39,7 @@ $rentalList = $rental->getRentalsData();
     <!-- FONTS -->
     <link rel="stylesheet" href="../shared/assets/font/font.css">
     <link rel="stylesheet" href="../shared/assets/css/modal.css">
+    <script src="assets/js/Chart.js"></script>
 </head>
 
 <body>
@@ -137,19 +138,7 @@ $rentalList = $rental->getRentalsData();
     <div class="main-content">
 
         <!-- DASHBOARD -->
-        <div class="content-card dashboard" id="container1">
-            <div class="title">
-                <div class="menu" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-controls="sideBar">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <h1>Analytics</h1>
-            </div>
-            <div class="content">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nobis sequi numquam adipisci voluptas
-                    dolorum quo ex optio alias dolore porro quaerat earum tempora harum illum sit, possimus aliquid
-                    aliquam.</p>
-            </div>
-        </div>
+        <?php include("tabs/dashboard.php") ?>
 
         <!-- PENDING REQUEST -->
         <div class="content-card pendings" id="container2">
@@ -183,7 +172,7 @@ $rentalList = $rental->getRentalsData();
             <div class="content">
                 <!-- [CONTENTS] -->
                 <div class="container-fluid mt-4">
-                <?php foreach ($rentalList as $rentalCard) {
+                    <?php foreach ($rentalList as $rentalCard) {
                         if ($rentalCard->status === 'pickup') {
                             echo $rentalCard->buildAdminRentalCard();
                         }
@@ -203,7 +192,7 @@ $rentalList = $rental->getRentalsData();
             <!-- CONTENTS -->
             <div class="content mt-4">
                 <div class="container-fluid">
-                <?php foreach ($rentalList as $rentalCard) {
+                    <?php foreach ($rentalList as $rentalCard) {
                         if ($rentalCard->status === 'on rent') {
                             echo $rentalCard->buildAdminRentalCard();
                         }
@@ -383,7 +372,9 @@ $rentalList = $rental->getRentalsData();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/49a3347974.js" crossorigin="anonymous"></script>
+    <script src="assets/js/analytics.js"></script>
     <script>
         var containers = [
             document.getElementById("container1"),
