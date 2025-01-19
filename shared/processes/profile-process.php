@@ -1,10 +1,13 @@
 <?php
 include(__DIR__ . "/../../connect.php");
+include("shared/processes/process-index.php");
 
 $userID = $_COOKIE["userID"];
 
-// Check if success is present in the query string indicating user info is updated successfully.
 $profileUpdated = false;
+$gender = ''; 
+
+// Check if success is present in the query string indicating user info is updated successfully.
 if (isset($_GET['success']) && $_GET['success'] === 'true') {
     $profileUpdated = true;
 }
@@ -16,13 +19,13 @@ $getUserInfoResult = executeQuery($getUserInfoQuery);
 
 if (mysqli_num_rows($getUserInfoResult) > 0) {
     $userInfoArray = mysqli_fetch_assoc($getUserInfoResult);
-} 
+}
 
 if (isset($_POST['btnSaveProfile'])) {
     $firstName = $_POST["firstName"] ?? '';
     $lastName = $_POST['lastName'] ?? '';
     $email = $_POST['email'] ?? '';
-    $gender = $_POST['gender'] ?? '';
+    $gender = $_POST['gender'] ?? ''; 
     $contactNumber = $_POST['contactNumber'] ?? '';
     $address = $_POST['address'] ?? '';
 
@@ -30,8 +33,7 @@ if (isset($_POST['btnSaveProfile'])) {
     $updateUserInfo = "UPDATE users SET firstName = '$firstName', lastName = '$lastName', email = '$email', address = '$address', contactNumber = '$contactNumber', gender = '$gender' WHERE userID = $userID";
     executeQuery($updateUserInfo);
 
-    header("Location: " . $_SERVER['PHP_SELF'] . "?success=true"); 
-
-    }
+    header("Location: " . $_SERVER['PHP_SELF'] . "?success=true");
+}
 
 ?>
