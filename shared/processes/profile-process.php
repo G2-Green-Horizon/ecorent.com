@@ -2,8 +2,6 @@
 include(__DIR__ . "/../../connect.php");
 include("shared/processes/process-index.php");
 
-$userID = $_COOKIE["userID"];
-
 $profileUpdated = false;
 $gender = ''; 
 
@@ -13,14 +11,22 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
 }
 
 $userInfoArray = array();
-// Query to retrieve current user info.
-$getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID";
+// Query to retrieve user info.
+if (isset($_COOKIE["userID"])) {
+    $userID = $_COOKIE["userID"];
+    $getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID";
+} else if (isset($_COOKIE["userCredentials"])) {
+    $userID = $_COOKIE["userCredentials"];
+    $getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID";
+}
 $getUserInfoResult = executeQuery($getUserInfoQuery);
 
+// Store the result to the $userInfoArray.
 if (mysqli_num_rows($getUserInfoResult) > 0) {
     $userInfoArray = mysqli_fetch_assoc($getUserInfoResult);
 }
 
+// Get user input via post on click of btnSaveProfile button.
 if (isset($_POST['btnSaveProfile'])) {
     $firstName = $_POST["firstName"] ?? '';
     $lastName = $_POST['lastName'] ?? '';
@@ -34,6 +40,7 @@ if (isset($_POST['btnSaveProfile'])) {
     executeQuery($updateUserInfo);
 
     header("Location: " . $_SERVER['PHP_SELF'] . "?success=true");
+    exit();
 }
 
 ?>
