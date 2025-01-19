@@ -94,7 +94,7 @@ $rentalList = $rental->getRentalsData();
             <form method="POST" id="profileForm">
             <div class="content-card profile p-3" id="container1">
                 <div class="content">
-                    <div class="cards-container col-12 col-md-12">
+
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
                             <?php if ($profileUpdated): ?>
@@ -175,7 +175,7 @@ $rentalList = $rental->getRentalsData();
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
 
 
                             <!-- Save Button -->
