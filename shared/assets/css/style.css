@@ -6,6 +6,26 @@
     --font: 'Studio Feixen Variable', sans-serif;
 }
 
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --danger: #D10D0D;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+    --margin: 300px;
+}
+
 body {
     font-family: var(--font);
 }
@@ -85,7 +105,8 @@ body {
     border: none;
 }
 
-i {
+.product-page i, 
+.listings i{
     font-size: 28px;
     color: #5A5858;
 }
@@ -211,8 +232,7 @@ input::-webkit-inner-spin-button {
 }
 
 #homepage .custom-card,
-.listings .custom-card,
-.listings .card {
+.listings .custom-card {
     background-color: #343333;
     border-radius: 16px;
 }
@@ -268,13 +288,22 @@ input::-webkit-inner-spin-button {
 
 /* listings */
 
+.listing-container{
+    position: relative;
+}
+
+.listings .filter-card{
+    background-color: var(--bgColor);
+    position: absolute;
+}
+
 .listings i {
-    font-size: 28;
+    font-size: 24;
     color: white
 }
 
 .listings p {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .listings .custom-price {
