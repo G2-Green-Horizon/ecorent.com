@@ -1,5 +1,6 @@
 <?php
 include("shared/components/processIndex.php");
+include("shared/processes/file-upload-process.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -83,76 +84,84 @@ include("shared/components/processIndex.php");
         <div class="main-content mb-5">
 
             <!-- MY PROFILE -->
-            <div class="content-card profile p-3" id="container1">
-                <div class="content">
-                    <div class="cards-container col-12 col-md-12">
-                        <div class="my-profile d-block pe-2 pt-2 rounded-4">
-                            <div class="row my-3">
-                                <!-- Profile Image Section -->
-                                <div class="col-12 col-lg-4 text-center d-flex flex-column align-items-center mb-4">
-                                    <div
-                                        class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="content-card profile p-3" id="container1">
+                    <div class="content">
+                        <div class="cards-container col-12 col-md-12">
+                            <div class="my-profile d-block pe-2 pt-2 rounded-4">
+                                <div class="row my-3">
+                                    <!-- Profile Image Section -->
+                                    <div class="col-12 col-lg-4 text-center d-flex flex-column align-items-center mb-4">
+                                        <div
+                                            class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
+                                        </div>
+
+                                        <img src="shared/assets/img/profile-picture/<?php echo $row['profilePicture']; ?>"
+                                            alt="Profile Picture"
+                                            class="profile-pic rounded-circle border border-2 border-primary mb-3"
+                                            style="width: 200px; height: 200px; object-fit: cover;">
+
+                                        <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
+                                            class="d-none">
+                                        <button type="button" class="btn-select-img" id="selectImage">Select
+                                            Image</button>
+                                        <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
+                                        <small class="size-info">File Extension: .JPG, .PNG</small>
                                     </div>
-                                    <img src="shared/assets/img/system/user-default-profile.png" alt="Profile Picture"
-                                        class="profile-pic rounded-circle border border-2 border-primary mb-3"
-                                        style="width: 200px; height: 200px; object-fit: cover;">
-                                    <button type="button" class="btn-select-img">Select Image</button>
-                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                    <small class="size-info">File Extension: .JPG, .PNG</small>
+                                    <!-- Input Fields Section -->
+                                    <div class="col-12 col-lg-8">
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-6 mb-3">
+                                                <input type="text" class="input-box form-control"
+                                                    placeholder="First Name" value="John Mark">
+                                            </div>
+                                            <div class="col-md-12 col-lg-6 mb-3">
+                                                <input type="text" class="input-box form-control"
+                                                    placeholder="Last Name" value="Dela Cruz">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12 mb-3">
+                                            <input type="email" class="input-box form-control" placeholder="Email"
+                                                value="johnmarkdelacruz@gmail.com">
+                                        </div>
+                                        <div class="col-12 col-md-12 mb-3">
+                                            <input type="text" class="input-box form-control" placeholder="Address"
+                                                value="address">
+                                        </div>
+                                        <div class="col-12 col-md-12 mb-3">
+                                            <input type="text" class="input-box form-control" placeholder="Phone Number"
+                                                value="09123456789">
+                                        </div>
+                                        <!-- Gender Selection -->
+                                        <div class="mb-4 d-flex align-items-center flex-wrap" id="gender-selection">
+                                            <label class="form-label me-4 mb-1" for="gender">Gender:</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" value="male"
+                                                    id="male" checked>
+                                                <label class="form-check-label" for="male">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                    value="female" id="female">
+                                                <label class="form-check-label" for="female">Female</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" value="other"
+                                                    id="other">
+                                                <label class="form-check-label" for="other">Other</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Input Fields Section -->
-                                <div class="col-12 col-lg-8">
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-6 mb-3">
-                                            <input type="text" class="input-box form-control" placeholder="First Name"
-                                                value="John Mark">
-                                        </div>
-                                        <div class="col-md-12 col-lg-6 mb-3">
-                                            <input type="text" class="input-box form-control" placeholder="Last Name"
-                                                value="Dela Cruz">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-12 mb-3">
-                                        <input type="email" class="input-box form-control" placeholder="Email"
-                                            value="johnmarkdelacruz@gmail.com">
-                                    </div>
-                                    <div class="col-12 col-md-12 mb-3">
-                                        <input type="text" class="input-box form-control" placeholder="Address"
-                                            value="address">
-                                    </div>
-                                    <div class="col-12 col-md-12 mb-3">
-                                        <input type="text" class="input-box form-control" placeholder="Phone Number"
-                                            value="09123456789">
-                                    </div>
-                                    <!-- Gender Selection -->
-                                    <div class="mb-4 d-flex align-items-center flex-wrap" id="gender-selection">
-                                        <label class="form-label me-4 mb-1" for="gender">Gender:</label>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="male"
-                                                id="male" checked>
-                                            <label class="form-check-label" for="male">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="female"
-                                                id="female">
-                                            <label class="form-check-label" for="female">Female</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="other"
-                                                id="other">
-                                            <label class="form-check-label" for="other">Other</label>
-                                        </div>
-                                    </div>
+                                <!-- Save Button -->
+                                <div class="text-center text-md-end mt-5 mb-3">
+                                    <button type="submit" name="submit" class="btn-save">Save</button>
                                 </div>
-                            </div>
-                            <!-- Save Button -->
-                            <div class="text-center text-md-end mt-5 mb-3">
-                                <button type="submit" class="btn-save">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
 
             <!-- MY BOOKINGS -->
             <div class="content-card bookings" id="container2">
@@ -601,6 +610,27 @@ include("shared/components/processIndex.php");
             container.style.display = i == activeIndex ? 'block' : 'none';
         });
     </script>
+
+    <!-- Buttons to trigger hidden file input -->
+    <script>
+        document.getElementById('selectImage').addEventListener('click', () => {
+            document.getElementById('profile-pic').click();
+        });
+
+        document.getElementById('profile-pic').addEventListener('change', function () {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.querySelector('.profile-pic').src = e.target.result;
+            };
+            if (this.files[0]) {
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+
+    </script>
+
+
 
 
     </script>
