@@ -263,7 +263,7 @@ $rentalList = $rental->getRentalsData();
                                 will lose access to your account and its data forever.
                             </div>
                             <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-delete-denied text-center mx-2 p-2"
+                                <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
                                 <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
                                     I want
