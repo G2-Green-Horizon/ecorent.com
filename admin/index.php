@@ -1,14 +1,21 @@
 <?php
 session_start();
 
+// If not logged in, redirect to login page
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
     exit();
 }
 
 if (isset($_POST['btnConfirmed'])) {
-    session_unset();
     session_destroy();
+    session_unset();
+
+    // Ensure session is fully destroyed
+    if (ini_get("session.use_cookies")) {
+        setcookie(session_name(), '', time() - 42000, '/');
+    }
+
     header("Location: admin-login.php");
     exit();
 }
@@ -120,7 +127,7 @@ $rentalList = $rental->getRentalsData();
                                 Are you sure you want to log out?
                             </div>
                             <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
+                                <button type="button" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
                                     name="btnDenied">No</button>
                                 <button type="submit" class="btn-logout-confirmed text-center"
                                     name="btnConfirmed">Yes</button>
@@ -130,7 +137,6 @@ $rentalList = $rental->getRentalsData();
                 </div>
             </div>
         </form>
-
     </div>
 
     <!-- Main Content -->
