@@ -69,8 +69,8 @@ if (isset($_POST['addItemBtn'])) {
     $getNextIDResult = executeQuery($getNextIDQuery);
     $row = mysqli_fetch_assoc($getNextIDResult);
 
-    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `isFeatured`, `isDeleted`) 
-    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', 'Yes', 'No')";
+    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `listingDate`, `isFeatured`, `isDeleted`) 
+    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', CURRENT_TIMESTAMP, 'Yes', 'No')";
 
     $insertItemResult = executeQuery($insertItemQuery);
 
@@ -95,7 +95,7 @@ if (isset($_POST['editItemID'])) {
     $itemID = $_POST['editItemID'];
 
     $updateItemsQuery = "UPDATE `items` SET `itemName` = '$itemName', `description` = '$itemDesc', `itemSpecifications` = '$itemSpec', 
-    `pricePerDay` = '$pricePerDay', `gasEmissionSaved` = '$gasEmissionSaved', `categoryID` = '$category', `itemType` = '$editType', `conditionID` = '$editCondition', `stock` = '$itemStock' WHERE `itemID` = '$itemID'";
+    `pricePerDay` = '$pricePerDay', `gasEmissionSaved` = '$gasEmissionSaved', `categoryID` = '$category', `itemType` = '$editType', `conditionID` = '$editCondition', `stock` = '$itemStock', `listingUpdatedDate` = CURRENT_TIMESTAMP WHERE `itemID` = '$itemID'";
 
     $udpateItemsResult = executeQuery($updateItemsQuery);
 

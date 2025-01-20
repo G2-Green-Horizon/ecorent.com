@@ -14,12 +14,12 @@ function uploadImage($fileInput, $itemID, $processType)
 
     $htmlFolder = "../shared/assets/img/system/items/";
 
-    move_uploaded_file($htmlFileUploadTMP, $htmlFolder . $htmlNewFileName);
-
     if ($processType == "addItem") {
+        move_uploaded_file($htmlFileUploadTMP, $htmlFolder . $htmlNewFileName);
         $insertAttachmentQuery = "INSERT INTO attachments(`itemID`, `fileName`) VALUES ('$itemID', '$htmlNewFileName')";
         executeQuery($insertAttachmentQuery);
     } else if ($processType == "editItem") {
+        move_uploaded_file($htmlFileUploadTMP, $htmlFolder . $htmlNewFileName);
         if ($htmlFileUpload !== "") {
             $updateAttachmentQuery = "UPDATE `attachments` SET `fileName`='$htmlNewFileName' WHERE itemID = '$itemID'";
             executeQuery($updateAttachmentQuery);
