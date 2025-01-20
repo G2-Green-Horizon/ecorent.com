@@ -211,6 +211,7 @@ h1 {
 
 .badge-overdue{
     color: var(--danger);
+    font-weight: 700;
 }
 
 /* MY BOOKINGS */

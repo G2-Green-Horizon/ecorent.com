@@ -1,5 +1,12 @@
 <?php
-include("shared/components/processIndex.php");
+include("connect.php");
+include("shared/processes/process-index.php");
+
+$filterCategoryQuery = "SELECT * FROM categories";
+$filterCategoryResult = executeQuery($filterCategoryQuery);
+
+$cardID = "0";
+$categoryID = "0";
 ?>
 
 <!doctype html>
@@ -12,10 +19,10 @@ include("shared/components/processIndex.php");
     <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
 
     <!-- STYLINGS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="shared/assets/css/my-account.css">
     <link rel="stylesheet" href="shared/assets/css/style.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
 
@@ -23,99 +30,123 @@ include("shared/components/processIndex.php");
     <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
-<body id="listings">
+<body class="listings">
 
     <?php include 'shared/components/navbar.php'; ?>
 
-    <section>
-
-        <div class="container">
-            <div class="row my-3 ">
-                <div class="col-sm-12 col-md-9 col-lg-3 col-xl-3">
-                    <div class="card p-3">
-                        <div class="card-title d-flex align-items-center">
-                            <i class="bi bi-funnel mx-2"></i>
-                            <h2>Search Filter</h2>
-                        </div>
-
-                        <div class="card-text mx-3">
-                            <p class="my-3">By Category</>
-                            <form>
-                                <input type="checkbox" class="mt-3" id="category1" name="category1" value="category1">
-                                <label for="category1"> Tech & Gadgets</label><br>
-                                <input type="checkbox" class="mt-3" id="category2" name="category2" value="category2">
-                                <label for="category2"> Sport & Outdoor Gear</label><br>
-                                <input type="checkbox" class="mt-3" id="category3" name="category3" value="category3">
-                                <label for="category3"> Fashion & Accessories</label><br>
-                                <input type="checkbox" class="mt-3" id="category4" name="category4" value="category4">
-                                <label for="category4"> Event Suppies</label><br>
-                                <input type="checkbox" class="mt-3" id="category5" name="category5" value="category5">
-                                <label for="category5"> Others</label><br>
-                            </form>
-
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="row my-4 p-4">
+            <!-- Search Filter (Sidebar) -->
+            <div class="col-12 col-md-5 col-lg-4 mb-3 ">
+                <div class="card p-3">
+                    <div class="card-title d-flex align-items-center">
+                        <i class="bi bi-funnel mx-2"></i>
+                        <h2>Search Filter</h2>
+                    </div>
+                    <div class="card-text mx-3">
+                        <p class="my-3">By Category</p>
+                        <form method="GET" onsubmit="return validatePriceRange()">
+                            <?php
+                            if (mysqli_num_rows($filterCategoryResult) > 0) {
+                                while ($filterCategory = mysqli_fetch_assoc($filterCategoryResult)) {
+                                    $categoryID++;
+                                    $checked = (isset($_GET['itemFilter']) && in_array($filterCategory['categoryID'], $_GET['itemFilter'])) ? 'checked' : ''; ?>
+                                    <input type="checkbox" class="mt-3" id="<?php echo $categoryID ?>" name="itemFilter[]"
+                                        value="<?php echo $filterCategory['categoryID']; ?>" <?php echo $checked ?>>
+                                    <label for="category<?php echo $categoryID; ?>">
+                                        <?php echo $filterCategory['categoryName']; ?></label><br>
+                                    <?php
+                                }
+                            }
+                            ?>
                             <p class="mt-5">Price Range</p>
-                            <form>
-                                <div class="d-flex align-items-center">
-                                    <input id="min" type="number" class="form-control custom-price text-center"
-                                        name="min" placeholder="₱ Min">
-                                    <h1> - </h1>
-                                    <input id="max" type="number" class="form-control custom-price text-center"
-                                        name="max" placeholder="₱ Max">
-                                </div>
-                            </form>
-                        </div>
+                            <div class="d-flex align-items-center">
+                                <input id="min" type="number" class="form-control custom-price text-center" name="min"
+                                    value="" placeholder="₱ Min">
+                                <h1> - </h1>
+                                <input id="max" type="number" class="form-control custom-price text-center" name="max"
+                                    value="" placeholder="₱ Max">
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button class="btn-apply btn-dark mt-3 mx-3" name="applyFilter" value="true">
+                                    Apply
+                                </button>
+                            </div>
 
-                        <button class="btn-apply btn-dark mt-3 mx-3">
-                            Apply
-                        </button>
-                    </div>
-                </div>
-
-                <div class="col-9">
-                    <div class="h2 p-3">
-                        SEARCH RESULT FOR “BIKE”
-                    </div>
-                    <div class="row" id="container">
+                        </form>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center my-3">
-                <button class="btn btn-dark">
-                    SEE MORE
-                </button>
+            <!-- Search Results (Main Content) -->
+            <div class="col-sm-12 col-md-7 col-lg-8">
+
+                    <div class="h2 text-uppercase">
+                    <?php
+                        if (isset($_GET['search']) && !empty($_GET['search'])) {
+                            $searchTerm = htmlspecialchars($_GET['search']);
+                            echo "SEARCH RESULT FOR " . $searchTerm . "";
+                        } elseif (isset($_GET['setCategory']) && !empty($_GET['setCategory'])) {
+                            $categoryID = $_GET['setCategory'];
+                            $categoryQuery = "SELECT categoryName FROM categories WHERE categoryID = '$categoryID'";
+                            $categoryResult = executeQuery($categoryQuery);
+
+                            if ($categoryResult && mysqli_num_rows($categoryResult) > 0) {
+                                $category = mysqli_fetch_assoc($categoryResult);
+                                $categoryName = htmlspecialchars($category['categoryName']);
+                                echo "" . $categoryName . "";
+                            } else {
+                                echo "CATEGORY: Unknown";
+                            }
+                        } else {
+                            echo "Search Filter";
+                        }
+                        ?>
+                    </div>
+                    <div class="row" id="container item-container ">
+                    <?php
+                        if (mysqli_num_rows($loadItemsResult) > 0) {
+                            while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
+                                $cardID++; ?>
+                                <div
+                                class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3 d-flex align-items-center justify-content-center  d-flex flex-wrap">
+                                    <div class="card my-3 custom-card items" id="<?php echo $cardID; ?>">
+                                        <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
+                                            <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
+                                        </div>
+                                        <div class="card-footer">
+                                            <h5 class="card-text price ms-3">
+                                                <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            echo '<div class="col-12 d-flex align-items-center justify-content-center text-white">';
+                            echo '<p>No items found matching your search or filter criteria.</p>';
+                            echo '</div>';
+                        }
+                        ?>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-dark" id="loadMore" onclick="showMore();">
+                                SEE MORE
+                            </button>
+                        </div>
+                    </div>
             </div>
         </div>
-    </section>
+    </div>
+
     <?php include 'shared/components/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="shared/assets/js/script.js"></script>
-
-    <script>
-        var itemNames = ["TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain", "TrailMaster X200 Mountain"];
-        var pics = ["bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png", "bike1.png"];
-        var prices = ["₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100", "₱100"];
-
-        for (var i = 0; i < itemNames.length; i++) {
-            var container = document.getElementById("container");
-            container.innerHTML += `
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center">
-            <div class="card my-3 custom-card" id="card${i}">
-                <img src="shared/assets/img/system/${pics[i]}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">${itemNames[i]}</h5>
-                    <h5 class="card-text">Bike</h5>
-                    <h5 class="card-text price">${prices[i]}</h5>
-                </div>
-            </div>
-        </div>
-    `;
-        }
-    </script>
-
+    <script src="shared/assets/js/listing.js"></script>
+    <script src="shared/assets/js/filter.js"></script>
 </body>
 
 </html>

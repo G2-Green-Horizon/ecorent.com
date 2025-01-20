@@ -1,6 +1,14 @@
 <?php
 include("shared/components/processIndex.php");
 include("shared/processes/file-upload-process.php");
+include("shared/processes/profile-process.php");
+include("shared/classes/Rental.php");
+
+// MY BOOKINGS TAB
+$rental = new Rental(null, null, null);
+$rentalList = $rental->getRentalsData();
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -84,83 +92,101 @@ include("shared/processes/file-upload-process.php");
         <div class="main-content mb-5">
 
             <!-- MY PROFILE -->
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="content-card profile p-3" id="container1">
-                    <div class="content">
-                        <div class="cards-container col-12 col-md-12">
-                            <div class="my-profile d-block pe-2 pt-2 rounded-4">
-                                <div class="row my-3">
-                                    <!-- Profile Image Section -->
-                                    <div class="col-12 col-lg-4 text-center d-flex flex-column align-items-center mb-4">
-                                        <div
-                                            class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
-                                        </div>
+            <form method="POST" id="profileForm">
+            <div class="content-card profile p-3" id="container1">
+                <div class="content">
 
-                                        <img src="shared/assets/img/profile-picture/<?php echo $row['profilePicture']; ?>"
-                                            alt="Profile Picture"
-                                            class="profile-pic rounded-circle border border-2 border-primary mb-3"
-                                            style="width: 200px; height: 200px; object-fit: cover;">
-
-                                        <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
-                                            class="d-none">
-                                        <button type="button" class="btn-select-img" id="selectImage">Select
-                                            Image</button>
-                                        <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                        <small class="size-info">File Extension: .JPG, .PNG</small>
-                                    </div>
-                                    <!-- Input Fields Section -->
-                                    <div class="col-12 col-lg-8">
-                                        <div class="row">
-                                            <div class="col-md-12 col-lg-6 mb-3">
-                                                <input type="text" class="input-box form-control"
-                                                    placeholder="First Name" value="John Mark">
+                        <div class="my-profile d-block pe-2 pt-2 rounded-4">
+                            <!-- Toast Notification -->
+                            <?php if ($profileUpdated): ?>
+                                <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3"
+                                    style="z-index: 1055;">
+                                    <div class="toast align-items-center text-bg-success border-0 show" role="alert"
+                                        aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex">
+                                            <div class="toast-body">
+                                                Profile successfully updated!
                                             </div>
-                                            <div class="col-md-12 col-lg-6 mb-3">
-                                                <input type="text" class="input-box form-control"
-                                                    placeholder="Last Name" value="Dela Cruz">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-12 mb-3">
-                                            <input type="email" class="input-box form-control" placeholder="Email"
-                                                value="johnmarkdelacruz@gmail.com">
-                                        </div>
-                                        <div class="col-12 col-md-12 mb-3">
-                                            <input type="text" class="input-box form-control" placeholder="Address"
-                                                value="address">
-                                        </div>
-                                        <div class="col-12 col-md-12 mb-3">
-                                            <input type="text" class="input-box form-control" placeholder="Phone Number"
-                                                value="09123456789">
-                                        </div>
-                                        <!-- Gender Selection -->
-                                        <div class="mb-4 d-flex align-items-center flex-wrap" id="gender-selection">
-                                            <label class="form-label me-4 mb-1" for="gender">Gender:</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="male"
-                                                    id="male" checked>
-                                                <label class="form-check-label" for="male">Male</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender"
-                                                    value="female" id="female">
-                                                <label class="form-check-label" for="female">Female</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="other"
-                                                    id="other">
-                                                <label class="form-check-label" for="other">Other</label>
-                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                data-bs-dismiss="toast" aria-label="Close"></button>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Save Button -->
-                                <div class="text-center text-md-end mt-5 mb-3">
-                                    <button type="submit" name="submit" class="btn-save">Save</button>
+                            <?php endif; ?>
+
+                            <div class="row my-3">
+                                <!-- Profile Image Section -->
+                                <div class="col-12 col-lg-4 text-center d-flex flex-column align-items-center mb-4">
+                                    <div
+                                        class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
+                                    </div>
+                                    <img src="shared/assets/img/system/user-default-profile.png" alt="Profile Picture"
+                                        class="profile-pic rounded-circle border border-2 border-primary mb-3"
+                                        style="width: 200px; height: 200px; object-fit: cover;">
+                                    <button type="button" class="btn-select-img">Select Image</button>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
+                                    <small class="size-info">File Extension: .JPG, .PNG</small>
                                 </div>
+                                 <!-- Input Fields Section -->
+                        <div class="col-12 col-md-8">
+                            <div class="row">
+                                <div class="col-md-6 col-12 mb-3">
+                                    <input type="text" id="firstName" class="form-control" name="firstName"
+                                        placeholder="First Name"
+                                        value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                    <div class="invalid-feedback" id="firstNameError"></div>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3">
+                                    <input type="text" id="lastName" class="form-control" name="lastName"
+                                        placeholder="Last Name" value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                    <div class="invalid-feedback" id="lastNameError"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Email"
+                                    value="<?php echo $userInfoArray['email'] ?? ''; ?>">
+                                <div class="invalid-feedback" id="emailError"></div>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" id="address" class="form-control" name="address"
+                                    placeholder="Address" value="<?php echo $userInfoArray['address'] ?? ''; ?>">
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" id="contactNumber" class="form-control" name="contactNumber"
+                                    placeholder="Phone Number"
+                                    value="<?php echo $userInfoArray['contactNumber'] ?? ''; ?>">
+                            </div>
+                            <!-- Gender Selection -->
+                            <div class="mb-4 d-flex align-items-center" id="gender-selection">
+                                <label class="form-label me-4 mb-1" for="gender">Gender:</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Male" id="male"
+                                        <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Female"
+                                        id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Other" id="other"
+                                        <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+
+                            <!-- Save Button -->
+                            <div class="text-center text-md-end mt-5 mb-3">
+                                <button type="submit" name="btnSaveProfile" class="btn-save">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             </form>
 
             <!-- MY BOOKINGS -->
@@ -190,322 +216,13 @@ include("shared/processes/file-upload-process.php");
                         </div>
                         <div class="item-status-list">
 
-                            <!-- PENDING CARD -->
-                            <div class="item-card mt-3 p-3">
-                                <div class="row">
-                                    <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/bike.jpg" alt=""
-                                            class="item-display-img img-fluid">
-                                        <div class="item-info ps-2 ps-xl-3 pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
-                                            <h3 class="item-name">TrailMaster X200 Mountain Bike</h3>
-                                            <div class="location">
-                                                <i class="fa-solid fa-location-dot"></i><span
-                                                    class="ps-2 location">Brgy. San
-                                                    Antonio, Sto.Tomas, Batangas</span>
-                                            </div>
-                                            <div class="rental-time">
-                                                <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
-                                                    for
-                                                    3
-                                                    days</span>
-                                            </div>
-                                            <div class="basket">
-                                                <i class="fa-solid fa-basket-shopping"></i><span
-                                                    class="ps-2 quantity">x3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4 order-md-2 order-1 mb-3">
-                                        <div class="status-badge text-center">
-                                            PENDING
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-3">
-                                <div class="transac">
-                                    <div class="p-2 w-100">
-                                        <div class="time-period d-none">
-                                            <div class="time-remaining">
-                                                <i class="fa-regular fa-clock"></i>
-                                                Time remaining:<span class="ps-2 rental-time">00:00:00</span>
-                                            </div>
-                                            <div class="due">
-                                                <i class="fa-regular fa-calendar"></i>
-                                                Due:<span class="ps-2 rental-time">01/12/2025</span>
-                                            </div>
-                                        </div>
-                                        <div class="status-tip py-2 py-lg-3">
-                                            Waiting for your item to be approved.
-                                        </div>
-                                    </div>
-                                    <div class="p-2 flex-shrink-1">
-                                        <div class="total-payment d-flex">
-                                            <span class="d-flex align-items-center">Total payment:</span>
-                                            <span class="payment-number ps-5 text-end">₱2,000</span>
-                                        </div>
-                                        <div class="action-button">
-                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action btn-cancel">Cancel
-                                                    Booking</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- RENTAL STATUS CARDS -->
+                            <?php foreach ($rentalList as $rentalCard) {
+                                if ($rentalCard->status === 'overdue') {
+                                    echo $rentalCard->buildRentalCard();
+                                }
 
-                            <!-- FOR PICK UP CARD -->
-                            <div class="item-card mt-3 p-3">
-                                <div class="row">
-                                    <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/bike.jpg" alt=""
-                                            class="item-display-img img-fluid">
-                                        <div class="item-info ps-2 ps-xl-3 pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
-                                            <h3 class="item-name">TrailMaster X200 Mountain Bike</h3>
-                                            <div class="location">
-                                                <i class="fa-solid fa-location-dot"></i><span
-                                                    class="ps-2 location">Brgy. San
-                                                    Antonio, Sto.Tomas, Batangas</span>
-                                            </div>
-                                            <div class="rental-time">
-                                                <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
-                                                    for
-                                                    3
-                                                    days</span>
-                                            </div>
-                                            <div class="basket">
-                                                <i class="fa-solid fa-basket-shopping"></i><span
-                                                    class="ps-2 quantity">x3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4 order-md-2 order-1 mb-3">
-                                        <div class="status-badge text-center">
-                                            FOR PICK-UP
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-3">
-                                <div class="transac">
-                                    <div class="p-2 w-100">
-                                        <div class="time-period d-none">
-                                            <div class="time-remaining">
-                                                <i class="fa-regular fa-clock"></i>
-                                                Time remaining:<span class="ps-2 rental-time">00:00:00</span>
-                                            </div>
-                                            <div class="due">
-                                                <i class="fa-regular fa-calendar"></i>
-                                                Due:<span class="ps-2 rental-time">01/12/2025</span>
-                                            </div>
-                                        </div>
-                                        <div class="status-tip py-2 py-lg-3">
-                                            Please pick-up your item at Brgy. San Antonio, Sto.Tomas, Batangas on Jan
-                                            24, 2025.
-                                        </div>
-                                    </div>
-                                    <div class="p-2 flex-shrink-1">
-                                        <div class="total-payment d-flex">
-                                            <span class="d-flex align-items-center">Total payment:</span>
-                                            <span class="payment-number ps-5 text-end">₱2,000</span>
-                                        </div>
-                                        <div class="action-button">
-                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action btn-cancel">Cancel
-                                                    Booking</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- ON RENT -->
-                            <div class="item-card mt-3 p-3">
-                                <div class="row">
-                                    <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/bike.jpg" alt=""
-                                            class="item-display-img img-fluid">
-                                        <div class="item-info ps-2 ps-xl-3 pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
-                                            <h3 class="item-name">TrailMaster X200 Mountain Bike</h3>
-                                            <div class="location">
-                                                <i class="fa-solid fa-location-dot"></i><span
-                                                    class="ps-2 location">Brgy. San
-                                                    Antonio, Sto.Tomas, Batangas</span>
-                                            </div>
-                                            <div class="rental-time">
-                                                <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
-                                                    for
-                                                    3
-                                                    days</span>
-                                            </div>
-                                            <div class="basket">
-                                                <i class="fa-solid fa-basket-shopping"></i><span
-                                                    class="ps-2 quantity">x3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4 order-md-2 order-1 mb-3">
-                                        <div class="status-badge text-center">
-                                            ON RENT
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-3">
-                                <div class="transac">
-                                    <div class="p-2 w-100">
-                                        <div class="time-period">
-                                            <div class="time-remaining">
-                                                <i class="fa-regular fa-clock"></i>
-                                                Time remaining:<span class="ps-2 rental-time">72:34:01</span>
-                                            </div>
-                                            <div class="due">
-                                                <i class="fa-regular fa-calendar"></i>
-                                                Due:<span class="ps-2 rental-time">01/12/2025</span>
-                                            </div>
-                                        </div>
-                                        <div class="status-tip py-2 py-lg-3 d-none">
-                                            Please pick-up your item at Brgy. San Antonio, Sto.Tomas, Batangas on Jan
-                                            24, 2025.
-                                        </div>
-                                    </div>
-                                    <div class="p-2 flex-shrink-1">
-                                        <div class="total-payment d-flex">
-                                            <span class="d-flex align-items-center">Total payment upon return:</span>
-                                            <span class="payment-number ps-5 text-end">₱0</span>
-                                        </div>
-                                        <div class="action-button">
-                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action">Extend</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- OVERDUE -->
-                            <div class="item-card mt-3 p-3">
-                                <div class="row">
-                                    <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/bike.jpg" alt=""
-                                            class="item-display-img img-fluid">
-                                        <div class="item-info ps-2 ps-xl-3 pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
-                                            <h3 class="item-name">TrailMaster X200 Mountain Bike</h3>
-                                            <div class="location">
-                                                <i class="fa-solid fa-location-dot"></i><span
-                                                    class="ps-2 location">Brgy. San
-                                                    Antonio, Sto.Tomas, Batangas</span>
-                                            </div>
-                                            <div class="rental-time">
-                                                <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
-                                                    for
-                                                    3
-                                                    days</span>
-                                            </div>
-                                            <div class="basket">
-                                                <i class="fa-solid fa-basket-shopping"></i><span
-                                                    class="ps-2 quantity">x3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4 order-md-2 order-1 mb-3">
-                                        <div class="status-badge badge-overdue text-center">
-                                            OVERDUE
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-3">
-                                <div class="transac">
-                                    <div class="p-2 w-100">
-                                        <div class="time-period">
-                                            <div class="time-remaining d-flex">
-                                                <i class="fa-regular fa-clock"></i>
-                                                Time remaining:<span class="ps-2 rental-time">00:00:00</span>
-                                                <span class="alert-icon d-block ps-2"><i
-                                                        class="fa-solid fa-circle-exclamation"
-                                                        style="color:#D10D0D"></i></span>
-                                            </div>
-                                            <div class="due">
-                                                <i class="fa-regular fa-calendar"></i>
-                                                Due:<span class="ps-2 -time">01/12/2025</span>
-                                            </div>
-                                        </div>
-                                        <div class="status-tip py-2 py-lg-3 d-block">
-                                            Please return the item immediately to prevent penalties!
-                                        </div>
-                                    </div>
-                                    <div class="p-2 flex-shrink-1">
-                                        <div class="total-payment d-flex">
-                                            <span class="d-flex align-items-center">Total payment upon return:</span>
-                                            <span class="payment-number ps-5 text-end">₱0</span>
-                                        </div>
-                                        <div class="action-button">
-                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action">Extend</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- EXTENDED -->
-                            <div class="item-card mt-3 p-3">
-                                <div class="row">
-                                    <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/bike.jpg" alt=""
-                                            class="item-display-img img-fluid">
-                                        <div class="item-info ps-2 ps-xl-3  pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
-                                            <h3 class="item-name">TrailMaster X200 Mountain Bike</h3>
-                                            <div class="location">
-                                                <i class="fa-solid fa-location-dot"></i><span
-                                                    class="ps-2 location">Brgy. San
-                                                    Antonio, Sto.Tomas, Batangas</span>
-                                            </div>
-                                            <div class="rental-time">
-                                                <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
-                                                    for
-                                                    3
-                                                    days</span>
-                                            </div>
-                                            <div class="basket">
-                                                <i class="fa-solid fa-basket-shopping"></i><span
-                                                    class="ps-2 quantity">x3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4 order-md-2 order-1 mb-3">
-                                        <div class="status-badge text-center">
-                                            EXTENDED
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-3">
-                                <div class="transac">
-                                    <div class="p-2 w-100">
-                                        <div class="time-period">
-                                            <div class="time-remaining">
-                                                <i class="fa-regular fa-clock"></i>
-                                                Time remaining:<span class="ps-2 rental-time">72:34:01</span>
-                                            </div>
-                                            <div class="due">
-                                                <i class="fa-regular fa-calendar"></i>
-                                                Due:<span class="ps-2 rental-time">01/12/2025</span>
-                                            </div>
-                                        </div>
-                                        <div class="status-tip py-2 py-lg-3 d-block">
-                                            Please prepare exact amount upon return.
-                                        </div>
-                                    </div>
-                                    <div class="p-2 flex-shrink-1">
-                                        <div class="total-payment d-flex">
-                                            <span class="d-flex align-items-center">Total payment upon return:</span>
-                                            <span class="payment-number ps-5 text-end">₱800</span>
-                                        </div>
-                                        <div class="action-button">
-                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action">Extend</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            } ?>
                         </div>
                     </div>
                 </div>
@@ -569,6 +286,7 @@ include("shared/processes/file-upload-process.php");
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.0/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="shared/assets/js/script.js"></script>
+    <script src="shared/assets/js/profile.js"></script>
     <script>
         var containers = [
             document.getElementById("container1"),
@@ -609,6 +327,8 @@ include("shared/processes/file-upload-process.php");
         containers.forEach((container, i) => {
             container.style.display = i == activeIndex ? 'block' : 'none';
         });
+
+        
     </script>
 
     <!-- Buttons to trigger hidden file input -->
@@ -632,8 +352,6 @@ include("shared/processes/file-upload-process.php");
 
 
 
-
-    </script>
 
 </body>
 
