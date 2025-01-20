@@ -143,3 +143,77 @@ li {
 .input-box:focus::placeholder {
     color: gray;
 }
+
+.carbon-fprint-modal {
+    color: var(--mainColor);
+    background-color: var(--bgColor);
+    display: flex;
+    width: 100%;
+}
+
+.carbon-fprint-text {
+    text-align: left;
+    width: 100%;
+}
+
+.carbon-fprint-img {
+    width: 30px;
+    height: 100%;
+}
+
+.carbon-fprint-modal-body {
+    color: var(--mainColor);
+    background-color: var(--bgColor);
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    min-height: 300px;
+}
+
+.carbon-fprint-modal-dialog {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.emissions-saved {
+    min-width: 150px;
+    height: 50px;
+    background-color: var(--green);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: not-allowed;
+    pointer-events: none;
+    font-size: 25px;
+}
+
+.carbon-fprint-msg {
+    line-height: 20px;
+}
+
+.carbon-fprint-learn-more {
+    color: white;
+    text-decoration: underline !important;
+}
+
+.carbon-fprint-modal-footer{
+    width: 100%;
+}
+
+.btn-carbon-fprint-okay{
+    background-color: var(--titleColor);
+    border-color: var(--titleColor);
+    color: var(--bgColor3);
+}
+
+.btn-carbon-fprint-okay:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+    color: var(--mainColor);
+}
+
+.btn-carbon-fprint-okay:focus {
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: var(--mainColor) !important;
+}

@@ -27,7 +27,6 @@ $rental = new Rental(null, null, null);
 $rentalList = $rental->getRentalsData();
 ?>
 
-
 <!doctype html>
 <html lang="en">
 
@@ -215,7 +214,7 @@ $rentalList = $rental->getRentalsData();
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1">
-                            <div class="modal-dialog mt-3 ">
+                            <div class="modal-dialog add-item-modal-dialog my-3 ">
                                 <div class="modal-content">
                                     <div class="modal-header add-item-modal">
                                         <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">
@@ -233,6 +232,7 @@ $rentalList = $rental->getRentalsData();
                                                     <label for="customFile"
                                                         class="btn btn-primary btn-select-main-image mb-2">Select
                                                         main
+                                                        class="btn btn-select-main-image mb-2">Select main
                                                         image</label>
                                                     <input type="file" class="d-none" id="customFile" />
                                                 </div>
@@ -296,8 +296,8 @@ $rentalList = $rental->getRentalsData();
                                     <div class="modal-footer add-item-modal-footer ">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                <div class="col-12 col-md-3">
+                                                    <div class="inputGroupCategory" data-bs-theme="dark">
                                                         <label for="inputGroupCategory"
                                                             class="form-label mb-0 me-2 mt-2">Category</label>
                                                         <select class="form-select category-custom mt-2"
@@ -306,18 +306,33 @@ $rentalList = $rental->getRentalsData();
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-4">
+                                                <div class="col-12 col-md-3">
+                                                    <label for="inputGroupType"
+                                                        class="form-label mb-0 me-2 mt-2">Type</label>
+                                                    <input type="text" class="form-control add-item-input mt-2"
+                                                        id="inputGroupType" />
+                                                </div>
+                                                <div class="col-12 col-md-3">
+                                                    <div class="inputGroupCondition" data-bs-theme="dark">
+                                                        <label for="inputGroupCondition"
+                                                            class="form-label mb-0 me-2 mt-2">Condition</label>
+                                                        <select class="form-select category-custom mt-2"
+                                                            id="inputGroupCondition">
+                                                            <option selected>Very Good</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3">
                                                     <label for="inputGroupStocks"
                                                         class="form-label mb-0 me-2 mt-2">Stocks</label>
                                                     <input type="text" class="form-control add-item-input mt-2 mb-4"
                                                         id="inputGroupStocks" />
                                                 </div>
                                                 <div
-                                                    class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                    class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="button"
-                                                        class="btn btn-primary ms-2 add-item-btn-save">Save
+                                                    <button type="button" class="btn ms-2 add-item-btn-save">Save
                                                         Changes</button>
                                                 </div>
                                             </div>
