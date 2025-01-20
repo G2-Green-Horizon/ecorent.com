@@ -9,14 +9,21 @@ date_default_timezone_set('Asia/Manila');
 
 session_start();
 
+// If not logged in, redirect to login page
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
     exit();
 }
 
 if (isset($_POST['btnConfirmed'])) {
-    session_unset();
     session_destroy();
+    session_unset();
+
+    // Ensure session is fully destroyed
+    if (ini_get("session.use_cookies")) {
+        setcookie(session_name(), '', time() - 42000, '/');
+    }
+
     header("Location: admin-login.php");
     exit();
 }
@@ -154,7 +161,8 @@ if (isset($_POST['cancelEdit'])) {
                 </div>
             </div>
             <div class="settings ps-2 pt-5">
-                <div class="logout p-3"><i class="fa-solid fa-right-from-bracket pe-3 py-3"></i>Log out</div>
+                <div class="logout p-3" data-bs-toggle="modal" data-bs-target="#logoutModal"><i
+                        class="fa-solid fa-right-from-bracket pe-3 py-3"></i>Log out</div>
             </div>
         </div>
     </div>
@@ -183,41 +191,15 @@ if (isset($_POST['cancelEdit'])) {
             <div class="nav-button listings p-3" id="btn5" onclick="showContent('btn5')">
                 <i class="fa-solid fa-list pe-3"></i></i> Manage Listings
             </div>
-        </div>
-
-        <form method="POST">
             <div class="settings ps-2 pt-5">
-                <div class="logout p-3" id="btn4" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                    <i class="fa-solid fa-right-from-bracket logout-icon pe-1"></i>
-                    <span class="nav-text-side text-start ps-3 ps-sm-3">Log out</span>
-                </div>
-
-                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
-                    aria-hidden="true" data-bs-theme="dark">
-                    <div class="modal-dialog  modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
-                                </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-4">
-                                Are you sure you want to log out?
-                            </div>
-                            <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
-                                    name="btnDenied">No</button>
-                                <button type="submit" class="btn-logout-confirmed text-center"
-                                    name="btnConfirmed">Yes</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="logout p-3" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="fa-solid fa-right-from-bracket pe-3 py-3"></i> Log out
                 </div>
             </div>
-        </form>
-
+        </div>
     </div>
+
+    <?php include("assets/processes/admin-logout-process.php"); ?>
 
     <!-- Main Content -->
     <div class="main-content">

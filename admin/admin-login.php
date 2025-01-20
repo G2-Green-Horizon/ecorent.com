@@ -2,35 +2,44 @@
 include("../connect.php");
 session_start();
 
+// Prevent access if already logged in
 if (isset($_SESSION['email'])) {
-    header('Location: index.php');
+    header("Location: index.php");
     exit();
 }
+
+session_destroy(); // Ensure session resets when accessing login page
+session_start();
 
 if (isset($_POST['btnLogin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $email = str_replace("'", "", $email);
-    $password = str_replace("'", "", $password);
+    // CLEAN INJECTION
+    $email = str_replace('\'', '', $email);
+    $password = str_replace('\'', '', $password);
 
     $loginQuery = "SELECT * FROM users WHERE email = '$email' AND password = '$password' AND role = 'admin'";
     $loginResult = executeQuery($loginQuery);
 
+    $_SESSION['userID'] = "";
+    $_SESSION['email'] = "";
+    $error = "";
+
     if (mysqli_num_rows($loginResult) > 0) {
         while ($user = mysqli_fetch_assoc($loginResult)) {
-            session_regenerate_id(true);
             $_SESSION['userID'] = $user['userID'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['role'] = $user['role'];
+            
+            header("Location: ./");
+            exit();
         }
-        header("Location: index.php");
-        exit();
     } else {
         $error = "Invalid email or password.";
     }
 }
 ?>
+
 
 
 <!doctype html>
@@ -58,13 +67,17 @@ if (isset($_POST['btnLogin'])) {
                         </div>
                         <div class="mb-5 text-center">
                             <h1>Admin Portal</h1>
-                            <?php if (isset($error)) { echo "<p class='text-danger'>$error</p>"; } ?>
+                            <?php if (isset($error)) {
+                                echo "<p class='text-danger'>$error</p>";
+                            } ?>
                         </div>
                         <div class="mb-3">
-                            <input type="email" name="email" class="form-control rounded-4 p-3" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control rounded-4 p-3" placeholder="Email"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" name="password" class="form-control rounded-4 p-3" placeholder="Password" required>
+                            <input type="password" name="password" class="form-control rounded-4 p-3"
+                                placeholder="Password" required>
                         </div>
                         <div class="d-grid gap-2">
                             <button class="login-button rounded-4 p-3" name="btnLogin">Login</button>

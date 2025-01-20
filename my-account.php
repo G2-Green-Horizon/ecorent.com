@@ -3,6 +3,7 @@ include("shared/processes/process-index.php");
 include("shared/processes/profile-process.php");
 include("shared/classes/Rental.php");
 
+
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
 $rentalList = $rental->getRentalsData();
@@ -62,28 +63,7 @@ $rentalList = $rental->getRentalsData();
                 </div>
 
                 <!-- LOG OUT MODAL -->
-                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
-                    aria-hidden="true" data-bs-theme="dark">
-                    <div class="modal-dialog  modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
-                                </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-4">
-                                Are you sure you want to log out?
-                            </div>
-                            <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
-                                    name="btnDenied">No</button>
-                                <button type="submit" class="btn-logout-confirmed text-center"
-                                    name="btnConfirmed">Yes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php include("shared/processes/logout-process.php"); ?>
             </div>
         </div>
 
@@ -92,8 +72,8 @@ $rentalList = $rental->getRentalsData();
 
             <!-- MY PROFILE -->
             <form method="POST" id="profileForm">
-            <div class="content-card profile p-3" id="container1">
-                <div class="content">
+                <div class="content-card profile p-3" id="container1">
+                    <div class="content">
 
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
@@ -178,14 +158,14 @@ $rentalList = $rental->getRentalsData();
                     
 
 
-                            <!-- Save Button -->
-                            <div class="text-center text-md-end mt-5 mb-3">
-                                <button type="submit" name="btnSaveProfile" class="btn-save">Save</button>
+                                <!-- Save Button -->
+                                <div class="text-center text-md-end mt-5 mb-3">
+                                    <button type="submit" name="btnSaveProfile" class="btn-save">Save</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
 
             <!-- MY BOOKINGS -->
@@ -263,7 +243,7 @@ $rentalList = $rental->getRentalsData();
                                 will lose access to your account and its data forever.
                             </div>
                             <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-delete-denied text-center mx-2 p-2"
+                                <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
                                 <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
                                     I want
@@ -327,7 +307,7 @@ $rentalList = $rental->getRentalsData();
             container.style.display = i == activeIndex ? 'block' : 'none';
         });
 
-        
+
     </script>
 
 

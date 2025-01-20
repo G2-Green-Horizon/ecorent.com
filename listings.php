@@ -34,16 +34,16 @@ $categoryID = "0";
 
     <?php include 'shared/components/navbar.php'; ?>
 
-    <div class="container-fluid px-3 px-lg-5">
-        <div class="row my-4 p-4">
+    <div class="container-fluid listing-container">
+        <div class="row my-2 p-2">
             <!-- Search Filter (Sidebar) -->
-            <div class="col-12 col-md-5 col-lg-4 mb-3 ">
-                <div class="card p-3">
+            <div class="col-12 col-md-5 col-lg-4 mb-3">
+                <div class="card-filter p-3">
                     <div class="card-title d-flex align-items-center">
                         <i class="bi bi-funnel mx-2"></i>
-                        <h2>Search Filter</h2>
+                        <h3>Search Filter</h3>
                     </div>
-                    <div class="card-text mx-3">
+                    <div class="card-text">
                         <p class="my-3">By Category</p>
                         <form method="GET" onsubmit="return validatePriceRange()">
                             <?php
@@ -134,7 +134,6 @@ $categoryID = "0";
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
