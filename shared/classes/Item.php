@@ -16,13 +16,15 @@ class Item{
     public $listingUpdateDate;
     public $isFeatured;
     public $isDeleted;
+    public $fileName;
 
-    public function __construct($itemID, $categoryID, $itemName, $pricePerDay, $categoryName){
+    public function __construct($itemID, $categoryID, $itemName, $pricePerDay, $categoryName, $fileName){
         $this->itemID = $itemID;
         $this->categoryID = $categoryID;
         $this->itemName = $itemName;
         $this->pricePerDay = $pricePerDay;
         $this->categoryName = $categoryName;
+        $this->fileName = $fileName;
         
     }
 }
