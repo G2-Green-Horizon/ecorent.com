@@ -1,14 +1,21 @@
 <?php
 session_start();
 
+// If not logged in, redirect to login page
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
     exit();
 }
 
 if (isset($_POST['btnConfirmed'])) {
-    session_unset();
     session_destroy();
+    session_unset();
+
+    // Ensure session is fully destroyed
+    if (ini_get("session.use_cookies")) {
+        setcookie(session_name(), '', time() - 42000, '/');
+    }
+
     header("Location: admin-login.php");
     exit();
 }
@@ -19,7 +26,6 @@ include("Rental.php");
 $rental = new Rental(null, null, null);
 $rentalList = $rental->getRentalsData();
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -69,7 +75,8 @@ $rentalList = $rental->getRentalsData();
                 </div>
             </div>
             <div class="settings ps-2 pt-5">
-                <div class="logout p-3"><i class="fa-solid fa-right-from-bracket pe-3 py-3"></i>Log out</div>
+                <div class="logout p-3" data-bs-toggle="modal" data-bs-target="#logoutModal"><i
+                        class="fa-solid fa-right-from-bracket pe-3 py-3"></i>Log out</div>
             </div>
         </div>
     </div>
@@ -98,41 +105,15 @@ $rentalList = $rental->getRentalsData();
             <div class="nav-button listings p-3" id="btn5" onclick="showContent('btn5')">
                 <i class="fa-solid fa-list pe-3"></i></i> Manage Listings
             </div>
-        </div>
-
-        <form method="POST">
             <div class="settings ps-2 pt-5">
-                <div class="logout p-3" id="btn4" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                    <i class="fa-solid fa-right-from-bracket logout-icon pe-1"></i>
-                    <span class="nav-text-side text-start ps-3 ps-sm-3">Log out</span>
-                </div>
-
-                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
-                    aria-hidden="true" data-bs-theme="dark">
-                    <div class="modal-dialog  modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
-                                </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-4">
-                                Are you sure you want to log out?
-                            </div>
-                            <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
-                                    name="btnDenied">No</button>
-                                <button type="submit" class="btn-logout-confirmed text-center"
-                                    name="btnConfirmed">Yes</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="logout p-3" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="fa-solid fa-right-from-bracket pe-3 py-3"></i> Log out
                 </div>
             </div>
-        </form>
-
+        </div>
     </div>
+
+    <?php include("assets/processes/admin-logout-process.php"); ?>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -230,10 +211,11 @@ $rentalList = $rental->getRentalsData();
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1">
-                            <div class="modal-dialog mt-3 ">
+                            <div class="modal-dialog add-item-modal-dialog my-3 ">
                                 <div class="modal-content">
                                     <div class="modal-header add-item-modal">
-                                        <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">Add
+                                        <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">
+                                            Add
                                             Item</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -245,11 +227,10 @@ $rentalList = $rental->getRentalsData();
                                                     <img src="../shared/assets/img/system/bike.jpg" alt=""
                                                         class="img-fluid">
                                                     <label for="customFile"
-                                                        class="btn btn-primary btn-select-main-image mb-2">Select main
-                                                        image</label>
+                                                        class="btn btn-select-main-image mb-2">Select
+                                                        main image</label>
                                                     <input type="file" class="d-none" id="customFile" />
                                                 </div>
-
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" class="form-control add-item-input mb-2 "
                                                         placeholder="Item Name" />
@@ -265,7 +246,8 @@ $rentalList = $rental->getRentalsData();
                                             <div class="row mt-4">
                                                 <div class="col-12 col-md-4">
                                                     <div class="mb-3">
-                                                        <label for="inputGroupRate" class="form-label">Rate Type</label>
+                                                        <label for="inputGroupRate" class="form-label">Rate
+                                                            Type</label>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text rate-type-custom">₱</span>
                                                             <input type="text" class="form-control add-item-input"
@@ -308,8 +290,8 @@ $rentalList = $rental->getRentalsData();
                                     <div class="modal-footer add-item-modal-footer ">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-12 col-md-4">
-                                                    <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                <div class="col-12 col-md-3">
+                                                    <div class="inputGroupCategory" data-bs-theme="dark">
                                                         <label for="inputGroupCategory"
                                                             class="form-label mb-0 me-2 mt-2">Category</label>
                                                         <select class="form-select category-custom mt-2"
@@ -318,18 +300,33 @@ $rentalList = $rental->getRentalsData();
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-4">
+                                                <div class="col-12 col-md-3">
+                                                    <label for="inputGroupType"
+                                                        class="form-label mb-0 me-2 mt-2">Type</label>
+                                                    <input type="text" class="form-control add-item-input mt-2"
+                                                        id="inputGroupType" />
+                                                </div>
+                                                <div class="col-12 col-md-3">
+                                                    <div class="inputGroupCondition" data-bs-theme="dark">
+                                                        <label for="inputGroupCondition"
+                                                            class="form-label mb-0 me-2 mt-2">Condition</label>
+                                                        <select class="form-select category-custom mt-2"
+                                                            id="inputGroupCondition">
+                                                            <option selected>Very Good</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3">
                                                     <label for="inputGroupStocks"
                                                         class="form-label mb-0 me-2 mt-2">Stocks</label>
                                                     <input type="text" class="form-control add-item-input mt-2 mb-4"
                                                         id="inputGroupStocks" />
                                                 </div>
                                                 <div
-                                                    class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                    class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="button"
-                                                        class="btn btn-primary ms-2 add-item-btn-save">Save
+                                                    <button type="button" class="btn ms-2 add-item-btn-save">Save
                                                         Changes</button>
                                                 </div>
                                             </div>

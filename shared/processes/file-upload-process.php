@@ -18,7 +18,7 @@ if (isset($_POST['btnSaveProfile'])) {
     // save the uploaded file
     if (move_uploaded_file($tempName, $folderName . $imgNewFileName)) {
         // update the database
-        $uploadQuery = "UPDATE users SET profilePicture = '$fileName' WHERE userID = $userID;";
+        $uploadQuery = "UPDATE users SET profilePicture = '$imgNewFileName' WHERE userID = $userID;";
         executeQuery($uploadQuery);
     }
 }

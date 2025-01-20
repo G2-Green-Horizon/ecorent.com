@@ -1,0 +1,147 @@
+:root {
+    /* Global Variables */
+    --titleColor: #D2CBA6;
+    --mainColor: #FFFFFF;
+    --beige: #D2CBA6;
+    --moss: #393729;
+    --military: #55523D;
+
+    --bgColor: #282828;
+    --bgColor2: #3B3A3A;
+    --bgColor3: #343333;
+
+    --stroke: #454545;
+    --green: #7F9D5A;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
+    --roundiness: 18.3px;
+}
+
+#cart-page {
+    background-color: #282828;
+    color: #FFFFFF;
+    font-family: var(--font);
+}
+
+.add-all-items{
+    background-color: #343333;
+}
+
+.cart-container{
+    background-color: #343333;
+}
+
+.loc-custom{
+    font-size: 15px;
+    color:white;
+}
+
+.check-custom:checked{
+    background-color:var(--green) !important;
+    border-color: var(--green) !important;
+}
+
+.row-loc{
+    margin-top: -5px;
+}
+
+.form-check-label-custom{
+    font-size: 17px;
+}
+
+.pill-condition{
+    background-color: var(--military);
+    width: auto;
+}
+
+.pill-carbon-emission{
+    background-color: var(--green);
+    width: auto;
+}
+
+.cart-quantity-container .form-control {
+    background-color: transparent;
+    font-family: var(--font);
+    font-size: 16px;
+    border-color:#d2cba66b;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    color: #D2CBA6;
+    border-radius: 0px;
+    width: 60px;
+    height: 30px;
+}
+
+.cart-quantity-container .btn {
+    font-family: var(--font);
+    font-size: 16px;
+    background-color: transparent;
+    color: #D2CBA6;
+    border-color: #d2cba66b;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-cart-subtract{
+    border-top-right-radius: 0;  /* Remove top-right corner rounding */
+    border-bottom-right-radius: 0; /* Remove bottom-right corner rounding */
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-left: 2px;
+    border-left-width: 2px;
+    border-right-width: 1px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.btn-cart-add{
+    border-top-left-radius: 0;  /* Remove top-right corner rounding */
+    border-bottom-left-radius: 0; /* Remove bottom-right corner rounding */
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-width: 1px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.trash-custom{
+    font-size: 20px;
+    color:white;
+}
+
+.per-day-custom{
+    color:#d2cba69c;
+}
+
+.price-custom{
+    color:#D2CBA6;
+}
+
+.est-price{
+    color:#D2CBA6;
+    margin-top: -5px;
+}
+
+.btn-checkout{
+    background-color: var(--titleColor);
+    border-color: var(--titleColor);
+    color: var(--bgColor3);
+    width:100%;
+}
+
+.btn-checkout:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+    color: var(--mainColor);
+}
+
+.btn-checkout:focus {
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: var(--mainColor) !important;
+}
