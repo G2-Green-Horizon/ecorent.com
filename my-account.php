@@ -63,28 +63,7 @@ $rentalList = $rental->getRentalsData();
                 </div>
 
                 <!-- LOG OUT MODAL -->
-                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
-                    aria-hidden="true" data-bs-theme="dark">
-                    <div class="modal-dialog  modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
-                                </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-4">
-                                Are you sure you want to log out?
-                            </div>
-                            <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
-                                    name="btnDenied">No</button>
-                                <button type="submit" class="btn-logout-confirmed text-center"
-                                    name="btnConfirmed">Yes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php include("shared/processes/logout-process.php"); ?>
             </div>
         </div>
 
@@ -127,58 +106,56 @@ $rentalList = $rental->getRentalsData();
                                     <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
                                     <small class="size-info">File Extension: .JPG, .PNG</small>
                                 </div>
-                                <!-- Input Fields Section -->
-                                <div class="col-12 col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12 mb-3">
-                                            <input type="text" id="firstName" class="form-control" name="firstName"
-                                                placeholder="First Name"
-                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
-                                            <div class="invalid-feedback" id="firstNameError"></div>
-                                        </div>
-                                        <div class="col-md-6 col-12 mb-3">
-                                            <input type="text" id="lastName" class="form-control" name="lastName"
-                                                placeholder="Last Name"
-                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
-                                            <div class="invalid-feedback" id="lastNameError"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-12 mb-3">
-                                        <input type="email" id="email" class="form-control" name="email"
-                                            placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>">
-                                        <div class="invalid-feedback" id="emailError"></div>
-                                    </div>
-                                    <div class="col-12 col-md-12 mb-3">
-                                        <input type="text" id="address" class="form-control" name="address"
-                                            placeholder="Address"
-                                            value="<?php echo $userInfoArray['address'] ?? ''; ?>">
-                                    </div>
-                                    <div class="col-12 col-md-12 mb-3">
-                                        <input type="text" id="contactNumber" class="form-control" name="contactNumber"
-                                            placeholder="Phone Number"
-                                            value="<?php echo $userInfoArray['contactNumber'] ?? ''; ?>">
-                                    </div>
-                                    <!-- Gender Selection -->
-                                    <div class="mb-4 d-flex align-items-center" id="gender-selection">
-                                        <label class="form-label me-4 mb-1" for="gender">Gender:</label>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="Male"
-                                                id="male" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Male') ? 'checked' : ''; ?>>
-                                            <label class="form-check-label" for="male">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="Female"
-                                                id="female" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Female') ? 'checked' : ''; ?>>
-                                            <label class="form-check-label" for="female">Female</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="Other"
-                                                id="other" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Other') ? 'checked' : ''; ?>>
-                                            <label class="form-check-label" for="other">Other</label>
-                                        </div>
-                                    </div>
+                                 <!-- Input Fields Section -->
+                        <div class="col-12 col-md-8">
+                            <div class="row">
+                                <div class="col-md-6 col-12 mb-3">
+                                    <input type="text" id="firstName" class="form-control" name="firstName"
+                                        placeholder="First Name"
+                                        value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                    <div class="invalid-feedback" id="firstNameError"></div>
                                 </div>
-
+                                <div class="col-md-6 col-12 mb-3">
+                                    <input type="text" id="lastName" class="form-control" name="lastName"
+                                        placeholder="Last Name" value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                    <div class="invalid-feedback" id="lastNameError"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Email"
+                                    value="<?php echo $userInfoArray['email'] ?? ''; ?>">
+                                <div class="invalid-feedback" id="emailError"></div>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" id="address" class="form-control" name="address"
+                                    placeholder="Address" value="<?php echo $userInfoArray['address'] ?? ''; ?>">
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <input type="text" id="contactNumber" class="form-control" name="contactNumber"
+                                    placeholder="Phone Number"
+                                    value="<?php echo $userInfoArray['contactNumber'] ?? ''; ?>">
+                            </div>
+                            <!-- Gender Selection -->
+                            <div class="mb-4 d-flex align-items-center" id="gender-selection">
+                                <label class="form-label me-4 mb-1" for="gender">Gender:</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Male" id="male"
+                                        <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Female"
+                                        id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Other" id="other"
+                                        <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                    
 
 
                                 <!-- Save Button -->
@@ -266,7 +243,7 @@ $rentalList = $rental->getRentalsData();
                                 will lose access to your account and its data forever.
                             </div>
                             <div class="container d-flex justify-content-end my-3">
-                                <button type="submit" class="btn-delete-denied text-center mx-2 p-2"
+                                <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
                                 <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
                                     I want

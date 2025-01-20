@@ -22,7 +22,7 @@
 body {
     background-color: var(--bgColor);
     font-family: var(--mainFont);
-    overflow: hidden;
+    /* overflow-x: hidden; */
     position: relative;
 }
 
@@ -128,17 +128,6 @@ body {
 
 .offcanvas {
     background-color: var(--bgColor2) !important;
-}
-
-.btn-close {
-    background: transparent !important;
-    border: none !important;
-}
-
-.btn-close i {
-    font-size: 30px;
-    color: var(--mainColor);
-    padding-right: 10px;
 }
 
 @media (max-width: 768px) {

@@ -4,7 +4,10 @@
     --btnBg: #929292;
     --rowBg: #343333;
     --font: 'Studio Feixen Variable', sans-serif;
+}
 
+:root {
+    /* Global Variables */
     --titleColor: #D2CBA6;
     --mainColor: #FFFFFF;
     --beige: #D2CBA6;
@@ -20,7 +23,6 @@
     --danger: #D10D0D;
     --mainFont: 'Studio Feixen Variable', sans-serif;
     --roundiness: 18.3px;
-
     --margin: 300px;
 }
 
@@ -103,20 +105,20 @@ body {
     border: none;
 }
 
-i {
+.product-page i, 
+.listings i{
     font-size: 28px;
     color: #5A5858;
 }
 
 #badge-condition {
-    background-color: var(--military);
-    width: auto;
+    background-color: #55523D;
+    width: 109px;
     height: 23px;
     color: #C3C1C1;
     font-size: 14px;
     font-weight: 200;
     font-family: var(--font);
-    padding-inline: 18px;
 }
 
 #badge-tracker {
@@ -153,7 +155,7 @@ i {
     font-weight: bold;
 }
 
-#product-page .btn-custom-outline {
+.product-page .btn-custom-outline {
     border-radius: 18.3px;
     color: #D2CBA6;
     font-family: var(--font);
@@ -161,7 +163,7 @@ i {
     background-color: transparent;
 }
 
-#product-page .btn-custom-dark {
+.product-page .btn-custom-dark {
     border-radius: 18.3px;
     color: #282828;
     font-family: var(--font);
@@ -210,7 +212,7 @@ input::-webkit-inner-spin-button {
 
 #homepage,
 .listings,
-#product-page {
+.product-page {
     background-color: #282828;
     font-family: var(--font);
     margin: 0;
@@ -223,15 +225,14 @@ input::-webkit-inner-spin-button {
 
 #homepage h5,
 #homepage h2,
-.listings .h2,
-#product-page h3,
-#product-page p {
+.listings .h3,
+.product-page h3,
+.product-page p {
     color: #FFFFFF;
 }
 
 #homepage .custom-card,
-.listings .custom-card,
-.listings .card {
+.listings .custom-card {
     background-color: #343333;
     border-radius: 16px;
 }
@@ -287,13 +288,22 @@ input::-webkit-inner-spin-button {
 
 /* listings */
 
+.listing-container{
+    position: relative;
+}
+
+.listings .filter-card{
+    background-color: var(--bgColor);
+    position: absolute;
+}
+
 .listings i {
-    font-size: 28;
+    font-size: 24;
     color: white
 }
 
 .listings p {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .listings .custom-price {
@@ -392,7 +402,13 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 768px) {
     .listings .custom-card{
-        width: 70%;
+        width: 55%;
+    }
+}
+
+@media (max-width: 735px) {
+    .listings .custom-card{
+        width: 60%;
     }
 }
 
