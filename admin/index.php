@@ -113,9 +113,6 @@ $rentalList = $rental->getRentalsData();
         </div>
     </div>
 
-
-
-
     <?php include("assets/processes/admin-logout-process.php"); ?>
 
     <!-- Main Content -->
@@ -230,13 +227,10 @@ $rentalList = $rental->getRentalsData();
                                                     <img src="../shared/assets/img/system/bike.jpg" alt=""
                                                         class="img-fluid">
                                                     <label for="customFile"
-                                                        class="btn btn-primary btn-select-main-image mb-2">Select
-                                                        main
-                                                        class="btn btn-select-main-image mb-2">Select main
-                                                        image</label>
+                                                        class="btn btn-select-main-image mb-2">Select
+                                                        main image</label>
                                                     <input type="file" class="d-none" id="customFile" />
                                                 </div>
-
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" class="form-control add-item-input mb-2 "
                                                         placeholder="Item Name" />
@@ -429,21 +423,6 @@ $rentalList = $rental->getRentalsData();
             var savedSection = localStorage.getItem("activeSection") || "btn1";
             showContent(savedSection);
         });
-
-        // function closeOffcanvasAndShowModal() {
-        //     var offcanvas = document.getElementById('sideBar');
-        //     var bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
-
-        //     if (bsOffcanvas) {
-        //         bsOffcanvas.hide();
-        //     }
-
-        //     setTimeout(() => {
-        //         var logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
-        //         logoutModal.show();
-        //     }, 500);
-        // }
-
 
     </script>
 
