@@ -1,7 +1,6 @@
 <?php
-
-include("shared/classes/Item.php");
-include("shared/classes/User.php");
+include("processes/upload-process.php");
+include("../connect.php");
 class Rental
 {
     public $rentalID;
@@ -131,12 +130,12 @@ class Rental
                             <div class="card-body-rentals">
                                 <div class="rentals-content">
                                     <div class="order-content">
-                                        <img src="assets/img/system/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
-                                        <h4>'.$this->itemName.'</h4>
+                                        <img src="assets/img/items/' . $this->itemDisplayImg . '" alt="" class="img-fluid">
+                                        <h4>' . $this->itemName . '</h4>
                                     </div>
                                     <div class="actions">
                                         <button class="btn-hand-in d-none btn-update-status rounded-3 mx-2 mx-md-5">RECEIVED</button>
-                                        <a href="transaction-page.php?rentalID='.$this->rentalID.'">
+                                        <a href="transaction-page.php?rentalID=' . $this->rentalID . '">
                                             <div class="btn-see-details rounded-4">
                                                 <button class=""><i class="fa fa-chevron-right"></i></button>
                                             </div>
@@ -230,4 +229,3 @@ class Rental
         ($status != 'overdue') ? 'd-none' : 'd-block';
     }
 }
-?>

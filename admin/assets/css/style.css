@@ -211,6 +211,33 @@ body {
 
 }
 
+/* DASHBOARD */
+.dashboard-content {
+    background-color: var(--bgColor2);
+}
+
+.dashboard-content p {
+    font-size: 20px;
+}
+
+.co2-data .data {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.analysis-item {
+    background-color: var(--bgColor2);
+}
+
+.analysis-item .data{
+    font-size: 24px;
+}
+
+.analysis-item .highlight{
+    font-size: 30px;
+    font-weight: 600;
+}
+
 /* ACTIVE RENTALS */
 .card-body-rentals {
     background-color: var(--bgColor);
@@ -251,6 +278,32 @@ body {
 .active-rentals {
     text-decoration: none;
 }
+
+.btn-update-status {
+    background-color: var(--beige);
+    border-color: transparent;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.btn-see-details button {
+    border-radius: 600px;
+    padding-inline: 20px;
+    padding-block: 14px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-see-details button:hover {
+    background-color: var(--stroke);
+}
+
+.rentals-content .actions {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 
 /* MANAGE LISTINGS STYLES*/
 .card-body-listings {
@@ -418,7 +471,7 @@ body {
     justify-content: center;
 }
 
-.modal-dialog {
+.add-item-modal-dialog {
     max-width: 900px;
     margin: 0 auto;
 }
@@ -436,6 +489,7 @@ body {
     border-radius: 10px;
     border: 1px solid #b9b9b9;
     background-color: var(--bgColor);
+    color:white;
 }
 
 .btn-select-main-image:hover {
@@ -458,14 +512,14 @@ body {
 }
 
 .add-item-textarea-desc {
-    resize: none; 
-    height: 100px; 
+    resize: none;
+    height: 100px;
     overflow-y: auto;
 }
 
 .add-item-textarea-specs {
-    resize: none; 
-    height: 94px; 
+    resize: none;
+    height: 94px;
     overflow-y: auto;
 }
 
@@ -506,21 +560,20 @@ textarea.add-item-input {
     color: white;
 }
 
-.add-item-btn-save{
+.add-item-btn-save {
     background-color: var(--titleColor);
     border-color: var(--titleColor);
     color: var(--bgColor3);
 }
 
-.add-item-btn-save:hover{
+.add-item-btn-save:hover {
     background-color: var(--green);
     border-color: var(--green);
     color: var(--mainColor);
 }
 
-.add-item-btn-save:focus{
+.add-item-btn-save:focus {
     background-color: var(--green) !important;
     border-color: var(--green) !important;
     color: var(--mainColor) !important;
 }
-

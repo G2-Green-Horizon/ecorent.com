@@ -1,5 +1,9 @@
 <?php
-include("processes/upload-process.php");
+include("Rental.php");
+
+// RENTAL STATUS CARD
+$rental = new Rental(null, null, null);
+$rentalList = $rental->getRentalsData();
 
 date_default_timezone_set('Asia/Manila');
 
@@ -27,11 +31,11 @@ if (isset($_GET['filterCategory'])) {
 
 $displayItemsResult = executeQuery($displayItemsQuery);
 
-$displayForEditQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
-$displayForEditResult = executeQuery($displayItemsQuery);
-
 $itemCategoryQuery = "SELECT * FROM categories";
 $itemCategoryResult = executeQuery($itemCategoryQuery);
+
+$itemConditionQuery = "SELECT * FROM conditions";
+$itemConditionResult = executeQuery($itemConditionQuery);
 
 if (isset($_POST['deleteBtn'])) {
     $itemID = $_POST['itemID'];
@@ -50,14 +54,16 @@ if (isset($_POST['addItemBtn'])) {
     $pricePerDay = mysqli_real_escape_string($conn, $_POST['pricePerDay']);
     $gasEmissionSaved = mysqli_real_escape_string($conn, $_POST['gasEmissionSaved']);
     $category = mysqli_real_escape_string($conn, $_POST['selectedCategory']);
+    $itemType = mysqli_real_escape_string($conn, $_POST['inputGroupType']);
+    $itemCondition = mysqli_real_escape_string($conn, $_POST['inputGroupCondition']);
     $itemStock = mysqli_real_escape_string($conn, $_POST['itemStock']);
 
     $getNextIDQuery = "SHOW TABLE STATUS LIKE 'items'";
     $getNextIDResult = executeQuery($getNextIDQuery);
     $row = mysqli_fetch_assoc($getNextIDResult);
 
-    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `stock`, `location`, `isFeatured`, `isDeleted`) 
-    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', 'Yes', 'No')";
+    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `isFeatured`, `isDeleted`) 
+    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', 'Yes', 'No')";
 
     $insertItemResult = executeQuery($insertItemQuery);
 
@@ -65,7 +71,7 @@ if (isset($_POST['addItemBtn'])) {
 
     uploadImage('addAttachment', $itemID, 'addItem');
 
-    header("Location: index.php");
+    header("Location: index.php#displayedItem" . $itemID);
     exit();
 }
 
@@ -76,19 +82,27 @@ if (isset($_POST['editItemID'])) {
     $pricePerDay = mysqli_real_escape_string($conn, $_POST['editPrice']);
     $gasEmissionSaved = mysqli_real_escape_string($conn, $_POST['editGas']);
     $category = mysqli_real_escape_string($conn, $_POST['editCategory']);
+    $editType = mysqli_real_escape_string($conn, $_POST['editType']);
+    $editCondition = mysqli_real_escape_string($conn, $_POST['editCondition']);
     $itemStock = mysqli_real_escape_string($conn, $_POST['editStock']);
     $itemID = $_POST['editItemID'];
 
     $updateItemsQuery = "UPDATE `items` SET `itemName` = '$itemName', `description` = '$itemDesc', `itemSpecifications` = '$itemSpec', 
-    `pricePerDay` = '$pricePerDay', `gasEmissionSaved` = '$gasEmissionSaved', `categoryID` = '$category', `stock` = '$itemStock' WHERE `itemID` = '$itemID'";
+    `pricePerDay` = '$pricePerDay', `gasEmissionSaved` = '$gasEmissionSaved', `categoryID` = '$category', `itemType` = '$editType', `conditionID` = '$editCondition', `stock` = '$itemStock' WHERE `itemID` = '$itemID'";
 
     $udpateItemsResult = executeQuery($updateItemsQuery);
 
     $attachment = "editAttachment" . $itemID;
     uploadImage($attachment, $itemID, 'editItem');
 
-    header("Location: index.php");
+    header("Location: index.php#displayedItem" . $itemID);
     exit();
+}
+
+if (isset($_POST['cancelEdit'])) {
+    $itemID = $_POST['cancelEdit'];
+
+    header("Location: index.php#displayedItem" . $itemID);
 }
 ?>
 
@@ -110,6 +124,7 @@ if (isset($_POST['editItemID'])) {
     <!-- FONTS -->
     <link rel="stylesheet" href="../shared/assets/font/font.css">
     <link rel="stylesheet" href="../shared/assets/css/modal.css">
+    <script src="assets/js/Chart.js"></script>
 </head>
 
 <body>
@@ -119,9 +134,6 @@ if (isset($_POST['editItemID'])) {
         <div class="offcanvas-header">
             <div class="logo-brand ps-5 pt-3 pb-3"><img src="../shared/assets/img/system/ecorent-logo-2.png"
                     class="logo"></div>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
         </div>
         <div class="offcanvas-body">
             <div class="navigations">
@@ -180,14 +192,15 @@ if (isset($_POST['editItemID'])) {
                     <span class="nav-text-side text-start ps-3 ps-sm-3">Log out</span>
                 </div>
 
-                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true"
-                    data-bs-theme="dark">
+                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                    aria-hidden="true" data-bs-theme="dark">
                     <div class="modal-dialog  modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out Account
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body p-4">
                                 Are you sure you want to log out?
@@ -210,19 +223,7 @@ if (isset($_POST['editItemID'])) {
     <div class="main-content">
 
         <!-- DASHBOARD -->
-        <div class="content-card dashboard" id="container1">
-            <div class="title">
-                <div class="menu" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-controls="sideBar">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <h1>Analytics</h1>
-            </div>
-            <div class="content">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nobis sequi numquam adipisci voluptas
-                    dolorum quo ex optio alias dolore porro quaerat earum tempora harum illum sit, possimus aliquid
-                    aliquam.</p>
-            </div>
-        </div>
+        <?php include("tabs/dashboard.php") ?>
 
         <!-- PENDING REQUEST -->
         <div class="content-card pendings" id="container2">
@@ -232,52 +233,15 @@ if (isset($_POST['editItemID'])) {
                 </div>
                 <h1>Pending Requests</h1>
             </div>
-            <div class="content">
+            <div class="content mt-4">
                 <!-- [CONTENTS] -->
-                <div class="container mt-4">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid">
+                    <!-- RENTAL STATUS CARDS -->
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'pending') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -292,33 +256,12 @@ if (isset($_POST['editItemID'])) {
             </div>
             <div class="content">
                 <!-- [CONTENTS] -->
-                <div class="container mt-4">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <button class="btn-hand-in rounded-3">HAND IN</button>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <button class="btn-hand-in rounded-3">HAND IN</button>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid mt-4">
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'pickup') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -333,20 +276,12 @@ if (isset($_POST['editItemID'])) {
             </div>
             <!-- CONTENTS -->
             <div class="content mt-4">
-                <div class="container">
-                    <div class="row">
-                        <a href="#" class="active-rentals">
-                            <div class="card-body-rentals">
-                                <div class="rentals-content">
-                                    <div class="order-content">
-                                        <img src="../shared/assets/img/system/bike.jpg" alt="" class="img-fluid">
-                                        <h4>TrailMaster X200 Mountain Bike</h4>
-                                    </div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="container-fluid">
+                    <?php foreach ($rentalList as $rentalCard) {
+                        if ($rentalCard->status === 'on rent') {
+                            echo $rentalCard->buildAdminRentalCard();
+                        }
+                    } ?>
                 </div>
             </div>
         </div>
@@ -394,7 +329,7 @@ if (isset($_POST['editItemID'])) {
                         <!-- Add Item Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1">
-                            <div class="modal-dialog mt-3 ">
+                            <div class="modal-dialog add-item-modal-dialog my-3 ">
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="modal-content">
                                         <div class="modal-header add-item-modal">
@@ -410,7 +345,7 @@ if (isset($_POST['editItemID'])) {
                                                         <img src="../shared/assets/img/system/bike.jpg" alt=""
                                                             class="img-fluid" id="displayAttachment">
                                                         <label for="customFile"
-                                                            class="btn btn-primary btn-select-main-image mb-2">Select main
+                                                            class="btn btn-select-main-image mb-2">Select main
                                                             image</label>
                                                         <input type="file" class="d-none" name="addAttachment" id="customFile" accept=".png, .jpg" required />
                                                     </div>
@@ -474,8 +409,8 @@ if (isset($_POST['editItemID'])) {
                                         <div class="modal-footer add-item-modal-footer ">
                                             <div class="container">
                                                 <div class="row">
-                                                    <div class="col-12 col-md-4">
-                                                        <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                    <div class="col-12 col-md-3">
+                                                        <div class="inputGroupCategory" data-bs-theme="dark">
                                                             <label for="inputGroupCategory"
                                                                 class="form-label mb-0 me-2 mt-2">Category</label>
                                                             <select class="form-select category-custom mt-2"
@@ -490,14 +425,38 @@ if (isset($_POST['editItemID'])) {
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-4">
+                                                    <div class="col-12 col-md-3">
+                                                        <label for="inputGroupType"
+                                                            class="form-label mb-0 me-2 mt-2">Type</label>
+                                                        <input type="text" class="form-control add-item-input mt-2"
+                                                            id="inputGroupType" name="inputGroupType" />
+                                                    </div>
+                                                    <div class="col-12 col-md-3">
+                                                        <div class="inputGroupCondition" data-bs-theme="dark">
+                                                            <label for="inputGroupCondition"
+                                                                class="form-label mb-0 me-2 mt-2">Condition</label>
+                                                            <select class="form-select category-custom mt-2"
+                                                                id="inputGroupCondition" name="inputGroupCondition">
+                                                                <?php
+                                                                if (mysqli_num_rows($itemConditionResult) > 0) {
+                                                                    while ($condition = mysqli_fetch_assoc($itemConditionResult)) {
+                                                                ?>
+                                                                        <option value="<?php echo $condition['conditionID']; ?>"><?php echo $condition['conditionName']; ?></option>
+                                                                <?php
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-3">
                                                         <label for="inputGroupStocks"
                                                             class="form-label mb-0 me-2 mt-2">Stocks</label>
                                                         <input type="number" class="form-control add-item-input mt-2 mb-4"
                                                             id="inputGroupStocks" name="itemStock" value="" required />
                                                     </div>
                                                     <div
-                                                        class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                        class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal" onclick="cancelAddItem();">Cancel</button>
                                                         <button type="submit"
@@ -511,14 +470,19 @@ if (isset($_POST['editItemID'])) {
                             </div>
                         </div>
                         <!-- Edit Item Modal -->
-                        <?php if (mysqli_num_rows($displayForEditResult) > 0) {
-                            while ($editModalItem = mysqli_fetch_assoc($displayForEditResult)) {
+                        <?php if (mysqli_num_rows($displayItemsResult) > 0) {
+                            while ($editModalItem = mysqli_fetch_assoc($displayItemsResult)) {
                                 $imageID = htmlspecialchars($editModalItem['itemID'], ENT_QUOTES, 'UTF-8');
                         ?>
                                 <div class="modal fade" id="staticBackdrop<?php echo $editModalItem['itemID']; ?>" data-bs-backdrop="static" data-bs-keyboard="false"
                                     tabindex="-1">
-                                    <div class="modal-dialog mt-3 ">
-                                        <form method="POST" id="form<?php echo $editModalItem['itemID']; ?>" enctype="multipart/form-data">
+                                    <div class="modal-dialog add-item-modal-dialog mt-3 ">
+                                        <!-- Cancel Edit Form -->
+                                        <form method="POST" id="cancelForm<?php echo $editModalItem['itemID']; ?>">
+                                            <input type="hidden" name="cancelEdit" value="<?php echo $editModalItem['itemID']; ?>">
+                                        </form>
+                                        <!-- Edit Modal Form -->
+                                        <form method="POST" id="form<?php echo $editModalItem['itemID']; ?>" enctype="multipart/form-data" onsubmit="">
                                             <input type="hidden" name="editItemID" value="<?php echo $editModalItem['itemID']; ?>">
                                             <div class="modal-content">
                                                 <div class="modal-header add-item-modal">
@@ -596,8 +560,8 @@ if (isset($_POST['editItemID'])) {
                                                 <div class="modal-footer add-item-modal-footer ">
                                                     <div class="container">
                                                         <div class="row">
-                                                            <div class="col-12 col-md-4">
-                                                                <div class="inputGroupSelect01" data-bs-theme="dark">
+                                                            <div class="col-12 col-md-3">
+                                                                <div class="inputGroupCategory" data-bs-theme="dark">
                                                                     <label for="inputGroupCategory<?php echo $editModalItem['itemID']; ?>"
                                                                         class="form-label mb-0 me-2 mt-2">Category</label>
                                                                     <select class="form-select category-custom mt-2"
@@ -613,16 +577,40 @@ if (isset($_POST['editItemID'])) {
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-md-4">
+                                                            <div class="col-12 col-md-3">
+                                                                <label for="inputGroupType<?php echo $editModalItem['itemID']; ?>"
+                                                                    class="form-label mb-0 me-2 mt-2">Type</label>
+                                                                <input type="text" class="form-control add-item-input mt-2"
+                                                                    id="inputGroupType<?php echo $editModalItem['itemID']; ?>" name="editType" value="<?php echo $editModalItem['itemType']; ?>" />
+                                                            </div>
+                                                            <div class="col-12 col-md-3">
+                                                                <div class="inputGroupCondition" data-bs-theme="dark">
+                                                                    <label for="inputGroupCondition<?php echo $editModalItem['itemID']; ?>"
+                                                                        class="form-label mb-0 me-2 mt-2">Condition</label>
+                                                                    <select class="form-select category-custom mt-2"
+                                                                        id="inputGroupCondition<?php echo $editModalItem['itemID']; ?>" name="editCondition">
+                                                                        <?php mysqli_data_seek($itemConditionResult, 0);
+                                                                        if (mysqli_num_rows($itemConditionResult) > 0) {
+                                                                            while ($editCondition = mysqli_fetch_assoc($itemConditionResult)) {
+                                                                        ?>
+                                                                                <option <?php echo $editModalItem['conditionID'] == $editCondition['conditionID'] ? 'selected' : ''; ?> value="<?php echo $editCondition['conditionID']; ?>"><?php echo $editCondition['conditionName']; ?></option>
+                                                                        <?php
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-md-3">
                                                                 <label for="inputGroupStocks<?php echo $editModalItem['itemID']; ?>"
                                                                     class="form-label mb-0 me-2 mt-2">Stocks</label>
                                                                 <input type="number" class="form-control add-item-input mt-2 mb-4"
                                                                     id="inputGroupStocks<?php echo $editModalItem['itemID']; ?>" name="editStock" value="<?php echo $editModalItem['stock']; ?>" required />
                                                             </div>
                                                             <div
-                                                                class="col-12 col-md-4 add-item-btn-custom d-flex justify-content-center align-items-center">
+                                                                class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal" onclick="window.location.href='#displayedItem<?php echo $editModalItem['itemID']; ?>';">Cancel</button>
+                                                                    data-bs-dismiss="modal" onclick="document.getElementById('cancelForm<?php echo $editModalItem['itemID']; ?>').submit(); ">Cancel</button>
                                                                 <button type="button"
                                                                     class="btn btn-primary ms-2 add-item-btn-save" onclick="document.getElementById('form<?php echo $editModalItem['itemID']; ?>').submit();">Save
                                                                     Changes</button>
@@ -655,7 +643,7 @@ if (isset($_POST['editItemID'])) {
 
             <div class="content mt-5">
                 <!-- CONTENTS -->
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="manage-listings">
                             <h3>Filter By:
@@ -674,7 +662,8 @@ if (isset($_POST['editItemID'])) {
                                 </span>
                             </h3>
                             <!-- Generate With PHP -->
-                            <?php if (mysqli_num_rows($displayItemsResult)) {
+                            <?php mysqli_data_seek($displayItemsResult, 0);
+                            if (mysqli_num_rows($displayItemsResult)) {
                                 while ($items = mysqli_fetch_assoc($displayItemsResult)) { ?>
                                     <form method="POST">
                                         <div class="card-body-listings p-3">
@@ -714,7 +703,9 @@ if (isset($_POST['editItemID'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/49a3347974.js" crossorigin="anonymous"></script>
+    <script src="assets/js/analytics.js"></script>
     <script>
         var containers = [
             document.getElementById("container1"),

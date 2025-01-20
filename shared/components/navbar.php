@@ -1,4 +1,15 @@
 <?php
+$searchKeyword = '';
+$loadSearchResult = null;
+
+
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchKeyword = mysqli_real_escape_string($conn, $_GET['search']);
+    $searchCondition = "(itemName LIKE '%$searchKeyword%' OR itemType LIKE '%$searchKeyword%')";
+} else {
+    $searchCondition = '';
+}
+
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 $categoryQuery = "SELECT * FROM categories";
@@ -8,7 +19,10 @@ if (isset($_GET['setCategory'])) {
     $chosenCategory = $_GET['setCategory'];
 
     $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.categoryID = '$chosenCategory' AND items.isDeleted ='No'";
-    $loadItemsResult = executeQuery($loadItemsQuery);
+
+    if ($searchCondition) {
+        $loadItemsQuery .= " AND $searchCondition";
+    }
 
     if ($currentPage != 'listings.php') {
         header("Location: listings.php?setCategory=" . $chosenCategory);
@@ -16,7 +30,10 @@ if (isset($_GET['setCategory'])) {
     }
 } else {
     $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
-    $loadItemsResult = executeQuery($loadItemsQuery);
+
+    if ($searchCondition) {
+        $loadItemsQuery .= " AND $searchCondition";
+    }
 }
 
 if (isset($_GET['applyFilter'])) {
@@ -24,7 +41,7 @@ if (isset($_GET['applyFilter'])) {
         $selectedCategories = $_GET['itemFilter'];
         $categoriesList = implode(",", $selectedCategories);
 
-        $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.categoryID IN ($categoriesList) AND items.isDeleted ='No'";
+        $loadItemsQuery .= " AND items.categoryID IN ($categoriesList)";
 
         if (!empty($_GET['min']) && !empty($_GET['max'])) {
             $minPrice = (int)$_GET['min'];
@@ -40,6 +57,10 @@ if (isset($_GET['applyFilter'])) {
             $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
         }
     }
+
+    if ($searchCondition) {
+        $loadItemsQuery .= " AND $searchCondition";
+    }
 }
 $loadItemsResult = executeQuery($loadItemsQuery);
 ?>
@@ -54,12 +75,17 @@ $loadItemsResult = executeQuery($loadItemsQuery);
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
-            <div class="input-group mx-auto mb-3">
-                <input type="text" class="form-control dark-input" placeholder="Search for items">
-                <button class="navbar-btn" type="button">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
+
+            <form class="mx-auto w-100" action="listings.php" method="GET">
+                <div class="input-group mx-auto mb-3">
+                    <input type="text" name="search"
+                        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>"
+                        class="form-control dark-input" placeholder="Search for items">
+                    <button class="navbar-btn" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
 
             <div class="d-flex justify-content-center mb-3">
                 <button class="navbar-btn rounded-5 me-2">
@@ -83,7 +109,8 @@ $loadItemsResult = executeQuery($loadItemsQuery);
                         <form method="GET" id="submitCategory<?php echo $category['categoryID']; ?>">
                             <input type="hidden" name="setCategory" value="<?php echo $category['categoryID']; ?>">
                             <li class="nav-item">
-                                <button class="nav-link text-dark" onclick="submitForm(<?php echo $category['categoryID']; ?>);">
+                                <button class="nav-link text-dark"
+                                    onclick="submitForm(<?php echo $category['categoryID']; ?>);">
                                     <?php echo $category['categoryName']; ?>
                                 </button>
                             </li>

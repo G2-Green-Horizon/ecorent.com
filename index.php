@@ -69,7 +69,7 @@ include("shared/processes/process-index.php");
                 </div>
             </a>
 
-            <a href="listings.php?setCategory=4" class="col-12 col-sm-6 col-md-4 col-lg-auto">
+            <a href="listings.php?setCategory=2" class="col-12 col-sm-6 col-md-4 col-lg-auto">
                 <div class="d-flex align-items-center p-3 rounded-pill" style="background-color: #343333;">
                     <img src="shared/assets/img/system/transportation.png" class="img-fluid me-2"
                         style="width: 55px; height: auto;">

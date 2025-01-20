@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../../connect.php';
+//include __DIR__ . '/../../connect.php';
 
 function uploadImage($fileInput, $itemID, $processType)
 {
@@ -20,7 +20,9 @@ function uploadImage($fileInput, $itemID, $processType)
         $insertAttachmentQuery = "INSERT INTO attachments(`itemID`, `fileName`) VALUES ('$itemID', '$htmlNewFileName')";
         executeQuery($insertAttachmentQuery);
     } else if ($processType == "editItem") {
-        $updateAttachmentQuery = "UPDATE `attachments` SET `fileName`='$htmlNewFileName' WHERE itemID = '$itemID'";
-        executeQuery($updateAttachmentQuery);
+        if ($htmlFileUpload !== "") {
+            $updateAttachmentQuery = "UPDATE `attachments` SET `fileName`='$htmlNewFileName' WHERE itemID = '$itemID'";
+            executeQuery($updateAttachmentQuery);
+        }
     }
 }
