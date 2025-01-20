@@ -14,9 +14,12 @@ if (isset($_GET["btnRentNow"])) {
 $itemInfoArray = array();
     if (isset($_GET["id"])) {
         // Query to retrieve needed item infos for product page.
-        $getItemsInfoQuery = "SELECT itemName, pricePerDay, itemCondition, location, gasEmissionSaved, itemSpecifications, description, stock 
-                              FROM items 
-                              WHERE itemID = $itemID";
+        $getItemsInfoQuery = "SELECT items.itemName, items.pricePerDay, items.itemCondition, items.location, items.gasEmissionSaved, 
+                      items.itemSpecifications, items.description, items.stock, attachments.fileName
+                      FROM items 
+                      JOIN attachments ON items.itemID = attachments.itemID
+                      WHERE items.itemID = $itemID";
+
 
         $getItemsInfoResult = executeQuery($getItemsInfoQuery);
 

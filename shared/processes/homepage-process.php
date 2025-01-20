@@ -23,9 +23,10 @@ $itemsArray = [];
 // Fetch items based on user preferences.
 if (count($categoryIDsArray) > 0) {
     $categoryIDsList = implode(",", $categoryIDsArray);
-    $retrieveItemsQuery = "SELECT itemID, itemName, pricePerDay, categories.categoryID, categoryName
+    $retrieveItemsQuery = "SELECT items.itemID, items.itemName, items.pricePerDay, categories.categoryID, categories.categoryName, attachments.fileName
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
+        JOIN attachments on items.itemID = attachments.itemID
         WHERE items.categoryID IN ($categoryIDsList)
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
@@ -39,7 +40,8 @@ if (count($categoryIDsArray) > 0) {
                 $itemsRow["categoryID"],
                 $itemsRow["itemName"],
                 $itemsRow["pricePerDay"],
-                $itemsRow["categoryName"]
+                $itemsRow["categoryName"],
+                $itemsRow["fileName"]
             );
         }
     }
@@ -67,13 +69,14 @@ if (count($categoryIDsArray) > 0) {
 
         // Query to retrieve items from the remaining categories the user did not choose.
         $retrieveRemainingItemsQuery = "
-            SELECT itemID, itemName, pricePerDay, categories.categoryID, categoryName
-            FROM items 
-            JOIN categories ON items.categoryID = categories.categoryID
-            WHERE items.categoryID IN ($remainingCategoriesList)
-            ORDER BY categoryName ASC
-            LIMIT $remainingItemsLimit OFFSET $offset
-        ";
+        SELECT items.itemID, items.itemName, items.pricePerDay, categories.categoryID, categories.categoryName, attachments.fileName
+        FROM items 
+        JOIN categories ON items.categoryID = categories.categoryID
+        JOIN attachments on items.itemID = attachments.itemID
+        WHERE items.categoryID IN ($remainingCategoriesList)
+        ORDER BY categoryName ASC
+        LIMIT $limit OFFSET $offset";
+    
 
         $retrieveRemainingItemsResult = executeQuery($retrieveRemainingItemsQuery);
 
@@ -84,7 +87,8 @@ if (count($categoryIDsArray) > 0) {
                     $itemsRow['categoryID'],
                     $itemsRow['itemName'],
                     $itemsRow['pricePerDay'],
-                    $itemsRow['categoryName']
+                    $itemsRow['categoryName'],
+                    $itemsRow["fileName"]
                 );
             }
         }
@@ -99,7 +103,7 @@ foreach ($totalItemsArray as $item) {
     echo '
     <a href="product-page.php?id=' . $item->itemID . '" class="item-card col-12 col-md-6 col-lg-4 col-xl-3">
         <div class="card my-3 custom-card">
-            <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="' . ($item->itemName) . '">
+            <img src="shared/assets/img/system/items/' . ($item->fileName) .' " class="card-img-top" alt="' . ($item->itemName) . '">
             <div class="card-body">
                 <h5 class="card-title">' . ($item->itemName) . '</h5>
                 <h5 class="card-text">' . ($item->categoryName) . '</h5>
