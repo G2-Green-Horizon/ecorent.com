@@ -105,8 +105,7 @@ body {
     border: none;
 }
 
-.product-page i, 
-.listings i{
+.product-page i{
     font-size: 28px;
     color: #5A5858;
 }
@@ -211,7 +210,6 @@ input::-webkit-inner-spin-button {
 /* index.php css */
 
 #homepage,
-.listings,
 .product-page {
     background-color: #282828;
     font-family: var(--font);
@@ -225,20 +223,17 @@ input::-webkit-inner-spin-button {
 
 #homepage h5,
 #homepage h2,
-.listings .h3,
 .product-page h3,
 .product-page p {
     color: #FFFFFF;
 }
 
-#homepage .custom-card,
-.listings .custom-card {
+#homepage .custom-card {
     background-color: #343333;
     border-radius: 16px;
 }
 
-#homepage .btn,
-.listings .btn {
+#homepage .btn {
     width: 421px;
     color: #D2CBA6;
     background-color: #333333;
@@ -248,8 +243,7 @@ input::-webkit-inner-spin-button {
     font-size: 16px;
 }
 
-#homepage .btn:hover,
-.listings .btn:hover {
+#homepage .btn:hover {
     background-color: #555555;
     color: #F6F4F2;
 }
@@ -262,8 +256,7 @@ input::-webkit-inner-spin-button {
     background-color: #555555;
 }
 
-#homepage .card-title,
-.listings .card-title {
+#homepage .card-title {
     color: #FFFFFF;
 }
 
@@ -271,93 +264,17 @@ input::-webkit-inner-spin-button {
     color: #D2CBA6;
 }
 
-#homepage .card-text,
-.listings .card-text {
+#homepage .card-text {
     color: #FFFFFF;
 }
 
-#homepage .price,
-.listings .price {
+#homepage .price {
     color: #D2CBA6;
     font-weight: 600;
 }
 
 .container a {
     text-decoration: none;
-}
-
-/* listings */
-
-.listing-container{
-    position: relative;
-}
-
-.listings .filter-card{
-    background-color: var(--bgColor);
-    position: absolute;
-}
-
-.listings i {
-    font-size: 24;
-    color: white
-}
-
-.listings p {
-    font-size: 24px;
-}
-
-.listings .custom-price {
-    font-family: var(--font);
-    border: 2px solid rgb(255, 255, 255);
-    background-color: transparent;
-    color: #D2CBA6;
-}
-
-.listings ::placeholder {
-    color: white;
-    text-align: center;
-}
-
-.listings .btn-apply {
-    font-family: var(--font);
-    border-radius: 3px;
-    border: none;
-    background-color: #D2CBA6;
-    height: 34px;
-    width: 100%;
-}
-
-.listings .custom-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-
-.listings .custom-card .card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.listings .card-title {
-    min-height: 40px;
-    margin-bottom: 5px;
-}
-
-.listings .card-text {
-    min-height: 40px;
-    margin-bottom: 5px;
-}
-
-.listings .custom-card .card-footer {
-    display: flex;
-    background-color: transparent;
-    border-top: none;
-    padding: 10px 0;
-    width: 100%;
 }
 
 /* Extend Rental Modal css */

@@ -23,7 +23,7 @@ $categoryID = "0";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="shared/assets/css/my-account.css">
-    <link rel="stylesheet" href="shared/assets/css/style.css">
+    <link rel="stylesheet" href="shared/assets/css/listings.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
 
     <!-- FONTS -->
@@ -34,14 +34,14 @@ $categoryID = "0";
 
     <?php include 'shared/components/navbar.php'; ?>
 
-    <div class="container-fluid listing-container">
+    <div class="container listing-container">
         <div class="row my-2 p-2">
             <!-- Search Filter (Sidebar) -->
-            <div class="col-12 col-md-5 col-lg-4 mb-3">
+            <div class="col-12 col-md-5 col-lg-4 col-xl-3 mb-3">
                 <div class="card-filter p-3">
                     <div class="card-title d-flex align-items-center">
                         <i class="bi bi-funnel mx-2"></i>
-                        <h3>Search Filter</h3>
+                        <h4>Search Filter</h4>
                     </div>
                     <div class="card-text">
                         <p class="my-3">By Category</p>
@@ -79,8 +79,8 @@ $categoryID = "0";
             </div>
 
             <!-- Search Results (Main Content) -->
-            <div class="col-sm-12 col-md-7 col-lg-8">
-                <div class="h3 p-3">
+            <div class="col-sm-12 col-md-7 col-lg-8 col-xl-9">
+                <div class="h4 p-3">
                     SEARCH RESULT FOR "BIKE"
                 </div>
                 <div class="row" id="container item-container ">
@@ -89,17 +89,17 @@ $categoryID = "0";
                         while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
                             $cardID++; ?>
                             <div
-                                class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3 d-flex align-items-center justify-content-center  d-flex flex-wrap">
-                                <div class="card mb-3 custom-card items" id="<?php echo $cardID; ?>">
+                                class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 d-flex align-items-center justify-content-center  d-flex flex-wrap">
+                                <div class="card custom-card items" id="<?php echo $cardID; ?>">
                                     <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
-                                        <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
+                                        <h6 class="card-title item"><?php echo $chosenCategory['itemName']; ?></h6>
+                                        <h6 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h6>
                                     </div>
                                     <div class="card-footer">
-                                        <h5 class="card-text price ms-3">
+                                        <h6 class="card-text price ms-3">
                                             <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
-                                        </h5>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
