@@ -130,12 +130,12 @@ class Rental
                             <div class="card-body-rentals">
                                 <div class="rentals-content">
                                     <div class="order-content">
-                                        <img src="assets/img/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
-                                        <h4>'.$this->itemName.'</h4>
+                                        <img src="assets/img/items/' . $this->itemDisplayImg . '" alt="" class="img-fluid">
+                                        <h4>' . $this->itemName . '</h4>
                                     </div>
                                     <div class="actions">
-                                        <button class="btn-hand-in d-none btn-update-status rounded-3 mx-2 mx-md-5">RECEIVED</button>
-                                        <a href="transaction-page.php?rentalID='.$this->rentalID.'">
+                                        ' . $this->showButtonToRentals($this->status) . '
+                                        <a href="transaction-page.php?rentalID=' . $this->rentalID . '">
                                             <div class="btn-see-details rounded-4">
                                                 <button class=""><i class="fa fa-chevron-right"></i></button>
                                             </div>
@@ -145,6 +145,14 @@ class Rental
                             </div>
                         </a>
                     </div>';
+    }
+
+    function showButtonToRentals($status)
+    {
+        $btnText = '';
+        ($status != 'on rent') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
+
+        return '<button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5">' . $btnText . '</button>';
     }
 
     // DYNAMIC SETTINGS FUNCTIONS FOR RENTAL STATUS CARD (USER VIEW)
