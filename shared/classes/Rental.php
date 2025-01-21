@@ -191,10 +191,12 @@ class Rental
     function showActionButton($status)
     {
         if ($status == 'pending' || $status == 'approved') {
-            return '<form method="POST">
-                        <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
-                        <button name="btnCancelBooking" type="submit" class="btn-action btn-cancel">Cancel Booking</button>
-                    </form>';
+            return '<div class="action-button">
+                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
+                                                <button type="submit" class="btn-action btn-cancel">Cancel
+                                                    Booking</button>
+                                            </div>
+                                        </div>';
         } else if ($status == 'on rent' || $status == 'overdue' || $status == 'extended') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
@@ -204,9 +206,7 @@ class Rental
         } else if ($status == 'returned' || $status == 'cancelled') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <a href="product-page.php?itemID='. $this->itemID.'">
-                                                    <button type="submit" class="btn-action">Rent Again</button>
-                                                </a>
+                                                <button type="submit" class="btn-action">Rent Again</button>
                                             </div>
                                         </div>';
         } else {
