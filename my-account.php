@@ -3,6 +3,13 @@ include("shared/processes/process-index.php");
 include("shared/processes/profile-process.php");
 include("shared/classes/Rental.php");
 
+if (isset($_POST['btnCancelBooking'])) {
+    $rentalID = $_POST['rentalID'];
+
+    $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
+    executeQuery($cancelQuery);
+
+}
 
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
@@ -106,57 +113,57 @@ $rentalList = $rental->getRentalsData();
                                     <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
                                     <small class="size-info">File Extension: .JPG, .PNG</small>
                                 </div>
-                                 <!-- Input Fields Section -->
-                        <div class="col-12 col-md-8">
-                            <div class="row">
-                                <div class="col-md-6 col-12 mb-3">
-                                    <input type="text" id="firstName" class="form-control" name="firstName"
-                                        placeholder="First Name"
-                                        value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
-                                    <div class="invalid-feedback" id="firstNameError"></div>
+                                <!-- Input Fields Section -->
+                                <div class="col-12 col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 mb-3">
+                                            <input type="text" id="firstName" class="form-control" name="firstName"
+                                                placeholder="First Name"
+                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                            <div class="invalid-feedback" id="firstNameError"></div>
+                                        </div>
+                                        <div class="col-md-6 col-12 mb-3">
+                                            <input type="text" id="lastName" class="form-control" name="lastName"
+                                                placeholder="Last Name"
+                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                            <div class="invalid-feedback" id="lastNameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <input type="email" id="email" class="form-control" name="email"
+                                            placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>">
+                                        <div class="invalid-feedback" id="emailError"></div>
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <input type="text" id="address" class="form-control" name="address"
+                                            placeholder="Address"
+                                            value="<?php echo $userInfoArray['address'] ?? ''; ?>">
+                                    </div>
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <input type="text" id="contactNumber" class="form-control" name="contactNumber"
+                                            placeholder="Phone Number"
+                                            value="<?php echo $userInfoArray['contactNumber'] ?? ''; ?>">
+                                    </div>
+                                    <!-- Gender Selection -->
+                                    <div class="mb-4 d-flex align-items-center" id="gender-selection">
+                                        <label class="form-label me-4 mb-1" for="gender">Gender:</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="Male"
+                                                id="male" <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="male">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="Female"
+                                                id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="female">Female</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="Other"
+                                                id="other" <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="other">Other</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 col-12 mb-3">
-                                    <input type="text" id="lastName" class="form-control" name="lastName"
-                                        placeholder="Last Name" value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
-                                    <div class="invalid-feedback" id="lastNameError"></div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-12 mb-3">
-                                <input type="email" id="email" class="form-control" name="email" placeholder="Email"
-                                    value="<?php echo $userInfoArray['email'] ?? ''; ?>">
-                                <div class="invalid-feedback" id="emailError"></div>
-                            </div>
-                            <div class="col-12 col-md-12 mb-3">
-                                <input type="text" id="address" class="form-control" name="address"
-                                    placeholder="Address" value="<?php echo $userInfoArray['address'] ?? ''; ?>">
-                            </div>
-                            <div class="col-12 col-md-12 mb-3">
-                                <input type="text" id="contactNumber" class="form-control" name="contactNumber"
-                                    placeholder="Phone Number"
-                                    value="<?php echo $userInfoArray['contactNumber'] ?? ''; ?>">
-                            </div>
-                            <!-- Gender Selection -->
-                            <div class="mb-4 d-flex align-items-center" id="gender-selection">
-                                <label class="form-label me-4 mb-1" for="gender">Gender:</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" value="Male" id="male"
-                                        <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
-                                    <label class="form-check-label" for="male">Male</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" value="Female"
-                                        id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
-                                    <label class="form-check-label" for="female">Female</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" value="Other" id="other"
-                                        <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
-                                    <label class="form-check-label" for="other">Other</label>
-                                </div>
-                            </div>
-                        </div>
-                    
-
 
                                 <!-- Save Button -->
                                 <div class="text-center text-md-end mt-5 mb-3">
@@ -197,11 +204,11 @@ $rentalList = $rental->getRentalsData();
 
                             <!-- RENTAL STATUS CARDS -->
                             <?php foreach ($rentalList as $rentalCard) {
-                                if ($rentalCard->status === 'overdue') {
+                                if ($rentalCard->status === 'pending') {
                                     echo $rentalCard->buildRentalCard();
                                 }
-
                             } ?>
+
                         </div>
                     </div>
                 </div>
