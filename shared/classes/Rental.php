@@ -206,8 +206,8 @@ class Rental
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
                                                 <a href="product-page.php?itemID='. $this->itemID.'">
                                                     <button type="submit" class="btn-action">Rent Again</button>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
                                         </div>';
         } else {
             return '';
