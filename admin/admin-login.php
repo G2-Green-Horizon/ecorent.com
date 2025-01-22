@@ -1,14 +1,7 @@
 <?php
 include("../connect.php");
 session_start();
-
-// Prevent access if already logged in
-if (isset($_SESSION['email'])) {
-    header("Location: index.php");
-    exit();
-}
-
-session_destroy(); // Ensure session resets when accessing login page
+session_destroy();
 session_start();
 
 if (isset($_POST['btnLogin'])) {
@@ -32,15 +25,12 @@ if (isset($_POST['btnLogin'])) {
             $_SESSION['email'] = $user['email'];
             
             header("Location: ./");
-            exit();
         }
     } else {
         $error = "Invalid email or password.";
     }
 }
 ?>
-
-
 
 <!doctype html>
 <html lang="en">

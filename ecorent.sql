@@ -98,7 +98,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`) VALUES
-(1, 'Electronics and Gadgets'),
+(1, 'Electronics & Gadgets'),
 (2, 'Transportation'),
 (3, 'Clothing'),
 (4, 'Sports & Outdoor'),

@@ -9,23 +9,12 @@ date_default_timezone_set('Asia/Manila');
 
 session_start();
 
-// If not logged in, redirect to login page
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
-    exit();
 }
 
 if (isset($_POST['btnConfirmed'])) {
-    session_destroy();
-    session_unset();
-
-    // Ensure session is fully destroyed
-    if (ini_get("session.use_cookies")) {
-        setcookie(session_name(), '', time() - 42000, '/');
-    }
-
     header("Location: admin-login.php");
-    exit();
 }
 
 $displayItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
