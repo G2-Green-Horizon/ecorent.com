@@ -1,10 +1,40 @@
 <?php
+include("../connect.php");
 session_start();
 
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
     exit();
 }
+
+if (isset($_GET['rentalID'])) {
+    $rentalID = $_GET['rentalID'];
+
+    $userQuery = "SELECT * FROM rentals JOIN users ON rentals.renterID = users.userID JOIN items ON items.itemID = rentals.itemID JOIN attachments ON items.itemID = attachments.itemID WHERE rentalID = $rentalID;";
+    $userResults = executeQuery($userQuery);
+
+    while ($user = mysqli_fetch_assoc($userResults)) {
+        $fullName = $user['firstName'] . ' ' . $user['lastName'];
+        $address = $user['address'];
+        $transactionID = $user['rentalID'];
+        $itemName = $user['itemName'];
+        $reservationDate = $user['reservationDate'];
+        $startRentalDate = $user['startRentalDate'];
+        $endRentalDate = $user['endRentalDate'];
+        $gasEmissionSaved = $user['gasEmissionSaved'] . ' kg CO2';
+        $pricePerDay = $user['pricePerDay'];
+        $itemQuantity = $user['itemQuantity'];
+        $rentalStatus = $user['rentalStatus'];
+        $fileName = $user['fileName'];
+
+    }
+
+    if (isset($_POST['btnApprove'])) {
+        $approveQuery = "UPDATE rentals SET rentalStatus='pending' WHERE rentalID = '$rentalID'";
+        executeQuery($approveQuery);
+    }
+}
+
 ?>
 
 
@@ -25,7 +55,7 @@ if (!isset($_SESSION['email'])) {
     <!-- STYLINGS -->
 
     <!-- FONTS -->
-    <link rel="stylesheet" href="shared/assets/font/font.css">
+    <link rel="stylesheet" href="../shared/assets/font/font.css">
 </head>
 
 <body>
@@ -33,7 +63,26 @@ if (!isset($_SESSION['email'])) {
         <div class="row d-flex">
             <div class="col-5 d-flex align-items-center mt-4 mb-3">
                 <a href="javascript:history.back()" style="text-decoration: none"><i class='bx bx-chevron-left'></i></a>
-                <h2>Approve Reservation</h2>
+                <?php
+                if ($rentalStatus == "pending") {
+                    ?>
+                    <h2>Approve Reservation</h2>
+                <?php
+                } elseif ($rentalStatus == "on rent") {
+                    ?>
+                    <h2>Active Rental</h2>
+                <?php
+                } elseif ($rentalStatus == "pickup") {
+                    ?>
+                    <h2>For Pick Up</h2>
+                <?php
+                } else {
+                    // Optional: handle any other rental status
+                    echo '<h2>Status: ' . htmlspecialchars($rentalStatus) . '</h2>';
+                }
+                ?>
+
+
             </div>
         </div>
         <div class="row d-flex">
@@ -42,7 +91,7 @@ if (!isset($_SESSION['email'])) {
                     <div class="row mb-4">
                         <div class="d-flex justify-content-between">
                             <h4 class="mb-0">Transaction information</h4>
-                            <img src="assets/img/transactions/bike.png" alt="" class="img-fluid">
+                            <img src="../shared/assets/img/system/items/<?php echo $fileName; ?>" alt="" class="img-fluid" style="width:150px; height:150px; object-fit: cover; border-radius:5px;">
                         </div>
                     </div>
 
@@ -50,37 +99,37 @@ if (!isset($_SESSION['email'])) {
                         <tbody>
                             <tr>
                                 <td>Transaction ID:</td>
-                                <td class="text-end">123456</td>
+                                <td class="text-end"><?php echo $rentalID ?></td>
 
                             </tr>
                             <tr>
                                 <td>Item name:</td>
-                                <td class="text-end">TrailMaster X200 Mountain Bike</td>
+                                <td class="text-end"><?php echo $itemName ?></td>
 
                             </tr>
                             <tr>
                                 <td>Reservation date:</td>
-                                <td class="text-end">01/21/2025</td>
+                                <td class="text-end"><?php echo $reservationDate ?></td>
                             </tr>
                             <tr>
                                 <td>Pick-up date:</td>
-                                <td class="text-end">01/22/2025</td>
+                                <td class="text-end"><?php echo $startRentalDate ?></td>
                             </tr>
                             <tr>
                                 <td>End date:</td>
-                                <td class="text-end">01/25/2025</td>
+                                <td class="text-end"><?php echo $endRentalDate ?></td>
                             </tr>
                             <tr>
                                 <td>Renter:</td>
-                                <td class="text-end">John Doe</td>
+                                <td class="text-end"><?php echo $fullName ?></td>
                             </tr>
                             <tr>
                                 <td>Address:</td>
-                                <td class="text-end">Brgy. San Barotolome, Sto.Tomas, Batangas</td>
+                                <td class="text-end"><?php echo $address ?></td>
                             </tr>
                             <tr>
                                 <td>Total saved carbon emission:</td>
-                                <td class="text-end">25 kg CO2</td>
+                                <td class="text-end"><?php echo $gasEmissionSaved ?></td>
                             </tr>
                             <tr style="border-top: 2px solid #282828">
                                 <td>Unit price (per day):</td>
@@ -108,8 +157,8 @@ if (!isset($_SESSION['email'])) {
                     <div class="col-3 mb-3">
                         <img src="assets/img/transactions/user.png" alt="">
                     </div>
-                    <h3>John Doe</h3>
-                    <p>Brgy. San Barotolome, Sto.Tomas, Batangas</p>
+                    <h3><?php echo $fullName ?></h3>
+                    <p><?php echo $address ?></p>
                 </div>
                 <div class="card card-message mb-3">
                     <h1 class="mb-4">Message</h1>
@@ -123,12 +172,23 @@ if (!isset($_SESSION['email'])) {
         </div>
         <div class="row">
             <div class="d-flex gap-2 justify-content-center justify-content-md-end mb-3 mt-3">
-                <a href="#" class="text-decoration-none">
-                    <button class="btn btn-reject" type="button">Reject</button>
-                </a>
-                <a href="#" class="text-decoration-none">
-                    <button class="btn btn-approve" type="button">Approve</button>
-                </a>
+                <?php if ($rentalStatus == "pending") { ?>
+
+                    <a href="#" class="text-decoration-none">
+                        <button class="btn btn-reject" type="button" name="btnReject" >Reject</button>
+                    </a>
+
+                <?php } ?>
+
+                <?php if ($rentalStatus == "pending") { ?>
+
+                    <form method="POST">
+                        <a href="#" class="text-decoration-none">
+                            <button class="btn btn-approve" type="submit" name="btnApprove">Approve</button>
+                        </a>
+                    </form>
+
+                <?php } ?>
             </div>
         </div>
     </div>
