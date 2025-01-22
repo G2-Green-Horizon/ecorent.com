@@ -1,14 +1,7 @@
 <?php
 include("../connect.php");
 session_start();
-
-// Prevent access if already logged in
-if (isset($_SESSION['email'])) {
-    header("Location: index.php");
-    exit();
-}
-
-session_destroy(); // Ensure session resets when accessing login page
+session_destroy();
 session_start();
 
 if (isset($_POST['btnLogin'])) {
@@ -32,15 +25,12 @@ if (isset($_POST['btnLogin'])) {
             $_SESSION['email'] = $user['email'];
             
             header("Location: ./");
-            exit();
         }
     } else {
         $error = "Invalid email or password.";
     }
 }
 ?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -54,6 +44,7 @@ if (isset($_POST['btnLogin'])) {
     <link rel="stylesheet" href="assets/css/admin-login.css">
     <link rel="stylesheet" href="admin-login.css">
     <link rel="icon" type="image/png" href="../shared/assets/img/system/ecorent-logo-2.png">
+    <link rel="stylesheet" href="../shared/assets/font/font.css">
 </head>
 
 <body>

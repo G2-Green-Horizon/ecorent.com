@@ -1,5 +1,5 @@
 <?php
-
+include("processes/upload-process.php");
 include("../connect.php");
 class Rental
 {
@@ -237,4 +237,3 @@ class Rental
         ($status != 'overdue') ? 'd-none' : 'd-block';
     }
 }
-?>

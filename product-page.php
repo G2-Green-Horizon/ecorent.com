@@ -49,7 +49,7 @@ include("shared/processes/productpage-process.php");
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["itemCondition"];?></span>
+                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["conditionName"];?></span>
                     <span id="badge-tracker" class="badge rounded-pill my-4">-<?php echo $itemInfoArray["gasEmissionSaved"];?>kg CO₂</span>
                 </div>
 
@@ -78,14 +78,10 @@ include("shared/processes/productpage-process.php");
                     </div>
                     <p class="mb-0"><?php echo $itemInfoArray["stock"];?> stocks available</p>
                 </div>
-
-                <p class="mt-3">Rented by over 20+ happy customers!</p>
-
                 <div class="d-flex align-items-center justify-content-end mt-5">
                     <button class="button-size btn btn-custom-outline mx-3">Add to cart</button>
                     <a href = "bookings.php"><button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow">Rent now</button> </a>
                 </div>
-
             </div>
         </div>
 

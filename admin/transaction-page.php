@@ -1,6 +1,9 @@
 <?php
 include("../connect.php");
+include("processes/pending-process.php");
 session_start();
+
+
 
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
@@ -26,12 +29,13 @@ if (isset($_GET['rentalID'])) {
         $itemQuantity = $user['itemQuantity'];
         $rentalStatus = $user['rentalStatus'];
         $fileName = $user['fileName'];
+        $unitPrice = '₱' . $user['pricePerDay'];
+        $itemQuantity = 'x' . $user['itemQuantity'];
+        $totalPrice = '₱' . $user['totalPrice'];
+        $securityDeposit = '₱' . $user['securityDeposit'];
+        $message = $user['message'];
 
-    }
 
-    if (isset($_POST['btnApprove'])) {
-        $approveQuery = "UPDATE rentals SET rentalStatus='pending' WHERE rentalID = '$rentalID'";
-        executeQuery($approveQuery);
     }
 }
 
@@ -67,15 +71,15 @@ if (isset($_GET['rentalID'])) {
                 if ($rentalStatus == "pending") {
                     ?>
                     <h2>Approve Reservation</h2>
-                <?php
+                    <?php
                 } elseif ($rentalStatus == "on rent") {
                     ?>
                     <h2>Active Rental</h2>
-                <?php
+                    <?php
                 } elseif ($rentalStatus == "pickup") {
                     ?>
                     <h2>For Pick Up</h2>
-                <?php
+                    <?php
                 } else {
                     // Optional: handle any other rental status
                     echo '<h2>Status: ' . htmlspecialchars($rentalStatus) . '</h2>';
@@ -91,7 +95,9 @@ if (isset($_GET['rentalID'])) {
                     <div class="row mb-4">
                         <div class="d-flex justify-content-between">
                             <h4 class="mb-0">Transaction information</h4>
-                            <img src="../shared/assets/img/system/items/<?php echo $fileName; ?>" alt="" class="img-fluid" style="width:150px; height:150px; object-fit: cover; border-radius:5px;">
+                            <img src="../shared/assets/img/system/items/<?php echo $fileName; ?>" alt=""
+                                class="img-fluid"
+                                style="width:150px; height:150px; object-fit: cover; border-radius:5px;">
                         </div>
                     </div>
 
@@ -133,19 +139,19 @@ if (isset($_GET['rentalID'])) {
                             </tr>
                             <tr style="border-top: 2px solid #282828">
                                 <td>Unit price (per day):</td>
-                                <td class="text-end">₱100</td>
+                                <td class="text-end"><?php echo $unitPrice; ?></td>
                             </tr>
                             <tr>
                                 <td>Quantity:</td>
-                                <td class="text-end">x3</td>
+                                <td class="text-end"><?php echo $itemQuantity; ?></td>
                             </tr>
                             <tr class>
                                 <td>Security deposit:</td>
-                                <td class="text-end">₱500</td>
+                                <td class="text-end"><?php echo $securityDeposit; ?></td>
                             </tr>
                             <tr>
                                 <td>Total amout payable:</td>
-                                <td class="text-end fw-bold">₱800</td>
+                                <td class="text-end fw-bold"><?php echo $totalPrice; ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -163,8 +169,7 @@ if (isset($_GET['rentalID'])) {
                 <div class="card card-message mb-3">
                     <h1 class="mb-4">Message</h1>
                     <p>
-                        Hi, please ensure the mountain bike is in good condition before pick-up, including properly
-                        inflated tires and a well-functioning brake system. Thank you![]
+                        <?php echo $message; ?>
                     </p>
                 </div>
             </div>
@@ -174,9 +179,12 @@ if (isset($_GET['rentalID'])) {
             <div class="d-flex gap-2 justify-content-center justify-content-md-end mb-3 mt-3">
                 <?php if ($rentalStatus == "pending") { ?>
 
-                    <a href="#" class="text-decoration-none">
-                        <button class="btn btn-reject" type="button" name="btnReject" >Reject</button>
-                    </a>
+                    <form method="POST">
+                        <a href="#" class="text-decoration-none">
+                            <button class="btn btn-reject" type="submit" name="btnReject">Reject</button>
+                        </a>
+                    </form>
+
 
                 <?php } ?>
 
@@ -191,6 +199,8 @@ if (isset($_GET['rentalID'])) {
                 <?php } ?>
             </div>
         </div>
+
+        
     </div>
 
 
