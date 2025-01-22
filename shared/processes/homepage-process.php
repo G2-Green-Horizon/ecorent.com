@@ -101,7 +101,7 @@ $totalItemsArray = array_merge($itemsArray, $remainingItemsArray);
 // Output the HTML for each item.
 foreach ($totalItemsArray as $item) {
     echo '
-    <a href="product-page.php?id=' . $item->itemID . '" class="item-card col-12 col-md-6 col-lg-4 col-xl-3">
+    <a href="product-page.php?id=' . $item->itemID . '" class="item-card col-6 col-lg-4 col-xl-3">
         <div class="card my-3 custom-card">
             <img src="shared/assets/img/system/items/' . ($item->fileName) .' " class="card-img-top" alt="' . ($item->itemName) . '">
             <div class="card-body">
