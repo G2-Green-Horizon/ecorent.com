@@ -134,7 +134,7 @@ class Rental
                                         <h4>' . $this->itemName . '</h4>
                                     </div>
                                     <div class="actions">
-                                        ' . $this->showButtonToRentals($this->status) . '
+                                        <form method="POST">' . $this->showButtonToRentals($this->status) . '</form>
                                         <a href="transaction-page.php?rentalID=' . $this->rentalID . '">
                                             <div class="btn-see-details rounded-4">
                                                 <button class=""><i class="fa fa-chevron-right"></i></button>
@@ -147,13 +147,19 @@ class Rental
                     </div>';
     }
 
-    function showButtonToRentals($status)
-    {
-        $btnText = '';
-        ($status != 'on rent') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
+    function showButtonToRentals($status, $rentalID)
+{
+    $btnText = '';
+    // Determine button text based on rental status
+    ($status != 'on rent') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
 
-        return '<button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5">' . $btnText . '</button>';
-    }
+    // Return a form with the button inside it
+    return '
+    <form method="POST">
+        <input type="hidden" name="rentalID" value="' . $rentalID . '">
+        <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5" type="submit" name="btnPickup">' . $btnText . '</button>
+    </form>';
+}
 
     // DYNAMIC SETTINGS FUNCTIONS FOR RENTAL STATUS CARD (USER VIEW)
     function showInfo($status)

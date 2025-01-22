@@ -142,6 +142,7 @@ $rentalList = $rental->getRentalsData();
             </div>
         </div>
 
+        <?php include("../shared/processes/update-rental-status.php"); ?>
         <!-- FOR PICK-UPS -->
         <div class="content-card pickups" id="container3">
             <div class="title">
