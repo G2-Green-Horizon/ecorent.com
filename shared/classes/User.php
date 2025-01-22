@@ -78,18 +78,30 @@ class UserPreferences
     public function getUserPreferences()
     {
         global $conn;
+        // Query to select category IDs from user preference.
         $getUserPreferencesQuery = "SELECT categoryID FROM preferences WHERE userID = $this->userID";
         $userPreferencesResult = executeQuery($getUserPreferencesQuery);
+
+        // Query if user chose to skip, selecting all category IDs of items, printing all items.
+        $randomItemsQuery = "SELECT items.*, categories.* FROM categories JOIN items ON items.categoryID = categories.categoryID
+        ORDER BY items.itemName";
+        $randomItemsResult = executeQuery($randomItemsQuery);
 
         $categoryIDsArray = [];
         if (mysqli_num_rows($userPreferencesResult) > 0) {
             while ($userpreferencesRow = mysqli_fetch_assoc($userPreferencesResult)) {
                 $categoryIDsArray[] = $userpreferencesRow["categoryID"];
             }
+        } else {
+            if (mysqli_num_rows($randomItemsResult) > 0) {
+                while ($randomItemsRow = mysqli_fetch_assoc($randomItemsResult)) {
+                    $categoryIDsArray[] = $randomItemsRow["categoryID"];
+            }
         }
+
         return $categoryIDsArray;
     }
 }
-
+}
 
 ?>

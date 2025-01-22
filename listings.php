@@ -5,6 +5,8 @@ include("shared/processes/process-index.php");
 $filterCategoryQuery = "SELECT * FROM categories";
 $filterCategoryResult = executeQuery($filterCategoryQuery);
 
+$itemID = isset($_GET['itemID']) ? $_GET['itemID'] : null;
+
 $cardID = "0";
 $categoryID = "0";
 ?>
@@ -90,18 +92,22 @@ $categoryID = "0";
                             $cardID++; ?>
                             <div
                                 class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3 d-flex align-items-center justify-content-center  d-flex flex-wrap">
-                                <div class="card mb-3 custom-card items" id="<?php echo $cardID; ?>">
-                                    <img src="shared/assets/img/system/bike1.png" class="card-img-top" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
-                                        <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
+                                <input type="hidden" name="itemID" value="<?php echo $chosenCategory['itemID']; ?>">
+                                <a href="product-page.php?id=<?php echo $chosenCategory['itemID']; ?>" style="text-decoration: none;">
+                                    <div class="card mb-3 custom-card items" id="<?php echo $cardID; ?>">
+                                        <img src="shared/assets/img/system/items/<?php echo $chosenCategory['fileName']; ?>"
+                                            class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
+                                            <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
+                                        </div>
+                                        <div class="card-footer">
+                                            <h5 class="card-text price ms-3">
+                                                <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
+                                            </h5>
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <h5 class="card-text price ms-3">
-                                            <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
-                                        </h5>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <?php
                         }
