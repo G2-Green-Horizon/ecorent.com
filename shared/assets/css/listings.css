@@ -149,6 +149,45 @@
 }
 
 .card-img-top {
-    height: 200px;
+    height: 250px;
     object-fit: cover;
+}
+
+@media (max-width: 1199.98px){
+    .listings .custom-card{
+        width: 100%;
+    }
+}
+
+@media (max-width: 999px){
+    .listings .custom-card{
+        width: 100%;
+    }
+}
+
+@media (max-width: 983px){
+    .listings .custom-card{
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .listings .custom-card{
+        width: 100%;
+    }
+}
+
+@media (max-width: 735px) {
+    .listings .col-6 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media (max-width: 580px) {
+    .listings .col-6 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
 }

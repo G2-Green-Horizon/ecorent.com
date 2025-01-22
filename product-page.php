@@ -49,7 +49,7 @@ include("shared/processes/productpage-process.php");
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["itemCondition"];?></span>
+                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["conditionName"];?></span>
                     <span id="badge-tracker" class="badge rounded-pill my-4">-<?php echo $itemInfoArray["gasEmissionSaved"];?>kg CO₂</span>
                 </div>
 

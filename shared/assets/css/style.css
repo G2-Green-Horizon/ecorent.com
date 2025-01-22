@@ -305,32 +305,3 @@ input::-webkit-inner-spin-button {
     color: #3E3D3D;
 }
 
-@media (max-width: 1199.98px){
-    .listings .custom-card{
-        width: 100%;
-    }
-}
-
-@media (max-width: 1000px){
-    .listings .custom-card{
-        width: 80%;
-    }
-}
-
-@media (max-width: 768px) {
-    .listings .custom-card{
-        width: 55%;
-    }
-}
-
-@media (max-width: 735px) {
-    .listings .custom-card{
-        width: 60%;
-    }
-}
-
-@media(max-width:568px){
-   .listings .custom-card{
-        width: 70%;
-    }
-}
