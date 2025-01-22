@@ -25,7 +25,7 @@ $categoryID = "0";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="shared/assets/css/my-account.css">
-    <link rel="stylesheet" href="shared/assets/css/style.css">
+    <link rel="stylesheet" href="shared/assets/css/listings.css">
     <link rel="stylesheet" href="shared/assets/css/footerNav.css">
 
     <!-- FONTS -->
@@ -36,14 +36,14 @@ $categoryID = "0";
 
     <?php include 'shared/components/navbar.php'; ?>
 
-    <div class="container-fluid listing-container">
+    <div class="container listing-container">
         <div class="row my-2 p-2">
             <!-- Search Filter (Sidebar) -->
-            <div class="col-12 col-md-5 col-lg-4 mb-3">
+            <div class="col-12 col-md-5 col-lg-4 col-xl-3 mb-3">
                 <div class="card-filter p-3">
                     <div class="card-title d-flex align-items-center">
                         <i class="bi bi-funnel mx-2"></i>
-                        <h3>Search Filter</h3>
+                        <h4>Search Filter</h4>
                     </div>
                     <div class="card-text">
                         <p class="my-3">By Category</p>
@@ -63,11 +63,11 @@ $categoryID = "0";
                             ?>
                             <p class="mt-5">Price Range</p>
                             <div class="d-flex align-items-center">
-                                <input id="min" type="number" class="form-control custom-price text-center" name="min"
-                                    value="" placeholder="₱ Min">
+                                <input id="min" type="number" step="0.01" class="form-control custom-price text-center"
+                                    name="min" value="" placeholder="₱ Min">
                                 <h1> - </h1>
-                                <input id="max" type="number" class="form-control custom-price text-center" name="max"
-                                    value="" placeholder="₱ Max">
+                                <input id="max" type="number" step="0.01" class="form-control custom-price text-center"
+                                    name="max" value="" placeholder="₱ Max">
                             </div>
                             <div class="d-flex align-items-center">
                                 <button class="btn-apply btn-dark mt-3 mx-3" name="applyFilter" value="true">
@@ -81,39 +81,63 @@ $categoryID = "0";
             </div>
 
             <!-- Search Results (Main Content) -->
-            <div class="col-sm-12 col-md-7 col-lg-8">
-                <div class="h3 p-3">
-                    SEARCH RESULT FOR "BIKE"
+            <div class="col-sm-12 col-md-7 col-lg-8  col-xl-9">
+
+                <div class="h4 p-3 text-uppercase">
+                    <?php
+                    if (isset($_GET['search']) && !empty($_GET['search'])) {
+                        $searchTerm = htmlspecialchars($_GET['search']);
+                        echo "SEARCH RESULT FOR " . $searchTerm . "";
+                    } elseif (isset($_GET['setCategory']) && !empty($_GET['setCategory'])) {
+                        $categoryID = $_GET['setCategory'];
+                        $categoryQuery = "SELECT categoryName FROM categories WHERE categoryID = '$categoryID'";
+                        $categoryResult = executeQuery($categoryQuery);
+
+                        if ($categoryResult && mysqli_num_rows($categoryResult) > 0) {
+                            $category = mysqli_fetch_assoc($categoryResult);
+                            $categoryName = htmlspecialchars($category['categoryName']);
+                            echo "" . $categoryName . "";
+                        } else {
+                            echo "CATEGORY: Unknown";
+                        }
+                    } else {
+                        echo "Search Filter";
+                    }
+                    ?>
                 </div>
-                <div class="row" id="container item-container ">
+                <div class="row" class="container item-container" id="container item-container">
                     <?php
                     if (mysqli_num_rows($loadItemsResult) > 0) {
                         while ($chosenCategory = mysqli_fetch_assoc($loadItemsResult)) {
                             $cardID++; ?>
                             <div
-                                class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3 d-flex align-items-center justify-content-center  d-flex flex-wrap">
-                                <input type="hidden" name="itemID" value="<?php echo $chosenCategory['itemID']; ?>">
-                                <a href="product-page.php?id=<?php echo $chosenCategory['itemID']; ?>" style="text-decoration: none;">
-                                    <div class="card mb-3 custom-card items" id="<?php echo $cardID; ?>">
-                                        <img src="shared/assets/img/system/items/<?php echo $chosenCategory['fileName']; ?>"
-                                            class="card-img-top" alt="">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?php echo $chosenCategory['itemName']; ?></h5>
-                                            <h5 class="card-text mt-3"><?php echo $chosenCategory['itemType']; ?></h5>
+                                class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3 mx-0 d-flex align-items-center justify-content-center flex-wrap">
+                                <<input type="hidden" name="itemID" value="<?php echo $chosenCategory['itemID']; ?>">
+                                    <a href="product-page.php?id=<?php echo $chosenCategory['itemID']; ?>" style="text-decoration: none;">
+                                        <div class="card custom-card items" id="<?php echo $cardID; ?>">
+                                            <img src="shared/assets/img/system/items/<?php echo $chosenCategory['fileName']; ?>"
+                                                class="card-img-top" alt="">
+                                            <div class="card-body">
+                                                <h6 class="card-title item"><?php echo $chosenCategory['itemName']; ?></h6>
+                                                <h6 class="card-text"><?php echo $chosenCategory['itemType']; ?></h6>
+                                            </div>
+                                            <div class="card-footer">
+                                                <h6 class="card-text price ms-3">
+                                                    <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
+                                                </h6>
+                                            </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <h5 class="card-text price ms-3">
-                                                <?php echo "₱" . $chosenCategory['pricePerDay']; ?>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </a>
+                                    </a>
                             </div>
                             <?php
                         }
+                    } else {
+                        echo '<div class="col-12 d-flex align-items-center justify-content-center text-white">';
+                        echo '<p>No items found matching your search or filter criteria.</p>';
+                        echo '</div>';
                     }
                     ?>
-                    <div class="text-center">
+                    <div class="text-center mt-4">
                         <button class="btn btn-dark" id="loadMore" onclick="showMore();">
                             SEE MORE
                         </button>

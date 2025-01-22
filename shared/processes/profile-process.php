@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . "/../../connect.php");
+// include(__DIR__ . "/../../connect.php");
 include("shared/processes/process-index.php");
 
 $profileUpdated = false;
