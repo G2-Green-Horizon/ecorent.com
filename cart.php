@@ -1,6 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
 include("connect.php");
+include("shared/processes/cart-process.php");
 ?>
 
 <!doctype html>
@@ -40,92 +41,107 @@ include("connect.php");
             <div class="col-12 col-md-9">
                 <div class="row">
                     <div class="col">
-                        <div class="add-all-items mt-2 mb-2 px-4 py-2 rounded-4">
-                            <div class="form-check d-flex justify-content-between">
-                                <div class="d-flex mt-1">
-                                    <input class="form-check-input check-custom" type="checkbox" value=""
-                                        id="defaultCheck1">
-                                    <label class="form-check-label ms-4 form-check-label-custom" for="defaultCheck1">
-                                        Select All Items
-                                    </label>
+                        <?php if (mysqli_num_rows($cartResults) > 0): ?>
+                            <div class="add-all-items mt-2 mb-2 px-4 py-2 rounded-4">
+                                <div class="form-check d-flex justify-content-between">
+                                    <div class="d-flex mt-1">
+                                        <input class="form-check-input check-custom" type="checkbox" id="selectAll">
+                                        <label class="form-check-label ms-4 form-check-label-custom" for="selectAll">
+                                            Select All Items
+                                        </label>
+                                    </div>
+                                    <i class="bi bi-trash trash-custom"></i>
                                 </div>
-                                <i class="bi bi-trash trash-custom"></i>
                             </div>
-                        </div>
+                        <?php else: ?>
+                            <p>Your cart is empty. Start adding items!</p>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="container cart-container mt-2 mb-2 px-3 py-3 rounded-4">
-                            <div class="row p-2">
-                                <div class="col-auto d-flex align-items-center">
-                                    <input class="form-check-input me-4 check-custom" type="checkbox" value=""
-                                        id="defaultCheck1">
-                                    <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
-                                        style="width: 96px; height: auto;">
-                                </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <h4>
-                                            TrailMaster X200 Mountain Bike
+                        <?php foreach ($cartResults as $item): ?>
+                            <div class="container cart-container mt-2 mb-3 px-3 py-3 rounded-4">
+                                <div class="row p-2">
+                                    <div class="col-auto d-flex align-items-center">
+                                        <input class="form-check-input me-4 check-custom" type="checkbox" value=""
+                                            id="defaultCheck1">
+                                        <a href="product-page.php?id=<?php echo $item['itemID']; ?>">
+                                            <img src="shared/assets/img/system/items/<?php echo $item['fileName']; ?>"
+                                                class="rounded-2 img-fluid"
+                                                style="width: 130px; height: 96px; object-fit:cover;">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <h4>
+                                                <?php echo $item['itemName'];
+                                                ; ?>
+                                            </h4>
+                                        </div>
+                                        <div class="row row-loc">
+                                            <div class="loc-custom">
+                                                <i class="bi bi-geo-alt-fill loc-custom"></i>
+                                                <span class="ms-1">Brgy. San Antonio, Sto. Tomas, Batangas</span>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-1">
+                                            <div>
+                                                <span
+                                                    class="badge rounded-pill pill-condition"><?php echo $item['conditionName'] . ' Condition'; ?></span>
+                                                <span
+                                                    class="badge rounded-pill pill-carbon-emission"><?php echo '-' . $item['gasEmissionSaved'] . 'kg CO₂'; ?></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-auto d-flex ps-5">
+                                        <h4 class="price-custom">
+                                            <?php echo '₱' . $item['pricePerDay']; ?>
+                                        </h4>
+                                        <h4 class="per-day-custom">
+                                            /day
                                         </h4>
                                     </div>
-                                    <div class="row row-loc">
-                                        <div class="loc-custom">
-                                            <i class="bi bi-geo-alt-fill loc-custom"></i>
-                                            <span class="ms-1">Brgy. San Antonio, Sto.Tomas, Batangas</span>
+                                </div>
+                                <div class="row px-5">
+                                    <div class="col-auto d-flex justify-content-start me-5">
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0">Rental period:</p>
+                                            <div class="cart-quantity-container d-flex align-items-center mx-2 my-2">
+                                                <button type="button"
+                                                    class="btn btn-outline-secondary btn-sm btn-cart-subtract"
+                                                    onclick="decreaseRentalPeriod()">-</button>
+                                                <input id="rentalPeriod" type="number" class="form-control text-center"
+                                                    name="rental-period" min="1" value="<?php echo $item['rentalPeriod'];
+                                                    ; ?>" step="1">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-cart-add "
+                                                    onclick="increaseRentalPeriod()">+</button>
+                                            </div>
+                                            <p class="mb-0">days</p>
                                         </div>
                                     </div>
-                                    <div class="row pt-1">
-                                        <div>
-                                            <span class="badge rounded-pill pill-condition">Good Condition</span>
-                                            <span class="badge rounded-pill pill-carbon-emission">-25 kg CO₂</span>
+                                    <div class="col-auto d-flex justify-content-start">
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0">Quantity:</p>
+                                            <div class="cart-quantity-container d-flex align-items-center mx-2 my-2">
+                                                <button type="button"
+                                                    class="btn btn-outline-secondary btn-sm btn-cart-subtract"
+                                                    onclick="decreaseQuantity()">-</button>
+                                                <input id="quantity" type="number" class="form-control text-center"
+                                                    name="quantity" min="1" value="<?php echo $item['quantity'];
+                                                    ; ?>" step="1">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-cart-add"
+                                                    onclick="increaseQuantity()">+</button>
+                                            </div>
+                                            <p class="mb-0"><?php echo $item['stock']; ?>
+                                                <?php echo $item['stock'] <= 1 ? 'stock' : 'stocks'; ?> available
+                                            </p>
                                         </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-auto d-flex ps-5">
-                                    <h4 class="price-custom">
-                                        ₱500
-                                    </h4>
-                                    <h4 class="per-day-custom">
-                                        /day
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="row px-5">
-                                <div class="col-auto d-flex justify-content-start me-5">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">Rental period:</p>
-                                        <div class="cart-quantity-container d-flex align-items-center mx-2 my-2">
-                                            <button type="button"
-                                                class="btn btn-outline-secondary btn-sm btn-cart-subtract"
-                                                onclick="decreaseRentalPeriod()">-</button>
-                                            <input id="rentalPeriod" type="number" class="form-control text-center"
-                                                name="rental-period" min="1" value="1" step="1">
-                                            <button type="button" class="btn btn-outline-secondary btn-sm btn-cart-add "
-                                                onclick="increaseRentalPeriod()">+</button>
-                                        </div>
-                                        <p class="mb-0">days</p>
-                                    </div>
-                                </div>
-                                <div class="col-auto d-flex justify-content-start">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">Quantity:</p>
-                                        <div class="cart-quantity-container d-flex align-items-center mx-2 my-2">
-                                            <button type="button"
-                                                class="btn btn-outline-secondary btn-sm btn-cart-subtract"
-                                                onclick="decreaseQuantity()">-</button>
-                                            <input id="quantity" type="number" class="form-control text-center"
-                                                name="quantity" min="1" value="1" step="1">
-                                            <button type="button" class="btn btn-outline-secondary btn-sm btn-cart-add"
-                                                onclick="increaseQuantity()">+</button>
-                                        </div>
-                                        <p class="mb-0">13 stocks available</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
 include("shared/processes/productpage-process.php");
+include("shared/processes/add-to-cart-process.php");
 ?>
 
 <!doctype html>
@@ -28,7 +29,7 @@ include("shared/processes/productpage-process.php");
     <?php include 'shared/components/navbar.php'; ?>
     <section class="container">
 
-    <form method ="GET" action="booking.php">
+    <form method ="GET">
         <div class="row row-product-details my-4 mx-3 mx-sm-4">
 
             <!-- Product Images Column -->
@@ -79,8 +80,8 @@ include("shared/processes/productpage-process.php");
                     <p class="mb-0"><?php echo $itemInfoArray["stock"];?> stocks available</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-end mt-5">
-                    <button class="button-size btn btn-custom-outline mx-3">Add to cart</button>
-                    <a href = "bookings.php"><button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow">Rent now</button> </a>
+                    <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart">Add to cart</button>
+                    <a href = "bookings.php"><button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow" formaction="booking.php">Rent now</button> </a>
                 </div>
             </div>
         </div>
