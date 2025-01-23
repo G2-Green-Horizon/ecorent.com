@@ -259,11 +259,11 @@ $rentalList = $rental->getRentalsData();
                         <div class="item-status-list">
 
                             <!-- RENTAL STATUS CARDS -->
-                            <?php foreach ($rentalList as $rentalCard) 
+                            <?php foreach ($rentalList as $rentalCard)
                                 if ($rentalCard->status === 'overdue') {
                                     echo $rentalCard->buildRentalCard();
-    
-                            } ?>
+
+                                } ?>
                         </div>
                     </div>
                 </div>
@@ -277,7 +277,9 @@ $rentalList = $rental->getRentalsData();
                 </div>
                 <div class="content settings-content">
                     <ul class="settings">
-                        <li class="p-2 change-pass">Change Password</li>
+                        <a href="change-password.php">
+                            <li class="p-2 change-pass">Change Password</li>
+                        </a>
                         <a href="security-questions.php">
                             <li class="p-2 security-quest">Setup Security Questions</li>
                         </a>
@@ -307,7 +309,8 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmedOUT">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center"
+                                    name="btnConfirmedOUT">Yes,
                                     I want
                                     to delete</button>
                             </div>
