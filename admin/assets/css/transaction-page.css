@@ -7,6 +7,7 @@
     --text-color: #D2CBA6;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --card-bg-color: #343333;
+    --green: #7F9D5A;
     --mainFont: 'Studio Feixen Variable', sans-serif;
 }
 
@@ -128,4 +129,8 @@ table {
     color: var(--primary-color) !important;
     border: transparent;
     transform: scale(0.9);
+}
+
+.profile-pic {
+    border: 5px solid var(--green) !important;
 }

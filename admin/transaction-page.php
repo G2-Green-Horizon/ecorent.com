@@ -32,11 +32,18 @@ if (isset($_GET['rentalID'])) {
         $unitPrice = '₱' . $user['pricePerDay'];
         $itemQuantity = 'x' . $user['itemQuantity'];
         $totalPrice = '₱' . $user['totalPrice'];
-        $securityDeposit = '₱' . $user['securityDeposit'];
         $message = $user['message'];
-
+        $profilePicture = $user['profilePicture'];
 
     }
+
+    $securityDepositQuery = "SELECT securityDeposit FROM rentals WHERE rentalID = $rentalID;";
+    $securityDepositResults = executeQuery($securityDepositQuery);
+
+    while ($securityDepositResult = mysqli_fetch_assoc($securityDepositResults)) {
+        $securityDeposit = '₱' . $securityDepositResult['securityDeposit'];
+    }
+
 }
 
 ?>
@@ -160,9 +167,14 @@ if (isset($_GET['rentalID'])) {
             <div class="col-xl-6 col-md-12 col-sm-12 order-md-2 order-sm-2 d-flex flex-column">
                 <div class="card card-renter mb-3">
                     <h1 class="mb-4">Renter</h1>
-                    <div class="col-3 mb-3">
-                        <img src="assets/img/transactions/user.png" alt="">
+                    <div
+                        class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
                     </div>
+
+
+                    <img src="../shared/assets/img/user/<?php echo $profilePicture ?>" alt="Profile Picture"
+                        class="profile-pic rounded-circle border border-2 border-primary mb-3"
+                        style="width: 200px; height: 200px; object-fit: cover;">
                     <h3><?php echo $fullName ?></h3>
                     <p><?php echo $address ?></p>
                 </div>
@@ -200,7 +212,7 @@ if (isset($_GET['rentalID'])) {
             </div>
         </div>
 
-        
+
     </div>
 
 
