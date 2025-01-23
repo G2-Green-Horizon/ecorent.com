@@ -3,6 +3,8 @@
     --button-color: #929292;
     --text-color: #FFFFFF;
     --mainFont: 'Studio Feixen Variable', sans-serif;
+    --green: #7F9D5A;
+    --danger: #D10D0D;
 }
 
 body {
@@ -38,4 +40,14 @@ body {
 
 .logo {
     height: 120px;
+}
+
+.form-check-input:checked {
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.form-check-input:invalid {
+    background-color: var(--danger);
+    border-color: var(--danger);
 }
