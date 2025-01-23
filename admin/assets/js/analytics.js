@@ -7,7 +7,7 @@ const barChartData = {
     datasets: [{
         axis: 'y',
         label: ['Gas emission saved per month'],
-        data: window.monthlyCO2SavedData, 
+        data: monthlyCO2SavedData, 
         fill: false,
         backgroundColor: ['#55523D'],
         borderColor: ['rgba(162, 189, 131, 1)'],

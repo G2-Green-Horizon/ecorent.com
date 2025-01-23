@@ -174,6 +174,6 @@ $totalUsers = $usersData['totalUsers'];
         </div>
     </div>
     <script>
-        window.monthlyCO2SavedData = <?php echo $monthlyCO2SavedJson; ?>;
+        monthlyCO2SavedData = <?php echo $monthlyCO2SavedJson; ?>;
     </script>
 </div>
