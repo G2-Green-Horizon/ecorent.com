@@ -12,7 +12,7 @@ if (isset($_POST['btnCancelBooking'])) {
 }
 
 if (isset($_POST['btnConfirmed'])) {
-    header("Location: login.php");
+    include("shared/processes/logout-process.php");
 }
 
 // MY BOOKINGS TAB
