@@ -312,8 +312,9 @@ if (isset($_POST['btnReceived'])) {
                                 while ($filterCategory = mysqli_fetch_assoc($itemCategoryResult)) { ?>
                                     <li class="dropdown-item"
                                         onclick="updateFilterCategory('<?php echo $filterCategory['categoryName']; ?>','<?php echo $filterCategory['categoryID']; ?>');">
-                                        <?php echo $filterCategory['categoryName']; ?></li>
-                            <?php
+                                        <?php echo $filterCategory['categoryName']; ?>
+                                    </li>
+                                    <?php
                                 }
                             }
                             ?>
@@ -333,7 +334,8 @@ if (isset($_POST['btnReceived'])) {
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="modal-content">
                                         <div class="modal-header add-item-modal">
-                                            <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">Add
+                                            <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel">
+                                                Add
                                                 Item</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -347,30 +349,38 @@ if (isset($_POST['btnReceived'])) {
                                                         <label for="customFile"
                                                             class="btn btn-select-main-image mb-2">Select main
                                                             image</label>
-                                                        <input type="file" class="d-none" name="addAttachment" id="customFile" accept=".png, .jpg" required />
+                                                        <input type="file" class="d-none" name="addAttachment"
+                                                            id="customFile" accept=".png, .jpg" required />
                                                     </div>
 
                                                     <div class="col-12 col-md-9">
-                                                        <input type="text" id="addItemName" name="itemName" value="" class="form-control add-item-input mb-2"
+                                                        <input type="text" id="addItemName" name="itemName" value=""
+                                                            class="form-control add-item-input mb-2"
                                                             placeholder="Item Name" required />
                                                         <input type="hidden" name="inputDesc" id="inputDesc" value="">
                                                         <textarea
                                                             class="form-control add-item-input mb-2 add-item-textarea-desc"
-                                                            placeholder="Description" id="addItemDesc" required></textarea>
+                                                            placeholder="Description" id="addItemDesc"
+                                                            required></textarea>
                                                         <input type="hidden" name="inputSpec" id="inputSpec" value="">
                                                         <textarea
                                                             class="form-control add-item-input add-item-textarea-specs"
-                                                            placeholder="Specifications" id="addItemSpec" required></textarea>
+                                                            placeholder="Specifications" id="addItemSpec"
+                                                            required></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="row mt-4">
                                                     <div class="col-12 col-md-4">
                                                         <div class="mb-3">
-                                                            <label for="inputGroupRate" class="form-label">Rate Type</label>
+                                                            <label for="inputGroupRate" class="form-label">Rate
+                                                                Type</label>
                                                             <div class="input-group mb-3">
                                                                 <span class="input-group-text rate-type-custom">₱</span>
-                                                                <input type="number" step="0.01" class="form-control add-item-input" id="inputGroupRate" name="pricePerDay" value="" required>
+                                                                <input type="number" step="0.01"
+                                                                    class="form-control add-item-input"
+                                                                    id="inputGroupRate" name="pricePerDay" value=""
+                                                                    required>
                                                                 <span class="input-group-text rate-type-custom">PER
                                                                     DAY</span>
                                                             </div>
@@ -395,8 +405,10 @@ if (isset($_POST['btnReceived'])) {
                                                                 emission
                                                                 saved</label>
                                                             <div class="input-group mb-3">
-                                                                <input type="number" step="0.01" class="form-control add-item-input"
-                                                                    id="inputGroupC02" name="gasEmissionSaved" value="" required>
+                                                                <input type="number" step="0.01"
+                                                                    class="form-control add-item-input"
+                                                                    id="inputGroupC02" name="gasEmissionSaved" value=""
+                                                                    required>
                                                                 <span class="input-group-text rate-type-custom">kg
                                                                     CO₂</span>
                                                             </div>
@@ -414,12 +426,16 @@ if (isset($_POST['btnReceived'])) {
                                                             <label for="inputGroupCategory"
                                                                 class="form-label mb-0 me-2 mt-2">Category</label>
                                                             <select class="form-select category-custom mt-2"
-                                                                id="inputGroupCategory" name="selectedCategory" value="">
+                                                                id="inputGroupCategory" name="selectedCategory"
+                                                                value="">
                                                                 <?php mysqli_data_seek($itemCategoryResult, 0);
                                                                 if (mysqli_num_rows($itemCategoryResult) > 0) {
                                                                     while ($addItemCategory = mysqli_fetch_assoc($itemCategoryResult)) { ?>
-                                                                        <option value="<?php echo $addItemCategory['categoryID']; ?>"><?php echo $addItemCategory['categoryName']; ?></option>
-                                                                <?php
+                                                                        <option
+                                                                            value="<?php echo $addItemCategory['categoryID']; ?>">
+                                                                            <?php echo $addItemCategory['categoryName']; ?>
+                                                                        </option>
+                                                                        <?php
                                                                     }
                                                                 } ?>
                                                             </select>
@@ -440,9 +456,11 @@ if (isset($_POST['btnReceived'])) {
                                                                 <?php
                                                                 if (mysqli_num_rows($itemConditionResult) > 0) {
                                                                     while ($condition = mysqli_fetch_assoc($itemConditionResult)) {
-                                                                ?>
-                                                                        <option value="<?php echo $condition['conditionID']; ?>"><?php echo $condition['conditionName']; ?></option>
-                                                                <?php
+                                                                        ?>
+                                                                        <option
+                                                                            value="<?php echo $condition['conditionID']; ?>">
+                                                                            <?php echo $condition['conditionName']; ?></option>
+                                                                        <?php
                                                                     }
                                                                 }
                                                                 ?>
@@ -452,15 +470,19 @@ if (isset($_POST['btnReceived'])) {
                                                     <div class="col-12 col-md-3">
                                                         <label for="inputGroupStocks"
                                                             class="form-label mb-0 me-2 mt-2">Stocks</label>
-                                                        <input type="number" class="form-control add-item-input mt-2 mb-4"
+                                                        <input type="number"
+                                                            class="form-control add-item-input mt-2 mb-4"
                                                             id="inputGroupStocks" name="itemStock" value="" required />
                                                     </div>
                                                     <div
                                                         class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal" onclick="cancelAddItem();">Cancel</button>
+                                                            data-bs-dismiss="modal"
+                                                            onclick="cancelAddItem();">Cancel</button>
                                                         <button type="submit"
-                                                            class="btn btn-primary ms-2 add-item-btn-save" name="addItemBtn" onclick="syncAddItemTextArea();">Add Item</button>
+                                                            class="btn btn-primary ms-2 add-item-btn-save"
+                                                            name="addItemBtn" onclick="syncAddItemTextArea();">Add
+                                                            Item</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -473,55 +495,75 @@ if (isset($_POST['btnReceived'])) {
                         <?php if (mysqli_num_rows($displayItemsResult) > 0) {
                             while ($editModalItem = mysqli_fetch_assoc($displayItemsResult)) {
                                 $imageID = htmlspecialchars($editModalItem['itemID'], ENT_QUOTES, 'UTF-8');
-                        ?>
-                                <div class="modal fade" id="staticBackdrop<?php echo $editModalItem['itemID']; ?>" data-bs-backdrop="static" data-bs-keyboard="false"
-                                    tabindex="-1">
+                                ?>
+                                <div class="modal fade" id="staticBackdrop<?php echo $editModalItem['itemID']; ?>"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
                                     <div class="modal-dialog add-item-modal-dialog mt-3 ">
                                         <!-- Cancel Edit Form -->
                                         <form method="POST" id="cancelForm<?php echo $editModalItem['itemID']; ?>">
-                                            <input type="hidden" name="cancelEdit" value="<?php echo $editModalItem['itemID']; ?>">
+                                            <input type="hidden" name="cancelEdit"
+                                                value="<?php echo $editModalItem['itemID']; ?>">
                                         </form>
                                         <!-- Edit Modal Form -->
-                                        <form method="POST" id="form<?php echo $editModalItem['itemID']; ?>" enctype="multipart/form-data" onsubmit="">
-                                            <input type="hidden" name="editItemID" value="<?php echo $editModalItem['itemID']; ?>">
+                                        <form method="POST" id="form<?php echo $editModalItem['itemID']; ?>"
+                                            enctype="multipart/form-data" onsubmit="">
+                                            <input type="hidden" name="editItemID"
+                                                value="<?php echo $editModalItem['itemID']; ?>">
                                             <div class="modal-content">
                                                 <div class="modal-header add-item-modal">
-                                                    <h1 class="modal-title fs-5 add-item-modal-text" id="staticBackdropLabel<?php echo $editModalItem['itemID']; ?>">Edit
+                                                    <h1 class="modal-title fs-5 add-item-modal-text"
+                                                        id="staticBackdropLabel<?php echo $editModalItem['itemID']; ?>">Edit
                                                         Item</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <div class="modal-body add-item-modal-body" id="add-item-modal-body<?php echo $editModalItem['itemID']; ?>">
+                                                <div class="modal-body add-item-modal-body"
+                                                    id="add-item-modal-body<?php echo $editModalItem['itemID']; ?>">
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-12 col-md-3 add-item-frame ">
-                                                                <img src="../shared/assets/img/system/items/<?php echo $editModalItem['fileName']; ?>" alt=""
-                                                                    class="img-fluid" id="imgContainer<?php echo $editModalItem['itemID']; ?>">
+                                                                <img src="../shared/assets/img/system/items/<?php echo $editModalItem['fileName']; ?>"
+                                                                    alt="" class="img-fluid"
+                                                                    id="imgContainer<?php echo $editModalItem['itemID']; ?>">
                                                                 <label for="customFile<?php echo $editModalItem['itemID']; ?>"
-                                                                    class="btn btn-primary btn-select-main-image mb-2">Select main
+                                                                    class="btn btn-primary btn-select-main-image mb-2">Select
+                                                                    main
                                                                     image</label>
-                                                                <input type="file" class="d-none" name="editAttachment<?php echo $editModalItem['itemID']; ?>" id="customFile<?php echo $editModalItem['itemID']; ?>" accept=".png, .jpg" required />
+                                                                <input type="file" class="d-none"
+                                                                    name="editAttachment<?php echo $editModalItem['itemID']; ?>"
+                                                                    id="customFile<?php echo $editModalItem['itemID']; ?>"
+                                                                    accept=".png, .jpg" required />
                                                             </div>
 
                                                             <div class="col-12 col-md-9">
                                                                 <input type="text" class="form-control add-item-input mb-2 "
-                                                                    placeholder="Item Name" name="editName" value="<?php echo $editModalItem['itemName']; ?>" />
+                                                                    placeholder="Item Name" name="editName"
+                                                                    value="<?php echo $editModalItem['itemName']; ?>" />
                                                                 <textarea
                                                                     class="form-control add-item-input mb-2 add-item-textarea-desc"
-                                                                    placeholder="Description" name="editDesc" required><?php echo $editModalItem['description']; ?></textarea>
+                                                                    placeholder="Description" name="editDesc"
+                                                                    required><?php echo $editModalItem['description']; ?></textarea>
                                                                 <textarea
                                                                     class="form-control add-item-input add-item-textarea-specs"
-                                                                    placeholder="Specifications" name="editSpec" required><?php echo $editModalItem['itemSpecifications']; ?></textarea>
+                                                                    placeholder="Specifications" name="editSpec"
+                                                                    required><?php echo $editModalItem['itemSpecifications']; ?></textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="row mt-4">
                                                             <div class="col-12 col-md-4">
                                                                 <div class="mb-3">
-                                                                    <label for="inputGroupRate<?php echo $editModalItem['itemID']; ?>" class="form-label">Rate Type</label>
+                                                                    <label
+                                                                        for="inputGroupRate<?php echo $editModalItem['itemID']; ?>"
+                                                                        class="form-label">Rate Type</label>
                                                                     <div class="input-group mb-3">
                                                                         <span class="input-group-text rate-type-custom">₱</span>
-                                                                        <input type="number" step="0.01" class="form-control add-item-input" id="inputGroupRate<?php echo $editModalItem['itemID']; ?>" name="editPrice" value="<?php echo $editModalItem['pricePerDay']; ?>" required>
+                                                                        <input type="number" step="0.01"
+                                                                            class="form-control add-item-input"
+                                                                            id="inputGroupRate<?php echo $editModalItem['itemID']; ?>"
+                                                                            name="editPrice"
+                                                                            value="<?php echo $editModalItem['pricePerDay']; ?>"
+                                                                            required>
                                                                         <span class="input-group-text rate-type-custom">PER
                                                                             DAY</span>
                                                                     </div>
@@ -531,7 +573,9 @@ if (isset($_POST['btnReceived'])) {
                                                             <div class="col-12 col-md-4">
                                                                 <div class="mb-3">
                                                                     <div class="inputGroupSelect01" data-bs-theme="dark">
-                                                                        <label for="inputGroupShipping<?php echo $editModalItem['itemID']; ?>">Shipping mode</label>
+                                                                        <label
+                                                                            for="inputGroupShipping<?php echo $editModalItem['itemID']; ?>">Shipping
+                                                                            mode</label>
                                                                         <select class="form-select mt-2 shipping-mode-custom"
                                                                             id="inputGroupShipping<?php echo $editModalItem['itemID']; ?>">
                                                                             <option selected>For Pick-up</option>
@@ -546,8 +590,11 @@ if (isset($_POST['btnReceived'])) {
                                                                         emission
                                                                         saved</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input type="number" step="0.01" class="form-control add-item-input"
-                                                                            id="inputGroupC02" name="editGas" value="<?php echo $editModalItem['gasEmissionSaved']; ?>" required>
+                                                                        <input type="number" step="0.01"
+                                                                            class="form-control add-item-input"
+                                                                            id="inputGroupC02" name="editGas"
+                                                                            value="<?php echo $editModalItem['gasEmissionSaved']; ?>"
+                                                                            required>
                                                                         <span class="input-group-text rate-type-custom">kg
                                                                             CO₂</span>
                                                                     </div>
@@ -562,39 +609,53 @@ if (isset($_POST['btnReceived'])) {
                                                         <div class="row">
                                                             <div class="col-12 col-md-3">
                                                                 <div class="inputGroupCategory" data-bs-theme="dark">
-                                                                    <label for="inputGroupCategory<?php echo $editModalItem['itemID']; ?>"
+                                                                    <label
+                                                                        for="inputGroupCategory<?php echo $editModalItem['itemID']; ?>"
                                                                         class="form-label mb-0 me-2 mt-2">Category</label>
                                                                     <select class="form-select category-custom mt-2"
-                                                                        id="inputGroupCategory<?php echo $editModalItem['itemID']; ?>" name="editCategory" value="<?php echo $editModalItem['categoryName']; ?>">
+                                                                        id="inputGroupCategory<?php echo $editModalItem['itemID']; ?>"
+                                                                        name="editCategory"
+                                                                        value="<?php echo $editModalItem['categoryName']; ?>">
                                                                         <?php if (mysqli_num_rows($itemCategoryResult) > 0) {
                                                                             mysqli_data_seek($itemCategoryResult, 0);
                                                                             while ($editItemCategory = mysqli_fetch_assoc($itemCategoryResult)) {
-                                                                        ?>
-                                                                                <option <?php echo ($editModalItem['categoryID'] == $editItemCategory['categoryID']) ? 'selected' : ''; ?> value="<?php echo $editItemCategory['categoryID']; ?>"><?php echo $editItemCategory['categoryName']; ?></option>
-                                                                        <?php
+                                                                                ?>
+                                                                                <option <?php echo ($editModalItem['categoryID'] == $editItemCategory['categoryID']) ? 'selected' : ''; ?>
+                                                                                    value="<?php echo $editItemCategory['categoryID']; ?>">
+                                                                                    <?php echo $editItemCategory['categoryName']; ?>
+                                                                                </option>
+                                                                                <?php
                                                                             }
                                                                         } ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-md-3">
-                                                                <label for="inputGroupType<?php echo $editModalItem['itemID']; ?>"
+                                                                <label
+                                                                    for="inputGroupType<?php echo $editModalItem['itemID']; ?>"
                                                                     class="form-label mb-0 me-2 mt-2">Type</label>
                                                                 <input type="text" class="form-control add-item-input mt-2"
-                                                                    id="inputGroupType<?php echo $editModalItem['itemID']; ?>" name="editType" value="<?php echo $editModalItem['itemType']; ?>" />
+                                                                    id="inputGroupType<?php echo $editModalItem['itemID']; ?>"
+                                                                    name="editType"
+                                                                    value="<?php echo $editModalItem['itemType']; ?>" />
                                                             </div>
                                                             <div class="col-12 col-md-3">
                                                                 <div class="inputGroupCondition" data-bs-theme="dark">
-                                                                    <label for="inputGroupCondition<?php echo $editModalItem['itemID']; ?>"
+                                                                    <label
+                                                                        for="inputGroupCondition<?php echo $editModalItem['itemID']; ?>"
                                                                         class="form-label mb-0 me-2 mt-2">Condition</label>
                                                                     <select class="form-select category-custom mt-2"
-                                                                        id="inputGroupCondition<?php echo $editModalItem['itemID']; ?>" name="editCondition">
+                                                                        id="inputGroupCondition<?php echo $editModalItem['itemID']; ?>"
+                                                                        name="editCondition">
                                                                         <?php mysqli_data_seek($itemConditionResult, 0);
                                                                         if (mysqli_num_rows($itemConditionResult) > 0) {
                                                                             while ($editCondition = mysqli_fetch_assoc($itemConditionResult)) {
-                                                                        ?>
-                                                                                <option <?php echo $editModalItem['conditionID'] == $editCondition['conditionID'] ? 'selected' : ''; ?> value="<?php echo $editCondition['conditionID']; ?>"><?php echo $editCondition['conditionName']; ?></option>
-                                                                        <?php
+                                                                                ?>
+                                                                                <option <?php echo $editModalItem['conditionID'] == $editCondition['conditionID'] ? 'selected' : ''; ?>
+                                                                                    value="<?php echo $editCondition['conditionID']; ?>">
+                                                                                    <?php echo $editCondition['conditionName']; ?>
+                                                                                </option>
+                                                                                <?php
                                                                             }
                                                                         }
                                                                         ?>
@@ -602,17 +663,23 @@ if (isset($_POST['btnReceived'])) {
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-md-3">
-                                                                <label for="inputGroupStocks<?php echo $editModalItem['itemID']; ?>"
+                                                                <label
+                                                                    for="inputGroupStocks<?php echo $editModalItem['itemID']; ?>"
                                                                     class="form-label mb-0 me-2 mt-2">Stocks</label>
-                                                                <input type="number" class="form-control add-item-input mt-2 mb-4"
-                                                                    id="inputGroupStocks<?php echo $editModalItem['itemID']; ?>" name="editStock" value="<?php echo $editModalItem['stock']; ?>" required />
+                                                                <input type="number"
+                                                                    class="form-control add-item-input mt-2 mb-4"
+                                                                    id="inputGroupStocks<?php echo $editModalItem['itemID']; ?>"
+                                                                    name="editStock"
+                                                                    value="<?php echo $editModalItem['stock']; ?>" required />
                                                             </div>
                                                             <div
                                                                 class="col-12 col-md-12 add-item-btn-custom d-flex justify-content-center align-items-center">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal" onclick="document.getElementById('cancelForm<?php echo $editModalItem['itemID']; ?>').submit(); ">Cancel</button>
+                                                                    data-bs-dismiss="modal"
+                                                                    onclick="document.getElementById('cancelForm<?php echo $editModalItem['itemID']; ?>').submit(); ">Cancel</button>
                                                                 <button type="button"
-                                                                    class="btn btn-primary ms-2 add-item-btn-save" onclick="document.getElementById('form<?php echo $editModalItem['itemID']; ?>').submit();">Save
+                                                                    class="btn btn-primary ms-2 add-item-btn-save"
+                                                                    onclick="document.getElementById('form<?php echo $editModalItem['itemID']; ?>').submit();">Save
                                                                     Changes</button>
                                                             </div>
                                                         </div>
@@ -622,7 +689,7 @@ if (isset($_POST['btnReceived'])) {
                                         </form>
                                     </div>
                                 </div>
-                        <?php
+                                <?php
                                 echo "<script>
                             const displayAttachment{$imageID} = document.getElementById('imgContainer{$imageID}');
                             const customFile{$imageID} = document.getElementById('customFile{$imageID}');
@@ -669,30 +736,35 @@ if (isset($_POST['btnReceived'])) {
                                         <div class="card-body-listings p-3">
                                             <div class="listings-content">
                                                 <div class="order-content" id="displayedItem<?php echo $items['itemID']; ?>">
-                                                    <img src="../shared/assets/img/system/items/<?php echo $items['fileName']; ?>" alt="" class="img-fluid">
+                                                    <img src="../shared/assets/img/system/items/<?php echo $items['fileName']; ?>"
+                                                        alt="" class="img-fluid">
                                                     <div class="listings-info">
-                                                        <input type="hidden" name="itemID" value="<?php echo $items['itemID'] ?>">
+                                                        <input type="hidden" name="itemID"
+                                                            value="<?php echo $items['itemID'] ?>">
                                                         <h4><?php echo $items['itemName']; ?></h4>
                                                         <h5>Available stocks: <?php echo $items['stock']; ?></h5>
                                                     </div>
                                                 </div>
                                                 <div class="listings-buttons">
-                                                    <button type="submit" name="deleteBtn" class="btn btn-delete"><i class="fa fa-trash-can"></i></button>
+                                                    <button type="submit" name="deleteBtn" class="btn btn-delete"><i
+                                                            class="fa fa-trash-can"></i></button>
                                     </form>
-                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $items['itemID']; ?>"><i class="fa fa-pen-to-square"></i></button>
+                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop<?php echo $items['itemID']; ?>"><i
+                                            class="fa fa-pen-to-square"></i></button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <?php
+                        <?php
                                 }
                             } else {
-            ?>
-            <div class="text-center mt-5">
-                <h1>No Items</h1>
-            </div>
-        <?php
+                                ?>
+                    <div class="text-center mt-5">
+                        <h1>No Items</h1>
+                    </div>
+                    <?php
                             }
-        ?>
+                            ?>
             </div>
         </div>
     </div>
@@ -753,7 +825,7 @@ if (isset($_POST['btnReceived'])) {
             });
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var savedSection = localStorage.getItem("activeSection") || "btn1";
             showContent(savedSection);
         });
