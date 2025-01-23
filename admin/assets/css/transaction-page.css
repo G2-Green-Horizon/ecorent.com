@@ -7,10 +7,12 @@
     --text-color: #D2CBA6;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --card-bg-color: #343333;
+    --mainFont: 'Studio Feixen Variable', sans-serif;
 }
 
 body, html {
     background-color: var(--primary-color);
+    font-family: var(--mainFont);
 }
 
 /* back */

@@ -7,8 +7,12 @@ include("shared/classes/Rental.php");
 if (isset($_POST['btnCancelBooking'])) {
     $rentalID = $_POST['rentalID'];
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
-    
+
     executeQuery($cancelQuery);
+}
+
+if (isset($_POST['btnConfirmed'])) {
+    header("Location: login.php");
 }
 
 // MY BOOKINGS TAB
@@ -70,7 +74,31 @@ $rentalList = $rental->getRentalsData();
                 </div>
 
                 <!-- LOG OUT MODAL -->
-                <?php include("shared/processes/logout-process.php"); ?>
+                <form method="POST">
+                    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                        aria-hidden="true" data-bs-theme="dark">
+                        <div class="modal-dialog  modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title  w-100 text-center fs-4" id="confirmationLogout">Log out
+                                        Account
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-4">
+                                    Are you sure you want to log out?
+                                </div>
+                                <div class="container d-flex justify-content-end my-3">
+                                    <button type="button" class="btn-logout-denied text-center mx-2"
+                                        data-bs-dismiss="modal" name="btnDenied">No</button>
+                                    <button type="submit" class="btn-logout-confirmed text-center"
+                                        name="btnConfirmed">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -103,24 +131,23 @@ $rentalList = $rental->getRentalsData();
                             <div class="row my-3">
                                 <!-- Profile Image Section -->
                                 <div class="col-12 col-lg-4 text-center d-flex flex-column align-items-center mb-4">
-                                        <div
-                                            class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
-                                        </div>
-
-
-                                        <img src="shared/assets/img/user/<?php echo $pfpfileame ?>"
-                                            alt="Profile Picture"
-                                            class="profile-pic rounded-circle border border-2 border-primary mb-3"
-                                            style="width: 200px; height: 200px; object-fit: cover;">
-
-
-                                        <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
-                                            class="d-none">
-                                        <button type="button" class="btn-select-img" id="selectImage">Select
-                                            Image</button>
-                                        <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                        <small class="size-info">File Extension: .JPG, .PNG</small>
+                                    <div
+                                        class="border-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
                                     </div>
+
+
+                                    <img src="shared/assets/img/user/<?php echo $pfpfileame ?>" alt="Profile Picture"
+                                        class="profile-pic rounded-circle border border-2 border-primary mb-3"
+                                        style="width: 200px; height: 200px; object-fit: cover;">
+
+
+                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
+                                        class="d-none">
+                                    <button type="button" class="btn-select-img" id="selectImage">Select
+                                        Image</button>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
+                                    <small class="size-info">File Extension: .JPG, .PNG</small>
+                                </div>
 
 
                                 <!-- Input Fields Section -->
@@ -159,17 +186,17 @@ $rentalList = $rental->getRentalsData();
                                         <label class="form-label me-4 mb-1" for="gender">Gender:</label>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Male"
-                                                id="male" <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
+                                                id="male" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Male') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="male">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Female"
-                                                id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
+                                                id="female" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Female') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="female">Female</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Other"
-                                                id="other" <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
+                                                id="other" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Other') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="other">Other</label>
                                         </div>
                                     </div>
