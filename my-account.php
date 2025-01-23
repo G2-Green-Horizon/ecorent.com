@@ -13,6 +13,15 @@ if (isset($_POST['btnConfirmed'])) {
     header("Location: my-account.php");
 }
 
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $periodExtension = $_POST['periodExtension'];
+    $extendPeriodDayQuery = "UPDATE rentals SET rentalPeriod = rentalPeriod + $periodExtension WHERE rentalID = '$rentalID';";
+    executeQuery($extendPeriodDayQuery);
+
+    header("Location: my-account.php");
+}
+
 if (isset($_POST['btnCancelBooking'])) {
     $rentalID = $_POST['rentalID'];
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
