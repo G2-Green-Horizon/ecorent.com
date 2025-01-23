@@ -232,7 +232,7 @@ class Rental
                                             <p name="totalPrice" class="price-custom-color" id="totalPrice' . $this->rentalID . '">₱' . $this->itemUnitPrice . '</p>
                                         </div>
                                         <button type="button" class="btn-denied text-center mx-2" data-bs-dismiss="modal" name="btnDenied">Cancel</button>
-                                        <input type="hidden" name="priceperDay" id="priceperDay' . $this->rentalID . '" data-unit-price="' . $this->itemUnitPrice . '>" value="">
+                                        <input type="hidden" name="priceperDay" id="priceperDay' . $this->rentalID . '" data-unit-price="' . $this->itemUnitPrice . '>" value="' . $this->itemUnitPrice . '">
                                         <button type="submit" class="btn-confirmed text-center" name="btnConfirmed" id="btnContinue' . $this->rentalID . '">Continue</button>
                                     </div>
                                 </form>
