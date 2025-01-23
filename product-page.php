@@ -28,82 +28,102 @@ include("shared/processes/productpage-process.php");
     <?php include 'shared/components/navbar.php'; ?>
     <section class="container">
 
-    <form method ="GET" action="booking.php">
-        <div class="row row-product-details my-4 mx-3 mx-sm-4">
+        <form method="GET">
+            <div class="row row-product-details my-4 mx-3 mx-sm-4">
 
-            <!-- Product Images Column -->
-            <div class="img-container col-md-6 my-4">
-                <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['fileName']; ?>" class="img-fluid img-fluid-product" alt="Product Image">
-            </div>
-
-            <div class="col-md-6 p-4">
-                <h3><?php echo $itemInfoArray["itemName"]?></h3>
-                <hr>
-                <input type="hidden" name="id" value="<?php echo $itemID; ?>">
-                <input type="hidden" name="pricePerDay" value="<?php echo $itemInfoArray["pricePerDay"]; ?>">
-                <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"];?></h4>
-
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-geo-alt-fill"></i>
-                    <p class="mb-0 ms-2"><?php echo $itemInfoArray["location"];?></p>
+                <!-- Product Images Column -->
+                <div class="img-container col-md-6 my-4">
+                    <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['fileName']; ?>"
+                        class="img-fluid img-fluid-product" alt="Product Image">
                 </div>
 
-                <div class="d-flex align-items-center">
-                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["conditionName"];?></span>
-                    <span id="badge-tracker" class="badge rounded-pill my-4">-<?php echo $itemInfoArray["gasEmissionSaved"];?>kg CO₂</span>
-                </div>
+                <div class="col-md-6 p-4">
+                    <h3><?php echo $itemInfoArray["itemName"] ?></h3>
+                    <hr>
+                    <input type="hidden" name="id" value="<?php echo $itemID; ?>">
+                    <input type="hidden" name="pricePerDay" value="<?php echo $itemInfoArray["pricePerDay"]; ?>">
+                    <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"]; ?></h4>
 
-                <div class="d-flex align-items-center">
-                    <p class="mb-0">Rental period:</p>
-                    <div class="quantity-container d-flex align-items-center mx-4 my-2">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
-                            onclick="decreaseRentalPeriod()">-</button>
-                        <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
-                            min="1" value="1" step="1">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
-                            onclick="increaseRentalPeriod()">+</button>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <p class="mb-0 ms-2"><?php echo $itemInfoArray["location"]; ?></p>
                     </div>
-                    <p class="mb-0">days</p>
-                </div>
 
-                <div class="d-flex align-items-center">
-                    <p class="mb-0 me-4">Quantity:</p>
-                    <div class="quantity-container d-flex align-items-center mx-2 my-2">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
-                            onclick="decreaseQuantity()">-</button>
-                        <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
-                            value="1" step="1">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
-                            onclick="increaseQuantity()">+</button>
+                    <div class="d-flex align-items-center">
+                        <span id="badge-condition"
+                            class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["conditionName"]; ?></span>
+                        <span id="badge-tracker"
+                            class="badge rounded-pill my-4">-<?php echo $itemInfoArray["gasEmissionSaved"]; ?>kg
+                            CO₂</span>
                     </div>
-                    <p class="mb-0"><?php echo $itemInfoArray["stock"];?> stocks available</p>
+
+                    <div class="d-flex align-items-center">
+                        <p class="mb-0">Rental period:</p>
+                        <div class="quantity-container d-flex align-items-center mx-4 my-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="decreaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
+                            <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
+                                min="1" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="increaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                        </div>
+                        <p class="mb-0">days</p>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <p class="mb-0 me-4">Quantity:</p>
+                        <div class="quantity-container d-flex align-items-center mx-2 my-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseQuantity()"
+                                <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
+                            <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
+                                value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseQuantity()"
+                                <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                        </div>
+                        <p class="mb-0">
+                            <?php if ($itemInfoArray["stock"] > 0): ?>
+                                <?php echo $itemInfoArray["stock"]; ?>
+                                <?php echo ($itemInfoArray["stock"] == 1) ? 'stock' : 'stocks'; ?> available
+                            <?php else: ?>
+                                No stocks available
+                            <?php endif; ?>
+                        </p>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-end mt-5">
+                        <button class="button-size btn btn-custom-outline mx-3" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>Add to cart</button>
+                        <?php if ($itemInfoArray["stock"] > 0): ?>
+                            <a href="booking.php">
+                                <button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow" formaction ="booking.php">Rent
+                                    now</button>
+                            </a>
+                        <?php else: ?>
+                            <button class="button-size btn btn-custom-dark"  type="button" name="btnRentNow" disabled>Rent
+                                now</button>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-end mt-5">
-                    <button class="button-size btn btn-custom-outline mx-3">Add to cart</button>
-                    <a href = "bookings.php"><button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow">Rent now</button> </a>
+            </div>
+
+            <!-- Product Desc -->
+            <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">
+
+                <div class="col my-3">
+                    <h3>Product Description</h3>
+                    <p class="mt-4"><?php echo $itemInfoArray["itemName"]; ?></p>
+                    <p><?php echo $itemInfoArray["description"]; ?></p>
                 </div>
             </div>
-        </div>
 
-        <!-- Product Desc -->
-        <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">
+            <!-- Product Specifications -->
+            <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">
 
-            <div class="col my-3">
-                <h3>Product Description</h3>
-                <p class="mt-4"><?php echo $itemInfoArray["itemName"];?></p>
-                <p><?php echo $itemInfoArray["description"];?></p>
-            </div>
-        </div>
-
-        <!-- Product Specifications -->
-        <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">
-
-            <div class="col my-4">
-                <h3>Product Specifications</h3>
-                <p class="mt-4"><?php echo $itemInfoArray["itemName"];?></p>
-                <p><?php echo $itemInfoArray["itemSpecifications"];?></p>
-            </div>
-            </form>
+                <div class="col my-4">
+                    <h3>Product Specifications</h3>
+                    <p class="mt-4"><?php echo $itemInfoArray["itemName"]; ?></p>
+                    <p><?php echo $itemInfoArray["itemSpecifications"]; ?></p>
+                </div>
+        </form>
         </div>
 
     </section>
