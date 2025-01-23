@@ -133,16 +133,13 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
 }
 
-.listings .card-title.item {
+.listings .card-title.item,
+.listings .card-text {
     min-height: 25px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
-}
-
-.listings .card-text {
-    min-height: 25px;
 }
 
 .listings .custom-card .card-footer {
