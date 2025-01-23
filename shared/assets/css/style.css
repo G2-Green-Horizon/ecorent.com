@@ -4,7 +4,10 @@
     --btnBg: #929292;
     --rowBg: #343333;
     --font: 'Studio Feixen Variable', sans-serif;
+}
 
+:root {
+    /* Global Variables */
     --titleColor: #D2CBA6;
     --mainColor: #FFFFFF;
     --beige: #D2CBA6;
@@ -20,7 +23,6 @@
     --danger: #D10D0D;
     --mainFont: 'Studio Feixen Variable', sans-serif;
     --roundiness: 18.3px;
-
     --margin: 300px;
 }
 
@@ -28,8 +30,37 @@ body {
     font-family: var(--font);
 }
 
+.item-card{
+    height: 400px;
+}
+
+.custom-card{
+    width: 300px;
+    height: 340px;
+    overflow: hidden;
+}
+
+.card-img-top{
+    width: 100%;
+    height: 250px;
+    min-height: 220px;
+    object-fit: cover;
+}
+
 .img-fluid {
     height: 100vh;
+}
+
+.card-title{
+    font-size: 18px;
+}
+
+.card-text{
+    font-size: 14px;
+}
+
+.capsule{
+    width: 250px;
 }
 
 /* register.php css */
@@ -103,20 +134,19 @@ body {
     border: none;
 }
 
-i {
+.product-page i{
     font-size: 28px;
     color: #5A5858;
 }
 
 #badge-condition {
-    background-color: var(--military);
-    width: auto;
+    background-color: #55523D;
+    width: 109px;
     height: 23px;
     color: #C3C1C1;
     font-size: 14px;
     font-weight: 200;
     font-family: var(--font);
-    padding-inline: 18px;
 }
 
 #badge-tracker {
@@ -153,7 +183,7 @@ i {
     font-weight: bold;
 }
 
-#product-page .btn-custom-outline {
+.product-page .btn-custom-outline {
     border-radius: 18.3px;
     color: #D2CBA6;
     font-family: var(--font);
@@ -161,7 +191,7 @@ i {
     background-color: transparent;
 }
 
-#product-page .btn-custom-dark {
+.product-page .btn-custom-dark {
     border-radius: 18.3px;
     color: #282828;
     font-family: var(--font);
@@ -209,8 +239,7 @@ input::-webkit-inner-spin-button {
 /* index.php css */
 
 #homepage,
-.listings,
-#product-page {
+.product-page {
     background-color: #282828;
     font-family: var(--font);
     margin: 0;
@@ -223,21 +252,17 @@ input::-webkit-inner-spin-button {
 
 #homepage h5,
 #homepage h2,
-.listings .h2,
-#product-page h3,
-#product-page p {
+.product-page h3,
+.product-page p {
     color: #FFFFFF;
 }
 
-#homepage .custom-card,
-.listings .custom-card,
-.listings .card {
+#homepage .custom-card {
     background-color: #343333;
     border-radius: 16px;
 }
 
-#homepage .btn,
-.listings .btn {
+#homepage .btn {
     width: 421px;
     color: #D2CBA6;
     background-color: #333333;
@@ -247,8 +272,7 @@ input::-webkit-inner-spin-button {
     font-size: 16px;
 }
 
-#homepage .btn:hover,
-.listings .btn:hover {
+#homepage .btn:hover {
     background-color: #555555;
     color: #F6F4F2;
 }
@@ -261,8 +285,7 @@ input::-webkit-inner-spin-button {
     background-color: #555555;
 }
 
-#homepage .card-title,
-.listings .card-title {
+#homepage .card-title {
     color: #FFFFFF;
 }
 
@@ -270,84 +293,18 @@ input::-webkit-inner-spin-button {
     color: #D2CBA6;
 }
 
-#homepage .card-text,
-.listings .card-text {
-    color: #FFFFFF;
+#homepage .card-text {
+    color: #d5d5d5;
 }
 
-#homepage .price,
-.listings .price {
+#homepage .price {
     color: #D2CBA6;
     font-weight: 600;
+    font-size: 20px;
 }
 
-.container a {
+.container-fluid, .container a {
     text-decoration: none;
-}
-
-/* listings */
-
-.listings i {
-    font-size: 28;
-    color: white
-}
-
-.listings p {
-    font-size: 28px;
-}
-
-.listings .custom-price {
-    font-family: var(--font);
-    border: 2px solid rgb(255, 255, 255);
-    background-color: transparent;
-    color: #D2CBA6;
-}
-
-.listings ::placeholder {
-    color: white;
-    text-align: center;
-}
-
-.listings .btn-apply {
-    font-family: var(--font);
-    border-radius: 3px;
-    border: none;
-    background-color: #D2CBA6;
-    height: 34px;
-    width: 100%;
-}
-
-.listings .custom-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-
-.listings .custom-card .card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.listings .card-title {
-    min-height: 40px;
-    margin-bottom: 5px;
-}
-
-.listings .card-text {
-    min-height: 40px;
-    margin-bottom: 5px;
-}
-
-.listings .custom-card .card-footer {
-    display: flex;
-    background-color: transparent;
-    border-top: none;
-    padding: 10px 0;
-    width: 100%;
 }
 
 /* Extend Rental Modal css */
@@ -378,26 +335,75 @@ input::-webkit-inner-spin-button {
     color: #3E3D3D;
 }
 
-@media (max-width: 1199.98px){
-    .listings .custom-card{
+@media(max-width:1400px){
+    .custom-card{
+        width: 260px;
+    }
+}
+
+@media(max-width:1199px){
+    .custom-card{
+        width: 300px;
+    }
+}
+
+@media(max-width:991.98px){
+    .custom-card{
+        width: 320px;
+        height: 350px;
+    }
+}
+
+@media(max-width:768px){
+    .custom-card{
+        width: 240px;
+    }
+}
+
+
+
+@media(max-width:575px){
+
+    .capsule{
         width: 100%;
     }
-}
 
-@media (max-width: 1000px){
-    .listings .custom-card{
-        width: 80%;
+    .item-card{
+        height:380px;
+    }
+
+    .custom-card{
+        width: 200px;
+        height: 360px;
+    }
+
+    .card-body{
+        height: 100px;
+    }
+
+    .card-img-top{
+        width: 100%;
+        object-fit: cover;
     }
 }
 
-@media (max-width: 768px) {
-    .listings .custom-card{
-        width: 70%;
-    }
-}
+@media(max-width:425px){
 
-@media(max-width:568px){
-   .listings .custom-card{
-        width: 70%;
+    .item-card{
+        height:380px;
+    }
+
+    .custom-card{
+        width:100%;
+        height: 360px;
+    }
+
+    .card-body{
+        height: 100px;
+    }
+
+    .card-img-top{
+        width: 100%;
+        object-fit: cover;
     }
 }

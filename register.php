@@ -59,7 +59,7 @@ include("shared/processes/process-login.php");
                         <div id="lastNameError" class="invalid-feedback text-start"></div>
                     </div>
                     <div class="mb-3">
-                    <input type="email" class="input-box form-control" name="email" placeholder="Email or username" id="email" 
+                    <input type="email" class="input-box form-control" name="email" placeholder="Email" id="email" 
                         value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
                         <div id="emailError" class="invalid-feedback text-start"></div>
                     <input type="hidden" id="emailExistsError" class="text-start" value="<?php echo $emailExistsError; ?>">

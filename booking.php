@@ -1,6 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
-include("connect.php");
+include("shared/processes/booking-process.php");
+
 ?>
 
 <!doctype html>
@@ -53,9 +54,9 @@ include("connect.php");
                 <div class="item-card col-12">
                     <div class="row">
                         <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                            <img src="shared/assets/img/system/items/gown.jpg" class="rounded-2"
+                            <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
                                 style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto ps-3 d-flex align-items-center">TrailMaster X200 Mountain Bike
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike
                             </h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
@@ -63,7 +64,7 @@ include("connect.php");
                                 <h6 class="p-2 me-5 ">₱100</h6>
                                 <h6 class="p-2 me-5">3 days</h6>
                                 <h6 class="p-2 me-5 text-center">1</h6>
-                                <h5 class="p-2">₱300</h5>
+                                <h5 class="p-2 me-4">₱300</h5>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,7 @@ include("connect.php");
                         <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
                             <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
                                 style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto ps-3 d-flex align-items-center">TrailMaster X200 Mountain Bike
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike
                             </h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
@@ -82,13 +83,11 @@ include("connect.php");
                                 <h6 class="p-2 me-5 ">₱100</h6>
                                 <h6 class="p-2 me-5">3 days</h6>
                                 <h6 class="p-2 me-5 text-center">1</h6>
-                                <h5 class="p-2">₱300</h5>
+                                <h5 class="p-2 me-4">₱300</h5>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
 
             <hr class="border border-1 w-100">
 
@@ -117,12 +116,12 @@ include("connect.php");
                 <div class="col-md-6 order-md-2 mt-sm-4 order-1 text-end">
                     <div class="d-flex align-items-center mb-1 justify-content-end gap-5">
                         <p class="mb-0 me-5">Security deposit:</p>
-                        <h6 class=" mb-0">₱500</h6>
+                        <h6 class=" mb-0">₱<?php echo $itemBookingInfoArray['securityDeposit']; ?></h6>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-end gap-5">
-                        <p class="mb-0 me-3">Booking Total (1 item):</p>
-                        <h5 class="mb-0" id="top-price">₱800</h5>
+                    <p class="mb-0 me-3">Booking Total (<?php echo $quantity; ?> <?php echo $quantity > 1 ? 'items' : 'item'; ?>):</p>
+                        <h5 class="mb-0" id="top-price">₱<?php echo $totalPrice; ?></h5>
                     </div>
                 </div>
             </div>
@@ -154,17 +153,17 @@ include("connect.php");
                     <div class="col-12 text-center">
                         <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
                             <p class="mb-0 me-5">Merchandise subtotal:</p>
-                            <h6 class="mb-0">₱300</h6>
+                            <h6 class="mb-0">₱<?php echo $itemSubtotal;?></h6>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
                             <p class="mb-0 me-5">Security deposit:</p>
-                            <h6 class="mb-0">₱500</h6>
+                            <h6 class="mb-0">₱<?php echo $itemBookingInfoArray['securityDeposit']; ?></h6>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
                             <p class="mb-0">Total payment:</p>
-                            <h5 class="mb-0" id="bot-price">₱800</h5>
+                            <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice;?></h5>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-end gap-3">

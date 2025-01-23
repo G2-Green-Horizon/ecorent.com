@@ -1,6 +1,6 @@
 <?php
-include("connect.php");
 include("shared/processes/process-index.php");
+include("shared/processes/productpage-process.php");
 ?>
 
 <!doctype html>
@@ -24,30 +24,33 @@ include("shared/processes/process-index.php");
     <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
-<body id="product-page">
+<body class="product-page">
     <?php include 'shared/components/navbar.php'; ?>
     <section class="container">
 
+    <form method ="GET" action="booking.php">
         <div class="row row-product-details my-4 mx-3 mx-sm-4">
 
             <!-- Product Images Column -->
             <div class="img-container col-md-6 my-4">
-                <img src="shared/assets/img/system/items/gown.jpg" class="img-fluid img-fluid-product" alt="Product Image">
+                <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['fileName']; ?>" class="img-fluid img-fluid-product" alt="Product Image">
             </div>
 
             <div class="col-md-6 p-4">
-                <h3>TrailMaster X200 Mountain Bike</h3>
+                <h3><?php echo $itemInfoArray["itemName"]?></h3>
                 <hr>
-                <h4 class="price-custom-color ">₱500/day</h4>
+                <input type="hidden" name="id" value="<?php echo $itemID; ?>">
+                <input type="hidden" name="pricePerDay" value="<?php echo $itemInfoArray["pricePerDay"]; ?>">
+                <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"];?></h4>
 
                 <div class="d-flex align-items-center">
                     <i class="bi bi-geo-alt-fill"></i>
-                    <p class="mb-0 ms-2">Brgy. San Antonio, Sto. Tomas, Batangas</p>
+                    <p class="mb-0 ms-2"><?php echo $itemInfoArray["location"];?></p>
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3">Good Condition</span>
-                    <span id="badge-tracker" class="badge rounded-pill my-4">-25 kg CO₂</span>
+                    <span id="badge-condition" class="badge rounded-pill my-4 mx-3"><?php echo $itemInfoArray["conditionName"];?></span>
+                    <span id="badge-tracker" class="badge rounded-pill my-4">-<?php echo $itemInfoArray["gasEmissionSaved"];?>kg CO₂</span>
                 </div>
 
                 <div class="d-flex align-items-center">
@@ -55,7 +58,7 @@ include("shared/processes/process-index.php");
                     <div class="quantity-container d-flex align-items-center mx-4 my-2">
                         <button type="button" class="btn btn-outline-secondary btn-sm"
                             onclick="decreaseRentalPeriod()">-</button>
-                        <input id="rentalPeriod" type="number" class="form-control text-center" name="rental-period"
+                        <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
                             min="1" value="1" step="1">
                         <button type="button" class="btn btn-outline-secondary btn-sm"
                             onclick="increaseRentalPeriod()">+</button>
@@ -73,16 +76,12 @@ include("shared/processes/process-index.php");
                         <button type="button" class="btn btn-outline-secondary btn-sm"
                             onclick="increaseQuantity()">+</button>
                     </div>
-                    <p class="mb-0">13 stocks available</p>
+                    <p class="mb-0"><?php echo $itemInfoArray["stock"];?> stocks available</p>
                 </div>
-
-                <p class="mt-3">Rented by over 20+ happy customers!</p>
-
                 <div class="d-flex align-items-center justify-content-end mt-5">
                     <button class="button-size btn btn-custom-outline mx-3">Add to cart</button>
-                    <a href="booking.php"> <button class="button-size btn btn-custom-dark">Rent now</button> </a>
+                    <a href = "bookings.php"><button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow">Rent now</button> </a>
                 </div>
-
             </div>
         </div>
 
@@ -91,9 +90,8 @@ include("shared/processes/process-index.php");
 
             <div class="col my-3">
                 <h3>Product Description</h3>
-                <p class="mt-4">TrailMaster X200 Mountain Bike</p>
-                <p>Lightweight aluminum alloy frame available in 15", 17", 19", and 21" sizes, paired with a RockShox
-                    Judy Silver TK fork offering 100mm travel. </p>
+                <p class="mt-4"><?php echo $itemInfoArray["itemName"];?></p>
+                <p><?php echo $itemInfoArray["description"];?></p>
             </div>
         </div>
 
@@ -102,18 +100,10 @@ include("shared/processes/process-index.php");
 
             <div class="col my-4">
                 <h3>Product Specifications</h3>
-                <p class="mt-4">TrailMaster X200 Mountain Bike</p>
-                <p>Lightweight aluminum alloy frame available in 15", 17", 19", and 21" sizes, paired with a RockShox
-                    Judy Silver TK fork offering 100mm travel.</p>
-                <p>Features 29" wheels with double-walled aluminum rims and Maxxis Ardent 29x2.4"
-                    all-terrain tires. </p>
-                <p>
-                    Equipped with a Shimano Deore 12-speed drivetrain, Shimano hydraulic disc brakes, and ergonomic
-                    cockpit components including a 760mm handlebar and dropper post. </p>
-                <p>
-                    Weighing 13.5 kg, it includes mounts for bottle cages and racks, available in Matte Black, Electric
-                    Blue, and Forest Green, with a 5-year frame warranty.</p>
+                <p class="mt-4"><?php echo $itemInfoArray["itemName"];?></p>
+                <p><?php echo $itemInfoArray["itemSpecifications"];?></p>
             </div>
+            </form>
         </div>
 
     </section>

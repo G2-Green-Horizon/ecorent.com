@@ -154,9 +154,9 @@ class Rental
         switch ($status) {
             case 'pending':
                 return 'd-none';
-            case 'approved':
+            case 'pickup':
                 return 'd-none';
-            case 'on Rent':
+            case 'on rent':
                 return 'd-block';
             case 'returned';
                 return 'd-none';
@@ -171,9 +171,9 @@ class Rental
         switch ($status) {
             case 'pending':
                 return 'Waiting for your item to be approved.';
-            case 'approved':
+            case 'pickup':
                 return 'Please pick-up your item at ' . $this->itemAddress . ' on ' . $this->reservationDate . '.';
-            case 'on Rent':
+            case 'on rent':
                 return '';
             case 'overdue';
                 return 'Please return the item immediately to prevent penalties!';
@@ -191,12 +191,12 @@ class Rental
     function showActionButton($status)
     {
         if ($status == 'pending' || $status == 'approved') {
-            return '
-            <div class="action-button">
-                <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                    <button type="submit" class="btn-action btn-cancel">Cancel Booking</button>
-                </div>
-            </div>';
+            return '<div class="action-button">
+                                            <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
+                                                <button type="submit" class="btn-action btn-cancel">Cancel
+                                                    Booking</button>
+                                            </div>
+                                        </div>';
         } else if ($status == 'on rent' || $status == 'overdue' || $status == 'extended') {
             return '
             <div class="action-button">
@@ -277,7 +277,9 @@ class Rental
         } else if ($status == 'returned' || $status == 'cancelled') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action">Rent Again</button>
+                                                <a href="product-page.php?id='.$this->itemID.'">
+                                                    <button type="submit" class="btn-action">Rent Again</button>
+                                                </a>
                                             </div>
                                         </div>';
         } else {
