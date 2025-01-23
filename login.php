@@ -46,7 +46,7 @@ if (isset($_POST['btnLogin'])) {
             <h1 class="mb-4">Welcome back</h1>
             <form method="POST">
                 <div class="mb-3">
-                    <input type="email" class="input-box form-control" placeholder="Email or username" id="email" name="email" required>
+                    <input type="email" class="input-box form-control" placeholder="Email" id="email" name="email" required>
                 </div>
                 <div class="mb-3">
                     <input type="password" class="input-box form-control" placeholder="Password" id="password" name="password" required>

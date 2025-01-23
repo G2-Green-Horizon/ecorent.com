@@ -152,7 +152,10 @@ class Rental
         $btnText = '';
         ($status != 'on rent') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
 
-        return '<button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5">' . $btnText . '</button>';
+        return '<form method="POST">
+            <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
+            <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5" type="text" name="btnReceived">' . $btnText . '</button>
+    </form>';
     }
 
     // DYNAMIC SETTINGS FUNCTIONS FOR RENTAL STATUS CARD (USER VIEW)

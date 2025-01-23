@@ -16,7 +16,8 @@ $limit = isset($_GET['limit']) ? (int) $_GET['limit'] : 12;
 
 // Query to retrieve user preferences.
 $userPreferences = new UserPreferences($userID);
-$categoryIDsArray = $userPreferences->getUserPreferences();
+$categoryIDsArray = $userPreferences->getUserPreferences() ?? [];
+
 
 $itemsArray = [];
 
@@ -95,13 +96,37 @@ if (count($categoryIDsArray) > 0) {
     }
 }
 
+// Default query where no preferences exist.
+if (count($categoryIDsArray) === 0) {
+    $defaultQuery = "SELECT items.itemID, items.itemName, items.pricePerDay, categories.categoryID, categories.categoryName, attachments.fileName
+        FROM items 
+        JOIN categories ON items.categoryID = categories.categoryID
+        JOIN attachments ON items.itemID = attachments.itemID
+        ORDER BY categoryName ASC
+        LIMIT $limit OFFSET $offset";
+
+    $defaultResult = executeQuery($defaultQuery);
+
+    while ($row = mysqli_fetch_assoc($defaultResult)) {
+        $itemsArray[] = new Item(
+            $row["itemID"],
+            $row["categoryID"],
+            $row["itemName"],
+            $row["pricePerDay"],
+            $row["categoryName"],
+            $row["fileName"]
+        );
+    }
+}
+
+
 // Merge items from preferred and other categories.
 $totalItemsArray = array_merge($itemsArray, $remainingItemsArray);
 
 // Output the HTML for each item.
 foreach ($totalItemsArray as $item) {
     echo '
-    <a href="product-page.php?id=' . $item->itemID . '" class="item-card col-12 col-md-6 col-lg-4 col-xl-3">
+    <a href="product-page.php?id=' . $item->itemID . '" class="item-card col-6 col-lg-4 col-xl-3">
         <div class="card my-3 custom-card">
             <img src="shared/assets/img/system/items/' . ($item->fileName) .' " class="card-img-top" alt="' . ($item->itemName) . '">
             <div class="card-body">
