@@ -2,7 +2,6 @@
 include("connect.php");
 include("shared/classes/User.php");
 include("shared/processes/process-login.php");
-include("shared/processes/logout-process.php");
 
 
 $newLogin = "";
@@ -52,7 +51,7 @@ if (isset($_POST['btnLogin'])) {
                     <input type="password" class="input-box form-control" placeholder="Password" id="password" name="password" required>
                 </div>
                 <div class="text-decoration-none mb-4 d-flex justify-content-start">
-                    <a href="#" class="forgot-pass text-decoration-none">Forgot password?</a>
+                    <a href="forgot-password.php" class="forgot-pass text-decoration-none">Forgot password?</a>
                 </div>
                 <div>
                     <button class="btn-continue w-100" id="btnLogin" name="btnLogin">Continue</button>
