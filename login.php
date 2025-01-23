@@ -2,6 +2,8 @@
 include("connect.php");
 include("shared/classes/User.php");
 include("shared/processes/process-login.php");
+include("shared/processes/logout-process.php");
+
 
 $newLogin = "";
 

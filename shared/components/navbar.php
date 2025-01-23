@@ -18,8 +18,12 @@ $categoryResult = executeQuery($categoryQuery);
 if (isset($_GET['setCategory'])) {
     $chosenCategory = $_GET['setCategory'];
 
-    $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.categoryID = '$chosenCategory' AND items.isDeleted ='No'";
-
+    $loadItemsQuery = "SELECT items.*, attachments.*, categories.* 
+    FROM items 
+    INNER JOIN attachments ON items.itemID = attachments.itemID 
+    INNER JOIN categories ON items.categoryID = categories.categoryID 
+    WHERE items.categoryID = '$chosenCategory' AND items.isDeleted = 'No'";
+    
     if ($searchCondition) {
         $loadItemsQuery .= " AND $searchCondition";
     }
@@ -30,7 +34,6 @@ if (isset($_GET['setCategory'])) {
     }
 } else {
     $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
-
     if ($searchCondition) {
         $loadItemsQuery .= " AND $searchCondition";
     }
