@@ -44,6 +44,7 @@ if (isset($_POST['btnLogin'])) {
     <link rel="stylesheet" href="assets/css/admin-login.css">
     <link rel="stylesheet" href="admin-login.css">
     <link rel="icon" type="image/png" href="../shared/assets/img/system/ecorent-logo-2.png">
+    <link rel="stylesheet" href="../shared/assets/font/font.css">
 </head>
 
 <body>
