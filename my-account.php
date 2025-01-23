@@ -7,6 +7,14 @@ include("shared/classes/Rental.php");
 $rental = new Rental(null, null, null);
 $rentalList = $rental->getRentalsData();
 
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $priceperDay = $_POST['priceperDay'];
+    $extendPeriodQuery = "UPDATE rentals SET totalPrice = totalPrice + $priceperDay WHERE rentalID = '$rentalID'";
+    executeQuery($extendPeriodQuery);
+
+    header("Location: my-account.php");
+}
 
 ?>
 <!doctype html>
@@ -217,10 +225,8 @@ $rentalList = $rental->getRentalsData();
 
                             <!-- RENTAL STATUS CARDS -->
                             <?php foreach ($rentalList as $rentalCard) {
-                                if ($rentalCard->status === 'overdue') {
                                     echo $rentalCard->buildRentalCard();
-                                }
-
+    
                             } ?>
                         </div>
                     </div>
