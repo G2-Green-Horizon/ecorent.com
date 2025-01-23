@@ -1,5 +1,5 @@
 <?php
-
+include("processes/upload-process.php");
 include("../connect.php");
 class Rental
 {
@@ -147,16 +147,16 @@ class Rental
                     </div>';
     }
 
-    function showButtonToRentals($status, $rentalID)
+    function showButtonToRentals($status)
 {
     $btnText = '';
     // Determine button text based on rental status
-    ($status != 'on rent') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
+    ($status != 'pickup') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
 
     // Return a form with the button inside it
     return '
     <form method="POST">
-        <input type="hidden" name="rentalID" value="' . $rentalID . '">
+        <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
         <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5" type="submit" name="btnPickup">' . $btnText . '</button>
     </form>';
 }
@@ -243,4 +243,3 @@ class Rental
         ($status != 'overdue') ? 'd-none' : 'd-block';
     }
 }
-?>

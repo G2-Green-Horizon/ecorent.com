@@ -4,11 +4,16 @@ include("shared/processes/file-upload-process.php");
 include("shared/processes/profile-process.php");
 include("shared/classes/Rental.php");
 
+if (isset($_POST['btnCancelBooking'])) {
+    $rentalID = $_POST['rentalID'];
+    $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
+    
+    executeQuery($cancelQuery);
+}
 
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
 $rentalList = $rental->getRentalsData();
-
 
 ?>
 <!doctype html>
@@ -170,8 +175,6 @@ $rentalList = $rental->getRentalsData();
                                     </div>
                                 </div>
 
-
-
                                 <!-- Save Button -->
                                 <div class="text-center text-md-end mt-5 mb-3">
                                     <button type="submit" name="btnSaveProfile" class="btn-save">Save</button>
@@ -211,7 +214,7 @@ $rentalList = $rental->getRentalsData();
 
                             <!-- RENTAL STATUS CARDS -->
                             <?php foreach ($rentalList as $rentalCard) {
-                                if ($rentalCard->status === 'overdue') {
+                                if ($rentalCard->status === 'pending') {
                                     echo $rentalCard->buildRentalCard();
                                 }
 
