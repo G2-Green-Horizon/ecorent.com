@@ -12,37 +12,38 @@
             <div class="col-12 col-md-3 mb-3">
                 <h5>Customer Service</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Help Center</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Report a bug</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">User manual</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Forget Password</a></li>
                 </ul>
             </div>
 
             <div class="col-12 col-md-3 mb-3">
-                <h5>About EcoRent</h5>
+                <h5>Categories</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">About us</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
+                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=1" class="text-white text-decoration-none">Electronics and Gadgets</a></li>
+                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=2" class="text-white text-decoration-none">Transportation</a></li>
+                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=3" class="text-white text-decoration-none">Clothing</a></li>
+                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=4" class="text-white text-decoration-none">Sports & Outdoor</a></li>
+                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=5" class="text-white text-decoration-none">Event Supplies</a></li>
                 </ul>
             </div>
 
             <div class="col-12 col-md-3 mb-3">
-                <h5>Payment</h5>
+                <h5>My Account</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">GCash</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">PayPal</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">PayMaya</a></li>
+                    <li><a href="./my-account.php" class="text-white text-decoration-none">My Profile</a></li>
+                    <li><a href="./my-account.php" class="text-white text-decoration-none">My Bookings</a></li>
+                    <li><a href="./my-account.php" class="text-white text-decoration-none">Settings</a></li>
                 </ul>
             </div>
 
-            <div class="col-12 col-md-3 text-center text-md-end">
+            <div class="col-12 col-md-3 text-center text-md-start">
                 <h5>Join Us</h5>
-                <ul class="list-unstyled d-flex justify-content-center justify-content-md-end">
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-youtube"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-facebook"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-twitter"></i></a></li>
-                    <li class="me-3"><a href="#" class="text-white"><i class="bi bi-instagram"></i></a></li>
-                    <li><a href="#" class="text-white"><i class="bi bi-linkedin"></i></a></li>
+                <ul class="list-unstyled d-flex justify-content-center justify-content-md-start">
+                    <li class="me-3">
+                        <a href="https://github.com/G2-Green-Horizon" class="text-white">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -55,8 +56,7 @@
             </div>
             <div class="col-12 col-md-6 text-center text-md-end">
                 <a href="./" class="text-white text-decoration-none me-3">Home</a>
-                <a href="#" class="text-white text-decoration-none me-3">Account</a>
-                <a href="#" class="text-white text-decoration-none">Booking Progress</a>
+                <a href="./my-account.php" class="text-white text-decoration-none me-3">Account</a>
             </div>
         </div>
     </div>
