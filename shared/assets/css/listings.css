@@ -38,6 +38,12 @@
     padding: 0;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .listings .h4 {
     color: #FFFFFF;
 }
@@ -61,7 +67,6 @@
     background-color: #555555;
     color: #F6F4F2;
 }
-
 
 .listings .card-title {
     color: #FFFFFF;
@@ -148,10 +153,16 @@
     width: 100%;
 }
 
-.card-img-top {
+.listings .card-img-top {
     height: 250px;
     object-fit: cover;
 }
+
+a {
+    text-decoration: none; 
+    color: inherit;
+}
+
 
 @media (max-width: 1199.98px){
     .listings .custom-card{
