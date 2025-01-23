@@ -101,6 +101,16 @@ if (isset($_POST['cancelEdit'])) {
     header("Location: index.php#displayedItem" . $itemID);
 }
 
+if (isset($_POST['btnPickup'])) {
+    $rentalID = $_POST['rentalID'];
+    $pickupQuery = "UPDATE rentals SET rentalStatus = 'on rent' Where rentalID = '$rentalID'";
+
+    executeQuery($pickupQuery);
+    header("Location: index.php");
+    exit();
+}   
+
+
 // ACTIVE RENTALS STATUS
 if (isset($_POST['btnReceived'])) {
     $rentalID = $_POST['rentalID'];
@@ -119,6 +129,7 @@ if (isset($_POST['btnReceived'])) {
     exit();
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">
