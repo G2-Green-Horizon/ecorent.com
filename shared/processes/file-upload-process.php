@@ -19,7 +19,7 @@ if (isset($_POST['btnSaveProfile'])) {
 }
 
 // fetch updated user data
-$uploadProfileQuery = "SELECT profilePicture FROM users WHERE userID = $userID;";
+$uploadProfileQuery = "SELECT profilePicture FROM users WHERE userID = $userID AND isDeleted = 'No';";
 $uploadResult = executeQuery($uploadProfileQuery);
 
 $pfpfileame = "";

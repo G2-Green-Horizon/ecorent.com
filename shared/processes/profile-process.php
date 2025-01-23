@@ -1,5 +1,4 @@
 <?php
-// include(__DIR__ . "/../../connect.php");
 include("shared/processes/process-index.php");
 
 $profileUpdated = false;
@@ -14,10 +13,10 @@ $userInfoArray = array();
 // Query to retrieve user info.
 if (isset($_COOKIE["userID"])) {
     $userID = $_COOKIE["userID"];
-    $getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID";
+    $getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID AND isDeleted ='No'";
 } else if (isset($_COOKIE["userCredentials"])) {
     $userID = $_COOKIE["userCredentials"];
-    $getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID";
+    $getUserInfoQuery = "SELECT firstName, lastName, email, contactNumber, gender, address FROM users WHERE userID = $userID AND isDeleted ='No'";
 }
 $getUserInfoResult = executeQuery($getUserInfoQuery);
 

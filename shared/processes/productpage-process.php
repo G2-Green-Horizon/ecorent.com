@@ -19,7 +19,7 @@ $itemInfoArray = array();
                       FROM items 
                       JOIN attachments ON items.itemID = attachments.itemID
                       JOIN conditions ON items.conditionID = conditions.conditionID
-                      WHERE items.itemID = $itemID";
+                      WHERE items.itemID = $itemID AND items.isDeleted = 'No'";
 
 
         $getItemsInfoResult = executeQuery($getItemsInfoQuery);

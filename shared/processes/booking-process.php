@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     $getItemInfoQuery = "SELECT items.itemID, items.itemName, items.securityDeposit, attachments.fileName
                          FROM items 
                          JOIN attachments ON items.itemID = attachments.itemID
-                         WHERE items.itemID = $itemID";
+                         WHERE items.itemID = $itemID AND items.isDeleted = 'No'";
 
     $getItemInfoResult = executeQuery($getItemInfoQuery);  
 

@@ -18,7 +18,7 @@ if (isset($_POST['btnRegister'])) {
     $confirmPassword = test_input($_POST['confirmPassword']);
 
     // Check if email already exists.
-    $checkEmailQuery = "SELECT * FROM users WHERE email = '$email'";
+    $checkEmailQuery = "SELECT * FROM users WHERE email = '$email' AND isDeleted ='No'";
     $checkEmailResult = mysqli_query($conn, $checkEmailQuery);
 
     if (mysqli_num_rows($checkEmailResult) > 0) {

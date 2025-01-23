@@ -41,7 +41,7 @@ class User
 
         $placeholderColor = "";
 
-        $loginQuery = "SELECT * FROM users WHERE email = ?";
+        $loginQuery = "SELECT * FROM users WHERE email = ? AND isDeleted = 'No'";
         if ($stmt = mysqli_prepare($conn, $loginQuery)) {
             mysqli_stmt_bind_param($stmt, "s", $email);
             mysqli_stmt_execute($stmt);
@@ -79,7 +79,7 @@ class UserPreferences
     {
         global $conn;
         // Query to select category IDs from user preference.
-        $getUserPreferencesQuery = "SELECT categoryID FROM preferences WHERE userID = $this->userID";
+        $getUserPreferencesQuery = "SELECT categoryID FROM preferences WHERE userID = $this->userID AND isDeleted = 'No'";
         $userPreferencesResult = executeQuery($getUserPreferencesQuery);
 
         // Query if user chose to skip, selecting all category IDs of items, printing all items.
@@ -98,9 +98,8 @@ class UserPreferences
                     $categoryIDsArray[] = $randomItemsRow["categoryID"];
             }
         }
-
-        return $categoryIDsArray;
     }
+    return $categoryIDsArray;
 }
 }
 

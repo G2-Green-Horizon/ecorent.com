@@ -2,6 +2,7 @@
 include("shared/processes/process-index.php");
 include("shared/processes/file-upload-process.php");
 include("shared/processes/profile-process.php");
+include("shared/processes/delete-process.php");
 include("shared/classes/Rental.php");
 
 if (isset($_POST['btnCancelBooking'])) {
@@ -269,6 +270,7 @@ $rentalList = $rental->getRentalsData();
                 </div>
 
                 <!-- DELETE ACCOUNT MODAL -->
+                 <form method="POST">
                 <div class=" modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true" data-bs-theme="dark">
                     <div class="modal-dialog  modal-dialog-centered">
@@ -299,6 +301,7 @@ $rentalList = $rental->getRentalsData();
             </div>
         </div>
     </div>
+    </form>
 
     <?php include 'shared/components/footer.php'; ?>
 

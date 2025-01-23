@@ -37,7 +37,8 @@ class Rental
     {
         $query = "SELECT * FROM rentals 
         LEFT JOIN items ON rentals.itemID = items.itemID
-        LEFT JOIN attachments ON items.itemID = attachments.itemID";
+        LEFT JOIN attachments ON items.itemID = attachments.itemID
+        WHERE rentals.isDeleted = 'No'";
         $result = executeQuery($query);
 
         $rentals = array();
