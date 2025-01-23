@@ -3,11 +3,22 @@
 $currentYear = date('Y');
 $currentMonth = date('m');
 
+// Query for total gas emissions saved per month
+$monthlyCO2Saved = [];
+for ($month = 1; $month <= 12; $month++) {
+    $co2Query = "SELECT SUM(totalCO2Saved) AS totalCO2Saved FROM rentals WHERE rentalStatus != 'cancelled' AND MONTH(startRentalDate) = $month AND YEAR(startRentalDate) = $currentYear";
+    $co2Result = executeQuery($co2Query);
+    $co2Data = mysqli_fetch_assoc($co2Result);
+    $monthlyCO2Saved[] = $co2Data['totalCO2Saved'] ?? 0;
+}
+
+$monthlyCO2SavedJson = json_encode($monthlyCO2Saved);
+
 // Query for total gas emissions saved this month
 $co2Query = "SELECT SUM(totalCO2Saved) AS totalCO2Saved FROM rentals WHERE rentalStatus != 'cancelled' AND MONTH(startRentalDate) = $currentMonth AND YEAR(startRentalDate) = $currentYear";
 $co2Result = executeQuery($co2Query);
 $co2Data = mysqli_fetch_assoc($co2Result);
-$totalCO2Saved = $co2Data['totalCO2Saved'] ?? 0; 
+$totalCO2Saved = $co2Data['totalCO2Saved'] ?? 0;
 $formattedCO2Saved = number_format($totalCO2Saved, 0);
 
 // Query for total earnings
@@ -162,4 +173,7 @@ $totalUsers = $usersData['totalUsers'];
             </div>
         </div>
     </div>
+    <script>
+        window.monthlyCO2SavedData = <?php echo $monthlyCO2SavedJson; ?>;
+    </script>
 </div>

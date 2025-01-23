@@ -7,17 +7,12 @@ const barChartData = {
     datasets: [{
         axis: 'y',
         label: ['Gas emission saved per month'],
-        data: [10, 59, 80, 81, 56, 55, 40, 45, 25, 60, 70, 150],
+        data: window.monthlyCO2SavedData, 
         fill: false,
-        backgroundColor: [
-            '#55523D'
-        ],
-        borderColor: [
-            'rgba(162, 189, 131, 1)'
-        ],
+        backgroundColor: ['#55523D'],
+        borderColor: ['rgba(162, 189, 131, 1)'],
         borderWidth: 1
-    }
-    ]
+    }]
 };
 
 const ctx = document.getElementById("bar").getContext("2d");
