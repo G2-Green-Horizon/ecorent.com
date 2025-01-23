@@ -8,6 +8,4 @@ if (isset($_COOKIE['email']) || isset($_COOKIE['userCredentials'])) {
     setcookie("userCredentials", "", time() - 3600, "/"); 
     header("Location: index.php"); 
     exit();
-
-
 }
