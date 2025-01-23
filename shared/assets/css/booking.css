@@ -137,7 +137,7 @@ li {
 }
 
 .input-box::placeholder {
-    color: var(--mainColor);
+    color: gray;
 }
 
 .input-box:focus::placeholder {
@@ -217,3 +217,4 @@ li {
     border-color: var(--green) !important;
     color: var(--mainColor) !important;
 }
+
