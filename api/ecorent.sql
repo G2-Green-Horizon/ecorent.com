@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2025 at 04:30 PM
+-- Generation Time: Jan 22, 2025 at 12:19 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ecorent`
+-- Database: `ecorent3`
 --
 
 -- --------------------------------------------------------
@@ -65,7 +65,8 @@ INSERT INTO `attachments` (`attachmentID`, `itemID`, `fileName`) VALUES
 (25, 25, 'p3.jpg'),
 (26, 26, 'p4.jpg'),
 (27, 27, '2025Jan21031036000000-waterbottle.JPG'),
-(28, 28, '2025Jan21031751000000-basketball.JPG');
+(28, 28, '2025Jan21031751000000-basketball.JPG'),
+(29, 34, '2025Jan22135436000000-Buy-Compact-Wooden-Dining-table-with-1-Bench-3-chairs-furniture-set-for-modern-Home_1200x.jpg');
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`) VALUES
-(1, 'Electronics & Gadgets'),
+(1, 'Electronics and Gadgets'),
 (2, 'Transportation'),
 (3, 'Clothing'),
 (4, 'Sports & Outdoor'),
@@ -167,9 +168,9 @@ INSERT INTO `items` (`itemID`, `categoryID`, `conditionID`, `itemName`, `itemTyp
 (8, 2, 2, 'Brompton Folding Bike', 'Bike with Basket', 3.00, 350.00, 'Lightweight, 6-speed, compact fold, aluminum alloy frame, 16-inch wheels', 'A versatile and space-saving bike perfect for urban commutes. Its folding design makes it easy to store and transport.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
 (9, 2, 3, 'Giant Talon 29 2', 'Mountain Bike', 4.50, 500.00, 'Aluminum frame, hydraulic disc brakes, 29-inch tires, Shimano drivetrain, front suspension fork', 'Designed for off-road adventures, this mountain bike combines durability with smooth handling.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-21', 'Yes', 'No', 2),
 (10, 2, 5, 'Razor E300 Electric Scooter', 'Scooter', 3.80, 400.00, '24V battery, 24 km/h max speed, up to 40 min runtime, 10-inch pneumatic tires, twist-grip throttle', 'An eco-friendly and fun way to get around town, offering a smooth and reliable ride.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
-(11, 2, 0, 'Mongoose Legion L80', 'BMX', 3.20, 450.00, '20-inch tires, hi-ten steel frame, freestyle geometry, sealed bearings, 360° rotor', 'Built for tricks and stunts, this BMX bike is ideal for freestyle enthusiasts and urban riders.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
-(12, 2, 0, 'Electra Townie 7D', 'Bike with Basket', 3.50, 300.00, '7-speed, ergonomic design, rear rack, step-through frame, puncture-resistant tires', 'A stylish and comfortable bike for leisurely rides and quick errands around the neighborhood.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
-(13, 3, 0, 'Hugo Boss Formal Suit', 'Men’s Suit', 1.50, 700.00, 'Slim fit, wool blend, navy color, two-button closure, notched lapels', 'A sophisticated and timeless choice for formal occasions and business meetings.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
+(11, 2, 3, 'Mongoose Legion L80', 'BMX', 3.20, 450.00, '20-inch tires, hi-ten steel frame, freestyle geometry, sealed bearings, 360° rotor', 'Built for tricks and stunts, this BMX bike is ideal for freestyle enthusiasts and urban riders.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
+(12, 2, 3, 'Electra Townie 7D', 'Bike with Basket', 3.50, 300.00, '7-speed, ergonomic design, rear rack, step-through frame, puncture-resistant tires', 'A stylish and comfortable bike for leisurely rides and quick errands around the neighborhood.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
+(13, 3, 2, 'Hugo Boss Formal Suit', 'Men’s Suit', 1.50, 700.00, 'Slim fit, wool blend, navy color, two-button closure, notched lapels', 'A sophisticated and timeless choice for formal occasions and business meetings.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
 (14, 3, 0, 'Vera Wang Event Gown', 'Gown', 1.80, 1200.00, 'Silk fabric, sequin details, A-line silhouette, adjustable straps, hidden zipper', 'A stunning gown that exudes elegance, perfect for weddings, galas, and other special events', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
 (15, 3, 0, 'Filipiniana Modern Terno', 'Filipiniana', 1.20, 600.00, 'Organza, butterfly sleeves, embroidered patterns, full-length skirt, fitted bodice', 'A modern take on traditional Filipino attire, blending heritage with contemporary style', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
 (16, 3, 0, 'Custom Barong Tagalog', 'Barong Tagalog', 1.30, 500.00, 'Piña fiber, hand-woven, traditional design, embroidered details, button-down closure', 'A classic Barong Tagalog that showcases Filipino craftsmanship, perfect for formal and cultural events.', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-10', '2025-01-10', 'Yes', 'No', 0),
@@ -187,7 +188,10 @@ INSERT INTO `items` (`itemID`, `categoryID`, `conditionID`, `itemName`, `itemTyp
 (30, 0, 0, '', '', 0.00, NULL, '', '', '', NULL, NULL, 33.00, '2025-01-21', '2025-01-21', '', '', 0),
 (31, 0, 0, '', '', 0.00, NULL, '', '', '', NULL, NULL, 53.00, '2025-01-21', '2025-01-21', '', '', 0),
 (32, 0, 0, '', '', 0.00, NULL, '', '', '', NULL, NULL, 73.00, '2025-01-21', '2025-01-21', '', '', 0),
-(33, 0, 0, '', '', 0.00, NULL, '', '', '', NULL, NULL, 83.00, '2025-01-21', '2025-01-21', '', '', 0);
+(33, 0, 0, '', '', 0.00, NULL, '', '', '', NULL, NULL, 83.00, '2025-01-21', '2025-01-21', '', '', 0),
+(34, 5, 2, 'Lamesa', 'Tables', 20.10, 229.00, 'Wood and Metal', '5 chairs available', 'Brgy. San Antonio, Sto. Tomas, Batangas', NULL, NULL, NULL, '2025-01-22', '2025-01-22', 'Yes', 'No', 3),
+(35, 0, 0, 'Goggles', 'Eyewear', 5.00, 100.00, 'Cool', '', 'Brgy. San Antonio, Sto. Tomas City, Batangas', NULL, NULL, NULL, '2025-01-22', '2025-01-22', '', '', 0),
+(36, 0, 0, 'Fujifilm Instax Mini 11', 'Instant Camera', 1.75, 150.00, 'Automatic exposure, built-in selfie mirror, compact and lightweight, uses Instax Mini film, powered by AA batteries', '', 'Brgy.San Antonio, Sto.Tomas, Batangas', NULL, NULL, NULL, '2025-01-22', '2025-01-22', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -251,48 +255,76 @@ CREATE TABLE `rentals` (
   `securityDeposit` int(10) NOT NULL,
   `startRentalDate` date NOT NULL DEFAULT current_timestamp(),
   `endRentalDate` date NOT NULL DEFAULT current_timestamp(),
-  `rentalPeriod` varchar(10) NOT NULL,
+  `rentalPeriod` int(10) NOT NULL DEFAULT 1,
   `rateType` varchar(20) NOT NULL,
   `shippingMode` varchar(20) NOT NULL,
   `isDepositPaid` varchar(5) NOT NULL,
   `totalPrice` decimal(10,0) NOT NULL,
   `rentalStatus` varchar(20) NOT NULL,
   `itemQuantity` int(100) DEFAULT NULL,
-  `totalCO2Saved` decimal(11,0) NOT NULL
+  `totalCO2Saved` decimal(11,0) NOT NULL,
+  `message` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rentals`
 --
 
-INSERT INTO `rentals` (`rentalID`, `renterID`, `itemID`, `reservationDate`, `securityDeposit`, `startRentalDate`, `endRentalDate`, `rentalPeriod`, `rateType`, `shippingMode`, `isDepositPaid`, `totalPrice`, `rentalStatus`, `itemQuantity`, `totalCO2Saved`) VALUES
-(1, 4, 5, '2025-01-09', 94, '2025-01-09', '2025-01-09', '7 days', 'per day', 'meetup', 'true', 490, 'on rent', 2, 0),
-(2, 2, 2, '2025-01-09', 78, '2025-01-09', '2025-01-09', '3 days', 'per hour', 'cash-on-pickup', 'false', 189, 'cancelled', 3, 0),
-(3, 2, 1, '2025-01-09', 252, '2025-01-09', '2025-01-09', '3 days', 'per day', 'cash-on-pickup', 'false', 500, 'pending', 3, 26),
-(4, 1, 1, '2025-01-10', 75, '2025-01-15', '2025-01-20', '5 days', 'per day', 'pickup', '', 500, 'pending', 1, 50),
-(5, 1, 2, '2025-01-18', 35, '2025-01-20', '2025-01-23', '3 days', 'per day', 'pickup', '', 300, 'on rent', 1, 30),
-(6, 2, 3, '2025-01-05', 0, '2025-01-07', '2025-01-10', '3 days', 'per day', 'pickup', '', 300, 'pickup', 2, 30),
-(7, 2, 4, '2025-01-15', 0, '2025-01-16', '2025-01-18', '2 days', 'per day', 'pickup', '', 200, 'returned', 1, 20),
-(8, 3, 5, '2025-01-12', 0, '2025-01-13', '2025-01-15', '2 days', 'per day', 'pickup', '', 150, 'cancelled', 1, 20),
-(9, 3, 6, '2025-01-20', 0, '2025-01-21', '2025-01-23', '2 days', 'per day', 'pickup', '', 300, 'on rent', 2, 35),
-(10, 4, 7, '2025-01-08', 0, '2025-01-10', '2025-01-15', '5 days', 'per day', 'pickup', '', 750, 'on rent', 1, 60),
-(11, 4, 8, '2025-01-12', 0, '2025-01-14', '2025-01-18', '4 days', 'per day', 'pickup', '', 600, 'extended', 1, 50),
-(12, 5, 9, '2025-01-01', 0, '2025-01-03', '2025-01-07', '4 days', 'per day', 'pickup', '', 400, 'overdue', 3, 40),
-(13, 5, 10, '2025-01-05', 0, '2025-01-08', '2025-01-10', '2 days', 'per day', 'pickup', '', 200, 'pickup', 1, 25),
-(14, 6, 11, '2025-01-05', 0, '2025-01-08', '2025-01-14', '6 days', 'per day', 'pickup', '', 600, 'extended', 2, 70),
-(15, 6, 12, '2025-01-18', 0, '2025-01-19', '2025-01-22', '3 days', 'per day', 'pickup', '', 300, 'pending', 1, 35),
-(16, 7, 13, '2025-01-10', 0, '2025-01-12', '2025-01-16', '4 days', 'per day', 'pickup', '', 400, 'returned', 1, 35),
-(17, 7, 14, '2025-01-15', 0, '2025-01-16', '2025-01-20', '4 days', 'per day', 'pickup', '', 400, 'on rent', 2, 45),
-(18, 8, 15, '2025-01-14', 0, '2025-01-15', '2025-01-18', '3 days', 'per day', 'pickup', '', 300, 'pending', 1, 25),
-(19, 8, 16, '2025-01-20', 0, '2025-01-21', '2025-01-24', '3 days', 'per day', 'pickup', '', 300, 'on rent', 1, 40),
-(20, 9, 17, '2025-01-10', 0, '2025-01-15', '2025-01-20', '5 days', 'per day', 'pickup', '', 500, 'pending', 1, 50),
-(21, 10, 18, '2025-01-12', 0, '2025-01-14', '2025-01-16', '2 days', 'per day', 'pickup', '', 200, 'pickup', 1, 30),
-(22, 11, 19, '2025-01-08', 0, '2025-01-10', '2025-01-13', '3 days', 'per day', 'pickup', '', 300, 'on rent', 1, 35),
-(23, 12, 20, '2025-01-18', 0, '2025-01-20', '2025-01-23', '3 days', 'per day', 'pickup', '', 450, 'extended', 2, 45),
-(24, 13, 21, '2025-01-15', 0, '2025-01-17', '2025-01-20', '3 days', 'per day', 'pickup', '', 450, 'returned', 1, 40),
-(25, 14, 22, '2025-01-14', 0, '2025-01-15', '2025-01-17', '2 days', 'per day', 'pickup', '', 200, 'cancelled', 1, 20),
-(26, 15, 23, '2025-01-18', 0, '2025-01-19', '2025-01-22', '3 days', 'per day', 'pickup', '', 300, 'pending', 1, 35),
-(27, 16, 24, '2025-01-16', 0, '2025-01-18', '2025-01-22', '4 days', 'per day', 'pickup', '', 400, 'on rent', 1, 50);
+INSERT INTO `rentals` (`rentalID`, `renterID`, `itemID`, `reservationDate`, `securityDeposit`, `startRentalDate`, `endRentalDate`, `rentalPeriod`, `rateType`, `shippingMode`, `isDepositPaid`, `totalPrice`, `rentalStatus`, `itemQuantity`, `totalCO2Saved`, `message`) VALUES
+(1, 4, 5, '2025-01-09', 94, '2025-01-09', '2025-01-09', 7, 'per day', 'meetup', 'true', 490, 'cancelled', 2, 0, 'Please approve my rental request for this item.'),
+(2, 2, 2, '2025-01-09', 78, '2025-01-09', '2025-01-09', 3, 'per hour', 'cash-on-pickup', 'false', 189, 'cancelled', 3, 0, 'Please approve my rental request for this item.'),
+(3, 2, 1, '2025-01-09', 252, '2025-01-09', '2025-01-09', 3, 'per day', 'cash-on-pickup', 'false', 500, 'cancelled', 3, 26, 'Please approve my rental request for this item.'),
+(4, 1, 1, '2025-01-10', 75, '2025-01-15', '2025-01-20', 5, 'per day', 'pickup', '', 500, 'cancelled', 1, 50, 'Please approve my rental request for this item.'),
+(5, 1, 2, '2025-01-18', 35, '2025-01-20', '2025-01-23', 3, 'per day', 'pickup', '', 300, 'on rent', 1, 30, 'Please approve my rental request for this item.'),
+(6, 2, 3, '2025-01-05', 0, '2025-01-07', '2025-01-10', 3, 'per day', 'pickup', '', 300, 'pickup', 2, 30, ''),
+(7, 2, 4, '2025-01-15', 0, '2025-01-16', '2025-01-18', 2, 'per day', 'pickup', '', 200, 'returned', 1, 20, ''),
+(8, 3, 5, '2025-01-12', 0, '2025-01-13', '2025-01-15', 2, 'per day', 'pickup', '', 150, 'cancelled', 1, 20, ''),
+(9, 3, 6, '2025-01-20', 0, '2025-01-21', '2025-01-23', 2, 'per day', 'pickup', '', 300, 'cancelled', 2, 35, ''),
+(10, 4, 7, '2025-01-08', 0, '2025-01-10', '2025-01-15', 5, 'per day', 'pickup', '', 750, 'on rent', 1, 60, ''),
+(11, 4, 8, '2025-01-12', 0, '2025-01-14', '2025-01-18', 4, 'per day', 'pickup', '', 600, 'extended', 1, 50, ''),
+(12, 5, 9, '2025-01-01', 0, '2025-01-03', '2025-01-07', 4, 'per day', 'pickup', '', 400, 'overdue', 3, 40, ''),
+(13, 5, 10, '2025-01-05', 0, '2025-01-08', '2025-01-10', 2, 'per day', 'pickup', '', 200, 'pickup', 1, 25, ''),
+(14, 6, 11, '2025-01-05', 0, '2025-01-08', '2025-01-14', 6, 'per day', 'pickup', '', 600, 'extended', 2, 70, ''),
+(15, 6, 12, '2025-01-18', 0, '2025-01-19', '2025-01-22', 3, 'per day', 'pickup', '', 300, 'cancelled', 1, 35, ''),
+(16, 7, 13, '2025-01-10', 0, '2025-01-12', '2025-01-16', 4, 'per day', 'pickup', '', 400, 'returned', 1, 35, ''),
+(17, 7, 14, '2025-01-15', 0, '2025-01-16', '2025-01-20', 4, 'per day', 'pickup', '', 400, 'on rent', 2, 45, ''),
+(18, 8, 15, '2025-01-14', 0, '2025-01-15', '2025-01-18', 3, 'per day', 'pickup', '', 300, 'pending', 1, 25, ''),
+(19, 8, 16, '2025-01-20', 0, '2025-01-21', '2025-01-24', 3, 'per day', 'pickup', '', 300, 'pickup', 1, 40, ''),
+(20, 9, 17, '2025-01-10', 0, '2025-01-15', '2025-01-20', 5, 'per day', 'pickup', '', 500, 'pending', 1, 50, ''),
+(21, 10, 18, '2025-01-12', 0, '2025-01-14', '2025-01-16', 2, 'per day', 'pickup', '', 200, 'pickup', 1, 30, ''),
+(22, 11, 19, '2025-01-08', 0, '2025-01-10', '2025-01-13', 3, 'per day', 'pickup', '', 300, 'on rent', 1, 35, ''),
+(23, 12, 20, '2025-01-18', 0, '2025-01-20', '2025-01-23', 3, 'per day', 'pickup', '', 450, 'extended', 2, 45, ''),
+(24, 13, 21, '2025-01-15', 0, '2025-01-17', '2025-01-20', 3, 'per day', 'pickup', '', 450, 'returned', 1, 40, ''),
+(25, 14, 22, '2025-01-14', 0, '2025-01-15', '2025-01-17', 2, 'per day', 'pickup', '', 200, 'cancelled', 1, 20, ''),
+(26, 15, 23, '2025-01-18', 0, '2025-01-19', '2025-01-22', 3, 'per day', 'pickup', '', 300, 'cancelled', 1, 35, ''),
+(27, 16, 24, '2025-01-16', 0, '2025-01-18', '2025-01-22', 4, 'per day', 'pickup', '', 400, 'on rent', 1, 50, ''),
+(28, 1, 1, '2025-01-10', 0, '2025-01-15', '2025-01-20', 5, 'per day', 'pickup', '', 500, 'cancelled', 1, 50, 'Please approve my rental request for this item.'),
+(29, 1, 2, '2025-01-18', 0, '2025-01-20', '2025-01-23', 3, 'per day', 'pickup', '', 300, 'on rent', 1, 30, 'I have picked up the item, everything looks good.'),
+(30, 2, 3, '2025-01-05', 0, '2025-01-07', '2025-01-10', 3, 'per day', 'pickup', '', 300, 'pickup', 2, 30, 'Can you confirm when I can pick up the item?'),
+(31, 2, 4, '2025-01-15', 0, '2025-01-16', '2025-01-18', 2, 'per day', 'pickup', '', 200, 'returned', 1, 20, 'I have returned the item on time.'),
+(32, 3, 5, '2025-01-12', 0, '2025-01-13', '2025-01-15', 2, 'per day', 'pickup', '', 150, 'cancelled', 1, 20, 'I decided to cancel my rental for this item.'),
+(33, 3, 6, '2025-01-20', 0, '2025-01-21', '2025-01-23', 2, 'per day', 'pickup', '', 300, 'on rent', 2, 35, 'The item is working fine so far.'),
+(34, 4, 7, '2025-01-08', 0, '2025-01-10', '2025-01-15', 5, 'per day', 'pickup', '', 750, 'on rent', 1, 60, 'The item seems to be in great condition.'),
+(35, 4, 8, '2025-01-12', 0, '2025-01-14', '2025-01-18', 4, 'per day', 'pickup', '', 600, 'extended', 1, 50, 'I have extended the rental period for this item.'),
+(36, 5, 9, '2025-01-01', 0, '2025-01-03', '2025-01-07', 4, 'per day', 'pickup', '', 400, 'overdue', 3, 40, 'I apologize for the delay in returning the item.'),
+(37, 5, 10, '2025-01-05', 0, '2025-01-08', '2025-01-10', 2, 'per day', 'pickup', '', 200, 'pickup', 1, 25, 'Just picked up the item, all seems fine.'),
+(38, 6, 11, '2025-01-05', 0, '2025-01-08', '2025-01-14', 6, 'per day', 'pickup', '', 600, 'extended', 2, 70, 'I have extended the rental for a few extra days.'),
+(39, 6, 12, '2025-01-18', 0, '2025-01-19', '2025-01-22', 3, 'per day', 'pickup', '', 300, 'cancelled', 1, 35, 'I’m looking forward to receiving the item.'),
+(40, 7, 13, '2025-01-10', 0, '2025-01-12', '2025-01-16', 4, 'per day', 'pickup', '', 400, 'returned', 1, 35, 'I have returned the item as per the agreement.'),
+(41, 7, 14, '2025-01-15', 0, '2025-01-16', '2025-01-20', 4, 'per day', 'pickup', '', 400, 'on rent', 2, 45, 'Item is in good condition, enjoying the rental so far.'),
+(42, 8, 15, '2025-01-14', 0, '2025-01-15', '2025-01-18', 3, 'per day', 'pickup', '', 300, 'cancelled', 1, 25, 'I need this item urgently, please confirm the availability.'),
+(43, 8, 16, '2025-01-20', 0, '2025-01-21', '2025-01-24', 3, 'per day', 'pickup', '', 300, 'on rent', 1, 40, 'I have picked up the item and it’s in great condition.'),
+(44, 9, 17, '2025-01-10', 0, '2025-01-15', '2025-01-20', 5, 'per day', 'pickup', '', 500, 'cancelled', 1, 50, 'Looking forward to receiving this item soon.'),
+(45, 10, 18, '2025-01-12', 0, '2025-01-14', '2025-01-16', 2, 'per day', 'pickup', '', 200, 'pickup', 1, 30, 'Ready to collect the item now.'),
+(46, 11, 19, '2025-01-08', 0, '2025-01-10', '2025-01-13', 3, 'per day', 'pickup', '', 300, 'on rent', 1, 35, 'I am enjoying the use of this item.'),
+(47, 12, 20, '2025-01-18', 0, '2025-01-20', '2025-01-23', 3, 'per day', 'pickup', '', 450, 'extended', 2, 45, 'I’ve extended the rental for a few more days.'),
+(48, 13, 21, '2025-01-15', 0, '2025-01-17', '2025-01-20', 3, 'per day', 'pickup', '', 450, 'returned', 1, 40, 'I returned the item on time, thanks for the rental.'),
+(49, 14, 22, '2025-01-14', 0, '2025-01-15', '2025-01-17', 2, 'per day', 'pickup', '', 200, 'cancelled', 1, 20, 'I have decided to cancel this rental request.'),
+(50, 15, 23, '2025-01-18', 0, '2025-01-19', '2025-01-22', 3, 'per day', 'pickup', '', 300, 'cancelled', 1, 35, 'I need to confirm the availability of this item.'),
+(51, 16, 24, '2025-01-16', 0, '2025-01-18', '2025-01-22', 4, 'per day', 'pickup', '', 400, 'on rent', 1, 50, 'The item works perfectly. Happy with the rental.'),
+(52, 18, 11, '2025-01-22', 45, '0000-00-00', '2025-01-22', 1, '', '', '', 495, 'pending', 1, 0, ''),
+(53, 18, 11, '2025-01-22', 45, '0000-00-00', '2025-01-22', 1, '', '', '', 495, 'pending', 1, 0, ''),
+(54, 18, 11, '2025-01-22', 45, '0000-00-00', '2025-01-22', 1, '', '', '', 495, 'pending', 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -326,12 +358,7 @@ INSERT INTO `users` (`userID`, `firstName`, `lastName`, `email`, `password`, `st
 (3, 'Oscar', 'Johnson', 'oscar.johnson@gmail.com', 'oscar123', 'Inactive', 'Male', '+63-928-123-456', '4321 Pine Road, Miami, FL 33101', '2025-01-09', '2025-01-09', 'oscar.jpg', 'user'),
 (4, 'William', 'Johnson', 'william.johnson@gmail.com', 'william123', 'Active', 'Male', '+63-937-876-543', '8765 Birch Lane, Dallas, TX 75201', '2025-01-09', '2025-01-09', 'william.jpg', 'user'),
 (5, 'Harry', 'Jones', 'harry.jones@gmail.com', 'harry123', 'Active', 'Male', '+63-915-678-123', '2345 Elm Drive, Chicago, IL 60601', '2025-01-09', '2025-01-09', 'harry.jpg', 'user'),
-(20, 'Mark Louie', 'Villanueva', 'marklouievillanueva584@gmail.com', '$2y$10$fdDATs0n5omc9K2Dbh7IFeMcgWmM.o7N0qZJyhQyisQAOyF4rLhuu', '', '', '', '', '2025-01-17', '2025-01-17', '', 'user'),
-(21, 'mark', 'villanueva', 'mark@gmail.com', '$2y$10$XT75e0iMRUdX5VvJTCvkTu4j7tzMcnk/9BMaSL8DKxTr34xomd6IO', '', '', '', '', '2025-01-18', '2025-01-18', '', 'user'),
-(22, '', '', 'ecorent@gmail.com', 'ecorent123', '', '', '', '', '2025-01-18', '2025-01-18', '', 'admin'),
-(23, 'Ludwiggg', 'Atkinson', 'ludwig@gmail.com', '$2y$10$XQheueZy3Ho3Hw3azlXr4u5r7m.5IV1rowYB/d7GAjKu2B0CBF.6K', '', '', '', '', '2025-01-19', '2025-01-19', '', 'user'),
-(24, 'john', 'doe', 'john@gmail.com', '$2y$10$HlPwXbFwzQZ1xKBFwv9sXOKZFPDpYDsrmN2WoikMEpfbjY1rjyjEe', '', '', '', '', '2025-01-19', '2025-01-19', '', 'user'),
-(25, 'Test', 'User', 'testUser@gmail.com', '$2y$10$.Gc1pbW6yQ6Tyc.WBqQ3MOVSwPqNptfi.W2/buOe85SHDmIdYrEq6', '', '', '', '', '2025-01-21', '2025-01-21', '', 'user');
+(23, 'Ludwiggg', 'Atkinson', 'ludwig@gmail.com', '$2y$10$XQheueZy3Ho3Hw3azlXr4u5r7m.5IV1rowYB/d7GAjKu2B0CBF.6K', '', 'Male', '', '', '2025-01-19', '2025-01-19', 'REFERENCE (1).png', 'user');
 
 --
 -- Indexes for dumped tables
@@ -393,7 +420,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attachments`
 --
 ALTER TABLE `attachments`
-  MODIFY `attachmentID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `attachmentID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -417,7 +444,7 @@ ALTER TABLE `conditions`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `itemID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `itemID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `preferences`
@@ -429,7 +456,7 @@ ALTER TABLE `preferences`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `rentalID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `rentalID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `users`

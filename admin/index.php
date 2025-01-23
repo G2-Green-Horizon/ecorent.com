@@ -111,6 +111,23 @@ if (isset($_POST['btnPickup'])) {
 }   
 
 
+// ACTIVE RENTALS STATUS
+if (isset($_POST['btnReceived'])) {
+    $rentalID = $_POST['rentalID'];
+    
+    $statusQuery = "SELECT rentalStatus FROM rentals WHERE rentalID = '$rentalID'";
+    $statusQueryResult = executeQuery($statusQuery);
+
+    while ($status = mysqli_fetch_assoc($statusQueryResult)) {
+        if ($status['rentalStatus'] === 'on rent') {
+            $handInQuery = "UPDATE rentals SET rentalStatus = 'received' WHERE rentalID = '$rentalID'";
+            executeQuery($handInQuery);
+        }
+    }
+    
+    header("Location: index.php");
+    exit();
+}
 ?>
 
 

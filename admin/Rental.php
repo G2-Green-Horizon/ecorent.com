@@ -148,18 +148,27 @@ class Rental
     }
 
     function showButtonToRentals($status)
-{
-    $btnText = '';
-    // Determine button text based on rental status
-    ($status != 'pickup') ? $btnText = 'RECEIVED' : $btnText = 'HAND IN';
+    {
+        $btnText = '';
+        $btnName = '';
 
-    // Return a form with the button inside it
-    return '
-    <form method="POST">
-        <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
-        <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5" type="submit" name="btnPickup">' . $btnText . '</button>
-    </form>';
-}
+        // DETERMINE BUTTON TEXT AND NAME BASED ON RENTAL STATUS
+        if ($status != 'pickup') {
+            $btnText = 'RECEIVED';
+            $btnName = 'btnReceived';
+        } else {
+            $btnText = 'HAND IN';
+            $btnName = 'btnPickup';
+        }
+
+        // RETURN A FORM WITH THE BUTTON INSIDE IT
+        return '
+        <form method="POST">
+            <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
+            <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5" type="submit" name="' . $btnName . '">' . $btnText . '</button>
+        </form>';
+    }
+
 
     // DYNAMIC SETTINGS FUNCTIONS FOR RENTAL STATUS CARD (USER VIEW)
     function showInfo($status)
