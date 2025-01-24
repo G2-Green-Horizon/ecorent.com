@@ -41,45 +41,42 @@ include("shared/processes/booking-process.php");
             <input type="hidden" name="totalPrice" value="<?php echo $totalPrice; ?>">
             <input type="hidden" name="totalCO2Saved" value="<?php echo $totalCO2Saved; ?>">
 
-            <div class="container mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
-                <div class="row">
-                    <div class="col-12 mb-5">
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <h2 class="me-auto p-2">Items Booked</h2>
-                            </div>
-                            <div class="col-12 col-lg-6 mt-lg-2">
-                                <div class="labels d-flex justify-content-end">
-                                    <h6 class="p-2 me-3 text-center">Unit price<br>per day</h6>
-                                    <h6 class="p-2 me-3 text-center">Rental<br>period</h6>
-                                    <h6 class="p-2 me-3 text-center">Quantity</h6>
-                                    <h6 class="p-2 me-3 text-center">Item<br>subtotal</h6>
-                                </div>
+        <div class="container mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
+            <div class="row">
+                <div class="col-12 mb-5">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <h2 class="me-auto p-2">Items Booked</h2>
+                        </div>
+                        <div class="col-12 col-lg-6 mt-lg-2">
+                            <div class="labels d-flex justify-content-end">
+                                <h6 class="p-2 me-3 text-center">Unit price<br>per day</h6>
+                                <h6 class="p-2 me-3 text-center">Rental<br>period</h6>
+                                <h6 class="p-2 me-3 text-center">Quantity</h6>
+                                <h6 class="p-2 me-3 text-center">Item<br>subtotal</h6>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="item-card col-12">
-                        <div class="row">
-                            <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                                <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>"
-                                    class="rounded-2" style="width: 96px; height: auto;">
-                                <h4 class="item-name me-auto p-2 d-flex align-items-center">
-                                    <?php echo $itemBookingInfoArray['itemName']; ?>
-                                </h4>
-                            </div>
-                            <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
-                                <div class="labels d-flex justify-content-end">
-                                    <h6 class="p-2 me-5 ">₱<?php echo $pricePerDay; ?></h6>
-                                    <h6 class="p-2 me-5"><?php echo $rentalPeriod; ?>
-                                        <?php echo $rentalPeriod > 1 ? 'days' : 'day'; ?>
-                                    </h6>
-                                    <h6 class="p-2 me-5 text-center"><?php echo $quantity; ?></h6>
-                                    <h5 class="p-2 me-4">₱<?php echo $itemSubtotal; ?></h5>
-                                </div>
+                <div class="item-card col-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
+                            <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>" class="rounded-2"
+                                style="width: 96px; height: auto;">
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center"><?php echo $itemBookingInfoArray['itemName']; ?>
+                            </h4>
+                        </div>
+                        <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
+                            <div class="labels d-flex justify-content-end">
+                                <h6 class="p-2 me-5 ">₱<?php echo $pricePerDay;?></h6>
+                                <h6 class="p-2 me-5"><?php echo $rentalPeriod;?> <?php echo $rentalPeriod > 1 ? 'days' : 'day'; ?></h6>
+                                <h6 class="p-2 me-5 text-center"><?php echo $quantity;?></h6>
+                                <h5 class="p-2 me-4">₱<?php echo $itemSubtotal;?></h5>
                             </div>
                         </div>
                     </div>
+                </div>
 
                     <hr class="border border-1 w-100">
 
@@ -143,11 +140,11 @@ include("shared/processes/booking-process.php");
                     </div>
                 </div>
 
-                <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Payment Information</h3>
-                            <p>Please prepare enough amount upon pick-up</p>
+        <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
+            <div class="row">
+                <div class="col">
+                    <h3>Payment Information</h3>
+                    <p>Please prepare enough amount upon pick-up</p>
 
                             <div class="col-12 text-center">
                                 <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
@@ -247,6 +244,7 @@ include("shared/processes/booking-process.php");
                 </div>
             </div>
         </div>
+        
         
 
     </section>
