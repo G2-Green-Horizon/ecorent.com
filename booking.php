@@ -166,7 +166,10 @@ include("shared/processes/booking-process.php");
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-end gap-3">
-                                    <button class="btn btn-outline-danger" id="cancel-btn">Cancel</button>
+                                    <button class="btn btn-outline-danger" id="cancel-btn" type="button"
+                                        onclick="window.history.back();">Cancel</button>
+
+
                                     <button class="btn btn-primary" type="button" onclick="validateInput()"
                                         id="confirm-btn">Confirm
                                         Booking</button>
@@ -177,9 +180,10 @@ include("shared/processes/booking-process.php");
                 </div>
 
         </form>
+        </form>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog carbon-fprint-modal-dialog mt-3">
                 <div class="modal-content">
                     <div class="modal-header carbon-fprint-modal px-4">
                         <img class="carbon-fprint-img" src="shared/assets/img/system/carbon-fprint-icon.png"
@@ -190,40 +194,42 @@ include("shared/processes/booking-process.php");
                         <button type="submit" name="btnConfirm" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- CARBON FOOTPRINT RESULT -->
-                    <div class="modal-body carbon-fprint-modal-body">
-                        <div class="container">
+                   <!-- CARBON FOOTPRINT RESULT -->
+                   <div class="modal-body carbon-fprint-modal-body">
+                        <div class="container-fluid">
                             <div class="row">
-                                <div class="col">
-                                    By renting TrailMaster X200 Mountain Bike, you've saved 25 kg CO₂ emissions!
+                                <div class="col-12">
+                                    By renting <?php echo $itemBookingInfoArray['itemName'] ?>, you've saved <?php echo $totalCO2Saved ?> kg CO₂ emissions!
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col mt-3 carbon-fprint-msg w-50">
+                                <div class="col-12 mt-3 carbon-fprint-msg">
                                     Embrace the spirit of reducing waste and reusing items by renting from us. Your
                                     small actions can make a big impact!
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col mt-3">
+                            <div class="row mt-3">
+                                <div class="col-12">
                                     Gas emissions saved:
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <button class="emissions-saved disabled mt-2 px-4"> <strong>-25 kg
-                                            CO₂</strong></button>
+                                <div class="col-12">
+                                    <button class="emissions-saved disabled mt-2 px-4">
+                                        <strong>-<?php echo $totalCO2Saved ?> kg CO₂</strong>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col mt-3">
+                            <div class="row mt-3">
+                                <div class="col-12">
                                     Total emissions saved this month:
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <button class="emissions-saved disabled mt-2 px-4"> <strong>-1,500 kg
-                                            CO₂</strong></button>
+                                <div class="col-12">
+                                    <button class="emissions-saved disabled mt-2 px-4">
+                                        <strong>-<?php echo $formattedCO2Saved ?> kg CO₂</strong>
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">
@@ -242,8 +248,11 @@ include("shared/processes/booking-process.php");
                 </div>
             </div>
         </div>
+        
 
     </section>
+
+    <?php include 'shared/components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
