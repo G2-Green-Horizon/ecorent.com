@@ -64,6 +64,83 @@ class User
         }
         return $placeholderColor;
     }
+    public function changePassword($oldPassword, $newPassword, $confirmPassword)
+    {
+        global $conn;
+
+        $specialCharPattern = '/[^a-zA-Z0-9]/';
+
+        if (preg_match($specialCharPattern, $oldPassword) || preg_match($specialCharPattern, $newPassword) || preg_match($specialCharPattern, $confirmPassword) || strlen($oldPassword) < 8 || strlen($newPassword) < 8 || strlen($confirmPassword) < 8) {
+            $message = '';
+
+            if (preg_match($specialCharPattern, $oldPassword) || preg_match($specialCharPattern, $newPassword) || preg_match($specialCharPattern, $confirmPassword)) {
+                $message = 'Must not contain special characters';
+            }
+
+            if (strlen($oldPassword) < 8 || strlen($newPassword) < 8 || strlen($confirmPassword) < 8) {
+                $message = 'Must be at least 8 characters long';
+            }
+
+            return "<script>
+        window.onload = function() {
+            var newPasswordField = document.getElementById('newPassword');
+            newPasswordField.placeholder = '$message';
+            newPasswordField.style.borderColor = '#FF6D6D';
+            newPasswordField.classList.add('error-placeholder');
+        };
+    </script>";
+        }
+
+        if ($newPassword === $confirmPassword) {
+            $newPassQuery = "SELECT password FROM users WHERE userID = ?";
+            if ($stmt = mysqli_prepare($conn, $newPassQuery)) {
+                mysqli_stmt_bind_param($stmt, "i", $this->userID);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $userData = mysqli_fetch_assoc($result);
+                $currentPasswordHash = $userData['password'];
+
+                if (password_verify($oldPassword, $currentPasswordHash)) {
+                    $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                    $updatePasswordQuery = "UPDATE users SET password = '$hashedNewPassword' WHERE userID = ?";
+                    if ($stmt = mysqli_prepare($conn, $updatePasswordQuery)) {
+                        mysqli_stmt_bind_param($stmt, "i", $this->userID);
+                        if (mysqli_stmt_execute($stmt)) {
+                            header("Location: my-account.php");
+                            exit();
+                        } else {
+                            return "<script>
+                                window.onload = function() {
+                                    var passwordField = document.getElementById('password');
+                                    passwordField.placeholder = 'Old Password is incorrect';
+                                    passwordField.style.borderColor = '#FF6D6D';
+                                    passwordField.classList.add('error-placeholder');
+                                };
+                            </script>";
+                        }
+                    }
+                } else {
+                    return "<script>
+                        window.onload = function() {
+                            var passwordField = document.getElementById('password');
+                            passwordField.placeholder = 'Old Password is incorrect';
+                            passwordField.style.borderColor = '#FF6D6D'; // Set border color to red
+                            passwordField.classList.add('error-placeholder'); // Add a class for styling the placeholder
+                        };
+                    </script>";
+                }
+            }
+        } else {
+            return "<script>
+                window.onload = function() {
+                    var confirmPasswordField = document.getElementById('confirmNewPassword');
+                    confirmPasswordField.placeholder = 'New Password & Confirm Password not match';
+                    confirmPasswordField.style.borderColor = '#FF6D6D';
+                    confirmPasswordField.classList.add('error-placeholder');
+                };
+            </script>";
+        }
+    }
 }
 
 class UserPreferences
@@ -97,11 +174,10 @@ class UserPreferences
             if (mysqli_num_rows($randomItemsResult) > 0) {
                 while ($randomItemsRow = mysqli_fetch_assoc($randomItemsResult)) {
                     $categoryIDsArray[] = $randomItemsRow["categoryID"];
+                }
             }
         }
     }
     return $categoryIDsArray;
 }
-}
-
 ?>

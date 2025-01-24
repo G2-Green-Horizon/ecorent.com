@@ -12,6 +12,7 @@
 
     --stroke: #454545;
     --green: #7F9D5A;
+    --danger: #D10D0D;
     --mainFont: 'Studio Feixen Variable', sans-serif;
     --roundiness: 18.3px;
 }
@@ -24,45 +25,41 @@
 
 h2 {
     color: #D2CBA6;
-    font-size: 45px;
+    font-size: 35px;
     font-weight: bold;
 }
 
 h4 {
     color: #FFFFFF;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 h6 {
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 label {
     color: #f6f6f6;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
 p {
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 18px;
 }
 
-#pickupDate {
-    background-color: #454545;
-    border: none;
-    font-size: 20px;
-    border-radius: 16px;
-    height: 62px;
+.info{
+    font-size: 16px;
 }
 
-#noteForOwner {
+#noteForOwner, #pickupDate {
     background-color: #454545;
     border: none;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 16px;
-    height: 62px;
+    height: 45px;
 }
 
 #warehouse-txt {
@@ -73,13 +70,13 @@ p {
 
 h3 {
     color: #FFFFFF;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
 }
 
 li {
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 16px;
 
 }
 
@@ -96,34 +93,42 @@ li {
 }
 
 /* btn */
-#cancel-btn {
+.cancel-btn {
     background-color: transparent;
     border: 2px solid #9B9B9B;
     border-radius: 18px;
-    color: #D2CBA6;
+    color: var(--beige);
     width: 175px;
     height: 51px;
     font-size: 18px;
     font-weight: 500;
 }
 
-#confirm-btn {
-    background-color: #D2CBA6;
+.cancel-btn:hover{
+    background-color: var(--danger);
+    border: none;
+}
+
+.confirm-btn {
+    background-color: var(--beige);
     border: none;
     border-radius: 18px;
     color: #3E3D3D;
     width: 247px;
     height: 51px;
-    ;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
+}
+
+.confirm-btn:hover{
+    background-color: var(--green);
+    color: var(--mainColor);
 }
 
 .input-box {
     font-size: 16px;
     border-radius: var(--roundiness);
     border: 1px solid var(--stroke);
-    padding: 12px;
     color: var(--mainColor);
     background-color: var(--bgColor2);
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -193,7 +198,11 @@ li {
 
 .carbon-fprint-learn-more {
     color: white;
-    text-decoration: underline !important;
+    text-decoration: none;
+}
+
+.carbon-fprint-learn-more:hover {
+    color: var(--beige);
 }
 
 .carbon-fprint-modal-footer{
@@ -204,6 +213,7 @@ li {
     background-color: var(--titleColor);
     border-color: var(--titleColor);
     color: var(--bgColor3);
+    width: 150px;
 }
 
 .btn-carbon-fprint-okay:hover{
@@ -217,4 +227,3 @@ li {
     border-color: var(--green) !important;
     color: var(--mainColor) !important;
 }
-

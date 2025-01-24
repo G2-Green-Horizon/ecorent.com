@@ -59,7 +59,7 @@ include("shared/processes/booking-process.php");
                         </div>
                     </div>
 
-                    <div class="item-card col-12">
+                    <div class="mb-4 col-12">
                         <div class="row">
                             <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
                                 <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>"
@@ -125,57 +125,57 @@ include("shared/processes/booking-process.php");
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="container mb-2 p-4 rounded-4" style="background-color: #343333;">
-                    <div class="row">
-                        <div class="col">
+            <div class="container mb-2 p-4 rounded-4" style="background-color: #343333;">
+                <div class="row">
+                    <div class="col">
 
-                            <h3>Terms & Condition</h3>
+                        <h3>Terms & Condition</h3>
 
-                            <ol class="mt-3 px-3">
-                                <li>A refundable security deposit is required upon item pick-up.</li>
-                                <li>Present a valid government-issued ID at the time of pick-up.</li>
-                                <li>Signing of the rental agreement is mandatory during pick-up.</li>
-                                <li>Penalties will apply based on the severity of any damage to the item.</li>
-                                <li>Late returns incur penalties based on the delay duration.</li>
-                            </ol>
-                        </div>
+                        <ol class="mt-3 px-3">
+                            <li>A refundable security deposit is required upon item pick-up.</li>
+                            <li>Present a valid government-issued ID at the time of pick-up.</li>
+                            <li>Signing of the rental agreement is mandatory during pick-up.</li>
+                            <li>Penalties will apply based on the severity of any damage to the item.</li>
+                            <li>Late returns incur penalties based on the delay duration.</li>
+                        </ol>
                     </div>
                 </div>
+            </div>
 
-                <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Payment Information</h3>
-                            <p>Please prepare enough amount upon pick-up</p>
+            <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
+                <div class="row">
+                    <div class="col">
+                        <h3>Payment Information</h3>
+                        <p>Please prepare enough amount upon pick-up</p>
 
-                            <div class="col-12 text-center">
-                                <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
-                                    <p class="mb-0 me-5">Merchandise subtotal:</p>
-                                    <h6 class="mb-0">₱<?php echo $itemSubtotal; ?></h6>
-                                </div>
+                        <div class="col-12 text-center">
+                            <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
+                                <p class="mb-0 me-5">Merchandise subtotal:</p>
+                                <h6 class="mb-0">₱<?php echo $itemSubtotal; ?></h6>
+                            </div>
 
-                                <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
-                                    <p class="mb-0 me-5">Security deposit:</p>
-                                    <h6 class="mb-0">₱<?php echo $securityDeposit ?></h6>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
+                                <p class="mb-0 me-5">Security deposit:</p>
+                                <h6 class="mb-0">₱<?php echo $securityDeposit ?></h6>
+                            </div>
 
-                                <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
-                                    <p class="mb-0">Total payment:</p>
-                                    <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice; ?></h5>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
+                                <p class="mb-0">Total payment:</p>
+                                <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice; ?></h5>
+                            </div>
 
-                                <div class="d-flex align-items-center justify-content-end gap-3">
-                                    <button class="btn btn-outline-danger" id="cancel-btn">Cancel</button>
-                                    <button class="btn btn-primary" type="button" onclick="validateInput()"
-                                        id="confirm-btn">Confirm
-                                        Booking</button>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-end gap-3">
+                                <a href="index.php"
+                                    class="btn btn-outline-danger cancel-btn d-flex justify-content-center align-items-center"
+                                    id="cancel-btn">Cancel</a>
+                                <button class="btn btn-primary confirm-btn" type="button" id="confirm-btn"
+                                    onclick="validateInput()">Confirm Booking</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
         </form>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -190,12 +190,13 @@ include("shared/processes/booking-process.php");
                         <button type="submit" name="btnConfirm" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                   <!-- CARBON FOOTPRINT RESULT -->
-                   <div class="modal-body carbon-fprint-modal-body">
+                    <!-- CARBON FOOTPRINT RESULT -->
+                    <div class="modal-body carbon-fprint-modal-body">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12">
-                                    By renting <?php echo $itemBookingInfoArray['itemName'] ?>, you've saved <?php echo $totalCO2Saved ?> kg CO₂ emissions!
+                                    By renting <?php echo $itemBookingInfoArray['itemName'] ?>, you've saved
+                                    <?php echo $totalCO2Saved ?> kg CO₂ emissions!
                                 </div>
                             </div>
                             <div class="row">
