@@ -4,6 +4,24 @@ include("shared/processes/file-upload-process.php");
 include("shared/processes/profile-process.php");
 include("shared/classes/Rental.php");
 
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $priceperDay = $_POST['priceperDay'];
+    $extendPeriodQuery = "UPDATE rentals SET totalPrice = totalPrice + $priceperDay WHERE rentalID = '$rentalID'";
+    executeQuery($extendPeriodQuery);
+
+    header("Location: my-account.php");
+}
+
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $periodExtension = $_POST['periodExtension'];
+    $extendPeriodDayQuery = "UPDATE rentals SET rentalPeriod = rentalPeriod + $periodExtension WHERE rentalID = '$rentalID';";
+    executeQuery($extendPeriodDayQuery);
+
+    header("Location: my-account.php");
+}
+
 if (isset($_POST['btnCancelBooking'])) {
     $rentalID = $_POST['rentalID'];
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
@@ -18,6 +36,7 @@ if (isset($_POST['btnConfirmedLogOut'])) {
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
 $rentalList = $rental->getRentalsData();
+
 
 ?>
 <!doctype html>
@@ -140,12 +159,12 @@ $rentalList = $rental->getRentalsData();
                                         style="width: 200px; height: 200px; object-fit: cover;">
 
 
-                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
+                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png, .jpeg"
                                         class="d-none">
                                     <button type="button" class="btn-select-img" id="selectImage">Select
                                         Image</button>
-                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                    <small class="size-info">File Extension: .JPG, .PNG</small>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 25 MB</small>
+                                    <small class="size-info">File Extension: .JPG, .PNG, .JPEG</small>
                                 </div>
 
 
@@ -155,19 +174,19 @@ $rentalList = $rental->getRentalsData();
                                         <div class="col-md-6 col-12 mb-3">
                                             <input type="text" id="firstName" class="form-control" name="firstName"
                                                 placeholder="First Name"
-                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="firstNameError"></div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
                                             <input type="text" id="lastName" class="form-control" name="lastName"
                                                 placeholder="Last Name"
-                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="lastNameError"></div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
                                         <input type="email" id="email" class="form-control" name="email"
-                                            placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>">
+                                            placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>" required>
                                         <div class="invalid-feedback" id="emailError"></div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
@@ -239,12 +258,11 @@ $rentalList = $rental->getRentalsData();
                         <div class="item-status-list">
 
                             <!-- RENTAL STATUS CARDS -->
-                            <?php foreach ($rentalList as $rentalCard) {
-                                if ($rentalCard->status === 'cancelled') {
+                            <?php foreach ($rentalList as $rentalCard) 
+                                if ($rentalCard->status === 'pending') {
                                     echo $rentalCard->buildRentalCard();
-                                }
 
-                            } ?>
+                                } ?>
                         </div>
                     </div>
                 </div>
@@ -258,7 +276,9 @@ $rentalList = $rental->getRentalsData();
                 </div>
                 <div class="content settings-content">
                     <ul class="settings">
-                        <li class="p-2 change-pass">Change Password</li>
+                        <a href="change-password.php">
+                            <li class="p-2 change-pass">Change Password</li>
+                        </a>
                         <a href="security-questions.php">
                             <li class="p-2 security-quest">Setup Security Questions</li>
                         </a>
@@ -288,7 +308,7 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmedLogOut">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
                                     I want
                                     to delete</button>
                             </div>
