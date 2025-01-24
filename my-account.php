@@ -185,7 +185,7 @@ $rentalList = $rental->getRentalsData();
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
-                                        <input type="email" id="email" class="form-control" name="email"
+                                        <input type="email" id="email" class="form-control input-box" name="email"
                                             placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>">
                                         <div class="invalid-feedback" id="emailError"></div>
                                     </div>
