@@ -58,8 +58,8 @@ if (isset($_POST['addItemBtn'])) {
     $getNextIDResult = executeQuery($getNextIDQuery);
     $row = mysqli_fetch_assoc($getNextIDResult);
 
-    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `listingDate`, `isFeatured`, `isDeleted`) 
-    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', CURRENT_TIMESTAMP, 'Yes', 'No')";
+    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `listingDate`, `isDeleted`) 
+    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', CURRENT_TIMESTAMP, 'No')";
 
     $insertItemResult = executeQuery($insertItemQuery);
 
@@ -370,7 +370,7 @@ if (isset($_POST['btnReceived'])) {
                                                             class="btn btn-select-main-image mb-2">Select main
                                                             image</label>
                                                         <input type="file" class="d-none" name="addAttachment"
-                                                            id="customFile" accept=".png, .jpg" required />
+                                                            id="customFile" accept=".png, .jpg, .jpeg" required />
                                                     </div>
 
                                                     <div class="col-12 col-md-9">
@@ -552,7 +552,7 @@ if (isset($_POST['btnReceived'])) {
                                                                 <input type="file" class="d-none"
                                                                     name="editAttachment<?php echo $editModalItem['itemID']; ?>"
                                                                     id="customFile<?php echo $editModalItem['itemID']; ?>"
-                                                                    accept=".png, .jpg" required />
+                                                                    accept=".png, .jpg, .jpeg" required />
                                                             </div>
 
                                                             <div class="col-12 col-md-9">

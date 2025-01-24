@@ -43,8 +43,8 @@ include("shared/processes/preferences-process.php");
             <div class="row" id="cardContainer">
             </div>
 
-            <div class="row">
-                <div class="d-flex gap-2 justify-content-center justify-content-md-end mb-5 mt-2">
+            <div class="row-btn">
+                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-end mb-5 mt-2">
                     <a href="index.php" class="text-decoration-none">
                         <button class="btn btn-skip" name="btnSkip" type="button">Skip for now</button>
                     </a>
