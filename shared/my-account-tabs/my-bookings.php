@@ -25,7 +25,6 @@
                 <?php foreach ($rentalList as $rentalCard) { ?>
                     <div class="rental-card" data-status="<?= $rentalCard->status; ?>">
                         <?= $rentalCard->buildRentalCard();
-                            $rentalCard->updateOverdueRentals();
                         ?>
                     </div>
                 <?php } ?>

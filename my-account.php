@@ -4,6 +4,24 @@ include("shared/processes/file-upload-process.php");
 include("shared/processes/profile-process.php");
 include("shared/classes/Rental.php");
 
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $priceperDay = $_POST['priceperDay'];
+    $extendPeriodQuery = "UPDATE rentals SET totalPrice = totalPrice + $priceperDay WHERE rentalID = '$rentalID'";
+    executeQuery($extendPeriodQuery);
+
+    header("Location: my-account.php");
+}
+
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $periodExtension = $_POST['periodExtension'];
+    $extendPeriodDayQuery = "UPDATE rentals SET rentalStatus = 'extended', rentalPeriod = rentalPeriod + $periodExtension WHERE rentalID = '$rentalID';";
+    executeQuery($extendPeriodDayQuery);
+
+    header("Location: my-account.php");
+}
+
 if (isset($_POST['btnCancelBooking'])) {
     $rentalID = $_POST['rentalID'];
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
@@ -12,7 +30,7 @@ if (isset($_POST['btnCancelBooking'])) {
     header("Location: my-account.php");
 }
 
-if (isset($_POST['btnConfirmed'])) {
+if (isset($_POST['btnConfirmedLogOut'])) {
     include("shared/processes/logout-process.php");
     header("Location: my-account.php");
 }
@@ -20,6 +38,7 @@ if (isset($_POST['btnConfirmed'])) {
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
 $rental->updateOverdueRentals();
+$rental->updateDueDateOnExtension();
 $rentalList = $rental->getRentalsData();
 
 ?>
@@ -96,7 +115,7 @@ $rentalList = $rental->getRentalsData();
                                     <button type="button" class="btn-logout-denied text-center mx-2"
                                         data-bs-dismiss="modal" name="btnDenied">No</button>
                                     <button type="submit" class="btn-logout-confirmed text-center"
-                                        name="btnConfirmed">Yes</button>
+                                        name="btnConfirmedLogOut">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -116,8 +135,7 @@ $rentalList = $rental->getRentalsData();
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
                             <?php if ($profileUpdated): ?>
-                                <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3"
-                                    style="z-index: 1055;">
+                                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
                                     <div class="toast align-items-center text-bg-success border-0 show" role="alert"
                                         aria-live="assertive" aria-atomic="true">
                                         <div class="d-flex">
@@ -144,12 +162,12 @@ $rentalList = $rental->getRentalsData();
                                         style="width: 200px; height: 200px; object-fit: cover;">
 
 
-                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
+                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png, .jpeg"
                                         class="d-none">
                                     <button type="button" class="btn-select-img" id="selectImage">Select
                                         Image</button>
-                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                    <small class="size-info">File Extension: .JPG, .PNG</small>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 25 MB</small>
+                                    <small class="size-info">File Extension: .JPG, .PNG, .JPEG</small>
                                 </div>
 
 
@@ -159,13 +177,13 @@ $rentalList = $rental->getRentalsData();
                                         <div class="col-md-6 col-12 mb-3">
                                             <input type="text" id="firstName" class="form-control input-box" name="firstName"
                                                 placeholder="First Name"
-                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="firstNameError"></div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
                                             <input type="text" id="lastName" class="form-control input-box" name="lastName"
                                                 placeholder="Last Name"
-                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="lastNameError"></div>
                                         </div>
                                     </div>
@@ -216,7 +234,7 @@ $rentalList = $rental->getRentalsData();
             </form>
 
             <!-- MY BOOKINGS -->
-            <?php include("shared/my-account-tabs/my-bookings.php"); ?>
+            <?php include("shared/my-account-tabs/my-bookings.php") ?>
 
             <!-- SETTINGS -->
             <div class="content-card pt-2 pt-md-0 p-4 pickups" id="container3">
@@ -226,7 +244,9 @@ $rentalList = $rental->getRentalsData();
                 </div>
                 <div class="content settings-content">
                     <ul class="settings">
-                        <li class="p-2 change-pass">Change Password</li>
+                        <a href="change-password.php">
+                            <li class="p-2 change-pass">Change Password</li>
+                        </a>
                         <a href="security-questions.php">
                             <li class="p-2 security-quest">Setup Security Questions</li>
                         </a>

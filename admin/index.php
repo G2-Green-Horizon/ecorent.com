@@ -101,7 +101,6 @@ if (isset($_POST['cancelEdit'])) {
     header("Location: index.php#displayedItem" . $itemID);
 }
 
-// FOR PICK-UPS STATUS
 if (isset($_POST['btnPickup'])) {
     $rentalID = $_POST['rentalID'];
 
@@ -113,17 +112,23 @@ if (isset($_POST['btnPickup'])) {
             $itemID = $pickupStatus['itemID'];
             $itemQuantity = $pickupStatus['itemQuantity'];
 
-            $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'onrent', totalPrice = 0 WHERE rentalID = '$rentalID'";
-            executeQuery($pickupUpdateQuery);
+            // Check current stock before updating
+            $stockCheckQuery = "SELECT stock FROM items WHERE itemID = '$itemID'";
+            $stockCheckResult = executeQuery($stockCheckQuery);
+            $stockCheck = mysqli_fetch_assoc($stockCheckResult);
 
-            $pickupStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
-            executeQuery($pickupStockQuery);
+            if ($stockCheck['stock'] >= $itemQuantity) {
+                $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'onrent', totalPrice = 0 WHERE rentalID = '$rentalID'";
+                executeQuery($pickupUpdateQuery);
+
+                $pickupStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
+                executeQuery($pickupStockQuery);
+            }
         }
     }
     header("Location: index.php");
     exit();
-}  
-
+} 
 
 // ACTIVE RENTALS STATUS
 if (isset($_POST['btnReceived'])) {
