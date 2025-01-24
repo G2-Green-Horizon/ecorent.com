@@ -370,7 +370,7 @@ if (isset($_POST['btnReceived'])) {
                                                             class="btn btn-select-main-image mb-2">Select main
                                                             image</label>
                                                         <input type="file" class="d-none" name="addAttachment"
-                                                            id="customFile" accept=".png, .jpg" required />
+                                                            id="customFile" accept=".png, .jpg, .jpeg" required />
                                                     </div>
 
                                                     <div class="col-12 col-md-9">
@@ -552,7 +552,7 @@ if (isset($_POST['btnReceived'])) {
                                                                 <input type="file" class="d-none"
                                                                     name="editAttachment<?php echo $editModalItem['itemID']; ?>"
                                                                     id="customFile<?php echo $editModalItem['itemID']; ?>"
-                                                                    accept=".png, .jpg" required />
+                                                                    accept=".png, .jpg, .jpeg" required />
                                                             </div>
 
                                                             <div class="col-12 col-md-9">
