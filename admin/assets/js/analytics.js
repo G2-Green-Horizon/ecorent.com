@@ -7,17 +7,12 @@ const barChartData = {
     datasets: [{
         axis: 'y',
         label: ['Gas emission saved per month'],
-        data: [10, 59, 80, 81, 56, 55, 40, 45, 25, 60, 70, 150],
+        data: monthlyCO2SavedData, 
         fill: false,
-        backgroundColor: [
-            '#55523D'
-        ],
-        borderColor: [
-            'rgba(162, 189, 131, 1)'
-        ],
+        backgroundColor: ['#55523D'],
+        borderColor: ['rgba(162, 189, 131, 1)'],
         borderWidth: 1
-    }
-    ]
+    }]
 };
 
 const ctx = document.getElementById("bar").getContext("2d");
@@ -80,16 +75,10 @@ new Chart(ctx, {
 
 // DOUGHNUT CHART DATA
 const doughnutChartData = {
-    labels: [
-        'Electronics',
-        'Transportation',
-        'Clothing',
-        'Sports & Outdoor',
-        'Event Supplies'
-    ],
+    labels: categoryNames,  
     datasets: [{
         label: 'Category Share',
-        data: [300, 200, 150, 100, 250],
+        data: itemCounts,  
         backgroundColor: [
             'rgba(255, 99, 132, 0.6)',
             'rgba(255, 159, 64, 0.6)',
