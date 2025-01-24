@@ -134,7 +134,7 @@ body {
     border: none;
 }
 
-.product-page i{
+.product-page.bi.bi-funnel{
     font-size: 28px;
     color: #5A5858;
 }
