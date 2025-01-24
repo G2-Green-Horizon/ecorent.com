@@ -22,8 +22,8 @@ if (isset($_GET['setCategory'])) {
     FROM items 
     INNER JOIN attachments ON items.itemID = attachments.itemID 
     INNER JOIN categories ON items.categoryID = categories.categoryID 
-    WHERE items.categoryID = '$chosenCategory' AND items.isDeleted = 'No'";
-
+    WHERE items.categoryID = '$chosenCategory' AND items.isDeleted = 'No' AND items.stock > 0";
+    
     if ($searchCondition) {
         $loadItemsQuery .= " AND $searchCondition";
     }
@@ -33,7 +33,7 @@ if (isset($_GET['setCategory'])) {
         exit();
     }
 } else {
-    $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
+    $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No' AND items.stock > 0";
     if ($searchCondition) {
         $loadItemsQuery .= " AND $searchCondition";
     }
@@ -53,11 +53,11 @@ if (isset($_GET['applyFilter'])) {
         }
     } else {
         if (!empty($_GET['min']) && !empty($_GET['max'])) {
-            $minPrice = (int) $_GET['min'];
-            $maxPrice = (int) $_GET['max'];
-            $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No' AND items.pricePerDay BETWEEN $minPrice AND $maxPrice";
+            $minPrice = (int)$_GET['min'];
+            $maxPrice = (int)$_GET['max'];
+            $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No' AND items.stock > 0 AND items.pricePerDay BETWEEN $minPrice AND $maxPrice";
         } else {
-            $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
+            $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No' AND items.stock > 0";
         }
     }
 

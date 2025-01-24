@@ -48,7 +48,7 @@ include("shared/processes/add-to-cart-process.php");
                             class="rental-period">/day</span></h4>
 
                     <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill"></i>
+                        <i class="bi bi-geo-alt-fill location-geo"></i>
                         <p class="mb-0 ms-2"><?php echo $itemInfoArray["location"]; ?></p>
                     </div>
 
