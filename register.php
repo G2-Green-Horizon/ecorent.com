@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("connect.php");
 include("shared/classes/User.php");
 include("shared/processes/register-process.php");
@@ -41,45 +41,63 @@ include("shared/processes/process-login.php");
 </head>
 
 <body id="reg">
-    <section class="d-flex justify-content-center align-items-center vh-100">
-        
-        <div class="reg-form text-center m-3">
-            <div class="row">
-                <div class="poster col d-sm-none d-none d-md-block">
+    <form method="POST">
+        <section class="d-flex justify-content-center align-items-center vh-100">
 
-                </div>
-                <div class="reg-box p-5 col">
-                    <img src="shared/assets/img/system/ecorent-logo-2.png" alt="Logo" class="d-md-none logo">
-                    <h1 class="mb-4 mt-2">Create an account</h1>
-                    <div class="mb-3">
-                        <input type="text" class="input-box form-control" placeholder="First name" id="firstName">
+            <div class="reg-form text-center m-3">
+                <div class="row">
+                    <div class="poster col d-sm-none d-none d-md-block">
                     </div>
-                    <div class="mb-3">
-                        <input type="text" class="input-box form-control" placeholder="Last name" id="lastName">
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="input-box form-control" placeholder="Email or username" id="email">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="input-box form-control" placeholder="Password" id="password">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="input-box form-control" placeholder="Confirm password"
-                            id="confirmPassword">
-                    </div>
-                    <div>
-                        <a href="index.php"><button class="btn-continue w-100" type="submit">Register</button></a>
-                    </div>
-                    <div class="text-decoration-none my-4 text-center">
-                        <p class="question text-decoration-none"> Already have an account?</p>
-                    </div>
-                    <div>
-                        <a href="login.php"><button class="btn-register w-100">Log In</button></a>
+                    <div class="reg-box p-5 col">
+                        <img src="shared/assets/img/system/ecorent-logo-2.png" alt="Logo" class="d-md-none logo">
+                        <h1 class="mb-4 mt-2">Create an account</h1>
+                        <div class="mb-3">
+                            <input type="text" class="input-box form-control text-start" name="firstName"
+                                placeholder="First name" id="firstName" required>
+                            <div id="firstNameError" class="invalid-feedback text-start"></div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="input-box form-control" name="lastName" placeholder="Last name"
+                                id="lastName" required>
+                            <div id="lastNameError" class="invalid-feedback text-start"></div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="input-box form-control" name="email" placeholder="Email"
+                                id="email"
+                                value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                                required>
+                            <div id="emailError" class="invalid-feedback text-start"></div>
+                            <input type="hidden" id="emailExistsError" class="text-start"
+                                value="<?php echo $emailExistsError; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="input-box form-control" name="password" placeholder="Password"
+                                id="password" required>
+                            <div id="passwordError" class="invalid-feedback text-start"></div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="input-box form-control" name="confirmPassword"
+                                placeholder="Confirm password" id="confirmPassword" required>
+                            <div id="confirmPasswordError" class="invalid-feedback text-start"></div>
+                        </div>
+                        <div>
+                            <button class="btn-register w-100" name="btnRegister" type="submit">Register</button>
+                        </div>
+                        <div class="text-decoration-none my-4 text-center">
+                            <p class="question text-decoration-none"> Already have an account?</p>
+                        </div>
+                        <div>
+                            <a href="login.php"><button type="button" class="btn-register w-100">Log In</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+
+        </section>
+    </form>
+
+    <script src="shared/assets/js/register.js"></script>
+
 </body>
 
 </html>

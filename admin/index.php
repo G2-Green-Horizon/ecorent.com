@@ -101,7 +101,6 @@ if (isset($_POST['cancelEdit'])) {
     header("Location: index.php#displayedItem" . $itemID);
 }
 
-// FOR PICK-UPS STATUS
 if (isset($_POST['btnPickup'])) {
     $rentalID = $_POST['rentalID'];
 
@@ -109,21 +108,27 @@ if (isset($_POST['btnPickup'])) {
     $pickupStatusResult = executeQuery($pickupStatusQuery);
 
     while ($pickupStatus = mysqli_fetch_assoc($pickupStatusResult)) {
-        if ($pickupStatus['rentalStatus'] !== 'on rent') {
+        if ($pickupStatus['rentalStatus'] !== 'onrent') {
             $itemID = $pickupStatus['itemID'];
             $itemQuantity = $pickupStatus['itemQuantity'];
 
-            $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'on rent' WHERE rentalID = '$rentalID'";
-            executeQuery($pickupUpdateQuery);
+            // Check current stock before updating
+            $stockCheckQuery = "SELECT stock FROM items WHERE itemID = '$itemID'";
+            $stockCheckResult = executeQuery($stockCheckQuery);
+            $stockCheck = mysqli_fetch_assoc($stockCheckResult);
 
-            $pickupStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
-            executeQuery($pickupStockQuery);
+            if ($stockCheck['stock'] >= $itemQuantity) {
+                $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'onrent', totalPrice = 0 WHERE rentalID = '$rentalID'";
+                executeQuery($pickupUpdateQuery);
+
+                $pickupStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
+                executeQuery($pickupStockQuery);
+            }
         }
     }
     header("Location: index.php");
     exit();
-}  
-
+} 
 
 // ACTIVE RENTALS STATUS
 if (isset($_POST['btnReceived'])) {
@@ -133,14 +138,14 @@ if (isset($_POST['btnReceived'])) {
     $statusQueryResult = executeQuery($statusQuery);
 
     while ($status = mysqli_fetch_assoc($statusQueryResult)) {
-        if ($status['rentalStatus'] === 'on rent') {
+        if ($status['rentalStatus'] === 'onrent') {
             $itemID = $status['itemID'];
             $itemQuantity = $status['itemQuantity'];
 
-            $handInQuery = "UPDATE rentals SET rentalStatus = 'received' WHERE rentalID = '$rentalID'";
+            $handInQuery = "UPDATE rentals SET rentalStatus = 'returned' WHERE rentalID = '$rentalID'";
             executeQuery($handInQuery);
 
-            $updateStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
+            $updateStockQuery = "UPDATE items SET stock = stock + $itemQuantity WHERE itemID = '$itemID'";
             executeQuery($updateStockQuery);
         }
     }
@@ -148,6 +153,7 @@ if (isset($_POST['btnReceived'])) {
     header("Location: index.php");
     exit();
 }
+
 ?>
 
 
@@ -298,7 +304,7 @@ if (isset($_POST['btnReceived'])) {
             <div class="content mt-4">
                 <div class="container-fluid">
                     <?php foreach ($rentalList as $rentalCard) {
-                        if ($rentalCard->status === 'on rent') {
+                        if ($rentalCard->status === 'onrent' || $rentalCard->status === 'overdue' || $rentalCard->status === 'extended') {
                             echo $rentalCard->buildAdminRentalCard();
                         }
                     } ?>
