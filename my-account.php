@@ -132,7 +132,7 @@ $rentalList = $rental->getRentalsData();
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
                             <?php if ($profileUpdated): ?>
-                                <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
+                                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
                                     <div class="toast align-items-center text-bg-success border-0 show" role="alert"
                                         aria-live="assertive" aria-atomic="true">
                                         <div class="d-flex">
@@ -308,8 +308,7 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center"
-                                    name="btnConfirmedLogOut">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
                                     I want
                                     to delete</button>
                             </div>

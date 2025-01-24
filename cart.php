@@ -202,7 +202,7 @@ include("shared/processes/cart-process.php");
     </div>
 
     <!-- NO ITEMS TO DELETE TOAST NOTIFICATION -->
-    <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
         <div id="emptyCartToast" class="toast align-items-center text-bg-warning border-0" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
