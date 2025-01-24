@@ -88,5 +88,12 @@ if (isset($_POST['btnConfirm'])) {
 }
 
 // GET THE TOTAL CARBON EMISSION SAVED THIS MONTH
+$currentYear = date('Y');
+$currentMonth = date('m');
+$co2Query = "SELECT SUM(totalCO2Saved) AS totalCO2Saved FROM rentals WHERE rentalStatus != 'cancelled' AND MONTH(startRentalDate) = $currentMonth AND YEAR(startRentalDate) = $currentYear";
+$co2Result = executeQuery($co2Query);
+$co2Data = mysqli_fetch_assoc($co2Result);
+$totalCO2SavedMonth = $co2Data['totalCO2Saved'] ?? 0; 
+$formattedCO2Saved = number_format($totalCO2SavedMonth, 0);
 
 ?>
