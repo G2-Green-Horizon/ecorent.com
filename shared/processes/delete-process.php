@@ -1,13 +1,12 @@
 <?php
-if (isset($_POST['btnConfirmed'])) {
-
+if (isset($_POST['btnDelete'])) {
     $userID = $_COOKIE['userID'] ?? $_COOKIE['userCredentials'] ?? null;
 
-    // Begin transaction. USe this function to perform multiple updates on database.
+    // Begin transaction. Use this function to perform multiple updates on the database.
     executeQuery("START TRANSACTION");
 
     try {
-        // Soft delete records in related tables to user.
+        // Soft delete records in related tables to the user.
         executeQuery("UPDATE rentals SET isDeleted = 'Yes' WHERE renterID = '$userID'");
         executeQuery("UPDATE preferences SET isDeleted = 'Yes' WHERE userID = '$userID'");
 
@@ -17,13 +16,23 @@ if (isset($_POST['btnConfirmed'])) {
         // Commit transactions made.
         executeQuery("COMMIT");
 
-        // Log out the user after soft deletion. They would not be able to log in again on the deleted account.
-        header("Location: login.php?message=AccountDeleted");
-        exit;
+        // Clear user-related cookies (if any).
+        setcookie('userID', '', time() - 3600, '/');
+        setcookie('userCredentials', '', time() - 3600, '/');
+        setcookie('email', '', time() - 3600, '/');
+        setcookie('firstName', '', time() - 3600, '/');
+        setcookie('lastName', '', time() - 3600, '/');
+
+        // Redirect the user to the login page.
+        header("Location: login.php");
+        exit();
     } catch (Exception $e) {
-        // Rollback transaction in case of an error in deleting the account.
+        // Rollback transaction in case of any error.
         executeQuery("ROLLBACK");
-        echo "Error deleting account: " . $e->getMessage();
+
+        // Log the error or display an appropriate message.
+        error_log("Account deletion failed: " . $e->getMessage());
+        echo "An error occurred while deleting your account. Please try again later.";
     }
 }
 ?>

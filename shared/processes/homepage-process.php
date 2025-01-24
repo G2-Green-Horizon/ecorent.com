@@ -28,7 +28,7 @@ if (count($categoryIDsArray) > 0) {
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
         JOIN attachments on items.itemID = attachments.itemID
-        WHERE items.categoryID IN ($categoryIDsList) AND items.isDeleted = 'No'
+        WHERE items.categoryID IN ($categoryIDsList) AND items.isDeleted = 'No' AND items.stock > 0
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
 
@@ -74,7 +74,7 @@ if (count($categoryIDsArray) > 0) {
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
         JOIN attachments on items.itemID = attachments.itemID
-        WHERE items.categoryID IN ($remainingCategoriesList) AND items.isDeleted = 'No'
+        WHERE items.categoryID IN ($remainingCategoriesList) AND items.isDeleted = 'No' AND items.stock > 0
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
     
@@ -102,7 +102,7 @@ if (count($categoryIDsArray) === 0) {
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
         JOIN attachments ON items.itemID = attachments.itemID
-        WHERE items.isDeleted = 'No'
+        WHERE items.isDeleted = 'No' AND items.stock > 0
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
 

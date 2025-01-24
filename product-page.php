@@ -1,6 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
 include("shared/processes/productpage-process.php");
+include("shared/processes/add-to-cart-process.php");
 ?>
 
 <!doctype html>
@@ -9,7 +10,7 @@ include("shared/processes/productpage-process.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EcoRent | Product Details</title>
+    <title>EcoRent | <?php echo $itemInfoArray["itemName"] ?></title>
     <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
 
     <!-- STYLINGS -->
@@ -42,7 +43,8 @@ include("shared/processes/productpage-process.php");
                     <hr>
                     <input type="hidden" name="id" value="<?php echo $itemID; ?>">
                     <input type="hidden" name="pricePerDay" value="<?php echo $itemInfoArray["pricePerDay"]; ?>">
-                    <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"]; ?></h4>
+                    <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"]; ?><span
+                            class="rental-period">/day</span></h4>
 
                     <div class="d-flex align-items-center">
                         <i class="bi bi-geo-alt-fill"></i>
@@ -76,7 +78,7 @@ include("shared/processes/productpage-process.php");
                             <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseQuantity()"
                                 <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
                             <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
-                            max="<?php echo $itemInfoArray["stock"]; ?>" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                            max="<?php echo $itemInfoArray["stock"]; ?>" value="1" step="1" <?php echo ($item["stock"] <= 0) ? 'disabled' : ''; ?>>
                             <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseQuantity()"
                                 <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
                         </div>
@@ -123,9 +125,9 @@ include("shared/processes/productpage-process.php");
                     <p class="mt-4"><?php echo $itemInfoArray["itemName"]; ?></p>
                     <p><?php echo $itemInfoArray["itemSpecifications"]; ?></p>
                 </div>
-        </form>
-        </div>
 
+            </div>
+        </form>
     </section>
 
     <?php include 'shared/components/footer.php'; ?>

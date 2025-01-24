@@ -291,17 +291,18 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnDelete">Yes,
                                     I want
                                     to delete</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-    </form>
+
 
     <?php include 'shared/components/footer.php'; ?>
 

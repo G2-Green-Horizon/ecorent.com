@@ -35,11 +35,13 @@ class Rental
 
     function getRentalsData()
     {
-        $query = "SELECT * FROM rentals 
+        $query = "SELECT * FROM rentals  
         LEFT JOIN items ON rentals.itemID = items.itemID
         LEFT JOIN attachments ON items.itemID = attachments.itemID
-        WHERE rentals.isDeleted = 'No'";
+        WHERE rentals.isDeleted = 'No'
+        ORDER BY rentals.rentalID DESC";
         $result = executeQuery($query);
+
 
         $rentals = array();
 
@@ -80,7 +82,7 @@ class Rental
                                             <div class="rental-time">
                                                 <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
                                                     for
-                                                    ' . $this->rentalPeriod . '</span>
+                                                    ' . $this->rentalPeriod . ' ' . (($this->rentalPeriod > 1) ? 'days' : 'day') . '</span>
                                             </div>
                                             <div class="basket">
                                                 <i class="fa-solid fa-basket-shopping"></i><span

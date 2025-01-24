@@ -84,6 +84,7 @@ class UserPreferences
 
         // Query if user chose to skip, selecting all category IDs of items, printing all items.
         $randomItemsQuery = "SELECT items.*, categories.* FROM categories JOIN items ON items.categoryID = categories.categoryID
+        WHERE items.isDeleted = 'No' AND items.stock > 0
         ORDER BY items.itemName";
         $randomItemsResult = executeQuery($randomItemsQuery);
 

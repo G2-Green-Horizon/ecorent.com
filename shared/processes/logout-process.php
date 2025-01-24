@@ -1,5 +1,5 @@
 <?php
-if (isset($_COOKIE['email']) || isset($_COOKIE['userCredentials'])) {
+// if (isset($_COOKIE['email']) || isset($_COOKIE['userCredentials'])) {
     setcookie("userID", "", time() - 3600, "/"); 
     setcookie("email", "", time() - 3600, "/"); 
     setcookie("firstName", "", time() - 3600, "/"); 
@@ -8,4 +8,5 @@ if (isset($_COOKIE['email']) || isset($_COOKIE['userCredentials'])) {
     setcookie("userCredentials", "", time() - 3600, "/"); 
     header("Location: index.php"); 
     exit();
-}
+
+?>
