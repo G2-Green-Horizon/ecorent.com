@@ -175,19 +175,19 @@ $rentalList = $rental->getRentalsData();
                                         <div class="col-md-6 col-12 mb-3">
                                             <input type="text" id="firstName" class="form-control" name="firstName"
                                                 placeholder="First Name"
-                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="firstNameError"></div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
                                             <input type="text" id="lastName" class="form-control" name="lastName"
                                                 placeholder="Last Name"
-                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="lastNameError"></div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
                                         <input type="email" id="email" class="form-control" name="email"
-                                            placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>">
+                                            placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>" required>
                                         <div class="invalid-feedback" id="emailError"></div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
