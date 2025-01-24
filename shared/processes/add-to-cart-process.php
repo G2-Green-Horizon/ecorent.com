@@ -1,26 +1,33 @@
 <?php
+
 if (isset($_GET["btnAddToCart"])) {
 
     $itemID = $_GET["id"] ?? '';
     $rentalPeriod = $_GET["rentalPeriod"] ?? '';
     $quantity = $_GET["quantity"] ?? '';
     $userID = $_COOKIE['userCredentials'] ?? '';
+    $status = '';
 
-    if ($itemID && $rentalPeriod && $quantity && $userID) {
+    $cartChecker = "SELECT * FROM cart WHERE itemID = $itemID AND userID = '$userID' AND status = 'added';";
+    $cartCheckerResults = executeQuery($cartChecker);
 
-        $addToCartQuery = "INSERT INTO `cart` (`userID`, `itemID`, `quantity`, `added_date`, `status`, `rentalPeriod`) 
-                      VALUES ('$userID', '$itemID', '$quantity', NOW(), 'added', $rentalPeriod)";
+    if (mysqli_num_rows($cartCheckerResults) > 0) {
+        $status = 'already added';
+    } else {
+        if ($itemID && $rentalPeriod && $quantity && $userID) {
+            $addToCartQuery = "INSERT INTO `cart` (`userID`, `itemID`, `quantity`, `added_date`, `status`, `rentalPeriod`) 
+                              VALUES ('$userID', '$itemID', '$quantity', NOW(), 'added', '$rentalPeriod')";
 
-        $addToCartResults = executeQuery($addToCartQuery);
+            $addToCartResults = executeQuery($addToCartQuery);
 
-        // if ($addToCartResults) {
-        //     echo "Item successfully added to cart!";
-        // } else {
-        //     echo "Failed to add item to cart. Please try again.";
-        // }
-    } 
-    // else {
-    //     echo "Invalid input. Please make sure all fields are filled.";
-    // }
+            if ($addToCartResults) {
+                $status = 'success';
+            } else {
+                $status = 'failed';
+            }
+        } else {
+            $status = 'failed';
+        }
+    }
 }
 ?>

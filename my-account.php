@@ -113,8 +113,7 @@ $rentalList = $rental->getRentalsData();
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
                             <?php if ($profileUpdated): ?>
-                                <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3"
-                                    style="z-index: 1055;">
+                                <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
                                     <div class="toast align-items-center text-bg-success border-0 show" role="alert"
                                         aria-live="assertive" aria-atomic="true">
                                         <div class="d-flex">

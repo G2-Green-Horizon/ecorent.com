@@ -179,6 +179,7 @@ include("shared/processes/cart-process.php");
         </div>
     </div>
 
+    <!-- ITEM REMOVAL MODAL -->
     <div class="modal fade" id="removeItemModal" tabindex="-1" aria-labelledby="removeItemModalLabel" aria-hidden="true"
         data-bs-theme="dark">
         <div class="modal-dialog modal-dialog-centered">
@@ -189,7 +190,7 @@ include("shared/processes/cart-process.php");
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    Are you sure you want to remove all selected items??
+                    Are you sure you want to remove all selected items?
                 </div>
                 <div class="container d-flex justify-content-end my-3">
                     <button type="button" class="btn-logout-denied text-center mx-2" data-bs-dismiss="modal"
@@ -199,6 +200,24 @@ include("shared/processes/cart-process.php");
             </div>
         </div>
     </div>
+
+    <!-- NO ITEMS TO DELETE TOAST NOTIFICATION -->
+    <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
+        <div id="emptyCartToast" class="toast align-items-center text-bg-warning border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Please select at least one card to delete.
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -264,6 +283,7 @@ include("shared/processes/cart-process.php");
             var trashButton = document.querySelector('.trash-custom');
             var selectAllCheckbox = document.getElementById('selectAll');
             var modal = new bootstrap.Modal(document.getElementById('removeItemModal'));
+            var toast = new bootstrap.Toast(document.getElementById('emptyCartToast'))
             var confirmButton = document.querySelector('.btn-logout-confirmed');
 
             var cartIDsString = '';
@@ -272,7 +292,7 @@ include("shared/processes/cart-process.php");
                 var selectedCards = document.querySelectorAll('.cart-container input[type="checkbox"]:checked');
 
                 if (selectedCards.length === 0) {
-                    alert('Please select at least one card to delete.');
+                    toast.show();
                     return;
                 }
 
