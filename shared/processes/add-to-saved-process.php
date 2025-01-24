@@ -5,7 +5,7 @@ if (isset($_GET["btnAddToCart"])) {
     $itemID = $_GET["id"] ?? '';
     $rentalPeriod = $_GET["rentalPeriod"] ?? '';
     $quantity = $_GET["quantity"] ?? '';
-    $userID = $_COOKIE['userCredentials'] ?? '';
+    $userID = $_COOKIE['userID'] ?? '';
     
 
     $cartChecker = "SELECT * FROM savedItems WHERE itemID = $itemID AND userID = '$userID' AND status = 'added';";
