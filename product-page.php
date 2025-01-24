@@ -1,8 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
 include("shared/processes/productpage-process.php");
-include("shared/processes/add-to-cart-process.php");
-
+include("shared/processes/add-to-saved-process.php");
 ?>
 
 <!doctype html>
@@ -86,8 +85,7 @@ include("shared/processes/add-to-cart-process.php");
                         <p class="mb-0"><?php echo $itemInfoArray["stock"]; ?> stocks available</p>
                     </div>
                     <div class="d-flex align-items-center justify-content-end mt-5">
-                        <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart">Add to
-                            cart</button>
+                        <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart">Save item</button>
                         <a href="bookings.php"><button class="button-size btn btn-custom-dark" type="submit"
                                 name="btnRentNow" formaction="booking.php">Rent now</button> </a>
                     </div>
@@ -101,7 +99,7 @@ include("shared/processes/add-to-cart-process.php");
                         aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
-                                Added to cart!
+                                Added to saved items!
                             </div>
                             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                                 aria-label="Close"></button>
@@ -116,7 +114,7 @@ include("shared/processes/add-to-cart-process.php");
                         aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
-                                This item is already on your cart.
+                                This item is already on your saved items.
                             </div>
                             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                                 aria-label="Close"></button>

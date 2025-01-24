@@ -16,15 +16,15 @@ if (isset($_GET['cartIDs'])) {
     $removeFromCartResults = executeQuery($removeFromCartQuery);
 
     if ($removeFromCartResults) {
-        header('Location: /ecorent.com/cart.php');
+        header('Location: /ecorent.com/saved-items.php');
         exit();
     } else {
-        header('Location: /ecorent.com/cart.php');
+        header('Location: /ecorent.com/saved-items.php');
         exit();
     }
 
 } else {
-    header('Location: /ecorent.com/cart.php');
+    header('Location: /ecorent.com/saved-items.php');
     exit();
 }
 ?>

@@ -58,8 +58,8 @@ if (isset($_POST['addItemBtn'])) {
     $getNextIDResult = executeQuery($getNextIDQuery);
     $row = mysqli_fetch_assoc($getNextIDResult);
 
-    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `listingDate`, `isFeatured`, `isDeleted`) 
-    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', CURRENT_TIMESTAMP, 'Yes', 'No')";
+    $insertItemQuery = "INSERT INTO `items`(`itemName`, `description`, `itemSpecifications`, `pricePerDay`, `gasEmissionSaved`, `categoryID`, `itemType`, `conditionID`, `stock`, `location`, `listingDate`, `isDeleted`) 
+    VALUES ('$itemName', '$itemDesc', '$itemSpec', '$pricePerDay', '$gasEmissionSaved', '$category', '$itemType', '$itemCondition', '$itemStock', 'Brgy. San Antonio, Sto. Tomas, Batangas', CURRENT_TIMESTAMP, 'No')";
 
     $insertItemResult = executeQuery($insertItemQuery);
 

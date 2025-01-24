@@ -91,7 +91,7 @@ $loadItemsResult = executeQuery($loadItemsQuery);
             </form>
 
             <div class="d-flex justify-content-center mb-3">
-                <a href="cart.php">
+                <a href="saved-items.php">
                 <button class="navbar-btn rounded-5 me-2">
                     <i class="bi bi-cart"></i>
                 </button>
