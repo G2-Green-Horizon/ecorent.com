@@ -63,7 +63,7 @@ include("shared/processes/productpage-process.php");
                             <button type="button" class="btn btn-outline-secondary btn-sm"
                                 onclick="decreaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
                             <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
-                                min="1" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                                min="1" max="30" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
                             <button type="button" class="btn btn-outline-secondary btn-sm"
                                 onclick="increaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
                         </div>
@@ -76,7 +76,7 @@ include("shared/processes/productpage-process.php");
                             <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseQuantity()"
                                 <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
                             <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
-                                value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                            max="<?php echo $itemInfoArray["stock"]; ?>" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
                             <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseQuantity()"
                                 <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
                         </div>
@@ -146,10 +146,21 @@ include("shared/processes/productpage-process.php");
         var quantity = document.getElementById('quantity');
         function increaseQuantity() {
             quantity.stepUp();
+            if (currentQuantity < stock) {
+            currentQuantity++;
+            quantityInput.value = currentQuantity;
+        }
         }
         function decreaseQuantity() {
             quantity.stepDown();
+            const quantityInput = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity > 1) {
+            currentQuantity--;
+            quantityInput.value = currentQuantity;
         }
+    }
+    
 
         // DISABLE THE CARACTERS (ONLY NUMBERS)
         document.querySelectorAll('input[type="number"]').forEach(input => {
