@@ -166,7 +166,7 @@ include("shared/processes/booking-process.php");
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-end gap-3">
-                                    <button class="btn btn-outline-danger" id="cancel-btn">Cancel</button>
+                                    <a href="index.php"><button class="btn btn-outline-danger" id="cancel-btn">Cancel</button></a>
                                     <button class="btn btn-primary" type="button" onclick="validateInput()"
                                         id="confirm-btn">Confirm
                                         Booking</button>

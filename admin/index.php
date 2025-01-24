@@ -109,11 +109,11 @@ if (isset($_POST['btnPickup'])) {
     $pickupStatusResult = executeQuery($pickupStatusQuery);
 
     while ($pickupStatus = mysqli_fetch_assoc($pickupStatusResult)) {
-        if ($pickupStatus['rentalStatus'] !== 'on rent') {
+        if ($pickupStatus['rentalStatus'] !== 'onrent') {
             $itemID = $pickupStatus['itemID'];
             $itemQuantity = $pickupStatus['itemQuantity'];
 
-            $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'on rent' WHERE rentalID = '$rentalID'";
+            $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'onrent', totalPrice = 0 WHERE rentalID = '$rentalID'";
             executeQuery($pickupUpdateQuery);
 
             $pickupStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
@@ -133,14 +133,14 @@ if (isset($_POST['btnReceived'])) {
     $statusQueryResult = executeQuery($statusQuery);
 
     while ($status = mysqli_fetch_assoc($statusQueryResult)) {
-        if ($status['rentalStatus'] === 'on rent') {
+        if ($status['rentalStatus'] === 'onrent') {
             $itemID = $status['itemID'];
             $itemQuantity = $status['itemQuantity'];
 
-            $handInQuery = "UPDATE rentals SET rentalStatus = 'received' WHERE rentalID = '$rentalID'";
+            $handInQuery = "UPDATE rentals SET rentalStatus = 'returned' WHERE rentalID = '$rentalID'";
             executeQuery($handInQuery);
 
-            $updateStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
+            $updateStockQuery = "UPDATE items SET stock = stock + $itemQuantity WHERE itemID = '$itemID'";
             executeQuery($updateStockQuery);
         }
     }
@@ -148,6 +148,7 @@ if (isset($_POST['btnReceived'])) {
     header("Location: index.php");
     exit();
 }
+
 ?>
 
 
@@ -298,7 +299,7 @@ if (isset($_POST['btnReceived'])) {
             <div class="content mt-4">
                 <div class="container-fluid">
                     <?php foreach ($rentalList as $rentalCard) {
-                        if ($rentalCard->status === 'on rent') {
+                        if ($rentalCard->status === 'onrent' || $rentalCard->status === 'overdue' || $rentalCard->status === 'extended') {
                             echo $rentalCard->buildAdminRentalCard();
                         }
                     } ?>

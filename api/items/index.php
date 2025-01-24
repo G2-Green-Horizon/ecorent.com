@@ -3,26 +3,26 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$db = "ecorent";
+$db = "ecorent3";
 
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
 
 try {
-	$pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	die("Connection failed: " . $e->getMessage());
+    die("Connection failed: " . $e->getMessage());
 }
 
 if (!$conn) {
-	die("Connection Failed. " . mysqli_connect_error());
-	echo "can't connect to database";
+    die("Connection Failed. " . mysqli_connect_error());
+    echo "can't connect to database";
 }
 
 function executeQuery($query)
 {
-	$conn = $GLOBALS['conn'];
-	return mysqli_query($conn, $query);
+    $conn = $GLOBALS['conn'];
+    return mysqli_query($conn, $query);
 }
 
 header("Content-Type: application/json");
@@ -76,39 +76,47 @@ function handleGet($pdo)
 
 function handlePost($pdo, $input)
 {
-    if (!validateInput($input, ['itemName', 'itemType', 'gasEmissionSaved', 'pricePerDay', 'itemSpecifications', 'location'])) {
+    if (!is_array($input) || empty($input)) {
         http_response_code(400);
-        echo json_encode(['message' => 'Invalid input']);
+        echo json_encode(['message' => 'Input must be a non-empty array']);
         return;
     }
 
     try {
         $sql = "INSERT INTO items (itemName, itemType, gasEmissionSaved, pricePerDay, itemSpecifications, location) 
         VALUES (:itemName, :itemType, :gasEmissionSaved, :pricePerDay, :itemSpecifications, :location)";
-        
+
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            'itemName' => $input['itemName'],
-            'itemType' => $input['itemType'],
-            'gasEmissionSaved' => $input['gasEmissionSaved'],
-            'pricePerDay' => $input['pricePerDay'],    
-            'itemSpecifications' => $input['itemSpecifications'],
-            'location' => $input['location'],
-        ]);
+
+        foreach ($input as $item) {
+            if (!validateInput($item, ['itemName', 'itemType', 'gasEmissionSaved', 'pricePerDay', 'itemSpecifications', 'location'])) {
+                continue;
+            }
+
+            $stmt->execute([
+                'itemName' => $item['itemName'],
+                'itemType' => $item['itemType'],
+                'gasEmissionSaved' => $item['gasEmissionSaved'],
+                'pricePerDay' => $item['pricePerDay'],
+                'itemSpecifications' => $item['itemSpecifications'],
+                'location' => $item['location'],
+            ]);
+        }
 
         http_response_code(201);
-        echo json_encode(['message' => 'Item created successfully']);
+        echo json_encode(['message' => 'Bulk items created successfully']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'Database insertion error', 'error' => $e->getMessage()]);
     }
 }
 
+
 function handlePut($pdo, $input)
 {
-    if (!validateInput($input, ['itemID', 'itemName', 'itemType', 'gasEmissionSaved', 'pricePerDay', 'itemSpecifications', 'location'])) {
+    if (!is_array($input) || empty($input)) {
         http_response_code(400);
-        echo json_encode(['message' => 'Invalid input']);
+        echo json_encode(['message' => 'Input must be a non-empty array']);
         return;
     }
 
@@ -123,22 +131,25 @@ function handlePut($pdo, $input)
             WHERE itemID = :itemID";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            'itemName' => $input['itemName'],
-            'itemType' => $input['itemType'],
-            'gasEmissionSaved' => $input['gasEmissionSaved'],
-            'pricePerDay' => $input['pricePerDay'],    
-            'itemSpecifications' => $input['itemSpecifications'],
-            'location' => $input['location'],
-            'itemID' => $input['itemID']
-        ]);
 
-        if ($stmt->rowCount() > 0) {
-            echo json_encode(['message' => 'Item updated successfully']);
-        } else {
-            http_response_code(404);
-            echo json_encode(['message' => 'Item not found']);
+        foreach ($input as $item) {
+            if (!validateInput($item, ['itemID', 'itemName', 'itemType', 'gasEmissionSaved', 'pricePerDay', 'itemSpecifications', 'location'])) {
+                continue;
+            }
+
+            $stmt->execute([
+                'itemName' => $item['itemName'],
+                'itemType' => $item['itemType'],
+                'gasEmissionSaved' => $item['gasEmissionSaved'],
+                'pricePerDay' => $item['pricePerDay'],
+                'itemSpecifications' => $item['itemSpecifications'],
+                'location' => $item['location'],
+                'itemID' => $item['itemID']
+            ]);
         }
+
+        http_response_code(200);
+        echo json_encode(['message' => 'Bulk items updated successfully']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'Database update error', 'error' => $e->getMessage()]);
@@ -147,23 +158,20 @@ function handlePut($pdo, $input)
 
 function handleDelete($pdo, $input)
 {
-    if (!validateInput($input, ['itemID'])) {
+    if (!is_array($input) || empty($input)) {
         http_response_code(400);
-        echo json_encode(['message' => 'Invalid input']);
+        echo json_encode(['message' => 'Input must be a non-empty array of IDs']);
         return;
     }
 
     try {
-        $sql = "DELETE FROM items WHERE itemID = :itemID";
+        $placeholders = implode(',', array_fill(0, count($input), '?'));
+        $sql = "DELETE FROM items WHERE itemID IN ($placeholders)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['itemID' => $input['itemID']]);
+        $stmt->execute($input);
 
-        if ($stmt->rowCount() > 0) {
-            echo json_encode(['message' => 'Item deleted successfully']);
-        } else {
-            http_response_code(404);
-            echo json_encode(['message' => 'Item not found']);
-        }
+        http_response_code(200);
+        echo json_encode(['message' => 'Bulk items deleted successfully']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'Database deletion error', 'error' => $e->getMessage()]);

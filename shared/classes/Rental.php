@@ -66,10 +66,14 @@ class Rental
     // BUILD RENTAL STATUS CARD FOR USER VIEW
     function buildRentalCard()
     {
+
+        $formattedDate = date('M. d, Y', strtotime($this->dueDate));
+        $formattedDate2 = date('M. d, Y', strtotime($this->pickupDate));
+
         return '<div class="item-card mt-3 p-3">
                                 <div class="row">
                                     <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
-                                        <img src="shared/assets/img/system/items/' . $this->itemDisplayImg . '" alt=""
+                                    <img src="shared/assets/img/system/items/' . $this->showItemDisplayImage($this->itemDisplayImg) . '" alt=""
                                             class="item-display-img img-fluid">
                                         <div class="item-info ps-2 ps-xl-3 pt-3 pt-md-3 pt-xl-0 d-flex flex-column">
                                             <h3 class="item-name">' . $this->itemName . '</h3>
@@ -96,16 +100,13 @@ class Rental
                                 <div class="transac">
                                     <div class="p-2 w-100">
                                         <div class="time-period ' . $this->showInfo($this->status) . '">
-                                            <div class="time-remaining">
-                                                <i class="fa-regular fa-clock"></i>
-                                                Time remaining:<span class="ps-2 rental-time">00:00:00</span>
-                                                <span class="alert-icon ' . $this->showTimeAlert($this->status) . ' ps-2"><i
-                                                        class="fa-solid fa-circle-exclamation"
-                                                        style="color:#D10D0D"></i></span>
+                                            <div class="due">
+                                                <i class="fa-regular fa-calendar"></i>
+                                                Booked:<span class="ps-2 rental-time">' . $formattedDate . '</span>
                                             </div>
                                             <div class="due">
                                                 <i class="fa-regular fa-calendar"></i>
-                                                Due:<span class="ps-2 rental-time">01/12/2025</span>
+                                                Due:<span class="ps-2 rental-time">' . $formattedDate2 . '</span>
                                             </div>
                                         </div>
                                         <div class="status-tip py-2 py-lg-3">
@@ -115,7 +116,7 @@ class Rental
                                     <div class="p-2 flex-shrink-1">
                                         <div class="total-payment d-flex">
                                             <span class="d-flex align-items-center">
-                                                 Total payment upon return:</span>
+                                                ' . ($this->showPaymentStatus($this->status)) . '</span>
                                             <span class="payment-number ps-5 text-end">₱' . $this->totalAmountPayable . '</span>
                                         </div>
                                         ' . $this->showActionButton($this->status) . '
@@ -132,12 +133,12 @@ class Rental
                             <div class="card-body-rentals">
                                 <div class="rentals-content">
                                     <div class="order-content">
-                                        <img src="assets/img/system/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
-                                        <h4>'.$this->itemName.'</h4>
+                                        <img src="assets/img/system/items/' . $this->itemDisplayImg . '" alt="" class="img-fluid">
+                                        <h4>' . $this->itemName . '</h4>
                                     </div>
                                     <div class="actions">
                                         <button class="btn-hand-in d-none btn-update-status rounded-3 mx-2 mx-md-5">RECEIVED</button>
-                                        <a href="transaction-page.php?rentalID='.$this->rentalID.'">
+                                        <a href="transaction-page.php?rentalID=' . $this->rentalID . '">
                                             <div class="btn-see-details rounded-4">
                                                 <button class=""><i class="fa fa-chevron-right"></i></button>
                                             </div>
@@ -157,7 +158,7 @@ class Rental
                 return 'd-none';
             case 'pickup':
                 return 'd-none';
-            case 'on rent':
+            case 'onrent':
                 return 'd-block';
             case 'returned';
                 return 'd-none';
@@ -174,7 +175,7 @@ class Rental
                 return 'Waiting for your item to be approved.';
             case 'pickup':
                 return 'Please pick-up your item at ' . $this->itemAddress . ' on ' . $this->reservationDate . '.';
-            case 'on rent':
+            case 'onrent':
                 return '';
             case 'overdue';
                 return 'Please return the item immediately to prevent penalties!';
@@ -200,7 +201,7 @@ class Rental
                             </form>
                         </div>
                     </div>';
-        } else if ($status == 'on rent' || $status == 'overdue' || $status == 'extended') {
+        } else if ($status == 'onrent' || $status == 'overdue' || $status == 'extended') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
                                                 <button type="submit" class="btn-action">Extend</button>
@@ -209,8 +210,8 @@ class Rental
         } else if ($status == 'returned' || $status == 'cancelled') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <a href="product-page.php?id='.$this->itemID.'">
-                                                    <button type="submit" class="btn-action">Rent Again</button>
+                                                <a href="product-page.php?id=' . $this->itemID . '">
+                                                    <button type="submit" class="btn-action" style="white-space: nowrap;">Rent Again</button>
                                                 </a>
                                             </div>
                                         </div>';
@@ -222,17 +223,75 @@ class Rental
     function showBadge($status)
     {
         $badgeStyle = '';
+        $displayStatus = '';
 
         ($status != 'overdue') ? $badgeStyle = '' : $badgeStyle = 'badge-overdue';
 
+        switch ($status) {
+            case 'pending':
+                $displayStatus = 'pending';
+                break;
+            case 'pickup':
+                $displayStatus = 'pickup';
+                break;
+            case 'onrent':
+                $displayStatus = 'on rent';
+                break;
+            case 'overdue':
+                $displayStatus = 'overdue';
+                break;
+            case 'extended':
+                $displayStatus = 'extended';
+                break;
+            case 'returned':
+                $displayStatus = 'returned';
+                break;
+            case 'cancelled':
+                $displayStatus = 'cancelled';
+                break;
+            default:
+                $displayStatus = 'processing';
+                break;
+        }
+
         return '<div class="status-badge ' . $badgeStyle . ' text-center">
-                                            ' . strtoupper($status) . '
+                                            ' . strtoupper($displayStatus) . '
                                         </div>';
     }
 
     function showTimeAlert($status)
     {
-        ($status != 'overdue') ? 'd-none' : 'd-block';
+        ($status == 'overdue') ? 'd-none' : 'd-block';
     }
+
+    function showItemDisplayImage($fileName)
+    {
+        $itemDisplayImg = empty($itemDisplayImg) ? $fileName : "item-default-dp.png";
+        return $itemDisplayImg;
+    }
+
+    function showPaymentStatus($status)
+    {
+        if ($status === 'pending' || $status === 'cancelled') {
+            return 'Total payment:';
+        } else if ($status === 'onrent' || $status === 'overdue' || $status === 'extended') {
+            return 'Total payment upon return:';
+        } else if ($status === 'returned') {
+            return '<span style="white-space: pre;">Total payment<br>paid:
+                    </span>';
+        } else {
+            return 'Payment:';
+        }
+    }
+
+    function updateOverdueRentals()
+    {
+        $query = "UPDATE rentals 
+              SET rentalStatus = 'overdue' 
+              WHERE rentalStatus = 'onrent' AND endRentalDate < NOW()";
+
+        $result = executeQuery($query);
+    }
+
 }
 ?>

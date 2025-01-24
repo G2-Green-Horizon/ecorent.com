@@ -9,19 +9,22 @@ if (isset($_POST['btnCancelBooking'])) {
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
 
     executeQuery($cancelQuery);
+    header("Location: my-account.php");
 }
 
 if (isset($_POST['btnConfirmed'])) {
     include("shared/processes/logout-process.php");
+    header("Location: my-account.php");
 }
 
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
+$rental->updateOverdueRentals();
 $rentalList = $rental->getRentalsData();
 
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="en">    
 
 <head>
     <meta charset="utf-8">
