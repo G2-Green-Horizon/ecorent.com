@@ -23,7 +23,7 @@ if (isset($_GET['setCategory'])) {
     INNER JOIN attachments ON items.itemID = attachments.itemID 
     INNER JOIN categories ON items.categoryID = categories.categoryID 
     WHERE items.categoryID = '$chosenCategory' AND items.isDeleted = 'No'";
-    
+
     if ($searchCondition) {
         $loadItemsQuery .= " AND $searchCondition";
     }
@@ -47,14 +47,14 @@ if (isset($_GET['applyFilter'])) {
         $loadItemsQuery .= " AND items.categoryID IN ($categoriesList)";
 
         if (!empty($_GET['min']) && !empty($_GET['max'])) {
-            $minPrice = (int)$_GET['min'];
-            $maxPrice = (int)$_GET['max'];
+            $minPrice = (int) $_GET['min'];
+            $maxPrice = (int) $_GET['max'];
             $loadItemsQuery .= " AND items.pricePerDay BETWEEN $minPrice AND $maxPrice";
         }
     } else {
         if (!empty($_GET['min']) && !empty($_GET['max'])) {
-            $minPrice = (int)$_GET['min'];
-            $maxPrice = (int)$_GET['max'];
+            $minPrice = (int) $_GET['min'];
+            $maxPrice = (int) $_GET['max'];
             $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No' AND items.pricePerDay BETWEEN $minPrice AND $maxPrice";
         } else {
             $loadItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
@@ -69,7 +69,7 @@ $loadItemsResult = executeQuery($loadItemsQuery);
 ?>
 
 <nav class="navbar navbar-expand-lg border-bottom py-2">
-    <div class="container-fluid">
+    <div class="container-fluid mt-4">
         <a class="navbar-brand d-flex align-items-center" href="./">
             <img src="shared/assets/img/system/ecorent-logo.png" alt="Logo" class="logo me-2">
         </a>
@@ -84,21 +84,21 @@ $loadItemsResult = executeQuery($loadItemsQuery);
                     <input type="text" name="search"
                         value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>"
                         class="form-control dark-input" placeholder="Search for items">
-                    <button class="navbar-btn" type="submit">
-                        <i class="bi bi-search"></i>
+                    <button class="btn-search" type="submit">
+                        <i class="my-icon bi bi-search"></i>
                     </button>
                 </div>
             </form>
 
             <div class="d-flex justify-content-center mb-3">
                 <a href="cart.php">
-                <button class="navbar-btn rounded-5 me-2">
-                    <i class="bi bi-cart"></i>
-                </button>
+                    <button class="navbar-btn rounded-5 me-2">
+                        <i class="my-icon bi-bookmarks-fill" style="font-size: 30px;"></i>
+                    </button>
                 </a>
                 <a href="my-account.php">
                     <button class="navbar-btn rounded-5">
-                        <i class="bi bi-person-circle"></i>
+                        <i class="my-icon bi bi-person-circle"style="font-size: 30px;" ></i>
                     </button>
                 </a>
             </div>
@@ -120,7 +120,7 @@ $loadItemsResult = executeQuery($loadItemsQuery);
                                 </button>
                             </li>
                         </form>
-                <?php
+                        <?php
                     }
                 }
                 ?>
