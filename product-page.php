@@ -95,7 +95,7 @@ include("shared/processes/add-to-cart-process.php");
 
             <!-- Toast Notifications -->
             <?php if ($status == 'success'): ?>
-                <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
+                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
                     <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
                         aria-atomic="true">
                         <div class="d-flex">
@@ -110,7 +110,7 @@ include("shared/processes/add-to-cart-process.php");
             <?php endif; ?>
 
             <?php if ($status == 'already added'): ?>
-                <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
+                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
                     <div class="toast align-items-center text-bg-secondary border-0 show" role="alert" aria-live="assertive"
                         aria-atomic="true">
                         <div class="d-flex">
