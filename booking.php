@@ -41,42 +41,45 @@ include("shared/processes/booking-process.php");
             <input type="hidden" name="totalPrice" value="<?php echo $totalPrice; ?>">
             <input type="hidden" name="totalCO2Saved" value="<?php echo $totalCO2Saved; ?>">
 
-        <div class="container mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
-            <div class="row">
-                <div class="col-12 mb-5">
-                    <div class="row">
-                        <div class="col-12 col-lg-6">
-                            <h2 class="me-auto p-2">Items Booked</h2>
-                        </div>
-                        <div class="col-12 col-lg-6 mt-lg-2">
-                            <div class="labels d-flex justify-content-end">
-                                <h6 class="p-2 me-3 text-center">Unit price<br>per day</h6>
-                                <h6 class="p-2 me-3 text-center">Rental<br>period</h6>
-                                <h6 class="p-2 me-3 text-center">Quantity</h6>
-                                <h6 class="p-2 me-3 text-center">Item<br>subtotal</h6>
+            <div class="container mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <h2 class="me-auto p-2">Items Booked</h2>
+                            </div>
+                            <div class="col-12 col-lg-6 mt-lg-2">
+                                <div class="labels d-flex justify-content-end">
+                                    <h6 class="p-2 me-3 text-center">Unit price<br>per day</h6>
+                                    <h6 class="p-2 me-3 text-center">Rental<br>period</h6>
+                                    <h6 class="p-2 me-3 text-center">Quantity</h6>
+                                    <h6 class="p-2 me-3 text-center">Item<br>subtotal</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="item-card col-12">
-                    <div class="row">
-                        <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                            <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>" class="rounded-2"
-                                style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto p-2 d-flex align-items-center"><?php echo $itemBookingInfoArray['itemName']; ?>
-                            </h4>
-                        </div>
-                        <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
-                            <div class="labels d-flex justify-content-end">
-                                <h6 class="p-2 me-5 ">₱<?php echo $pricePerDay;?></h6>
-                                <h6 class="p-2 me-5"><?php echo $rentalPeriod;?> <?php echo $rentalPeriod > 1 ? 'days' : 'day'; ?></h6>
-                                <h6 class="p-2 me-5 text-center"><?php echo $quantity;?></h6>
-                                <h5 class="p-2 me-4">₱<?php echo $itemSubtotal;?></h5>
+                    <div class="mb-4 col-12">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
+                                <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>"
+                                    class="rounded-2" style="width: 96px; height: auto;">
+                                <h4 class="item-name me-auto p-2 d-flex align-items-center">
+                                    <?php echo $itemBookingInfoArray['itemName']; ?>
+                                </h4>
+                            </div>
+                            <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
+                                <div class="labels d-flex justify-content-end">
+                                    <h6 class="p-2 me-5 ">₱<?php echo $pricePerDay; ?></h6>
+                                    <h6 class="p-2 me-5"><?php echo $rentalPeriod; ?>
+                                        <?php echo $rentalPeriod > 1 ? 'days' : 'day'; ?>
+                                    </h6>
+                                    <h6 class="p-2 me-5 text-center"><?php echo $quantity; ?></h6>
+                                    <h5 class="p-2 me-4">₱<?php echo $itemSubtotal; ?></h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                     <hr class="border border-1 w-100">
 
@@ -122,45 +125,46 @@ include("shared/processes/booking-process.php");
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="container mb-2 p-4 rounded-4" style="background-color: #343333;">
-                    <div class="row">
-                        <div class="col">
+            <div class="container mb-2 p-4 rounded-4" style="background-color: #343333;">
+                <div class="row">
+                    <div class="col">
 
-                            <h3>Terms & Condition</h3>
+                        <h3>Terms & Condition</h3>
 
-                            <ol class="mt-3 px-3">
-                                <li>A refundable security deposit is required upon item pick-up.</li>
-                                <li>Present a valid government-issued ID at the time of pick-up.</li>
-                                <li>Signing of the rental agreement is mandatory during pick-up.</li>
-                                <li>Penalties will apply based on the severity of any damage to the item.</li>
-                                <li>Late returns incur penalties based on the delay duration.</li>
-                            </ol>
-                        </div>
+                        <ol class="mt-3 px-3">
+                            <li>A refundable security deposit is required upon item pick-up.</li>
+                            <li>Present a valid government-issued ID at the time of pick-up.</li>
+                            <li>Signing of the rental agreement is mandatory during pick-up.</li>
+                            <li>Penalties will apply based on the severity of any damage to the item.</li>
+                            <li>Late returns incur penalties based on the delay duration.</li>
+                        </ol>
                     </div>
                 </div>
+            </div>
 
-        <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
-            <div class="row">
-                <div class="col">
-                    <h3>Payment Information</h3>
-                    <p>Please prepare enough amount upon pick-up</p>
+            <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
+                <div class="row">
+                    <div class="col">
+                        <h3>Payment Information</h3>
+                        <p>Please prepare enough amount upon pick-up</p>
 
-                            <div class="col-12 text-center">
-                                <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
-                                    <p class="mb-0 me-5">Merchandise subtotal:</p>
-                                    <h6 class="mb-0">₱<?php echo $itemSubtotal; ?></h6>
-                                </div>
+                        <div class="col-12 text-center">
+                            <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
+                                <p class="mb-0 me-5">Merchandise subtotal:</p>
+                                <h6 class="mb-0">₱<?php echo $itemSubtotal; ?></h6>
+                            </div>
 
-                                <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
-                                    <p class="mb-0 me-5">Security deposit:</p>
-                                    <h6 class="mb-0">₱<?php echo $securityDeposit ?></h6>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
+                                <p class="mb-0 me-5">Security deposit:</p>
+                                <h6 class="mb-0">₱<?php echo $securityDeposit ?></h6>
+                            </div>
 
-                                <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
-                                    <p class="mb-0">Total payment:</p>
-                                    <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice; ?></h5>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
+                                <p class="mb-0">Total payment:</p>
+                                <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice; ?></h5>
+                            </div>
 
                                 <div class="d-flex align-items-center justify-content-end gap-3">
                                     <button class="btn btn-outline-danger" id="cancel-btn" type="button"
@@ -179,7 +183,7 @@ include("shared/processes/booking-process.php");
         </form>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog carbon-fprint-modal-dialog mt-3">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header carbon-fprint-modal px-4">
                         <img class="carbon-fprint-img" src="shared/assets/img/system/carbon-fprint-icon.png"
@@ -190,12 +194,13 @@ include("shared/processes/booking-process.php");
                         <button type="submit" name="btnConfirm" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                   <!-- CARBON FOOTPRINT RESULT -->
-                   <div class="modal-body carbon-fprint-modal-body">
+                    <!-- CARBON FOOTPRINT RESULT -->
+                    <div class="modal-body carbon-fprint-modal-body">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12">
-                                    By renting <?php echo $itemBookingInfoArray['itemName'] ?>, you've saved <?php echo $totalCO2Saved ?> kg CO₂ emissions!
+                                    By renting <?php echo $itemBookingInfoArray['itemName'] ?>, you've saved
+                                    <?php echo $totalCO2Saved ?> kg CO₂ emissions!
                                 </div>
                             </div>
                             <div class="row">
@@ -228,8 +233,8 @@ include("shared/processes/booking-process.php");
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col mt-2">
+                            <div class="row mt-2">
+                                <div class="col-12">
                                     <a class="carbon-fprint-learn-more" href="https://facebook.com">Learn More</a>
                                 </div>
                             </div>
@@ -244,12 +249,8 @@ include("shared/processes/booking-process.php");
                 </div>
             </div>
         </div>
-        
-        
 
     </section>
-
-    <?php include 'shared/components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

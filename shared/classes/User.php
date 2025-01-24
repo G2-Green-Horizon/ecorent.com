@@ -56,11 +56,11 @@ class User
                 header("Location: index.php");
             } else {
                 $placeholderColor = "#FF6D6D";
-                echo "<script>window.onload = function() {document.getElementById('email').placeholder ='Invalid Email/Username'; document.getElementById('password').placeholder ='Invalid Password';};</script>";
+                echo "<script>window.onload = function() {document.getElementById('email').placeholder ='Invalid Email'; document.getElementById('password').placeholder ='Invalid Password';};</script>";
             }
         } else {
             $placeholderColor = "#FF6D6D";
-            echo "<script>window.onload = function() {document.getElementById('email').placeholder ='Invalid Email/Username'; document.getElementById('password').placeholder ='Invalid Password';};</script>";
+            echo "<script>window.onload = function() {document.getElementById('email').placeholder ='Invalid Email'; document.getElementById('password').placeholder ='Invalid Password';};</script>";
         }
         return $placeholderColor;
     }

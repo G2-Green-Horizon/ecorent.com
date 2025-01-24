@@ -362,6 +362,10 @@ input::-webkit-inner-spin-button {
     border-bottom-width: 2px;
 }
 
+.location-geo{
+    color: gray;
+}
+
 @media(max-width:1400px){
     .custom-card{
         width: 260px;
