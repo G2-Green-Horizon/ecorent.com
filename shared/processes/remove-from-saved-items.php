@@ -11,7 +11,7 @@ if (isset($_GET['cartIDs'])) {
 
     $cartIDsString = implode(',', $cartIDsArray);
 
-    $removeFromCartQuery = "UPDATE cart SET status = 'removed' WHERE cartID IN ($cartIDsString)";
+    $removeFromCartQuery = "UPDATE savedItems SET status = 'removed' WHERE savedID IN ($cartIDsString)";
 
     $removeFromCartResults = executeQuery($removeFromCartQuery);
 

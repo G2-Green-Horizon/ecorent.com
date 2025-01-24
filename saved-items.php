@@ -66,7 +66,7 @@ include("shared/processes/saved-items-process.php");
                     <div class="col">
                         <?php foreach ($cartResults as $item): ?>
                             <div class="container cart-container mt-2 mb-3 px-3 py-3 rounded-4"
-                                data-item-id="<?php echo $item['cartID']; ?>">
+                                data-item-id="<?php echo $item['savedID']; ?>">
                                 <div class="row p-2">
                                     <div class="col-auto d-flex align-items-center">
                                         <input class="form-check-input me-4 check-custom" type="checkbox" value=""
