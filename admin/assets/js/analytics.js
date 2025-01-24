@@ -75,16 +75,10 @@ new Chart(ctx, {
 
 // DOUGHNUT CHART DATA
 const doughnutChartData = {
-    labels: [
-        'Electronics',
-        'Transportation',
-        'Clothing',
-        'Sports & Outdoor',
-        'Event Supplies'
-    ],
+    labels: categoryNames,  
     datasets: [{
         label: 'Category Share',
-        data: [300, 200, 150, 100, 250],
+        data: itemCounts,  
         backgroundColor: [
             'rgba(255, 99, 132, 0.6)',
             'rgba(255, 159, 64, 0.6)',

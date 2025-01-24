@@ -1,9 +1,10 @@
 <?php
-// Get current year and month
+// QUERIES FOR CHARTS
+// GET CURRENT YEAR AND MONTH
 $currentYear = date('Y');
 $currentMonth = date('m');
 
-// Query for total gas emissions saved per month
+// QUERY FOR BAR CHART TOTAL GAS EMISSIONS SAVED PER MONTH 
 $monthlyCO2Saved = [];
 for ($month = 1; $month <= 12; $month++) {
     $co2Query = "SELECT SUM(totalCO2Saved) AS totalCO2Saved FROM rentals WHERE rentalStatus != 'cancelled' AND MONTH(startRentalDate) = $month AND YEAR(startRentalDate) = $currentYear";
@@ -11,48 +12,62 @@ for ($month = 1; $month <= 12; $month++) {
     $co2Data = mysqli_fetch_assoc($co2Result);
     $monthlyCO2Saved[] = $co2Data['totalCO2Saved'] ?? 0;
 }
-
 $monthlyCO2SavedJson = json_encode($monthlyCO2Saved);
 
-// Query for total gas emissions saved this month
+// QUERY FOR DOUGHNUT CHART TOTAL ITEMS SAVED PER CATEGORY
+$categoryQuery = "SELECT categoryName, COUNT(itemID) AS itemCount FROM categories LEFT JOIN items ON categories.categoryID = items.categoryID GROUP BY categories.categoryID;";
+$categoryResult = executeQuery($categoryQuery);
+
+$categoryNames = [];
+$itemCounts = [];
+
+while ($categoryData = mysqli_fetch_assoc($categoryResult)) {
+    $categoryNames[] = $categoryData['categoryName'];
+    $itemCounts[] = $categoryData['itemCount'];
+}
+$categoryNamesJson = json_encode($categoryNames);
+$itemCountsJson = json_encode($itemCounts);
+
+// QUERIES FOR ANALYTICS DATA (CO2 SAVED, EARNINGS, PENDING REQUESTS, ACTIVE RENTALS, RETURNS, TOTAL LISTINGS, TOTAL USERS)
+// QUERY FOR TOTAL GAS EMISSIONS SAVED THIS MONTH
 $co2Query = "SELECT SUM(totalCO2Saved) AS totalCO2Saved FROM rentals WHERE rentalStatus != 'cancelled' AND MONTH(startRentalDate) = $currentMonth AND YEAR(startRentalDate) = $currentYear";
 $co2Result = executeQuery($co2Query);
 $co2Data = mysqli_fetch_assoc($co2Result);
 $totalCO2Saved = $co2Data['totalCO2Saved'] ?? 0;
 $formattedCO2Saved = number_format($totalCO2Saved, 0);
 
-// Query for total earnings
+// QUERY FOR TOTAL EARNINGS
 $earningsQuery = "SELECT SUM(totalPrice) AS totalEarnings FROM rentals WHERE rentalStatus != 'cancelled'";
 $earningsResult = executeQuery($earningsQuery);
 $earningsData = mysqli_fetch_assoc($earningsResult);
 $totalEarnings = $earningsData['totalEarnings'];
 $formattedEarnings = '₱' . number_format($totalEarnings, 2);
 
-// Query for pending requests
+// QUERY FOR PENDING REQUESTS
 $pendingQuery = "SELECT COUNT(*) AS pendingRequests FROM rentals WHERE rentalStatus = 'pending'";
 $pendingResult = executeQuery($pendingQuery);
 $pendingRequest = mysqli_fetch_assoc($pendingResult);
 $pendingRequests = $pendingRequest['pendingRequests'];
 
-// Query for active rentals
+// QUERY FOR ACTIVE RENTALS
 $rentalsQuery = "SELECT COUNT(*) AS activeRentals FROM rentals WHERE rentalStatus = 'on rent'";
 $rentalsResult = executeQuery($rentalsQuery);
 $activeRental = mysqli_fetch_assoc($rentalsResult);
 $activeRentals = $activeRental['activeRentals'];
 
-// Query for returns
+// QUERY FOR RETURNS
 $returnsQuery = "SELECT COUNT(*) AS returnedRentals FROM rentals WHERE rentalStatus = 'returned'";
 $returnsResult = executeQuery($returnsQuery);
 $returnedRental = mysqli_fetch_assoc($returnsResult);
 $returnedRentals = $returnedRental['returnedRentals'];
 
-// Query for total listings 
+// QUERY FOR TOTAL LISTINGS 
 $listingsQuery = "SELECT COUNT(itemID) AS totalListings FROM items";
 $listingsResult = executeQuery($listingsQuery);
 $listingsData = mysqli_fetch_assoc($listingsResult);
 $totalListings = $listingsData['totalListings'];
 
-// Query for total users
+// QUERY FOR TOTAL USERS
 $usersQuery = "SELECT COUNT(*) AS totalUsers FROM users";
 $usersResult = executeQuery($usersQuery);
 $usersData = mysqli_fetch_assoc($usersResult);
@@ -174,6 +189,8 @@ $totalUsers = $usersData['totalUsers'];
         </div>
     </div>
     <script>
-        monthlyCO2SavedData = <?php echo $monthlyCO2SavedJson; ?>;
+        const monthlyCO2SavedData = <?php echo $monthlyCO2SavedJson; ?>;
+        const categoryNames = <?php echo $categoryNamesJson; ?>;
+        const itemCounts = <?php echo $itemCountsJson; ?>;
     </script>
 </div>
