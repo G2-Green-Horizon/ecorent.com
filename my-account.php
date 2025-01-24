@@ -11,7 +11,7 @@ if (isset($_POST['btnCancelBooking'])) {
     executeQuery($cancelQuery);
 }
 
-if (isset($_POST['btnConfirmed'])) {
+if (isset($_POST['btnConfirmedLogOut'])) {
     include("shared/processes/logout-process.php");
 }
 
@@ -93,7 +93,7 @@ $rentalList = $rental->getRentalsData();
                                     <button type="button" class="btn-logout-denied text-center mx-2"
                                         data-bs-dismiss="modal" name="btnDenied">No</button>
                                     <button type="submit" class="btn-logout-confirmed text-center"
-                                        name="btnConfirmed">Yes</button>
+                                        name="btnConfirmedLogOut">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -113,8 +113,7 @@ $rentalList = $rental->getRentalsData();
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
                             <?php if ($profileUpdated): ?>
-                                <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3"
-                                    style="z-index: 1055;">
+                                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
                                     <div class="toast align-items-center text-bg-success border-0 show" role="alert"
                                         aria-live="assertive" aria-atomic="true">
                                         <div class="d-flex">
@@ -289,7 +288,7 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmedLogOut">Yes,
                                     I want
                                     to delete</button>
                             </div>

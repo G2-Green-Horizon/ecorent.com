@@ -20,7 +20,7 @@ include("connect.php");
     <link rel="stylesheet" href="shared/assets/font/font.css">
 </head>
 
-<body id="listings">
+<body class = "notfound-body">
 
     <?php include 'shared/components/navbar.php'; ?>
 

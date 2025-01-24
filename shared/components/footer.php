@@ -12,7 +12,7 @@
             <div class="col-12 col-md-3 mb-3">
                 <h5>Customer Service</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Forget Password</a></li>
+                    <li><a href="forgot-password.php" class="text-white text-decoration-none">Forgot Password</a></li>
                 </ul>
             </div>
 
