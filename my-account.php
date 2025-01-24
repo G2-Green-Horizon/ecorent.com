@@ -135,7 +135,7 @@ $rentalList = $rental->getRentalsData();
                                     </div>
 
 
-                                    <img src="shared/assets/img/user/<?php echo $pfpfileame ?>" alt="Profile Picture"
+                                    <img src="shared/assets/img/user/<?php echo $pfpFileName ?>" alt="Profile Picture"
                                         class="profile-pic rounded-circle border border-2 border-primary mb-3"
                                         style="width: 200px; height: 200px; object-fit: cover;">
 
