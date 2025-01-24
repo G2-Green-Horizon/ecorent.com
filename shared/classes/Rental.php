@@ -66,7 +66,7 @@ class Rental
     // BUILD RENTAL STATUS CARD FOR USER VIEW
     function buildRentalCard()
     {
-        return '<div class="item-card mt-3 p-3">
+        return '<div class="item-card mt-3 p-3" id="'. $this->rentalID . '">
                                 <div class="row">
                                     <div class="top col-12 col-md-8 d-flex order-md-1 order-2">
                                         <img src="shared/assets/img/system/items/' . $this->itemDisplayImg . '" alt=""
@@ -80,7 +80,7 @@ class Rental
                                             <div class="rental-time">
                                                 <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
                                                     for
-                                                    ' . $this->rentalPeriod . ' ' . (($this->rentalPeriod > 1) ? 'days' : 'day') . '</span>
+                                                    ' . $this->rentalPeriod . ' days</span>
                                             </div>
                                             <div class="basket">
                                                 <i class="fa-solid fa-basket-shopping"></i><span
@@ -132,12 +132,12 @@ class Rental
                             <div class="card-body-rentals">
                                 <div class="rentals-content">
                                     <div class="order-content">
-                                        <img src="assets/img/system/items/'.$this->itemDisplayImg.'" alt="" class="img-fluid">
-                                        <h4>'.$this->itemName.'</h4>
+                                        <img src="assets/img/system/items/' . $this->itemDisplayImg . '" alt="" class="img-fluid">
+                                        <h4>' . $this->itemName . '</h4>
                                     </div>
                                     <div class="actions">
                                         <button class="btn-hand-in d-none btn-update-status rounded-3 mx-2 mx-md-5">RECEIVED</button>
-                                        <a href="transaction-page.php?rentalID='.$this->rentalID.'">
+                                        <a href="transaction-page.php?rentalID=' . $this->rentalID . '">
                                             <div class="btn-see-details rounded-4">
                                                 <button class=""><i class="fa fa-chevron-right"></i></button>
                                             </div>
@@ -191,21 +191,90 @@ class Rental
 
     function showActionButton($status)
     {
-        if ($status == 'pending' || $status == 'pickup') {
-            return '<div class="action-button">
-                        <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                            <form method="POST">
-                                <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
-                                <button name="btnCancelBooking" type="text" class="btn-action btn-cancel">Cancel Booking</button>
-                            </form>
-                        </div>
-                    </div>';
-        } else if ($status == 'on rent' || $status == 'overdue' || $status == 'extended') {
+        if ($status == 'pending' || $status == 'approved') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
-                                                <button type="submit" class="btn-action">Extend</button>
+                                                <button type="submit" class="btn-action btn-cancel">Cancel
+                                                    Booking</button>
                                             </div>
                                         </div>';
+        } else if ($status == 'on rent' || $status == 'overdue' || $status == 'extended') {
+            return '
+            <div class="action-button">
+                <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
+                    <button type="button" class="btn-action" data-bs-toggle="modal" data-bs-target="#extendModal' . $this->rentalID . '">Extend</button>
+                    <div class="modal fade" id="extendModal' . $this->rentalID . '" tabindex="-1" aria-labelledby="extendModalLabel' . $this->rentalID . '" aria-hidden="true" data-bs-theme="dark">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title w-100 text-center fs-4" id="extendModalLabel' . $this->rentalID . '">Extend My Rental Period</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="my-account.php" method="POST">
+                                    <div class="modal-body p-4">
+                                        <p>Enter the required information to extend your rental period.</p>
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0">Additional rental period:</p>
+                                            <div class="quantity-container d-flex align-items-center mx-4 my-2">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseRentalPeriod(' . $this->rentalID . ')">-</button>
+                                                <input id="rentalPeriod' . $this->rentalID . '" type="number" class="form-control text-center" name="periodExtension" min="1" value="1" step="1" readonly>
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseRentalPeriod(' . $this->rentalID . ')">+</button>
+                                            </div>
+                                            <p class="mb-0">days</p>
+                                        </div>
+                                        <p class="mt-5">Please note that this may result in additional charges upon return. Failure to follow guidelines may result in penalties!</p>
+                                        <input type="checkbox" class="mt-3" id="confirmation' . $this->rentalID . '" name="confirmation" value="confirmation" required>
+                                        <label for="confirmation' . $this->rentalID . '"> I understand</label><br>
+                                        <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-end my-3">
+                                        <div class="container d-flex align-items-center justify-content-end">
+                                            <p class="me-5">Total Payment:</p>
+                                            <p name="totalPrice" class="price-custom-color" id="totalPrice' . $this->rentalID . '">₱' . $this->itemUnitPrice . '</p>
+                                        </div>
+                                        <button type="button" class="btn-denied text-center mx-2" data-bs-dismiss="modal" name="btnDenied">Cancel</button>
+                                        <input type="hidden" name="priceperDay" id="priceperDay' . $this->rentalID . '" data-unit-price="' . $this->itemUnitPrice . '>" value="' . $this->itemUnitPrice . '">
+                                        <button type="submit" class="btn-confirmed text-center" name="btnConfirmed" id="btnContinue' . $this->rentalID . '">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                function updateTotalPrice(rentalID) {
+                    const rentalPeriod = document.getElementById(`rentalPeriod${rentalID}`);
+                    const totalPriceElement = document.getElementById(`totalPrice${rentalID}`);
+                    const pricePerDay = parseFloat(document.getElementById(`priceperDay${rentalID}`).dataset.unitPrice);
+    
+                    const rentalDays = parseInt(rentalPeriod.value) || 0;
+                    const total = rentalDays * pricePerDay;
+                    totalPriceElement.textContent = `₱${total.toFixed(2)}`;
+                    document.getElementById(`priceperDay${rentalID}`).value = total.toFixed(2);
+                }
+    
+                function increaseRentalPeriod(rentalID) {
+                    const rentalPeriod = document.getElementById(`rentalPeriod${rentalID}`);
+                    rentalPeriod.stepUp();
+                    updateTotalPrice(rentalID);
+                }
+    
+                function decreaseRentalPeriod(rentalID) {
+                    const rentalPeriod = document.getElementById(`rentalPeriod${rentalID}`);
+                    if (rentalPeriod.value > 1) {
+                        rentalPeriod.stepDown();
+                        updateTotalPrice(rentalID);
+                    }
+                }
+    
+                document.addEventListener("DOMContentLoaded", function () {
+                    const rentalIDs = [/* dynamically populate rental IDs here */];
+                    rentalIDs.forEach(rentalID => updateTotalPrice(rentalID));
+                });
+            </script>';
+
         } else if ($status == 'returned' || $status == 'cancelled') {
             return '<div class="action-button">
                                             <div class="text-center text-md-end mt-3 mt-lg-5 mb-3">
