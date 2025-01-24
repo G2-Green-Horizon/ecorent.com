@@ -91,9 +91,11 @@ $loadItemsResult = executeQuery($loadItemsQuery);
             </form>
 
             <div class="d-flex justify-content-center mb-3">
+                <a href="cart.php">
                 <button class="navbar-btn rounded-5 me-2">
                     <i class="bi bi-cart"></i>
                 </button>
+                </a>
                 <a href="my-account.php">
                     <button class="navbar-btn rounded-5">
                         <i class="bi bi-person-circle"></i>
