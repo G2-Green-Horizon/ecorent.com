@@ -186,45 +186,47 @@ include("shared/processes/booking-process.php");
                         <button type="submit" name="btnConfirm" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- CARBON FOOTPRINT RESULT -->
-                    <div class="modal-body carbon-fprint-modal-body">
-                        <div class="container">
+                   <!-- CARBON FOOTPRINT RESULT -->
+                   <div class="modal-body carbon-fprint-modal-body">
+                        <div class="container-fluid">
                             <div class="row">
-                                <div class="col">
-                                    By renting TrailMaster X200 Mountain Bike, you've saved 25 kg CO₂ emissions!
+                                <div class="col-12">
+                                    By renting <?php echo $itemBookingInfoArray['itemName'] ?>, you've saved <?php echo $totalCO2Saved ?> kg CO₂ emissions!
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col mt-3 carbon-fprint-msg w-50">
+                                <div class="col-12 mt-3 carbon-fprint-msg">
                                     Embrace the spirit of reducing waste and reusing items by renting from us. Your
                                     small actions can make a big impact!
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col mt-3">
+                            <div class="row mt-3">
+                                <div class="col-12">
                                     Gas emissions saved:
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <button class="emissions-saved disabled mt-2 px-4"> <strong>-25 kg
-                                            CO₂</strong></button>
+                                <div class="col-12">
+                                    <button class="emissions-saved disabled mt-2 px-4">
+                                        <strong>-<?php echo $totalCO2Saved ?> kg CO₂</strong>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col mt-3">
+                            <div class="row mt-3">
+                                <div class="col-12">
                                     Total emissions saved this month:
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <button class="emissions-saved disabled mt-2 px-4"> <strong>-1,500 kg
-                                            CO₂</strong></button>
+                                <div class="col-12">
+                                    <button class="emissions-saved disabled mt-2 px-4">
+                                        <strong>-<?php echo $formattedCO2Saved ?> kg CO₂</strong>
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col mt-4">
-                                    <a class="carbon-fprint-learn-more" href="https://blog.trimeuk.com/renting-equipment-reduces-carbon-emissions">Learn More</a>
+                                <div class="col mt-2">
+                                    <a class="carbon-fprint-learn-more" href="https://facebook.com">Learn More</a>
                                 </div>
                             </div>
                             <div class="row">

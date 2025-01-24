@@ -29,8 +29,8 @@ if (isset($_POST['btnCancelBooking'])) {
     executeQuery($cancelQuery);
 }
 
-if (isset($_POST['btnConfirmedOUT'])) {
-    header("Location: login.php");
+if (isset($_POST['btnConfirmedLogOut'])) {
+    include("shared/processes/logout-process.php");
 }
 
 // MY BOOKINGS TAB
@@ -112,7 +112,7 @@ $rentalList = $rental->getRentalsData();
                                     <button type="button" class="btn-logout-denied text-center mx-2"
                                         data-bs-dismiss="modal" name="btnDenied">No</button>
                                     <button type="submit" class="btn-logout-confirmed text-center"
-                                        name="btnConfirmedOUT">Yes</button>
+                                        name="btnConfirmedLogOut">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -132,8 +132,7 @@ $rentalList = $rental->getRentalsData();
                         <div class="my-profile d-block pe-2 pt-2 rounded-4">
                             <!-- Toast Notification -->
                             <?php if ($profileUpdated): ?>
-                                <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3"
-                                    style="z-index: 1055;">
+                                <div class="toast-container position-absolute bottom-0 end-0 p-3" style="z-index: 1055;">
                                     <div class="toast align-items-center text-bg-success border-0 show" role="alert"
                                         aria-live="assertive" aria-atomic="true">
                                         <div class="d-flex">
@@ -160,12 +159,12 @@ $rentalList = $rental->getRentalsData();
                                         style="width: 200px; height: 200px; object-fit: cover;">
 
 
-                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
+                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png, .jpeg"
                                         class="d-none">
                                     <button type="button" class="btn-select-img" id="selectImage">Select
                                         Image</button>
-                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                    <small class="size-info">File Extension: .JPG, .PNG</small>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 25 MB</small>
+                                    <small class="size-info">File Extension: .JPG, .PNG, .JPEG</small>
                                 </div>
 
 
@@ -310,7 +309,7 @@ $rentalList = $rental->getRentalsData();
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
                                 <button type="submit" class="btn-delete-confirmed text-center"
-                                    name="btnConfirmedOUT">Yes,
+                                    name="btnConfirmedLogOut">Yes,
                                     I want
                                     to delete</button>
                             </div>
