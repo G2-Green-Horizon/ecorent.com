@@ -205,17 +205,17 @@ $rentalList = $rental->getRentalsData();
                                         <label class="form-label me-4 mb-1" for="gender">Gender:</label>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Male"
-                                                id="male" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Male') ? 'checked' : ''; ?>>
+                                                id="male" <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="male">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Female"
-                                                id="female" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Female') ? 'checked' : ''; ?>>
+                                                id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="female">Female</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Other"
-                                                id="other" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Other') ? 'checked' : ''; ?>>
+                                                id="other" <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="other">Other</label>
                                         </div>
                                     </div>
@@ -259,8 +259,8 @@ $rentalList = $rental->getRentalsData();
                         <div class="item-status-list">
 
                             <!-- RENTAL STATUS CARDS -->
-                            <?php foreach ($rentalList as $rentalCard)
-                                if ($rentalCard->status === 'overdue') {
+                            <?php foreach ($rentalList as $rentalCard) 
+                                if ($rentalCard->status === 'pending') {
                                     echo $rentalCard->buildRentalCard();
 
                                 } ?>

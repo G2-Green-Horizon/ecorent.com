@@ -101,27 +101,47 @@ if (isset($_POST['cancelEdit'])) {
     header("Location: index.php#displayedItem" . $itemID);
 }
 
+// FOR PICK-UPS STATUS
 if (isset($_POST['btnPickup'])) {
     $rentalID = $_POST['rentalID'];
-    $pickupQuery = "UPDATE rentals SET rentalStatus = 'on rent' Where rentalID = '$rentalID'";
 
-    executeQuery($pickupQuery);
+    $pickupStatusQuery = "SELECT rentalStatus, itemID, itemQuantity FROM rentals WHERE rentalID = '$rentalID'";
+    $pickupStatusResult = executeQuery($pickupStatusQuery);
+
+    while ($pickupStatus = mysqli_fetch_assoc($pickupStatusResult)) {
+        if ($pickupStatus['rentalStatus'] !== 'on rent') {
+            $itemID = $pickupStatus['itemID'];
+            $itemQuantity = $pickupStatus['itemQuantity'];
+
+            $pickupUpdateQuery = "UPDATE rentals SET rentalStatus = 'on rent' WHERE rentalID = '$rentalID'";
+            executeQuery($pickupUpdateQuery);
+
+            $pickupStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
+            executeQuery($pickupStockQuery);
+        }
+    }
     header("Location: index.php");
     exit();
-}   
+}  
 
 
 // ACTIVE RENTALS STATUS
 if (isset($_POST['btnReceived'])) {
     $rentalID = $_POST['rentalID'];
     
-    $statusQuery = "SELECT rentalStatus FROM rentals WHERE rentalID = '$rentalID'";
+    $statusQuery = "SELECT rentalStatus, itemID, itemQuantity FROM rentals WHERE rentalID = '$rentalID'";
     $statusQueryResult = executeQuery($statusQuery);
 
     while ($status = mysqli_fetch_assoc($statusQueryResult)) {
         if ($status['rentalStatus'] === 'on rent') {
+            $itemID = $status['itemID'];
+            $itemQuantity = $status['itemQuantity'];
+
             $handInQuery = "UPDATE rentals SET rentalStatus = 'received' WHERE rentalID = '$rentalID'";
             executeQuery($handInQuery);
+
+            $updateStockQuery = "UPDATE items SET stock = stock - $itemQuantity WHERE itemID = '$itemID'";
+            executeQuery($updateStockQuery);
         }
     }
     

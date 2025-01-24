@@ -10,7 +10,7 @@ include("shared/processes/booking-process.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EcoRent | Booking Page</title>
+    <title><?php echo $itemBookingInfoArray['itemName']; ?></title>
     <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
 
     <!-- STYLINGS -->
@@ -33,7 +33,15 @@ include("shared/processes/booking-process.php");
 
     <section class="my-4">
 
-        <div class="container  mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
+        <form method="POST">
+            <input type="hidden" name="itemID" value="<?php echo $itemID; ?>">
+            <input type="hidden" name="rentalPeriod" value="<?php echo $rentalPeriod; ?>">
+            <input type="hidden" name="quantity" value="<?php echo $quantity; ?>">
+            <input type="hidden" name="pricePerDay" value="<?php echo $pricePerDay; ?>">
+            <input type="hidden" name="totalPrice" value="<?php echo $totalPrice; ?>">
+            <input type="hidden" name="totalCO2Saved" value="<?php echo $totalCO2Saved; ?>">
+
+        <div class="container mt-5 mb-2 p-4 rounded-4" style="background-color: #343333;">
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="row">
@@ -45,7 +53,7 @@ include("shared/processes/booking-process.php");
                                 <h6 class="p-2 me-3 text-center">Unit price<br>per day</h6>
                                 <h6 class="p-2 me-3 text-center">Rental<br>period</h6>
                                 <h6 class="p-2 me-3 text-center">Quantity</h6>
-                                <h6 class="p-2 text-center">Item<br>subtotal</h6>
+                                <h6 class="p-2 me-3 text-center">Item<br>subtotal</h6>
                             </div>
                         </div>
                     </div>
@@ -54,121 +62,109 @@ include("shared/processes/booking-process.php");
                 <div class="item-card col-12">
                     <div class="row">
                         <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                            <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
+                            <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>" class="rounded-2"
                                 style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike
+                            <h4 class="item-name me-auto p-2 d-flex align-items-center"><?php echo $itemBookingInfoArray['itemName']; ?>
                             </h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
                             <div class="labels d-flex justify-content-end">
-                                <h6 class="p-2 me-5 ">₱100</h6>
-                                <h6 class="p-2 me-5">3 days</h6>
-                                <h6 class="p-2 me-5 text-center">1</h6>
-                                <h5 class="p-2 me-4">₱300</h5>
+                                <h6 class="p-2 me-5 ">₱<?php echo $pricePerDay;?></h6>
+                                <h6 class="p-2 me-5"><?php echo $rentalPeriod;?> <?php echo $rentalPeriod > 1 ? 'days' : 'day'; ?></h6>
+                                <h6 class="p-2 me-5 text-center"><?php echo $quantity;?></h6>
+                                <h5 class="p-2 me-4">₱<?php echo $itemSubtotal;?></h5>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="item-card col-12">
+                    <hr class="border border-1 w-100">
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 order-md-1 order-2">
+                            <div class="mb-3">
+                                <label for="pickupDate" class="mt-3 form-label">Pick-Up date:</label>
+                                <input type="date" id="pickupDate" name="startRentalDate" class="input-box form-control"
+                                    required>
+                                <div id="pickupDateError" class="invalid-feedback" style="display: none;">
+                                    Please select a pick-up date.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="noteForOwner" class=" form-label">Note for the owner:</label>
+                                <textarea id="noteForOwner" class="input-box form-control" rows="2"
+                                    placeholder="Leave a message" name="renterMessage"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="mt-3 form-label">Pick-Up location:</label>
+
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="shared/assets/img/system/booking-page/vector.svg"
+                                        style="height: 30px; width: auto;">
+                                    <p class="mb-0 text-center"><i class="" id="warehouse-txt"></i> EcoRent Warehouse |
+                                        Brgy.
+                                        San Antonio, Sto. Tomas, Batangas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 order-md-2 mt-sm-4 order-1 text-end">
+                            <div class="d-flex align-items-center mb-1 justify-content-end gap-5">
+                                <p class="mb-0 me-5">Security deposit:</p>
+                                <h6 class=" mb-0">₱<?php echo $securityDeposit ?></h6>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-end gap-5">
+                                <p class="mb-0 me-3">Booking Total (<?php echo $quantity; ?>
+                                    <?php echo $quantity > 1 ? 'items' : 'item'; ?>):
+                                </p>
+                                <h5 class="mb-0" id="top-price">₱<?php echo $totalPrice; ?></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mb-2 p-4 rounded-4" style="background-color: #343333;">
                     <div class="row">
-                        <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                            <img src="shared/assets/img/system/booking-page/bike 1.svg" class="rounded-2"
-                                style="width: 96px; height: auto;">
-                            <h4 class="item-name me-auto p-2 d-flex align-items-center">TrailMaster X200 Mountain Bike
-                            </h4>
-                        </div>
-                        <div class="col-12 col-lg-6 mt-lg-2 mt-sm-2">
-                            <div class="labels d-flex justify-content-end">
-                                <h6 class="p-2 me-5 ">₱100</h6>
-                                <h6 class="p-2 me-5">3 days</h6>
-                                <h6 class="p-2 me-5 text-center">1</h6>
-                                <h5 class="p-2 me-4">₱300</h5>
-                            </div>
+                        <div class="col">
+
+                            <h3>Terms & Condition</h3>
+
+                            <ol class="mt-3 px-3">
+                                <li>A refundable security deposit is required upon item pick-up.</li>
+                                <li>Present a valid government-issued ID at the time of pick-up.</li>
+                                <li>Signing of the rental agreement is mandatory during pick-up.</li>
+                                <li>Penalties will apply based on the severity of any damage to the item.</li>
+                                <li>Late returns incur penalties based on the delay duration.</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
-
-            <hr class="border border-1 w-100">
-
-            <div class="row mt-4">
-                <div class="col-md-6 order-md-1 order-2">
-                    <div class="mb-3">
-                        <label for="pickupDate" class="mt-3 form-label">Pick-Up date:</label>
-                        <input type="date" id="pickupDate" class="input-box form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="noteForOwner" class=" form-label">Note for the owner:</label>
-                        <textarea id="noteForOwner" class="input-box form-control" rows="2"
-                            placeholder="Leave a message"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="mt-3 form-label">Pick-Up location:</label>
-
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="shared/assets/img/system/booking-page/vector.svg"
-                                style="height: 30px; width: auto;">
-                            <p class="mb-0 text-center"><i class="" id="warehouse-txt"></i> EcoRent Warehouse | Brgy.
-                                San Antonio, Sto. Tomas, Batangas</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 order-md-2 mt-sm-4 order-1 text-end">
-                    <div class="d-flex align-items-center mb-1 justify-content-end gap-5">
-                        <p class="mb-0 me-5">Security deposit:</p>
-                        <h6 class=" mb-0">₱<?php echo $itemBookingInfoArray['securityDeposit']; ?></h6>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-end gap-5">
-                    <p class="mb-0 me-3">Booking Total (<?php echo $quantity; ?> <?php echo $quantity > 1 ? 'items' : 'item'; ?>):</p>
-                        <h5 class="mb-0" id="top-price">₱<?php echo $totalPrice; ?></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mb-2 p-4 rounded-4" style="background-color: #343333;">
-            <div class="row">
-                <div class="col">
-
-                    <h3>Terms & Condition</h3>
-
-                    <ol class="mt-3 px-3">
-                        <li>A refundable security deposit is required upon item pick-up.</li>
-                        <li>Present a valid government-issued ID at the time of pick-up.</li>
-                        <li>Signing of the rental agreement is mandatory during pick-up.</li>
-                        <li>Penalties will apply based on the severity of any damage to the item.</li>
-                        <li>Late returns incur penalties based on the delay duration.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
 
         <div class="container mb-5 p-4 rounded-4" style="background-color: #343333;">
             <div class="row">
                 <div class="col">
                     <h3>Payment Information</h3>
-                    <p class="info">Please prepare enough amount upon pick-up</p>
+                    <p>Please prepare enough amount upon pick-up</p>
 
-                    <div class="col-12 text-center">
-                        <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
-                            <p class="mb-0 me-5">Merchandise subtotal:</p>
-                            <h6 class="mb-0">₱<?php echo $itemSubtotal;?></h6>
-                        </div>
+                            <div class="col-12 text-center">
+                                <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
+                                    <p class="mb-0 me-5">Merchandise subtotal:</p>
+                                    <h6 class="mb-0">₱<?php echo $itemSubtotal; ?></h6>
+                                </div>
 
-                        <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
-                            <p class="mb-0 me-5">Security deposit:</p>
-                            <h6 class="mb-0">₱<?php echo $itemBookingInfoArray['securityDeposit']; ?></h6>
-                        </div>
+                                <div class="d-flex align-items-center justify-content-end gap-5 mb-2">
+                                    <p class="mb-0 me-5">Security deposit:</p>
+                                    <h6 class="mb-0">₱<?php echo $securityDeposit ?></h6>
+                                </div>
 
-                        <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
-                            <p class="mb-0">Total payment:</p>
-                            <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice;?></h5>
-                        </div>
+                                <div class="d-flex align-items-center justify-content-end gap-5 mb-4">
+                                    <p class="mb-0">Total payment:</p>
+                                    <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice; ?></h5>
+                                </div>
 
                         <div class="d-flex align-items-center justify-content-end gap-3">
-                            <button class="btn btn-outline-danger cancel-btn" id="cancel-btn">Cancel</button>
-                            <button class="btn btn-primary confirm-btn" id="confirm-btn" data-bs-toggle="modal"
+                            <button class="btn btn-outline-danger" id="cancel-btn">Cancel</button>
+                            <button class="btn btn-primary" id="confirm-btn" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">Confirm Booking</button>
                         </div>
                     </div>
@@ -176,20 +172,21 @@ include("shared/processes/booking-process.php");
             </div>
         </div>
 
+        </form>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered carbon-fprint-modal-dialog mt-3">
+            <div class="modal-dialog carbon-fprint-modal-dialog mt-3">
                 <div class="modal-content">
                     <div class="modal-header carbon-fprint-modal px-4">
-                        <img class="carbon-fprint-img" src="shared/assets/img/system/carbon-fprint-icon.png">
-                        <h1 class="modal-title fs-3 carbon-fprint-text ms-3" id="exampleModalLabel"> <strong> Thank you
-                                for
-                                saving the
-                                Earth!</strong>
+                        <img class="carbon-fprint-img" src="shared/assets/img/system/carbon-fprint-icon.png"
+                            alt="Carbon Footprint Icon">
+                        <h1 class="modal-title fs-3 carbon-fprint-text ms-3" id="exampleModalLabel">
+                            <strong>Thank you for saving the Earth!</strong>
                         </h1>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="submit" name="btnConfirm" class="btn-close btn-close-white"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <!-- CARBON FOOTPRINT RESULT -->
                     <div class="modal-body carbon-fprint-modal-body">
                         <div class="container">
                             <div class="row">
@@ -230,9 +227,10 @@ include("shared/processes/booking-process.php");
                                     <a class="carbon-fprint-learn-more" href="https://blog.trimeuk.com/renting-equipment-reduces-carbon-emissions">Learn More</a>
                                 </div>
                             </div>
-                            <div class="row ">
-                                <div class="col carbon-fprint-modal-footer mt-2 d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary btn-carbon-fprint-okay">Okay</button>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end mt-3">
+                                    <button type="submit" name="btnConfirm"
+                                        class="btn btn-primary btn-carbon-fprint-okay">Okay</button>
                                 </div>
                             </div>
                         </div>
@@ -250,6 +248,36 @@ include("shared/processes/booking-process.php");
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="shared/assets/js/script.js"></script>
+    <script>
+        function validateInput() {
+            const pickupDateInput = document.getElementById('pickupDate');
+            const pickupDateError = document.getElementById('pickupDateError');
+            const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            const form = document.querySelector('form');
+            const today = new Date();
+            const inputDate = new Date(pickupDateInput.value);
+
+            pickupDateError.style.display = 'none';
+
+            if (!pickupDateInput.value) {
+                pickupDateError.textContent = 'Please select a pick-up date.';
+                pickupDateError.style.display = 'block';
+                pickupDateInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            } else if (inputDate < today.setHours(0, 0, 0, 0)) {
+                pickupDateError.textContent = 'Pick-up date cannot be earlier than today.';
+                pickupDateError.style.display = 'block';
+                pickupDateInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            modal.show();
+
+            document.querySelector('.btn-carbon-fprint-okay').addEventListener('click', function () {
+                form.submit();
+            });
+        }
+    </script>
 
 </body>
 

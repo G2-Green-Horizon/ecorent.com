@@ -1,11 +1,10 @@
 <?php
-
 include("connect.php");
 include("shared/classes/User.php");
 
 if (isset($_POST['btnChange'])) {
     if (isset($_COOKIE['userCredentials'])) {
-        $userID = $_COOKIE['userCredentials']; 
+        $userID = $_COOKIE['userCredentials'];
         $password = $_POST['password'];
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmNewPassword'];
@@ -15,9 +14,9 @@ if (isset($_POST['btnChange'])) {
 
         echo '<div class="text-white">' . $message . '</div>';
     } else {
-    
+
         header("Location: my-account.php");
-        exit; 
+        exit;
     }
 }
 
@@ -57,9 +56,8 @@ if (isset($_POST['btnChange'])) {
         }
 
         .error-placeholder::placeholder {
-    color: #FF6D6D;
+            color: #FF6D6D;
         }
-        
     </style>
 </head>
 

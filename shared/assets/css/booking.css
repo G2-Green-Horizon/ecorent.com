@@ -142,7 +142,7 @@ li {
 }
 
 .input-box::placeholder {
-    color: var(--mainColor);
+    color: gray;
 }
 
 .input-box:focus::placeholder {
