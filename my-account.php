@@ -11,7 +11,7 @@ if (isset($_POST['btnCancelBooking'])) {
     executeQuery($cancelQuery);
 }
 
-if (isset($_POST['btnConfirmed'])) {
+if (isset($_POST['btnConfirmedLogOut'])) {
     include("shared/processes/logout-process.php");
 }
 
@@ -93,7 +93,7 @@ $rentalList = $rental->getRentalsData();
                                     <button type="button" class="btn-logout-denied text-center mx-2"
                                         data-bs-dismiss="modal" name="btnDenied">No</button>
                                     <button type="submit" class="btn-logout-confirmed text-center"
-                                        name="btnConfirmed">Yes</button>
+                                        name="btnConfirmedLogOut">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +288,7 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmedLogOut">Yes,
                                     I want
                                     to delete</button>
                             </div>
