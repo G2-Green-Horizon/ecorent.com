@@ -2,6 +2,7 @@
 include("shared/processes/process-index.php");
 include("shared/processes/productpage-process.php");
 include("shared/processes/add-to-cart-process.php");
+
 ?>
 
 <!doctype html>
