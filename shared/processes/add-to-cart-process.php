@@ -1,12 +1,12 @@
 <?php
-
+$status = '';
 if (isset($_GET["btnAddToCart"])) {
 
     $itemID = $_GET["id"] ?? '';
     $rentalPeriod = $_GET["rentalPeriod"] ?? '';
     $quantity = $_GET["quantity"] ?? '';
     $userID = $_COOKIE['userCredentials'] ?? '';
-    $status = '';
+    
 
     $cartChecker = "SELECT * FROM cart WHERE itemID = $itemID AND userID = '$userID' AND status = 'added';";
     $cartCheckerResults = executeQuery($cartChecker);
