@@ -10,7 +10,7 @@ include("shared/processes/add-to-cart-process.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EcoRent | Product Details</title>
+    <title>EcoRent | <?php echo $itemInfoArray["itemName"]?></title>
     <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
 
     <!-- STYLINGS -->
@@ -42,7 +42,7 @@ include("shared/processes/add-to-cart-process.php");
                 <hr>
                 <input type="hidden" name="id" value="<?php echo $itemID; ?>">
                 <input type="hidden" name="pricePerDay" value="<?php echo $itemInfoArray["pricePerDay"]; ?>">
-                <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"];?></h4>
+                <h4 class="price-custom-color ">₱<?php echo $itemInfoArray["pricePerDay"];?><span class="rental-period">/day</span></h4>
 
                 <div class="d-flex align-items-center">
                     <i class="bi bi-geo-alt-fill"></i>
@@ -70,11 +70,11 @@ include("shared/processes/add-to-cart-process.php");
                 <div class="d-flex align-items-center">
                     <p class="mb-0 me-4">Quantity:</p>
                     <div class="quantity-container d-flex align-items-center mx-2 my-2">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                        <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-subtract"
                             onclick="decreaseQuantity()">-</button>
                         <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
                             value="1" step="1">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                        <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-add"
                             onclick="increaseQuantity()">+</button>
                     </div>
                     <p class="mb-0"><?php echo $itemInfoArray["stock"];?> stocks available</p>
@@ -104,9 +104,9 @@ include("shared/processes/add-to-cart-process.php");
                 <p class="mt-4"><?php echo $itemInfoArray["itemName"];?></p>
                 <p><?php echo $itemInfoArray["itemSpecifications"];?></p>
             </div>
-            </form>
+           
         </div>
-
+        </form>
     </section>
 
     <?php include 'shared/components/footer.php'; ?>

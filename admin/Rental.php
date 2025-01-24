@@ -36,8 +36,8 @@ class Rental
     {
         $query = "SELECT * FROM rentals 
         LEFT JOIN items ON rentals.itemID = items.itemID
-        LEFT JOIN attachments ON items.itemID = attachments.itemID 
-        ORDER BY rentalID DESC;";
+        LEFT JOIN attachments ON items.itemID = attachments.itemID
+        ORDER BY rentals.rentalID DESC";
         $result = executeQuery($query);
 
         $rentals = array();
@@ -152,6 +152,7 @@ class Rental
     {
         $btnText = '';
         $btnName = '';
+        $btnVisibility = ($status != 'pending') ? 'd-block' : 'd-none';
 
         // DETERMINE BUTTON TEXT AND NAME BASED ON RENTAL STATUS
         if ($status != 'pickup') {
@@ -166,7 +167,7 @@ class Rental
         return '
         <form method="POST">
             <input type="hidden" name="rentalID" value="' . $this->rentalID . '">
-            <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5" type="submit" name="' . $btnName . '">' . $btnText . '</button>
+            <button class="btn-hand-in btn-update-status rounded-3 mx-2 mx-md-5 ' . $btnVisibility . '" type="submit" name="' . $btnName . '">' . $btnText . '</button>
         </form>';
     }
 

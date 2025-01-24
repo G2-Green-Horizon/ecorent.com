@@ -37,7 +37,8 @@ class Rental
     {
         $query = "SELECT * FROM rentals 
         LEFT JOIN items ON rentals.itemID = items.itemID
-        LEFT JOIN attachments ON items.itemID = attachments.itemID";
+        LEFT JOIN attachments ON items.itemID = attachments.itemID
+        ORDER BY rentals.rentalID DESC";
         $result = executeQuery($query);
 
         $rentals = array();
@@ -79,7 +80,7 @@ class Rental
                                             <div class="rental-time">
                                                 <i class="fa-regular fa-clock"></i><span class="ps-2 rental-time">Rented
                                                     for
-                                                    ' . $this->rentalPeriod . '</span>
+                                                    ' . $this->rentalPeriod . ' ' . (($this->rentalPeriod > 1) ? 'days' : 'day') . '</span>
                                             </div>
                                             <div class="basket">
                                                 <i class="fa-solid fa-basket-shopping"></i><span
