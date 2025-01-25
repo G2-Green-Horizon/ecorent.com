@@ -58,7 +58,7 @@ include("shared/processes/process-index.php");
         </div>
     </div> -->
 
-    <section class="container my-3">
+    <!-- <section class="container my-3">
         <div class="row justify-content-center g-3">
 
             <a href="listings.php?setCategory=1" class="capsule col-12 col-sm-6 col-md-4 col-lg-3">
@@ -101,7 +101,7 @@ include("shared/processes/process-index.php");
                 </div>
             </a>
         </div>
-    </section>
+    </section> -->
 
     <section>
         <div class="container my-3">

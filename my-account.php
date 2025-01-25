@@ -262,16 +262,15 @@ $rentalList = $rental->getRentalsData();
                 </div>
                 <div class="content settings-content">
                     <ul class="settings">
-                        <a href="change-password.php">
+                        <a class="text-decoration-none text-white" href="change-password.php">
                             <li class="p-2 change-pass">Change Password</li>
                         </a>
-                        <li class="p-2 delete-account" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
+                        <li class="p-2 delete-account" data-bs-toggle="modal" data-bs-target="#deleteModal" style="color: #9F1800">Delete
                             Account</li>
                     </ul>
                 </div>
 
                 <!-- DELETE ACCOUNT MODAL -->
-                 <form method="POST">
                 <div class=" modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true" data-bs-theme="dark">
                     <div class="modal-dialog  modal-dialog-centered">

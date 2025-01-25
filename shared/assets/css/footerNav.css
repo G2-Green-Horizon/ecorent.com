@@ -25,10 +25,7 @@
     padding: 5px 10px;
 }
 
-.navbar .navbar-btn:hover {
-    background-color: #282828;
-    color: #f2ecec;
-}
+
 
 .d-flex.justify-content-center .navbar-btn {
     display: inline-flex;
@@ -40,7 +37,6 @@
     background-color: #282828;
     border: none;
     color: #fff;
-    margin-right: 8px;
     padding: 5px 10px;
 }
 
@@ -172,21 +168,16 @@
     }
 }
 
-.my-icon {
-    color: #282828;
-    border-radius: 50%; 
-    display: inline-block; 
-    background-color: transparent;
-    
-}
 
-.my-icon:hover {
-    color: #fff;
-    background-color: #282828
-}
 
 ul li a i {
     color: white;
+}
+
+
+
+.my-icon.bi-search {
+    color: #f2ecec; 
 }
 
 .my-icon.bi-bookmarks-fill {
@@ -197,15 +188,11 @@ ul li a i {
     color: #282828; 
 }
 
-.my-icon.bi-search {
-    color: #f2ecec; 
-}
-
 .my-icon.bi-bookmarks-fill:hover {
-    color: #ffffff; 
+    color: #8a8a8a; 
 }
 
 .my-icon.bi-person-circle:hover {
-    color: #ffffff; 
+    color: #8a8a8a; 
 }
 

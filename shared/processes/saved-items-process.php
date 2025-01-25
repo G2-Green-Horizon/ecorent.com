@@ -1,5 +1,5 @@
 <?php
-$userID = $_COOKIE['userID'] ?? '';
+$userID = $_COOKIE['userCredentials'] ?? '';
 $cartQuery = "SELECT * FROM savedItems JOIN items ON savedItems.itemID = items.itemID JOIN conditions ON items.conditionID = conditions.conditionID JOIN attachments ON items.itemID = attachments.itemID WHERE userID = $userID && status = 'added'";
 
 $cartResults = executeQuery($cartQuery);

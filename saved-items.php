@@ -139,9 +139,9 @@ include("shared/processes/saved-items-process.php");
                     </div>
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                            <button class="btn btn-checkout mt-2"><strong>
-                                    Back to Home
-                                </strong></button>
+                            <a href="index.php"><button class="btn btn-checkout mt-2"><strong>
+                                        Back to Home
+                                    </strong></button></a>
                         </div>
                     </div>
                 </div>
