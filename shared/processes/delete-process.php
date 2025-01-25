@@ -1,4 +1,6 @@
 <?php
+include_once(__DIR__ . "/../../connect.php");
+
 if (isset($_POST['btnDelete'])) {
     $userID = $_COOKIE['userID'] ?? $_COOKIE['userCredentials'] ?? null;
 

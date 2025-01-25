@@ -19,11 +19,11 @@
             <div class="col-12 col-md-3 mb-3">
                 <h5>Categories</h5>
                 <ul class="list-unstyled">
-                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=1" class="text-white text-decoration-none">Electronics and Gadgets</a></li>
-                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=2" class="text-white text-decoration-none">Transportation</a></li>
-                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=3" class="text-white text-decoration-none">Clothing</a></li>
-                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=4" class="text-white text-decoration-none">Sports & Outdoor</a></li>
-                    <li><a href="http://localhost/Finals/ecorent.com/listings.php?setCategory=5" class="text-white text-decoration-none">Event Supplies</a></li>
+                    <li><a href="http://localhost/ecorent.com/listings.php?setCategory=1" class="text-white text-decoration-none">Electronics and Gadgets</a></li>
+                    <li><a href="http://localhost/ecorent.com/listings.php?setCategory=2" class="text-white text-decoration-none">Transportation</a></li>
+                    <li><a href="http://localhost/ecorent.com/listings.php?setCategory=3" class="text-white text-decoration-none">Clothing</a></li>
+                    <li><a href="http://localhost/ecorent.com/listings.php?setCategory=4" class="text-white text-decoration-none">Sports & Outdoor</a></li>
+                    <li><a href="http://localhost/ecorent.com/listings.php?setCategory=5" class="text-white text-decoration-none">Event Supplies</a></li>
                 </ul>
             </div>
 

@@ -102,7 +102,7 @@ include("shared/processes/add-to-saved-process.php");
 
 
                     <div class="d-flex align-items-center justify-content-end mt-5">
-                        <button class="button-size btn btn-custom-outline mx-3" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>Add to cart</button>
+                        <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>Save item</button>
                         <?php if ($itemInfoArray["stock"] > 0): ?>
                             <a href="booking.php">
                                 <button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow" formaction ="booking.php">Rent

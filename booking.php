@@ -167,17 +167,15 @@ include("shared/processes/booking-process.php");
                             </div>
 
                             <div class="d-flex align-items-center justify-content-end gap-3">
-                                <a
+                                <a href="index.php"
                                     class="btn btn-outline-danger cancel-btn d-flex justify-content-center align-items-center"
-                                    id="cancel-btn" onclick="window.history.back();">Cancel</a>
+                                    id="cancel-btn">Cancel</a>
                                 <button class="btn btn-primary confirm-btn" type="button" id="confirm-btn"
                                     onclick="validateInput()">Confirm Booking</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
         </form>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
