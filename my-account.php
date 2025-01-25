@@ -265,9 +265,6 @@ $rentalList = $rental->getRentalsData();
                         <a href="change-password.php">
                             <li class="p-2 change-pass">Change Password</li>
                         </a>
-                        <a href="security-questions.php">
-                            <li class="p-2 security-quest">Setup Security Questions</li>
-                        </a>
                         <li class="p-2 delete-account" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
                             Account</li>
                     </ul>

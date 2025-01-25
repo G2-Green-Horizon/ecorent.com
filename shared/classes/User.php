@@ -177,7 +177,9 @@ class UserPreferences
                 }
             }
         }
-    }
+
     return $categoryIDsArray;
+
+    }
 }
 ?>

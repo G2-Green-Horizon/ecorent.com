@@ -64,34 +64,42 @@ include("shared/processes/add-to-saved-process.php");
                             <p class="mb-0">Rental period:</p>
                             <div class="quantity-container d-flex align-items-center mx-4 my-2">
                                 <button type="button" class="btn btn-outline-secondary btn-sm"
-                                    onclick="decreaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
+                                    onclick="decreaseRentalPeriod()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
                                 <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
-                                    min="1" max="30" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                                    min="1" max="30" value="1" step="1" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
                                 <button type="button" class="btn btn-outline-secondary btn-sm"
-                                    onclick="increaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                                    onclick="increaseRentalPeriod()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
                             </div>
                             <p class="mb-0">days</p>
                         </div>
 
-                    <div class="d-flex align-items-center">
-                        <p class="mb-0 me-4">Quantity:</p>
-                        <div class="quantity-container d-flex align-items-center mx-2 my-2">
-                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseQuantity()"
-                                <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
-                            <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
-                            max="<?php echo $itemInfoArray["stock"]; ?>" value="1" step="1" <?php echo ($item["stock"] <= 0) ? 'disabled' : ''; ?>>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseQuantity()"
-                                <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0 me-4">Quantity:</p>
+                            <div class="quantity-container d-flex align-items-center mx-2 my-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" 
+                                    onclick="decreaseQuantity()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
+                                <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
+                                    max="<?php echo $itemInfoArray["stock"]; ?>" value="1" step="1" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" 
+                                    onclick="increaseQuantity()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                            </div>
+                            <p class="mb-0">
+                                <?php if ($itemInfoArray["stock"] > 0): ?>
+                                    <?php echo $itemInfoArray["stock"]; ?>
+                                    <?php echo ($itemInfoArray["stock"] == 1) ? 'stock' : 'stocks'; ?> available
+                                <?php else: ?>
+                                    No stocks available
+                                <?php endif; ?>
+                            </p>
                         </div>
-                        <p class="mb-0">
-                            <?php if ($itemInfoArray["stock"] > 0): ?>
-                                <?php echo $itemInfoArray["stock"]; ?>
-                                <?php echo ($itemInfoArray["stock"] == 1) ? 'stock' : 'stocks'; ?> available
-                            <?php else: ?>
-                                No stocks available
-                            <?php endif; ?>
-                        </p>
-                    </div>
+                    <?php endif; ?>
+
 
                     <div class="d-flex align-items-center justify-content-end mt-5">
                         <button class="button-size btn btn-custom-outline mx-3" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>Add to cart</button>
