@@ -1,27 +1,51 @@
 <?php
 include("shared/processes/process-index.php");
-include("shared/processes/file-upload-process.php");
-include("shared/processes/profile-process.php");
+// include("shared/processes/file-upload-process.php");
+// include("shared/processes/profile-process.php");
 include("shared/classes/Rental.php");
+include("shared/processes/profile-update-process.php");
+
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $priceperDay = $_POST['priceperDay'];
+    $extendPeriodQuery = "UPDATE rentals SET totalPrice = totalPrice + $priceperDay WHERE rentalID = '$rentalID'";
+    executeQuery($extendPeriodQuery);
+
+    header("Location: my-account.php");
+}
+
+if (isset($_POST['btnConfirmed'])) {
+    $rentalID = $_POST['rentalID'];
+    $periodExtension = $_POST['periodExtension'];
+    $extendPeriodDayQuery = "UPDATE rentals SET rentalStatus = 'extended', rentalPeriod = rentalPeriod + $periodExtension WHERE rentalID = '$rentalID';";
+    executeQuery($extendPeriodDayQuery);
+
+    header("Location: my-account.php");
+}
 
 if (isset($_POST['btnCancelBooking'])) {
     $rentalID = $_POST['rentalID'];
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
 
     executeQuery($cancelQuery);
+    header("Location: my-account.php");
 }
 
 if (isset($_POST['btnConfirmedLogOut'])) {
     include("shared/processes/logout-process.php");
+    header("Location: my-account.php");
 }
 
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
+$rental->updateOverdueRentals();
+$rental->updateDueDateOnExtension();
 $rentalList = $rental->getRentalsData();
+
 
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="en">    
 
 <head>
     <meta charset="utf-8">
@@ -126,6 +150,21 @@ $rentalList = $rental->getRentalsData();
                                     </div>
                                 </div>
                             <?php endif; ?>
+                            <?php if ($uploadStatus): ?>
+                                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+                                    <div class="toast align-items-center text-bg-warning border-0 show" role="alert"
+                                        aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex">
+                                            <div class="toast-body">
+                                                Changes not saved. File too large.
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                data-bs-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?> 
+
 
                             <div class="row my-3">
                                 <!-- Profile Image Section -->
@@ -135,17 +174,17 @@ $rentalList = $rental->getRentalsData();
                                     </div>
 
 
-                                    <img src="shared/assets/img/user/<?php echo $pfpfileame ?>" alt="Profile Picture"
+                                    <img src="shared/assets/img/user/<?php echo $pfpFileName ?>" alt="Profile Picture"
                                         class="profile-pic rounded-circle border border-2 border-primary mb-3"
                                         style="width: 200px; height: 200px; object-fit: cover;">
 
 
-                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png"
+                                    <input type="file" name="profile-pic" id="profile-pic" accept=".jpg, .png, .jpeg"
                                         class="d-none">
                                     <button type="button" class="btn-select-img" id="selectImage">Select
                                         Image</button>
-                                    <small class="d-block mt-4 size-info">File Size: maximum 1 MB</small>
-                                    <small class="size-info">File Extension: .JPG, .PNG</small>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 5 MB</small>
+                                    <small class="size-info">File Extension: .JPG, .PNG, .JPEG</small>
                                 </div>
 
 
@@ -153,30 +192,30 @@ $rentalList = $rental->getRentalsData();
                                 <div class="col-12 col-md-8">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mb-3">
-                                            <input type="text" id="firstName" class="form-control" name="firstName"
+                                            <input type="text" id="firstName" class="form-control input-box" name="firstName"
                                                 placeholder="First Name"
-                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['firstName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="firstNameError"></div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-3">
-                                            <input type="text" id="lastName" class="form-control" name="lastName"
+                                            <input type="text" id="lastName" class="form-control input-box" name="lastName"
                                                 placeholder="Last Name"
-                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>">
+                                                value="<?php echo $userInfoArray['lastName'] ?? ''; ?>" required>
                                             <div class="invalid-feedback" id="lastNameError"></div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
-                                        <input type="email" id="email" class="form-control" name="email"
+                                        <input type="email" id="email" class="form-control input-box" name="email"
                                             placeholder="Email" value="<?php echo $userInfoArray['email'] ?? ''; ?>">
                                         <div class="invalid-feedback" id="emailError"></div>
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
-                                        <input type="text" id="address" class="form-control" name="address"
+                                        <input type="text" id="address" class="form-control input-box" name="address"
                                             placeholder="Address"
                                             value="<?php echo $userInfoArray['address'] ?? ''; ?>">
                                     </div>
                                     <div class="col-12 col-md-12 mb-3">
-                                        <input type="text" id="contactNumber" class="form-control" name="contactNumber"
+                                        <input type="text" id="contactNumber" class="form-control input-box" name="contactNumber"
                                             placeholder="Phone Number"
                                             value="<?php echo $userInfoArray['contactNumber'] ?? ''; ?>">
                                     </div>
@@ -212,43 +251,7 @@ $rentalList = $rental->getRentalsData();
             </form>
 
             <!-- MY BOOKINGS -->
-            <div class="content-card bookings" id="container2">
-                <div class="content">
-                    <div class="my-bookings d-block rounded-4">
-                        <div class="wrapper">
-                            <nav>
-                                <input type="radio" name="tab" id="pending" checked>
-                                <input type="radio" name="tab" id="pickup">
-                                <input type="radio" name="tab" id="onrent">
-                                <input type="radio" name="tab" id="returned">
-                                <input type="radio" name="tab" id="cancelled">
-                                <label for="pending" class="pending"><a href="#"><span
-                                            class="tab-text">Pending</span></a></label>
-                                <label for="pickup" class="pickup"><a href="#"><span class="tab-text">For
-                                            Pick-Up</span></a></label>
-                                <label for="onrent" class="onrent"><a href="#"><span class="tab-text">On
-                                            Rent</span></a></label>
-                                <label for="returned" class="returned"><a href="#"><span
-                                            class="tab-text">Returned</span></a></label>
-                                <label for="cancelled" class="cancelled"><a href="#"><span
-                                            class="tab-text">Cancelled</span></a></label>
-                                <div class="tab">
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="item-status-list">
-
-                            <!-- RENTAL STATUS CARDS -->
-                            <?php foreach ($rentalList as $rentalCard) {
-                                if ($rentalCard->status === 'cancelled') {
-                                    echo $rentalCard->buildRentalCard();
-                                }
-
-                            } ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include("shared/my-account-tabs/my-bookings.php") ?>
 
             <!-- SETTINGS -->
             <div class="content-card pt-2 pt-md-0 p-4 pickups" id="container3">
@@ -258,7 +261,9 @@ $rentalList = $rental->getRentalsData();
                 </div>
                 <div class="content settings-content">
                     <ul class="settings">
-                        <li class="p-2 change-pass">Change Password</li>
+                        <a href="change-password.php">
+                            <li class="p-2 change-pass">Change Password</li>
+                        </a>
                         <a href="security-questions.php">
                             <li class="p-2 security-quest">Setup Security Questions</li>
                         </a>
@@ -288,7 +293,7 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmedLogOut">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
                                     I want
                                     to delete</button>
                             </div>
@@ -309,6 +314,7 @@ $rentalList = $rental->getRentalsData();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="shared/assets/js/script.js"></script>
     <script src="shared/assets/js/profile.js"></script>
+    <script src="shared/assets/js/elastic-tab.js"></script>
     <script>
         var containers = [
             document.getElementById("container1"),

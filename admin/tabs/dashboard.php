@@ -49,8 +49,8 @@ $pendingResult = executeQuery($pendingQuery);
 $pendingRequest = mysqli_fetch_assoc($pendingResult);
 $pendingRequests = $pendingRequest['pendingRequests'];
 
-// QUERY FOR ACTIVE RENTALS
-$rentalsQuery = "SELECT COUNT(*) AS activeRentals FROM rentals WHERE rentalStatus = 'on rent'";
+// Query for active rentals
+$rentalsQuery = "SELECT COUNT(*) AS activeRentals FROM rentals WHERE rentalStatus = 'onrent'";
 $rentalsResult = executeQuery($rentalsQuery);
 $activeRental = mysqli_fetch_assoc($rentalsResult);
 $activeRentals = $activeRental['activeRentals'];
