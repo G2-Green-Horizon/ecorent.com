@@ -1,7 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
 include("connect.php");
-include("shared/processes/cart-process.php");
+include("shared/processes/saved-items-process.php");
 ?>
 
 <!doctype html>
@@ -10,7 +10,7 @@ include("shared/processes/cart-process.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EcoRent | Booking Page</title>
+    <title>EcoRent | My Saved Items</title>
     <link rel="icon" type="image/png" href="shared/assets/img/system/ecorent-logo-2.png">
 
     <!-- STYLINGS -->
@@ -34,7 +34,7 @@ include("shared/processes/cart-process.php");
 
         <h1>
             <strong>
-                My Cart
+                My Saved Items
             </strong>
         </h1>
 
@@ -58,7 +58,7 @@ include("shared/processes/cart-process.php");
                                 </div>
                             </div>
                         <?php else: ?>
-                            <p>Your cart is empty. Start adding items!</p>
+                            <p>Your saved items is empty. Start adding items!</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ include("shared/processes/cart-process.php");
                     <div class="col">
                         <?php foreach ($cartResults as $item): ?>
                             <div class="container cart-container mt-2 mb-3 px-3 py-3 rounded-4"
-                                data-item-id="<?php echo $item['cartID']; ?>">
+                                data-item-id="<?php echo $item['savedID']; ?>">
                                 <div class="row p-2">
                                     <div class="col-auto d-flex align-items-center">
                                         <input class="form-check-input me-4 check-custom" type="checkbox" value=""
@@ -98,6 +98,15 @@ include("shared/processes/cart-process.php");
                                                     class="badge rounded-pill pill-carbon-emission"><?php echo '-' . $item['gasEmissionSaved'] . 'kg CO₂'; ?></span>
                                             </div>
                                         </div>
+                                        <div class="row pt-1">
+                                            <?php if ($item['stock'] == 0): ?>
+                                                <p class="mb-0 text-danger fw-bold">OUT OF STOCK</p>
+                                            <?php else: ?>
+                                                <p class="mb-0"><?php echo $item['stock']; ?>
+                                                    <?php echo $item['stock'] <= 1 ? 'stock' : 'stocks'; ?> available
+                                                </p>
+                                            <?php endif; ?>
+                                        </div>
 
                                     </div>
                                     <div class="col-auto d-flex ps-5">
@@ -107,42 +116,6 @@ include("shared/processes/cart-process.php");
                                         <h4 class="per-day-custom">
                                             /day
                                         </h4>
-                                    </div>
-                                </div>
-                                <div class="row px-5">
-                                    <div class="col-auto d-flex justify-content-start me-5">
-                                        <div class="d-flex align-items-center">
-                                            <p class="mb-0">Rental period:</p>
-                                            <div class="cart-quantity-container d-flex align-items-center mx-2 my-2">
-                                                <button type="button"
-                                                    class="btn btn-outline-secondary btn-sm btn-cart-subtract"
-                                                    onclick="decreaseRentalPeriod()">-</button>
-                                                <input id="rentalPeriod" type="number" class="form-control text-center"
-                                                    name="rental-period" min="1" value="<?php echo $item['rentalPeriod'];
-                                                    ; ?>" step="1">
-                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-cart-add "
-                                                    onclick="increaseRentalPeriod()">+</button>
-                                            </div>
-                                            <p class="mb-0">days</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto d-flex justify-content-start">
-                                        <div class="d-flex align-items-center">
-                                            <p class="mb-0">Quantity:</p>
-                                            <div class="cart-quantity-container d-flex align-items-center mx-2 my-2">
-                                                <button type="button"
-                                                    class="btn btn-outline-secondary btn-sm btn-cart-subtract"
-                                                    onclick="decreaseQuantity()">-</button>
-                                                <input id="quantity" type="number" class="form-control text-center"
-                                                    name="quantity" min="1" value="<?php echo $item['quantity'];
-                                                    ; ?>" step="1">
-                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-cart-add"
-                                                    onclick="increaseQuantity()">+</button>
-                                            </div>
-                                            <p class="mb-0"><?php echo $item['stock']; ?>
-                                                <?php echo $item['stock'] <= 1 ? 'stock' : 'stocks'; ?> available
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -155,14 +128,11 @@ include("shared/processes/cart-process.php");
                     <div class="row">
                         <div class="col">
                             <h5>
-                                Booking Summary
+                                Saved Items
                             </h5>
-                            <p>
-                                Estimated Price:
-                            </p>
                             <h4 class="est-price">
                                 <strong>
-                                    ₱2000
+                                    <?php echo $cartCount; ?>
                                 </strong>
                             </h4>
                         </div>
@@ -170,7 +140,7 @@ include("shared/processes/cart-process.php");
                     <div class="row">
                         <div class="col d-flex justify-content-center">
                             <button class="btn btn-checkout mt-2"><strong>
-                                    Checkout Rentals
+                                    Back to Home
                                 </strong></button>
                         </div>
                     </div>
@@ -207,10 +177,9 @@ include("shared/processes/cart-process.php");
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
-                    Please select at least one card to delete.
+                    Please select at least one item to delete.
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
     </div>
@@ -303,12 +272,12 @@ include("shared/processes/cart-process.php");
                 if (selectAllCheckbox.checked) {
                     modal.show();
                 } else {
-                    window.location.href = 'shared/processes/remove-from-cart.php?cartIDs=' + cartIDsString;
+                    window.location.href = 'shared/processes/remove-from-saved-items.php?cartIDs=' + cartIDsString;
                 }
             });
 
             confirmButton.addEventListener('click', function () {
-                window.location.href = 'shared/processes/remove-from-cart.php?cartIDs=' + cartIDsString;
+                window.location.href = 'shared/processes/remove-from-saved-items.php?cartIDs=' + cartIDsString;
             });
         });
 

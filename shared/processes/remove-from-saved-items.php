@@ -11,20 +11,20 @@ if (isset($_GET['cartIDs'])) {
 
     $cartIDsString = implode(',', $cartIDsArray);
 
-    $removeFromCartQuery = "UPDATE cart SET status = 'removed' WHERE cartID IN ($cartIDsString)";
+    $removeFromCartQuery = "UPDATE savedItems SET status = 'removed' WHERE savedID IN ($cartIDsString)";
 
     $removeFromCartResults = executeQuery($removeFromCartQuery);
 
     if ($removeFromCartResults) {
-        header('Location: /ecorent.com/cart.php');
+        header('Location: /ecorent.com/saved-items.php');
         exit();
     } else {
-        header('Location: /ecorent.com/cart.php');
+        header('Location: /ecorent.com/saved-items.php');
         exit();
     }
 
 } else {
-    header('Location: /ecorent.com/cart.php');
+    header('Location: /ecorent.com/saved-items.php');
     exit();
 }
 ?>
