@@ -166,19 +166,17 @@ include("shared/processes/booking-process.php");
                                 <h5 class="mb-0" id="bot-price">₱<?php echo $totalPrice; ?></h5>
                             </div>
 
-                                <div class="d-flex align-items-center justify-content-end gap-3">
-                                    <button class="btn btn-outline-danger" id="cancel-btn" type="button"
-                                        onclick="window.history.back();">Cancel</button>
-
-
-                                    <button class="btn btn-primary" type="button" onclick="validateInput()"
-                                        id="confirm-btn">Confirm
-                                        Booking</button>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-end gap-3">
+                                <a
+                                    class="btn btn-outline-danger cancel-btn d-flex justify-content-center align-items-center"
+                                    id="cancel-btn" onclick="window.history.back();">Cancel</a>
+                                <button class="btn btn-primary confirm-btn" type="button" id="confirm-btn"
+                                    onclick="validateInput()">Confirm Booking</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
         </form>
         <!-- Modal -->
