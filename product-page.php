@@ -59,36 +59,45 @@ include("shared/processes/add-to-saved-process.php");
                             CO₂</span>
                     </div>
 
-                    <div class="d-flex align-items-center">
-                        <p class="mb-0">Rental period:</p>
-                        <div class="quantity-container d-flex align-items-center mx-4 my-2">
-                            <button type="button" class="btn btn-outline-secondary btn-sm"
-                                onclick="decreaseRentalPeriod()">-</button>
-                            <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
-                                min="1" value="1" step="1">
-                            <button type="button" class="btn btn-outline-secondary btn-sm"
-                                onclick="increaseRentalPeriod()">+</button>
+                    <?php if ($itemInfoArray["stock"] > 0): ?>
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0">Rental period:</p>
+                            <div class="quantity-container d-flex align-items-center mx-4 my-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    onclick="decreaseRentalPeriod()">-</button>
+                                <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
+                                    min="1" value="1" step="1">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    onclick="increaseRentalPeriod()">+</button>
+                            </div>
+                            <p class="mb-0">days</p>
                         </div>
-                        <p class="mb-0">days</p>
-                    </div>
 
-                    <div class="d-flex align-items-center">
-                        <p class="mb-0 me-4">Quantity:</p>
-                        <div class="quantity-container d-flex align-items-center mx-2 my-2">
-                            <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-subtract"
-                                onclick="decreaseQuantity()">-</button>
-                            <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
-                                value="1" step="1">
-                            <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-add"
-                                onclick="increaseQuantity()">+</button>
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0 me-4">Quantity:</p>
+                            <div class="quantity-container d-flex align-items-center mx-2 my-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-subtract"
+                                    onclick="decreaseQuantity()">-</button>
+                                <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
+                                    value="1" step="1">
+                                <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-add"
+                                    onclick="increaseQuantity()">+</button>
+                            </div>
+                            <p class="mb-0"><?php echo $itemInfoArray["stock"]; ?> stocks available</p>
                         </div>
-                        <p class="mb-0"><?php echo $itemInfoArray["stock"]; ?> stocks available</p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-end mt-5">
-                        <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart">Save item</button>
-                        <a href="bookings.php"><button class="button-size btn btn-custom-dark" type="submit"
-                                name="btnRentNow" formaction="booking.php">Rent now</button> </a>
-                    </div>
+
+                        <div class="d-flex align-items-center justify-content-end mt-5">
+                            <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart">Save
+                                item</button>
+                            <a href="bookings.php">
+                                <button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow"
+                                    formaction="booking.php">Rent now</button>
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <p class="text-danger"><strong>OUT OF STOCK</strong></p>
+                    <?php endif; ?>
+
                 </div>
             </div>
 
