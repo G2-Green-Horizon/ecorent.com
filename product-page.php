@@ -1,8 +1,7 @@
 <?php
 include("shared/processes/process-index.php");
 include("shared/processes/productpage-process.php");
-include("shared/processes/add-to-cart-process.php");
-
+include("shared/processes/add-to-saved-process.php");
 ?>
 
 <!doctype html>
@@ -60,18 +59,19 @@ include("shared/processes/add-to-cart-process.php");
                             CO₂</span>
                     </div>
 
-                    <div class="d-flex align-items-center">
-                        <p class="mb-0">Rental period:</p>
-                        <div class="quantity-container d-flex align-items-center mx-4 my-2">
-                            <button type="button" class="btn btn-outline-secondary btn-sm"
-                                onclick="decreaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
-                            <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
-                                min="1" max="30" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
-                            <button type="button" class="btn btn-outline-secondary btn-sm"
-                                onclick="increaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                    <?php if ($itemInfoArray["stock"] > 0): ?>
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0">Rental period:</p>
+                            <div class="quantity-container d-flex align-items-center mx-4 my-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    onclick="decreaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
+                                <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
+                                    min="1" max="30" value="1" step="1" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    onclick="increaseRentalPeriod()" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
+                            </div>
+                            <p class="mb-0">days</p>
                         </div>
-                        <p class="mb-0">days</p>
-                    </div>
 
                     <div class="d-flex align-items-center">
                         <p class="mb-0 me-4">Quantity:</p>
@@ -107,6 +107,37 @@ include("shared/processes/add-to-cart-process.php");
                     </div>
                 </div>
             </div>
+
+            <!-- Toast Notifications -->
+            <?php if ($status == 'success'): ?>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+                    <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
+                        aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                Added to saved items!
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($status == 'already added'): ?>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+                    <div class="toast align-items-center text-bg-secondary border-0 show" role="alert" aria-live="assertive"
+                        aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                This item is already on your saved items.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <!-- Product Desc -->
             <div class="row row-product-details my-4 p-3 mx-3 mx-sm-4">

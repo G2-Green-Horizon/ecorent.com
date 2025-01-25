@@ -1,9 +1,10 @@
 <?php
 include("shared/processes/process-index.php");
-include("shared/processes/file-upload-process.php");
-include("shared/processes/profile-process.php");
+// include("shared/processes/file-upload-process.php");
+// include("shared/processes/profile-process.php");
 include("shared/processes/delete-process.php");
 include("shared/classes/Rental.php");
+include("shared/processes/profile-update-process.php");
 
 if (isset($_POST['btnConfirmed'])) {
     $rentalID = $_POST['rentalID'];
@@ -150,13 +151,13 @@ $rentalList = $rental->getRentalsData();
                                     </div>
                                 </div>
                             <?php endif; ?>
-                            <?php if ($uploadStatus == 'error'): ?>
-                                <div class="toast-container position-fixed top-50 start-0 translate-middle-y p-3" style="z-index: 1055;">
+                            <?php if ($uploadStatus): ?>
+                                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
                                     <div class="toast align-items-center text-bg-warning border-0 show" role="alert"
                                         aria-live="assertive" aria-atomic="true">
                                         <div class="d-flex">
                                             <div class="toast-body">
-                                                Error
+                                                Changes not saved. File too large.
                                             </div>
                                             <button type="button" class="btn-close btn-close-white me-2 m-auto"
                                                 data-bs-dismiss="toast" aria-label="Close"></button>
@@ -183,7 +184,7 @@ $rentalList = $rental->getRentalsData();
                                         class="d-none">
                                     <button type="button" class="btn-select-img" id="selectImage">Select
                                         Image</button>
-                                    <small class="d-block mt-4 size-info">File Size: maximum 25 MB</small>
+                                    <small class="d-block mt-4 size-info">File Size: maximum 5 MB</small>
                                     <small class="size-info">File Extension: .JPG, .PNG, .JPEG</small>
                                 </div>
 
