@@ -17,7 +17,7 @@ if (isset($_POST['btnConfirmed'])) {
 if (isset($_POST['btnConfirmed'])) {
     $rentalID = $_POST['rentalID'];
     $periodExtension = $_POST['periodExtension'];
-    $extendPeriodDayQuery = "UPDATE rentals SET rentalPeriod = rentalPeriod + $periodExtension WHERE rentalID = '$rentalID';";
+    $extendPeriodDayQuery = "UPDATE rentals SET rentalStatus = 'extended', rentalPeriod = rentalPeriod + $periodExtension WHERE rentalID = '$rentalID';";
     executeQuery($extendPeriodDayQuery);
 
     header("Location: my-account.php");
@@ -28,20 +28,24 @@ if (isset($_POST['btnCancelBooking'])) {
     $cancelQuery = "UPDATE rentals SET rentalStatus = 'cancelled' WHERE rentalID = '$rentalID' ";
 
     executeQuery($cancelQuery);
+    header("Location: my-account.php");
 }
 
 if (isset($_POST['btnConfirmedLogOut'])) {
     include("shared/processes/logout-process.php");
+    header("Location: my-account.php");
 }
 
 // MY BOOKINGS TAB
 $rental = new Rental(null, null, null);
+$rental->updateOverdueRentals();
+$rental->updateDueDateOnExtension();
 $rentalList = $rental->getRentalsData();
 
 
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="en">    
 
 <head>
     <meta charset="utf-8">
@@ -146,6 +150,21 @@ $rentalList = $rental->getRentalsData();
                                     </div>
                                 </div>
                             <?php endif; ?>
+                            <?php if ($uploadStatus == 'error'): ?>
+                                <div class="toast-container position-fixed top-50 start-0 translate-middle-y p-3" style="z-index: 1055;">
+                                    <div class="toast align-items-center text-bg-warning border-0 show" role="alert"
+                                        aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex">
+                                            <div class="toast-body">
+                                                Error
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                data-bs-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?> 
+
 
                             <div class="row my-3">
                                 <!-- Profile Image Section -->
@@ -155,7 +174,7 @@ $rentalList = $rental->getRentalsData();
                                     </div>
 
 
-                                    <img src="shared/assets/img/user/<?php echo $pfpfileame ?>" alt="Profile Picture"
+                                    <img src="shared/assets/img/user/<?php echo $pfpFileName ?>" alt="Profile Picture"
                                         class="profile-pic rounded-circle border border-2 border-primary mb-3"
                                         style="width: 200px; height: 200px; object-fit: cover;">
 
@@ -232,43 +251,7 @@ $rentalList = $rental->getRentalsData();
             </form>
 
             <!-- MY BOOKINGS -->
-            <div class="content-card bookings" id="container2">
-                <div class="content">
-                    <div class="my-bookings d-block rounded-4">
-                        <div class="wrapper">
-                            <nav>
-                                <input type="radio" name="tab" id="pending" checked>
-                                <input type="radio" name="tab" id="pickup">
-                                <input type="radio" name="tab" id="onrent">
-                                <input type="radio" name="tab" id="returned">
-                                <input type="radio" name="tab" id="cancelled">
-                                <label for="pending" class="pending"><a href="#"><span
-                                            class="tab-text">Pending</span></a></label>
-                                <label for="pickup" class="pickup"><a href="#"><span class="tab-text">For
-                                            Pick-Up</span></a></label>
-                                <label for="onrent" class="onrent"><a href="#"><span class="tab-text">On
-                                            Rent</span></a></label>
-                                <label for="returned" class="returned"><a href="#"><span
-                                            class="tab-text">Returned</span></a></label>
-                                <label for="cancelled" class="cancelled"><a href="#"><span
-                                            class="tab-text">Cancelled</span></a></label>
-                                <div class="tab">
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="item-status-list">
-
-                            <!-- RENTAL STATUS CARDS -->
-                            <?php foreach ($rentalList as $rentalCard) {
-                                if ($rentalCard->status === 'pending') {
-                                    echo $rentalCard->buildRentalCard();
-                                }
-
-                            } ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include("shared/my-account-tabs/my-bookings.php") ?>
 
             <!-- SETTINGS -->
             <div class="content-card pt-2 pt-md-0 p-4 pickups" id="container3">
