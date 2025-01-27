@@ -73,10 +73,9 @@ function handleGet($pdo)
         echo json_encode(['message' => 'Database query error', 'error' => $e->getMessage()]);
     }
 }
-
 function handlePost($pdo, $input)
 {
-    if (!is_array($input) || empty($input)) {
+    if (empty($input) || !is_array($input)) {
         http_response_code(400);
         echo json_encode(['message' => 'Input must be a non-empty array']);
         return;
@@ -90,7 +89,35 @@ function handlePost($pdo, $input)
 
         foreach ($input as $item) {
             if (!validateInput($item, ['itemName', 'itemType', 'gasEmissionSaved', 'pricePerDay', 'itemSpecifications', 'location'])) {
-                continue;
+                http_response_code(400);
+                echo json_encode(['message' => 'Missing required fields']);
+                return;
+            }
+
+            if (is_numeric($item['itemType'])) {
+                http_response_code(400);
+                echo json_encode(['message' => 'itemType cannot be a number']);
+                return;
+            }
+
+            if (!is_string($item['itemName']) || !is_string($item['itemType']) || !is_numeric($item['gasEmissionSaved']) || !is_numeric($item['pricePerDay'])) {
+                http_response_code(400);
+                echo json_encode(['message' => 'Invalid data types for one or more fields']);
+                return;
+            }
+
+            $checkSql = "SELECT COUNT(*) FROM items WHERE itemName = :itemName AND location = :location";
+            $checkStmt = $pdo->prepare($checkSql);
+            $checkStmt->execute([
+                'itemName' => $item['itemName'],
+                'location' => $item['location']
+            ]);
+            $duplicateCount = $checkStmt->fetchColumn();
+
+            if ($duplicateCount > 0) {
+                http_response_code(409);
+                echo json_encode(['message' => 'Item with the same name and location already exists']);
+                return;
             }
 
             $stmt->execute([
@@ -104,7 +131,7 @@ function handlePost($pdo, $input)
         }
 
         http_response_code(201);
-        echo json_encode(['message' => 'Bulk items created successfully']);
+        echo json_encode(['message' => 'Items created successfully']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'Database insertion error', 'error' => $e->getMessage()]);
@@ -114,7 +141,7 @@ function handlePost($pdo, $input)
 
 function handlePut($pdo, $input)
 {
-    if (!is_array($input) || empty($input)) {
+    if (empty($input) || !is_array($input)) {
         http_response_code(400);
         echo json_encode(['message' => 'Input must be a non-empty array']);
         return;
@@ -134,7 +161,37 @@ function handlePut($pdo, $input)
 
         foreach ($input as $item) {
             if (!validateInput($item, ['itemID', 'itemName', 'itemType', 'gasEmissionSaved', 'pricePerDay', 'itemSpecifications', 'location'])) {
-                continue;
+                http_response_code(400);
+                echo json_encode(['message' => 'Missing required fields']);
+                return;
+            }
+
+           
+            if (is_numeric($item['itemType'])) {
+                http_response_code(400);
+                echo json_encode(['message' => 'itemType cannot be a number']);
+                return;
+            }
+
+            if (!is_numeric($item['itemID']) || !is_string($item['itemName']) || !is_string($item['itemType']) || !is_numeric($item['gasEmissionSaved']) || !is_numeric($item['pricePerDay'])) {
+                http_response_code(400);
+                echo json_encode(['message' => 'Invalid data types for one or more fields']);
+                return;
+            }
+
+            $checkSql = "SELECT COUNT(*) FROM items WHERE itemName = :itemName AND location = :location AND itemID != :itemID";
+            $checkStmt = $pdo->prepare($checkSql);
+            $checkStmt->execute([
+                'itemName' => $item['itemName'],
+                'location' => $item['location'],
+                'itemID' => $item['itemID'] 
+            ]);
+            $duplicateCount = $checkStmt->fetchColumn();
+
+            if ($duplicateCount > 0) {
+                http_response_code(409); 
+                echo json_encode(['message' => 'Item with the same name and location already exists']);
+                return;
             }
 
             $stmt->execute([
@@ -149,7 +206,7 @@ function handlePut($pdo, $input)
         }
 
         http_response_code(200);
-        echo json_encode(['message' => 'Bulk items updated successfully']);
+        echo json_encode(['message' => 'Items updated successfully']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'Database update error', 'error' => $e->getMessage()]);
@@ -158,20 +215,32 @@ function handlePut($pdo, $input)
 
 function handleDelete($pdo, $input)
 {
-    if (!is_array($input) || empty($input)) {
+    if (empty($input) || !is_array($input)) {
         http_response_code(400);
         echo json_encode(['message' => 'Input must be a non-empty array of IDs']);
         return;
     }
 
+    foreach ($input as $item) {
+        if (!isset($item['itemID']) || !is_numeric($item['itemID'])) {
+            http_response_code(400);
+            echo json_encode(['message' => 'Each item must contain a valid itemID']);
+            return;
+        }
+    }
+
+    $itemIDs = array_map(function ($item) {
+        return $item['itemID'];
+    }, $input);
+
     try {
-        $placeholders = implode(',', array_fill(0, count($input), '?'));
+        $placeholders = implode(',', array_fill(0, count($itemIDs), '?'));
         $sql = "DELETE FROM items WHERE itemID IN ($placeholders)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($input);
+        $stmt->execute($itemIDs); 
 
         http_response_code(200);
-        echo json_encode(['message' => 'Bulk items deleted successfully']);
+        echo json_encode(['message' => 'Items deleted successfully']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'Database deletion error', 'error' => $e->getMessage()]);
