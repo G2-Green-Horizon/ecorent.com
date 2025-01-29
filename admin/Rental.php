@@ -36,6 +36,7 @@ class Rental
     {
         $query = "SELECT * FROM rentals 
         LEFT JOIN items ON rentals.itemID = items.itemID
+        LEFT JOIN attachments ON items.itemID = attachments.itemID
         ORDER BY rentals.rentalID DESC";
         $result = executeQuery($query);
 
@@ -46,7 +47,7 @@ class Rental
             $r->renterID = $row['renterID'];
             $r->itemName = $row['itemName'];
             $r->status = $row['rentalStatus'];
-            $r->itemDisplayImg = $row['attachment'];
+            $r->itemDisplayImg = $row['fileName'];
             $r->reservationDate = $row['reservationDate'];
             $r->pickupDate = $row['startRentalDate'];
             $r->dueDate = $row['endRentalDate'];

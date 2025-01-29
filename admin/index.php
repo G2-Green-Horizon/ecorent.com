@@ -17,7 +17,7 @@ if (isset($_POST['btnConfirmed'])) {
     header("Location: admin-login.php");
 }
 
-$displayItemsQuery = "SELECT items.*,  categories.* FROM items  INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
+$displayItemsQuery = "SELECT items.*, attachments.*, categories.* FROM items INNER JOIN attachments ON items.itemID = attachments.itemID INNER JOIN categories ON items.categoryID = categories.categoryID WHERE items.isDeleted = 'No'";
 
 if (isset($_GET['filterCategory'])) {
     $filterCategoryID = $_GET['filterCategory'];
@@ -548,7 +548,7 @@ if (isset($_POST['btnReceived'])) {
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-12 col-md-3 add-item-frame ">
-                                                                <img src="../shared/assets/img/system/items/<?php echo $editModalItem['attachment']; ?>"
+                                                                <img src="../shared/assets/img/system/items/<?php echo $editModalItem['fileName']; ?>"
                                                                     alt="" class="img-fluid"
                                                                     id="imgContainer<?php echo $editModalItem['itemID']; ?>">
                                                                 <label for="customFile<?php echo $editModalItem['itemID']; ?>"
@@ -762,7 +762,7 @@ if (isset($_POST['btnReceived'])) {
                                         <div class="card-body-listings p-3">
                                             <div class="listings-content">
                                                 <div class="order-content" id="displayedItem<?php echo $items['itemID']; ?>">
-                                                    <img src="../shared/assets/img/system/items/<?php echo $items['attachment']; ?>"
+                                                    <img src="../shared/assets/img/system/items/<?php echo $items['fileName']; ?>"
                                                         alt="" class="img-fluid">
                                                     <div class="listings-info">
                                                         <input type="hidden" name="itemID"
