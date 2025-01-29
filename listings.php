@@ -114,7 +114,7 @@ $categoryID = "0";
                                 <input type="hidden" name="itemID" value="<?php echo $chosenCategory['itemID']; ?>">
                                 <a  href="product-page.php?id=<?php echo $chosenCategory['itemID']; ?>" class="d-block w-100 h-100 ">
                                     <div class="card custom-card items h-100" id="<?php echo $cardID; ?>">
-                                        <img src="shared/assets/img/system/items/<?php echo $chosenCategory['fileName']; ?>"
+                                        <img src="shared/assets/img/system/items/<?php echo $chosenCategory['attachment']; ?>"
                                             class="card-img-top" alt="">
                                         <div class="card-body">
                                             <h6 class="card-title item"><?php echo $chosenCategory['itemName']; ?></h6>

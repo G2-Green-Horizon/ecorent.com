@@ -62,7 +62,7 @@ include("shared/processes/booking-process.php");
                     <div class="mb-4 col-12">
                         <div class="row">
                             <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                                <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>"
+                                <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['attachment']; ?>"
                                     class="rounded-2" style="width: 96px; height: auto;">
                                 <h4 class="item-name me-auto p-2 d-flex align-items-center">
                                     <?php echo $itemBookingInfoArray['itemName']; ?>
@@ -167,17 +167,15 @@ include("shared/processes/booking-process.php");
                             </div>
 
                             <div class="d-flex align-items-center justify-content-end gap-3">
-                                <a
+                                <a href="index.php"
                                     class="btn btn-outline-danger cancel-btn d-flex justify-content-center align-items-center"
-                                    id="cancel-btn" onclick="window.history.back();">Cancel</a>
+                                    id="cancel-btn">Cancel</a>
                                 <button class="btn btn-primary confirm-btn" type="button" id="confirm-btn"
                                     onclick="validateInput()">Confirm Booking</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
         </form>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

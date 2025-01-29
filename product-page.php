@@ -34,7 +34,7 @@ include("shared/processes/add-to-saved-process.php");
 
                 <!-- Product Images Column -->
                 <div class="img-container col-md-6 my-4">
-                    <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['fileName']; ?>"
+                    <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['attachment']; ?>"
                         class="img-fluid img-fluid-product" alt="Product Image">
                 </div>
 
