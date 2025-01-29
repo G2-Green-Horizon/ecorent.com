@@ -24,10 +24,11 @@ $itemsArray = [];
 // Fetch items based on user preferences.
 if (count($categoryIDsArray) > 0) {
     $categoryIDsList = implode(",", $categoryIDsArray);
-    $retrieveItemsQuery = "SELECT items.itemID, items.itemName, items.pricePerDay, categories.categoryID, categories.categoryName, items.attachment
+    $retrieveItemsQuery = "SELECT items.itemID, items.itemName, items.pricePerDay, categories.categoryID, categories.categoryName, attachments.fileName
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
-        WHERE items.categoryID IN ($categoryIDsList)
+        JOIN attachments on items.itemID = attachments.itemID
+        WHERE items.categoryID IN ($categoryIDsList) AND items.isDeleted = 'No' AND items.stock > 0
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
 
@@ -41,7 +42,7 @@ if (count($categoryIDsArray) > 0) {
                 $itemsRow["itemName"],
                 $itemsRow["pricePerDay"],
                 $itemsRow["categoryName"],
-                $itemsRow["attachment"]
+                $itemsRow["fileName"]
             );
         }
     }
@@ -73,7 +74,7 @@ if (count($categoryIDsArray) > 0) {
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
         JOIN attachments on items.itemID = attachments.itemID
-        WHERE items.categoryID IN ($remainingCategoriesList)
+        WHERE items.categoryID IN ($remainingCategoriesList) AND items.isDeleted = 'No' AND items.stock > 0
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
     
@@ -101,6 +102,7 @@ if (count($categoryIDsArray) === 0) {
         FROM items 
         JOIN categories ON items.categoryID = categories.categoryID
         JOIN attachments ON items.itemID = attachments.itemID
+        WHERE items.isDeleted = 'No' AND items.stock > 0
         ORDER BY categoryName ASC
         LIMIT $limit OFFSET $offset";
 

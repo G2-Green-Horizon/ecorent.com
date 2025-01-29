@@ -18,22 +18,26 @@
 }
 
 .navbar .navbar-btn {
-    background-color: #282828;
+    background-color: #D2CBA6;
     border: none;
-    color: #f2ecec;
+    color: #282828;
     margin-right: 8px;
     padding: 5px 10px;
 }
 
-.navbar .navbar-btn:hover {
-    background-color: #D2CBA6;
-    color: #282828;
-}
+
 
 .d-flex.justify-content-center .navbar-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.btn-search {
+    background-color: #282828;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
 }
 
 .navbar .nav-link {
@@ -57,11 +61,13 @@
 .dark-input:focus {
     border-color: #D2CBA6;
     box-shadow: 0 0 5px rgba(210, 203, 166, 0.7);
-    background-color: #fffdfd;
+    background-color: #333;
+    color: #f1f1f1;
 }
 
 .dark-input::placeholder {
     color: #aaa;
+    text-align: center;
 }
 
 .nav2 {
@@ -162,6 +168,31 @@
     }
 }
 
+
+
 ul li a i {
     color: white;
 }
+
+
+
+.my-icon.bi-search {
+    color: #f2ecec; 
+}
+
+.my-icon.bi-bookmarks-fill {
+    color: #282828; 
+}
+
+.my-icon.bi-person-circle {
+    color: #282828; 
+}
+
+.my-icon.bi-bookmarks-fill:hover {
+    color: #8a8a8a; 
+}
+
+.my-icon.bi-person-circle:hover {
+    color: #8a8a8a; 
+}
+

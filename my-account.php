@@ -2,6 +2,7 @@
 include("shared/processes/process-index.php");
 // include("shared/processes/file-upload-process.php");
 // include("shared/processes/profile-process.php");
+include("shared/processes/delete-process.php");
 include("shared/classes/Rental.php");
 include("shared/processes/profile-update-process.php");
 
@@ -224,17 +225,17 @@ $rentalList = $rental->getRentalsData();
                                         <label class="form-label me-4 mb-1" for="gender">Gender:</label>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Male"
-                                                id="male" <?php echo ($userInfoArray['gender'] ?? '' == 'Male') ? 'checked' : ''; ?>>
+                                                id="male" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Male') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="male">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Female"
-                                                id="female" <?php echo ($userInfoArray['gender'] ?? '' == 'Female') ? 'checked' : ''; ?>>
+                                                id="female" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Female') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="female">Female</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="Other"
-                                                id="other" <?php echo ($userInfoArray['gender'] ?? '' == 'Other') ? 'checked' : ''; ?>>
+                                                id="other" <?php echo (isset($userInfoArray['gender']) && $userInfoArray['gender'] == 'Other') ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="other">Other</label>
                                         </div>
                                     </div>
@@ -261,13 +262,10 @@ $rentalList = $rental->getRentalsData();
                 </div>
                 <div class="content settings-content">
                     <ul class="settings">
-                        <a href="change-password.php">
+                        <a class="text-decoration-none text-white" href="change-password.php">
                             <li class="p-2 change-pass">Change Password</li>
                         </a>
-                        <a href="security-questions.php">
-                            <li class="p-2 security-quest">Setup Security Questions</li>
-                        </a>
-                        <li class="p-2 delete-account" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
+                        <li class="p-2 delete-account" data-bs-toggle="modal" data-bs-target="#deleteModal" style="color: #9F1800">Delete
                             Account</li>
                     </ul>
                 </div>
@@ -293,16 +291,18 @@ $rentalList = $rental->getRentalsData();
                             <div class="container d-flex justify-content-end my-3">
                                 <button type="button" class="btn-delete-denied text-center mx-2 p-2"
                                     data-bs-dismiss="modal" name="btnDenied">No, I want to keep it</button>
-                                <button type="submit" class="btn-delete-confirmed text-center" name="btnConfirmed">Yes,
+                                <button type="submit" class="btn-delete-confirmed text-center" name="btnDelete">Yes,
                                     I want
                                     to delete</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+
 
     <?php include 'shared/components/footer.php'; ?>
 
@@ -377,9 +377,6 @@ $rentalList = $rental->getRentalsData();
 
 
     </script>
-
-
-
 
 </body>
 

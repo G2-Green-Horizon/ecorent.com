@@ -34,7 +34,7 @@ include("shared/processes/add-to-saved-process.php");
 
                 <!-- Product Images Column -->
                 <div class="img-container col-md-6 my-4">
-                    <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['attachment']; ?>"
+                    <img src="shared/assets/img/system/items/<?php echo $itemInfoArray['fileName']; ?>"
                         class="img-fluid img-fluid-product" alt="Product Image">
                 </div>
 
@@ -64,11 +64,14 @@ include("shared/processes/add-to-saved-process.php");
                             <p class="mb-0">Rental period:</p>
                             <div class="quantity-container d-flex align-items-center mx-4 my-2">
                                 <button type="button" class="btn btn-outline-secondary btn-sm"
-                                    onclick="decreaseRentalPeriod()">-</button>
+                                    onclick="decreaseRentalPeriod()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
                                 <input id="rentalPeriod" type="number" class="form-control text-center" name="rentalPeriod"
-                                    min="1" value="1" step="1">
+                                    min="1" max="30" value="1" step="1" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
                                 <button type="button" class="btn btn-outline-secondary btn-sm"
-                                    onclick="increaseRentalPeriod()">+</button>
+                                    onclick="increaseRentalPeriod()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
                             </div>
                             <p class="mb-0">days</p>
                         </div>
@@ -76,28 +79,40 @@ include("shared/processes/add-to-saved-process.php");
                         <div class="d-flex align-items-center">
                             <p class="mb-0 me-4">Quantity:</p>
                             <div class="quantity-container d-flex align-items-center mx-2 my-2">
-                                <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-subtract"
-                                    onclick="decreaseQuantity()">-</button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" 
+                                    onclick="decreaseQuantity()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>-</button>
                                 <input id="quantity" type="number" class="form-control text-center" name="quantity" min="1"
-                                    value="1" step="1">
-                                <button type="button" class="btn btn-outline-secondary btn-sm btn-rent-add"
-                                    onclick="increaseQuantity()">+</button>
+                                    max="<?php echo $itemInfoArray["stock"]; ?>" value="1" step="1" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" 
+                                    onclick="increaseQuantity()" 
+                                    <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>+</button>
                             </div>
-                            <p class="mb-0"><?php echo $itemInfoArray["stock"]; ?> stocks available</p>
+                            <p class="mb-0">
+                                <?php if ($itemInfoArray["stock"] > 0): ?>
+                                    <?php echo $itemInfoArray["stock"]; ?>
+                                    <?php echo ($itemInfoArray["stock"] == 1) ? 'stock' : 'stocks'; ?> available
+                                <?php else: ?>
+                                    No stocks available
+                                <?php endif; ?>
+                            </p>
                         </div>
-
-                        <div class="d-flex align-items-center justify-content-end mt-5">
-                            <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart">Save
-                                item</button>
-                            <a href="bookings.php">
-                                <button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow"
-                                    formaction="booking.php">Rent now</button>
-                            </a>
-                        </div>
-                    <?php else: ?>
-                        <p class="text-danger"><strong>OUT OF STOCK</strong></p>
                     <?php endif; ?>
 
+
+                    <div class="d-flex align-items-center justify-content-end mt-5">
+                        <button class="button-size btn btn-custom-outline mx-3" type="submit" name="btnAddToCart" <?php echo ($itemInfoArray["stock"] <= 0) ? 'disabled' : ''; ?>>Save item</button>
+                        <?php if ($itemInfoArray["stock"] > 0): ?>
+                            <a href="booking.php">
+                                <button class="button-size btn btn-custom-dark" type="submit" name="btnRentNow" formaction ="booking.php">Rent
+                                    now</button>
+                            </a>
+                        <?php else: ?>
+                            <button class="button-size btn btn-custom-dark"  type="button" name="btnRentNow" disabled>Rent
+                                now</button>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
 
@@ -173,10 +188,21 @@ include("shared/processes/add-to-saved-process.php");
         var quantity = document.getElementById('quantity');
         function increaseQuantity() {
             quantity.stepUp();
+            if (currentQuantity < stock) {
+            currentQuantity++;
+            quantityInput.value = currentQuantity;
+        }
         }
         function decreaseQuantity() {
             quantity.stepDown();
+            const quantityInput = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity > 1) {
+            currentQuantity--;
+            quantityInput.value = currentQuantity;
         }
+    }
+    
 
         // DISABLE THE CARACTERS (ONLY NUMBERS)
         document.querySelectorAll('input[type="number"]').forEach(input => {

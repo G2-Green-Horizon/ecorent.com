@@ -35,12 +35,14 @@ class Rental
 
     function getRentalsData()
     {
-        $query = "SELECT * FROM rentals 
+        $query = "SELECT * FROM rentals  
         LEFT JOIN items ON rentals.itemID = items.itemID
         LEFT JOIN attachments ON items.itemID = attachments.itemID
+        WHERE rentals.isDeleted = 'No'
         ORDER BY rentals.rentalID DESC
         LIMIT 10";
         $result = executeQuery($query);
+
 
         $rentals = array();
 
@@ -223,7 +225,7 @@ class Rental
                                             <p class="mb-0">Additional rental period:</p>
                                             <div class="quantity-container d-flex align-items-center mx-4 my-2">
                                                 <button type="button" class="btn btn-outline-secondary btn-sm" onclick="decreaseRentalPeriod(' . $this->rentalID . ')">-</button>
-                                                <input id="rentalPeriod' . $this->rentalID . '" type="number" class="form-control text-center" name="periodExtension" min="1" value="1" step="1" readonly>
+                                                <input id="rentalPeriod' . $this->rentalID . '" type="number" class="form-control text-center" name="periodExtension" min="1" value="1" max="30" step="1" readonly>
                                                 <button type="button" class="btn btn-outline-secondary btn-sm" onclick="increaseRentalPeriod(' . $this->rentalID . ')">+</button>
                                             </div>
                                             <p class="mb-0">days</p>

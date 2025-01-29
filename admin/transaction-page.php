@@ -4,16 +4,23 @@ include("processes/pending-process.php");
 session_start();
 
 
-
 if (!isset($_SESSION['email'])) {
     header('Location: admin-login.php');
     exit();
 }
 
 if (isset($_GET['rentalID'])) {
-    $rentalID = $_GET['rentalID'];
+    if (!isset($_GET['rentalID']) || !is_numeric($_GET['rentalID'])) {
+        echo "Invalid or missing rental ID.";
+        exit();
+    }
+    
 
-    $userQuery = "SELECT * FROM rentals JOIN users ON rentals.renterID = users.userID JOIN items ON items.itemID = rentals.itemID JOIN attachments ON items.itemID = attachments.itemID WHERE rentalID = $rentalID;";
+    $userQuery = "SELECT * FROM rentals 
+    JOIN users ON rentals.renterID = users.userID 
+    JOIN items ON items.itemID = rentals.itemID 
+    JOIN attachments ON items.itemID = attachments.itemID 
+    WHERE rentalID = $rentalID;";
     $userResults = executeQuery($userQuery);
 
     while ($user = mysqli_fetch_assoc($userResults)) {

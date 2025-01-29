@@ -62,7 +62,7 @@ include("shared/processes/booking-process.php");
                     <div class="mb-4 col-12">
                         <div class="row">
                             <div class="col-12 col-lg-6 d-flex justify-content-center mt-sm-2">
-                                <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['attachment']; ?>"
+                                <img src="shared/assets/img/system/items/<?php echo $itemBookingInfoArray['fileName']; ?>"
                                     class="rounded-2" style="width: 96px; height: auto;">
                                 <h4 class="item-name me-auto p-2 d-flex align-items-center">
                                     <?php echo $itemBookingInfoArray['itemName']; ?>

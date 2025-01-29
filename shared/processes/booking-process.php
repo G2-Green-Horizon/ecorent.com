@@ -17,10 +17,10 @@ $itemSubtotal = $pricePerDay * $rentalPeriod * $quantity;
 
 $itemBookingInfoArray = array();
 if (isset($_GET['id'])) {
-    $getItemInfoQuery = "SELECT itemID, itemName, gasEmissionSaved, attachment
+    $getItemInfoQuery = "SELECT items.itemID, items.itemName, items.gasEmissionSaved, attachments.fileName
                          FROM items 
-                        --  JOIN attachments ON items.itemID = attachments.itemID
-                         WHERE items.itemID = $itemID";
+                         JOIN attachments ON items.itemID = attachments.itemID
+                         WHERE items.itemID = $itemID AND items.isDeleted = 'No'";
 
     $getItemInfoResult = executeQuery($getItemInfoQuery);
 
